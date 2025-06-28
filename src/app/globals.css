@@ -63,13 +63,8 @@
   * {
     @apply border-border;
   }
-  
-  html {
-    @apply dark;
-  }
-  
   body {
-    @apply bg-black text-white antialiased transition-colors duration-300;
+    @apply bg-white dark:bg-black text-gray-900 dark:text-white antialiased transition-colors duration-300;
   }
 
   html {
@@ -132,7 +127,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-900;
+  @apply bg-gray-100 dark:bg-gray-900;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -141,31 +136,31 @@ html {
 
 /* Theme-aware text colors */
 .text-primary {
-  @apply text-white;
+  @apply text-gray-900 dark:text-white;
 }
 
 .text-secondary {
-  @apply text-gray-300;
+  @apply text-gray-600 dark:text-gray-300;
 }
 
 .text-muted {
-  @apply text-gray-400;
+  @apply text-gray-500 dark:text-gray-400;
 }
 
 /* Theme-aware background colors */
 .bg-primary {
-  @apply bg-black;
+  @apply bg-white dark:bg-black;
 }
 
 .bg-secondary {
-  @apply bg-gray-900;
+  @apply bg-gray-50 dark:bg-gray-900;
 }
 
 .bg-card {
-  @apply bg-gray-800;
+  @apply bg-white dark:bg-gray-800;
 }
 
 /* Theme-aware border colors */
 .border-primary {
-  @apply border-gray-700;
+  @apply border-gray-200 dark:border-gray-700;
 }

@@ -21,8 +21,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (savedTheme) {
       setTheme(savedTheme)
     } else {
-      // Default to dark mode instead of checking system preference
-      setTheme('dark')
+      // Check system preference
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      setTheme(systemPrefersDark ? 'dark' : 'light')
     }
     setMounted(true)
   }, [])
@@ -39,16 +40,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark')
   }
 
-  // Ensure dark mode is applied immediately on mount
-  useEffect(() => {
-    if (!mounted) {
-      document.documentElement.classList.add('dark')
-    }
-  }, [mounted])
-
   if (!mounted) {
-    // Return children with dark mode applied during SSR
-    return <div className="dark">{children}</div>
+    return null
   }
 
   return (
