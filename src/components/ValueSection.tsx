@@ -70,7 +70,7 @@ export default function ValueSection() {
   }
 
   return (
-    <section className="py-24 px-4 bg-black relative overflow-hidden">
+    <section className="py-24 px-4 bg-gray-50 dark:bg-black relative overflow-hidden">
       {/* Animated Background Elements */}
       <motion.div 
         className="absolute inset-0 opacity-5"
@@ -97,7 +97,7 @@ export default function ValueSection() {
           animate={inView ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-6xl md:text-8xl font-bold text-white mb-8"
+            className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8"
             variants={titleVariants}
           >
             <motion.span
@@ -124,7 +124,7 @@ export default function ValueSection() {
           </motion.h2>
           
           <motion.p 
-            className="text-2xl md:text-3xl text-white max-w-4xl mx-auto leading-relaxed mb-12"
+            className="text-2xl md:text-3xl text-gray-700 dark:text-white max-w-4xl mx-auto leading-relaxed mb-12"
             variants={subtitleVariants}
           >
             Every day, we transform businesses with AI-powered ERP solutions

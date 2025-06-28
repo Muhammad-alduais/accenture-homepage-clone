@@ -36,7 +36,7 @@ export default function CarouselSection() {
   }
 
   return (
-    <section className="py-16 bg-black">
+    <section className="py-16 bg-white dark:bg-black">
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden rounded-lg">
           <div className="flex transition-transform duration-500 ease-in-out"
@@ -45,10 +45,10 @@ export default function CarouselSection() {
               <div key={slide.title} className="w-full flex-shrink-0">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[600px]">
                   <div className="order-2 lg:order-1 px-8">
-                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                       {slide.title}
                     </h3>
-                    <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                    <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
                       {slide.description}
                     </p>
                     <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-colors flex items-center">
@@ -73,25 +73,25 @@ export default function CarouselSection() {
 
         {/* Controls */}
         <div className="flex items-center justify-between mt-8">
-          <button className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-colors">
+          <button className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors">
             <Pause className="w-5 h-5" />
           </button>
 
           <div className="flex items-center space-x-4">
             <button
               onClick={prevSlide}
-              className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-colors"
+              className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
 
-            <span className="text-white font-medium">
+            <span className="text-gray-900 dark:text-white font-medium">
               {currentSlide + 1}/{slides.length}
             </span>
 
             <button
               onClick={nextSlide}
-              className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-colors"
+              className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
             </button>

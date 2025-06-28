@@ -77,7 +77,7 @@ export default function Awards() {
   }
 
   return (
-    <section className="py-24 bg-black">
+    <section className="py-24 bg-gray-50 dark:bg-black">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -86,13 +86,13 @@ export default function Awards() {
           animate={inView ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-5xl md:text-6xl font-bold text-white text-center mb-4"
+            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white text-center mb-4"
             variants={titleVariants}
           >
             Why choose
           </motion.h2>
           <motion.h3 
-            className="text-5xl md:text-6xl font-bold text-white text-center mb-16"
+            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white text-center mb-16"
             variants={titleVariants}
           >
             <motion.span

@@ -1,6 +1,6 @@
 export default function CareersSection() {
   return (
-    <section className="py-24 bg-black">
+    <section className="py-24 bg-white dark:bg-black">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
@@ -14,11 +14,11 @@ export default function CareersSection() {
               <span className="text-purple-400 text-lg font-medium">Partnership</span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
               Let's work together to transform your business
             </h2>
 
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
               Ready to experience intelligent operations? Our ERP experts are here to guide your transformation journey with personalized solutions designed for your unique needs.
             </p>
 
@@ -26,15 +26,15 @@ export default function CareersSection() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span className="text-white">Free consultation and system assessment</span>
+                <span className="text-gray-900 dark:text-white">Free consultation and system assessment</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span className="text-white">Customized implementation roadmap</span>
+                <span className="text-gray-900 dark:text-white">Customized implementation roadmap</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span className="text-white">Dedicated success team support</span>
+                <span className="text-gray-900 dark:text-white">Dedicated success team support</span>
               </div>
             </div>
 
@@ -46,7 +46,7 @@ export default function CareersSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               </button>
-              <button className="border border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-lg font-medium transition-colors text-lg flex items-center justify-center">
+              <button className="border border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-lg font-medium transition-colors text-lg flex items-center justify-center">
                 Schedule Consultation
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -89,7 +89,7 @@ export default function CareersSection() {
             </div>
 
             {/* Floating contact card */}
-            <div className="absolute -bottom-6 -left-6 bg-gray-900 border border-gray-700 rounded-lg p-6 shadow-2xl">
+            <div className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-2xl">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,8 +97,8 @@ export default function CareersSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white font-medium">Ready to get started?</p>
-                  <p className="text-gray-400 text-sm">Book a free consultation</p>
+                  <p className="text-gray-900 dark:text-white font-medium">Ready to get started?</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">Book a free consultation</p>
                 </div>
               </div>
             </div>
@@ -109,18 +109,18 @@ export default function CareersSection() {
         <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
             <div className="text-4xl font-bold text-purple-400 mb-2">50%</div>
-            <div className="text-white font-medium">Faster Implementation</div>
-            <div className="text-gray-400 text-sm">Than traditional ERP rollouts</div>
+            <div className="text-gray-900 dark:text-white font-medium">Faster Implementation</div>
+            <div className="text-gray-600 dark:text-gray-400 text-sm">Than traditional ERP rollouts</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-purple-400 mb-2">87%</div>
-            <div className="text-white font-medium">User Adoption Rate</div>
-            <div className="text-gray-400 text-sm">Within 90 days of go-live</div>
+            <div className="text-gray-900 dark:text-white font-medium">User Adoption Rate</div>
+            <div className="text-gray-600 dark:text-gray-400 text-sm">Within 90 days of go-live</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-purple-400 mb-2">24/7</div>
-            <div className="text-white font-medium">Expert Support</div>
-            <div className="text-gray-400 text-sm">Dedicated success team</div>
+            <div className="text-gray-900 dark:text-white font-medium">Expert Support</div>
+            <div className="text-gray-600 dark:text-gray-400 text-sm">Dedicated success team</div>
           </div>
         </div>
       </div>

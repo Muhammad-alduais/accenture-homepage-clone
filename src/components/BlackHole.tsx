@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTheme } from '@/contexts/ThemeContext'
 
 interface Disc {
   x: number
@@ -32,6 +33,7 @@ export default function BlackHole() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [useSimpleVersion, setUseSimpleVersion] = useState(false)
+  const { theme } = useTheme()
 
   useEffect(() => {
     // Detect mobile devices and reduce complexity
@@ -68,6 +70,10 @@ export default function BlackHole() {
     let lastTime = 0
     const targetFPS = isMobile ? 30 : 60
     const frameInterval = 1000 / targetFPS
+
+    // Theme-aware colors
+    const strokeColor = theme === 'dark' ? (isMobile ? "#333" : "#444") : (isMobile ? "#ccc" : "#999")
+    const particleOpacity = theme === 'dark' ? 0.6 : 0.4
 
     // Easing function
     const easeInExpo = (t: number) => t === 0 ? 0 : Math.pow(2, 10 * (t - 1))
@@ -198,7 +204,9 @@ export default function BlackHole() {
         vy,
         p: 0,
         r,
-        c: `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.2})`
+        c: theme === 'dark' 
+          ? `rgba(255, 255, 255, ${Math.random() * particleOpacity + 0.2})`
+          : `rgba(0, 0, 0, ${Math.random() * particleOpacity + 0.2})`
       }
     }
 
@@ -215,7 +223,7 @@ export default function BlackHole() {
     const drawDiscs = () => {
       if (!clip) return
       
-      ctx.strokeStyle = isMobile ? "#333" : "#444"
+      ctx.strokeStyle = strokeColor
       ctx.lineWidth = isMobile ? 1 : 2
 
       // Outer disc
@@ -336,7 +344,7 @@ export default function BlackHole() {
       }
       clearTimeout(resizeTimeout)
     }
-  }, [isMobile, useSimpleVersion])
+  }, [isMobile, useSimpleVersion, theme])
 
   return (
     <div 
@@ -348,8 +356,12 @@ export default function BlackHole() {
       {useSimpleVersion ? (
         // Simple CSS-only version for very small screens
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 w-32 h-32 md:w-48 md:h-48 -translate-x-1/2 -translate-y-1/2 bg-purple-600/40 rounded-full blur-2xl animate-pulse" />
-          <div className="absolute top-1/2 left-1/2 w-16 h-16 md:w-24 md:h-24 -translate-x-1/2 -translate-y-1/2 bg-purple-400/60 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className={`absolute top-1/2 left-1/2 w-32 h-32 md:w-48 md:h-48 -translate-x-1/2 -translate-y-1/2 ${
+            theme === 'dark' ? 'bg-purple-600/40' : 'bg-purple-600/20'
+          } rounded-full blur-2xl animate-pulse`} />
+          <div className={`absolute top-1/2 left-1/2 w-16 h-16 md:w-24 md:h-24 -translate-x-1/2 -translate-y-1/2 ${
+            theme === 'dark' ? 'bg-purple-400/60' : 'bg-purple-400/30'
+          } rounded-full blur-xl animate-pulse`} style={{ animationDelay: '1s' }} />
         </div>
       ) : (
         <canvas 
@@ -362,11 +374,11 @@ export default function BlackHole() {
         />
       )}
       
-      {/* Aura effect - simplified for mobile */}
+      {/* Aura effect - simplified for mobile and theme-aware */}
       <div 
-        className={`absolute top-[-71.5%] left-1/2 z-[3] rounded-b-full opacity-60 mix-blend-plus-lighter ${
+        className={`absolute top-[-71.5%] left-1/2 z-[3] rounded-b-full mix-blend-plus-lighter ${
           isMobile ? 'w-[50%] h-[100%] blur-[25px]' : 'w-[30%] h-[140%] blur-[50px]'
-        }`}
+        } ${theme === 'dark' ? 'opacity-60' : 'opacity-30'}`}
         style={{
           background: isMobile 
             ? 'linear-gradient(20deg, #00f8f1 0%, #fe848f 50%, #ffbd1e 100%)'
@@ -376,13 +388,15 @@ export default function BlackHole() {
         }}
       />
       
-      {/* Black hole gradient overlay */}
+      {/* Black hole gradient overlay - theme-aware */}
       <div 
         className={`absolute top-1/2 left-1/2 z-[2] block ${
           isMobile ? 'w-[130%] h-[130%]' : 'w-[150%] h-[140%]'
         }`}
         style={{
-          background: 'radial-gradient(ellipse at 50% 55%, transparent 10%, rgba(0,0,0,0.8) 50%)',
+          background: theme === 'dark' 
+            ? 'radial-gradient(ellipse at 50% 55%, transparent 10%, rgba(0,0,0,0.8) 50%)'
+            : 'radial-gradient(ellipse at 50% 55%, transparent 10%, rgba(255,255,255,0.8) 50%)',
           transform: 'translate3d(-50%, -50%, 0)'
         }}
       />
@@ -392,16 +406,21 @@ export default function BlackHole() {
         className="absolute top-1/2 left-1/2 z-[5] block w-full h-full mix-blend-overlay"
         style={{
           background: 'radial-gradient(ellipse at 50% 75%, #a900ff 20%, transparent 75%)',
-          transform: 'translate3d(-50%, -50%, 0)'
+          transform: 'translate3d(-50%, -50%, 0)',
+          opacity: theme === 'dark' ? 1 : 0.5
         }}
       />
       
-      {/* Scanline overlay - only on desktop */}
+      {/* Scanline overlay - only on desktop and theme-aware */}
       {!isMobile && (
         <div 
-          className="absolute top-0 left-0 z-[10] w-full h-full mix-blend-overlay opacity-20"
+          className={`absolute top-0 left-0 z-[10] w-full h-full mix-blend-overlay ${
+            theme === 'dark' ? 'opacity-20' : 'opacity-10'
+          }`}
           style={{
-            background: 'repeating-linear-gradient(transparent, transparent 2px, white 2px, white 3px)'
+            background: theme === 'dark'
+              ? 'repeating-linear-gradient(transparent, transparent 2px, white 2px, white 3px)'
+              : 'repeating-linear-gradient(transparent, transparent 2px, black 2px, black 3px)'
           }}
         />
       )}

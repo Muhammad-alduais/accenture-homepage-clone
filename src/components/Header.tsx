@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronDown, Search, Globe } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -46,7 +47,9 @@ export default function Header() {
   return (
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black/95 backdrop-blur-md border-b border-gray-800' : 'bg-black'
+        scrolled 
+          ? 'bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800' 
+          : 'bg-white dark:bg-black'
       }`}
       variants={headerVariants}
       initial="initial"
@@ -80,7 +83,7 @@ export default function Header() {
                 </svg>
               </motion.div>
               <motion.span 
-                className="text-white font-medium text-lg"
+                className="text-gray-900 dark:text-white font-medium text-lg"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -95,7 +98,7 @@ export default function Header() {
             {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
               <motion.div 
                 key={item}
-                className="flex items-center space-x-1 text-white hover:text-purple-300 cursor-pointer group"
+                className="flex items-center space-x-1 text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer group"
                 variants={navItemVariants}
                 initial="initial"
                 animate="animate"
@@ -127,10 +130,10 @@ export default function Header() {
               whileHover={{ scale: 1.1, rotate: 15 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Search className="w-5 h-5 text-white hover:text-purple-300 cursor-pointer transition-colors duration-300" />
+              <Search className="w-5 h-5 text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer transition-colors duration-300" />
             </motion.div>
             <motion.div 
-              className="flex items-center space-x-1 text-white hover:text-purple-300 cursor-pointer group"
+              className="flex items-center space-x-1 text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer group"
               whileHover={{ scale: 1.05 }}
             >
               <Globe className="w-4 h-4" />
@@ -143,11 +146,14 @@ export default function Header() {
                 <ChevronDown className="w-4 h-4" />
               </motion.div>
             </motion.div>
+            
+            {/* Theme Toggle */}
+            <ThemeToggle />
           </motion.div>
 
           {/* Mobile menu button */}
           <motion.button
-            className="lg:hidden text-white"
+            className="lg:hidden text-gray-900 dark:text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -157,7 +163,7 @@ export default function Header() {
               animate={isMenuOpen ? "open" : "closed"}
             >
               <motion.div 
-                className="w-4 h-0.5 bg-white"
+                className="w-4 h-0.5 bg-gray-900 dark:bg-white"
                 variants={{
                   closed: { rotate: 0, y: 0 },
                   open: { rotate: 45, y: 6 }
@@ -165,7 +171,7 @@ export default function Header() {
                 transition={{ duration: 0.3 }}
               />
               <motion.div 
-                className="w-4 h-0.5 bg-white"
+                className="w-4 h-0.5 bg-gray-900 dark:bg-white"
                 variants={{
                   closed: { opacity: 1 },
                   open: { opacity: 0 }
@@ -173,7 +179,7 @@ export default function Header() {
                 transition={{ duration: 0.3 }}
               />
               <motion.div 
-                className="w-4 h-0.5 bg-white"
+                className="w-4 h-0.5 bg-gray-900 dark:bg-white"
                 variants={{
                   closed: { rotate: 0, y: 0 },
                   open: { rotate: -45, y: -6 }
@@ -189,7 +195,7 @@ export default function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
-            className="lg:hidden bg-black border-t border-gray-800"
+            className="lg:hidden bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -205,7 +211,7 @@ export default function Header() {
               {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
                 <motion.div 
                   key={item}
-                  className="text-white hover:text-purple-300 cursor-pointer"
+                  className="text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer"
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.1 }}

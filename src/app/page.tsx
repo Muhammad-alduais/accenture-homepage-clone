@@ -10,7 +10,7 @@ import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       <Header />
       <main>
         <Hero />

@@ -97,7 +97,7 @@ export default function ContentGrid() {
   }
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 bg-white dark:bg-black">
       <div className="container mx-auto">
         <motion.div 
           ref={ref}
@@ -145,7 +145,7 @@ export default function ContentGrid() {
               </motion.div>
               
               <motion.h3 
-                className="text-white text-xl font-semibold mb-3 group-hover:text-purple-300 transition-colors duration-300"
+                className="text-gray-900 dark:text-white text-xl font-semibold mb-3 group-hover:text-purple-500 dark:group-hover:text-purple-300 transition-colors duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.4 }}
@@ -154,7 +154,7 @@ export default function ContentGrid() {
               </motion.h3>
               
               <motion.p 
-                className="text-gray-300 text-sm leading-relaxed mb-4"
+                className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.5 }}
@@ -163,7 +163,7 @@ export default function ContentGrid() {
               </motion.p>
               
               <motion.button 
-                className="text-purple-400 hover:text-purple-300 text-sm font-medium flex items-center group"
+                className="text-purple-500 dark:text-purple-400 hover:text-purple-600 dark:hover:text-purple-300 text-sm font-medium flex items-center group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.6 }}

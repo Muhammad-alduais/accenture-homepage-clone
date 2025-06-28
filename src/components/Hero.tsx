@@ -53,13 +53,13 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
       {/* Black Hole Animation Background */}
       <BlackHole />
 
       {/* Video Background with Animation (reduced opacity to show black hole) */}
       <motion.div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-30 dark:opacity-30"
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.3 }}
         transition={{ duration: 2, ease: "easeOut" }}
@@ -74,7 +74,7 @@ export default function Hero() {
           <source src="https://ext.same-assets.com/2900598000/2585685094.mp4" type="video/mp4" />
         </video>
         <motion.div 
-          className="absolute inset-0 bg-black bg-opacity-60"
+          className="absolute inset-0 bg-white/60 dark:bg-black/60"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
@@ -90,7 +90,7 @@ export default function Hero() {
         animate={inView ? "visible" : "hidden"}
       >
         <motion.h1 
-          className="text-6xl md:text-8xl font-bold text-white mb-8"
+          className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8"
           variants={itemVariants}
         >
           AI-Powered ERP.
@@ -104,7 +104,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p 
-          className="text-xl md:text-2xl text-white mb-12 max-w-4xl mx-auto leading-relaxed"
+          className="text-xl md:text-2xl text-gray-700 dark:text-white mb-12 max-w-4xl mx-auto leading-relaxed"
           variants={itemVariants}
         >
           Streamline operations, boost efficiency, and future-proof your business with intelligent automation, 
@@ -126,10 +126,10 @@ export default function Hero() {
             Start Your Transformation
           </motion.button>
           <motion.button 
-            className="border border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-lg font-medium transition-all duration-300"
+            className="border border-gray-900 dark:border-white text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black px-8 py-4 rounded-lg font-medium transition-all duration-300"
             whileHover={{ 
               scale: 1.05,
-              backgroundColor: "rgba(255, 255, 255, 0.1)"
+              backgroundColor: "rgba(0, 0, 0, 0.1)"
             }}
             whileTap={{ scale: 0.95 }}
           >
@@ -140,7 +140,7 @@ export default function Hero() {
 
       {/* Play button for video */}
       <motion.button 
-        className="absolute bottom-8 left-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-4 transition-all duration-300 z-20"
+        className="absolute bottom-8 left-8 bg-white/20 dark:bg-white/20 hover:bg-white/30 dark:hover:bg-white/30 rounded-full p-4 transition-all duration-300 z-20"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 1.5 }}
@@ -150,7 +150,7 @@ export default function Hero() {
         }}
         whileTap={{ scale: 0.9 }}
       >
-        <Play className="w-6 h-6 text-white" />
+        <Play className="w-6 h-6 text-gray-900 dark:text-white" />
       </motion.button>
     </section>
   )

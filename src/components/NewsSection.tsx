@@ -48,19 +48,19 @@ export default function NewsSection() {
   }
 
   return (
-    <section className="py-16 bg-black">
+    <section className="py-16 bg-gray-50 dark:bg-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-12">
           MovinWare updates
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Featured News */}
           <div>
-            <div className="text-gray-400 text-sm mb-2">
+            <div className="text-gray-600 dark:text-gray-400 text-sm mb-2">
               {news[currentNews].date}
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               {news[currentNews].title}
             </h3>
             <button className="bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full transition-colors">
@@ -71,11 +71,11 @@ export default function NewsSection() {
           {/* News List */}
           <div className="space-y-8">
             {news.slice(1, 4).map((item) => (
-              <div key={item.title} className="border-b border-gray-800 pb-6">
-                <div className="text-gray-400 text-sm mb-2">
+              <div key={item.title} className="border-b border-gray-200 dark:border-gray-800 pb-6">
+                <div className="text-gray-600 dark:text-gray-400 text-sm mb-2">
                   {item.date}
                 </div>
-                <h4 className="text-xl font-semibold text-white hover:text-purple-300 cursor-pointer transition-colors">
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer transition-colors">
                   {item.title}
                 </h4>
               </div>
@@ -87,13 +87,13 @@ export default function NewsSection() {
         <div className="flex items-center justify-end mt-12 space-x-4">
           <button
             onClick={prevNews}
-            className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-colors"
+            className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextNews}
-            className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-colors"
+            className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -101,17 +101,17 @@ export default function NewsSection() {
 
         {/* Contact Section */}
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Ready to transform your operations?
           </h3>
-          <p className="text-xl text-white mb-8">
+          <p className="text-xl text-gray-700 dark:text-white mb-8">
             Connect with our ERP experts and discover how MovinWare can accelerate your digital transformation.
           </p>
           <div className="flex justify-center space-x-4">
             <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-colors">
               Get Started Today
             </button>
-            <button className="border border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-lg font-medium transition-colors">
+            <button className="border border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-lg font-medium transition-colors">
               Download Brochure
             </button>
           </div>
