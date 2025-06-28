@@ -36,23 +36,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  // Await the params object before accessing its properties
+  const { locale } = await params;
+  
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(params.locale as Locale)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
-  const locale = params.locale as Locale;
-  const isRTL = locale === 'ar';
+  const validLocale = locale as Locale;
+  const isRTL = validLocale === 'ar';
 
   return (
-    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang={validLocale} dir={isRTL ? 'rtl' : 'ltr'} className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -63,7 +66,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className={`antialiased ${isRTL ? 'font-arabic' : 'font-english'}`}>
         <ThemeProvider>
-          <LanguageProvider initialLocale={locale}>
+          <LanguageProvider initialLocale={validLocale}>
             <ClientBody>{children}</ClientBody>
             <StickyContactButton />
           </LanguageProvider>
