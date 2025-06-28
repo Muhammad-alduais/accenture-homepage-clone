@@ -15,7 +15,7 @@ export default function IndustriesSection() {
     {
       titleKey: 'industries.education.title',
       descriptionKey: 'industries.education.description',
-      image: "https://ext.same-assets.com/2900598000/36195040.jpeg",
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop&crop=center",
       featuresKeys: [
         'industries.education.features.student',
         'industries.education.features.academic',
@@ -32,7 +32,7 @@ export default function IndustriesSection() {
     {
       titleKey: 'industries.logistics.title',
       descriptionKey: 'industries.logistics.description',
-      image: "https://ext.same-assets.com/2900598000/1611683462.jpeg",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop&crop=center",
       featuresKeys: [
         'industries.logistics.features.fleet',
         'industries.logistics.features.route',
@@ -49,7 +49,7 @@ export default function IndustriesSection() {
     {
       titleKey: 'industries.retail.title',
       descriptionKey: 'industries.retail.description',
-      image: "https://ext.same-assets.com/2900598000/4049787973.jpeg",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center",
       featuresKeys: [
         'industries.retail.features.pos',
         'industries.retail.features.sync',
@@ -66,7 +66,7 @@ export default function IndustriesSection() {
     {
       titleKey: 'industries.manufacturing.title',
       descriptionKey: 'industries.manufacturing.description',
-      image: "https://ext.same-assets.com/2900598000/3965891193.jpeg",
+      image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=600&fit=crop&crop=center",
       featuresKeys: [
         'industries.manufacturing.features.planning',
         'industries.manufacturing.features.quality',
