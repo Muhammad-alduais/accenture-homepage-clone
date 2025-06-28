@@ -43,7 +43,7 @@ export function LanguageProvider({
     if (preferredLocale && preferredLocale !== locale) {
       setLocale(preferredLocale)
     }
-  }, [])
+  }, [locale])
 
   const t = (key: string) => {
     const translation = getTranslation(locale, key)
