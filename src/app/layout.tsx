@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body suppressHydrationWarning className="antialiased">
+    <html lang="en" className={`dark ${geistSans.variable} ${geistMono.variable}`}>
+      <body suppressHydrationWarning className="antialiased dark:bg-black dark:text-white">
         <ThemeProvider>
           <ClientBody>{children}</ClientBody>
           <StickyContactButton />
