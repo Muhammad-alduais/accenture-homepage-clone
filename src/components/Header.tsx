@@ -45,185 +45,279 @@ export default function Header() {
   }
 
   return (
-    <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800' 
-          : 'bg-white dark:bg-black'
-      }`}
-      variants={headerVariants}
-      initial="initial"
-      animate="animate"
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <motion.div 
-            className="flex items-center"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="flex items-center space-x-2">
-              <motion.div 
-                className="text-purple-500 text-2xl font-bold"
-                variants={logoVariants}
-                whileHover={{ 
-                  rotate: 360,
-                  transition: { duration: 0.6 }
-                }}
-              >
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <motion.path 
-                    d="M20 5L35 35H5L20 5Z" 
-                    fill="#A100FF"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                  />
-                </svg>
-              </motion.div>
-              <motion.span 
-                className="text-gray-900 dark:text-white font-medium text-lg"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                MovinWare
-              </motion.span>
-            </div>
-          </motion.div>
-
-          {/* Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
-              <motion.div 
-                key={item}
-                className="flex items-center space-x-1 text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer group"
-                variants={navItemVariants}
-                initial="initial"
-                animate="animate"
-                transition={{ delay: 0.6 + index * 0.1 }}
-                whileHover={{ y: -2 }}
-              >
-                <span className="transition-colors duration-300">{item}</span>
-                {(item === 'Solutions' || item === 'Industries' || item === 'About') && (
-                  <motion.div
-                    animate={{ rotate: 0 }}
-                    whileHover={{ rotate: 180 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </nav>
-
-          {/* Right side */}
-          <motion.div 
-            className="flex items-center space-x-4"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 15 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Search className="w-5 h-5 text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer transition-colors duration-300" />
-            </motion.div>
+    <>
+      {/* Fixed Header Container */}
+      <motion.header 
+        className="fixed top-0 left-0 right-0 z-50 px-4 pt-4"
+        variants={headerVariants}
+        initial="initial"
+        animate="animate"
+      >
+        {/* Centered Rounded Navbar */}
+        <motion.div 
+          className={`max-w-6xl mx-auto transition-all duration-500 ease-out ${
+            scrolled 
+              ? 'bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl' 
+              : 'bg-white/60 dark:bg-black/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-700/30 shadow-lg'
+          }`}
+          style={{
+            borderRadius: '24px',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+          }}
+          animate={{
+            scale: scrolled ? 0.98 : 1,
+            y: scrolled ? 8 : 0
+          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <div className="flex items-center justify-between h-16 px-6">
+            {/* Logo */}
             <motion.div 
-              className="flex items-center space-x-1 text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer group"
+              className="flex items-center"
               whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
             >
-              <Globe className="w-4 h-4" />
-              <span className="text-sm">UAE</span>
-              <motion.div
-                animate={{ rotate: 0 }}
-                whileHover={{ rotate: 180 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ChevronDown className="w-4 h-4" />
-              </motion.div>
+              <div className="flex items-center space-x-3">
+                <motion.div 
+                  className="text-purple-500 text-2xl font-bold relative"
+                  variants={logoVariants}
+                  whileHover={{ 
+                    rotate: 360,
+                    transition: { duration: 0.6 }
+                  }}
+                >
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <motion.path 
+                      d="M20 5L35 35H5L20 5Z" 
+                      fill="#A100FF"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 1, delay: 0.5 }}
+                    />
+                    {/* Glow effect */}
+                    <motion.path 
+                      d="M20 5L35 35H5L20 5Z" 
+                      fill="none"
+                      stroke="#A100FF"
+                      strokeWidth="2"
+                      filter="blur(4px)"
+                      opacity="0.6"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 1, delay: 0.7 }}
+                    />
+                  </svg>
+                </motion.div>
+                <motion.span 
+                  className="text-gray-900 dark:text-white font-bold text-xl bg-gradient-to-r from-gray-900 to-purple-600 dark:from-white dark:to-purple-400 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  MovinWare
+                </motion.span>
+              </div>
             </motion.div>
-            
-            {/* Theme Toggle */}
-            <ThemeToggle />
-          </motion.div>
 
-          {/* Mobile menu button */}
-          <motion.button
-            className="lg:hidden text-gray-900 dark:text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <motion.div 
-              className="w-6 h-6 flex flex-col justify-center items-center space-y-1"
-              animate={isMenuOpen ? "open" : "closed"}
-            >
-              <motion.div 
-                className="w-4 h-0.5 bg-gray-900 dark:bg-white"
-                variants={{
-                  closed: { rotate: 0, y: 0 },
-                  open: { rotate: 45, y: 6 }
-                }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.div 
-                className="w-4 h-0.5 bg-gray-900 dark:bg-white"
-                variants={{
-                  closed: { opacity: 1 },
-                  open: { opacity: 0 }
-                }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.div 
-                className="w-4 h-0.5 bg-gray-900 dark:bg-white"
-                variants={{
-                  closed: { rotate: 0, y: 0 },
-                  open: { rotate: -45, y: -6 }
-                }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
-          </motion.button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div 
-            className="lg:hidden bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.div 
-              className="px-4 py-2 space-y-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.1 }}
-            >
+            {/* Navigation */}
+            <nav className="hidden lg:flex items-center space-x-1">
               {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
                 <motion.div 
                   key={item}
-                  className="text-gray-900 dark:text-white hover:text-purple-500 dark:hover:text-purple-300 cursor-pointer"
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ x: 10 }}
+                  className="relative group"
+                  variants={navItemVariants}
+                  initial="initial"
+                  animate="animate"
+                  transition={{ delay: 0.6 + index * 0.1 }}
                 >
-                  {item}
+                  <motion.button
+                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 relative overflow-hidden group"
+                    whileHover={{ 
+                      scale: 1.05,
+                      backgroundColor: 'rgba(168, 85, 247, 0.1)'
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Hover background effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-purple-600/10 rounded-full opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.3 }}
+                    />
+                    
+                    <span className="relative z-10 font-medium">{item}</span>
+                    {(item === 'Solutions' || item === 'Industries' || item === 'About') && (
+                      <motion.div
+                        className="relative z-10"
+                        animate={{ rotate: 0 }}
+                        whileHover={{ rotate: 180 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </motion.div>
+                    )}
+                  </motion.button>
                 </motion.div>
               ))}
+            </nav>
+
+            {/* Right side */}
+            <motion.div 
+              className="flex items-center space-x-3"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              {/* Search Button */}
+              <motion.button
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+                whileHover={{ scale: 1.1, rotate: 15 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Search className="w-5 h-5 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300" />
+              </motion.button>
+
+              {/* Language Selector */}
+              <motion.button 
+                className="flex items-center space-x-1 px-3 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm font-medium">UAE</span>
+                <motion.div
+                  animate={{ rotate: 0 }}
+                  whileHover={{ rotate: 180 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </motion.div>
+              </motion.button>
+              
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
+              {/* CTA Button - Hidden on mobile */}
+              <motion.button
+                className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 30px rgba(168, 85, 247, 0.4)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Get Started</span>
+                <motion.svg 
+                  className="w-4 h-4" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  whileHover={{ x: 3 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </motion.svg>
+              </motion.button>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+
+            {/* Mobile menu button */}
+            <motion.button
+              className="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <motion.div 
+                className="w-6 h-6 flex flex-col justify-center items-center space-y-1"
+                animate={isMenuOpen ? "open" : "closed"}
+              >
+                <motion.div 
+                  className="w-5 h-0.5 bg-gray-700 dark:bg-gray-300 rounded-full"
+                  variants={{
+                    closed: { rotate: 0, y: 0 },
+                    open: { rotate: 45, y: 6 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div 
+                  className="w-5 h-0.5 bg-gray-700 dark:bg-gray-300 rounded-full"
+                  variants={{
+                    closed: { opacity: 1 },
+                    open: { opacity: 0 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div 
+                  className="w-5 h-0.5 bg-gray-700 dark:bg-gray-300 rounded-full"
+                  variants={{
+                    closed: { rotate: 0, y: 0 },
+                    open: { rotate: -45, y: -6 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            </motion.button>
+          </div>
+        </motion.div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              className="lg:hidden mt-2 max-w-6xl mx-auto"
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div 
+                className="bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl p-6"
+                style={{
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                }}
+              >
+                <motion.div 
+                  className="space-y-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
+                    <motion.button 
+                      key={item}
+                      className="w-full text-left px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300 font-medium"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ x: 10, scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {item}
+                    </motion.button>
+                  ))}
+                  
+                  {/* Mobile CTA */}
+                  <motion.button
+                    className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg"
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Get Started
+                  </motion.button>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+
+      {/* Spacer to prevent content overlap */}
+      <div className="h-20"></div>
+    </>
   )
 }
