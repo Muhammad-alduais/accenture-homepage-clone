@@ -31,31 +31,19 @@ export default function Header() {
     return () => document.removeEventListener('click', handleClickOutside)
   }, [])
 
-  const headerVariants = {
-    initial: { y: -100, opacity: 0 },
-    animate: { 
-      y: 0, 
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const headerHeight = 100
+      const elementPosition = element.offsetTop - headerHeight
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
     }
-  }
-
-  const logoVariants = {
-    initial: { scale: 0, rotate: isRTL ? 180 : -180 },
-    animate: { 
-      scale: 1, 
-      rotate: 0,
-      transition: { duration: 0.8, ease: "easeOut", delay: 0.2 }
-    }
-  }
-
-  const navItemVariants = {
-    initial: { opacity: 0, y: -20 },
-    animate: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.4, ease: "easeOut" }
-    }
+    // Close menus after navigation
+    setIsMenuOpen(false)
+    setActiveDropdown(null)
   }
 
   const navItems = [
@@ -63,32 +51,36 @@ export default function Header() {
       key: 'Solutions', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'ERP Systems', href: '#services' },
-        { key: 'AI & Automation', href: '#services' },
-        { key: 'System Integration', href: '#services' },
-        { key: 'Data Migration', href: '#services' }
+        { key: 'ERP Systems', action: () => scrollToSection('services') },
+        { key: 'AI & Automation', action: () => scrollToSection('services') },
+        { key: 'System Integration', action: () => scrollToSection('services') },
+        { key: 'Data Migration', action: () => scrollToSection('services') }
       ]
     },
-    { key: 'Services', hasDropdown: false, href: '#services' },
+    { 
+      key: 'Services', 
+      hasDropdown: false, 
+      action: () => scrollToSection('services')
+    },
     { 
       key: 'Industries', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'Education', href: '#industries' },
-        { key: 'Healthcare', href: '#industries' },
-        { key: 'Logistics', href: '#industries' },
-        { key: 'Retail', href: '#industries' },
-        { key: 'Manufacturing', href: '#industries' }
+        { key: 'Education', action: () => scrollToSection('industries') },
+        { key: 'Healthcare', action: () => scrollToSection('industries') },
+        { key: 'Logistics', action: () => scrollToSection('industries') },
+        { key: 'Retail', action: () => scrollToSection('industries') },
+        { key: 'Manufacturing', action: () => scrollToSection('industries') }
       ]
     },
     { 
       key: 'About', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'Company', href: '#about' },
-        { key: 'Implementation', href: '#implementation' },
-        { key: 'Testimonials', href: '#testimonials' },
-        { key: 'Contact', href: '#contact' }
+        { key: 'Company', action: () => scrollToSection('about') },
+        { key: 'Implementation', action: () => scrollToSection('implementation') },
+        { key: 'Testimonials', action: () => scrollToSection('testimonials') },
+        { key: 'Contact', action: () => scrollToSection('contact') }
       ]
     }
   ]
@@ -103,28 +95,14 @@ export default function Header() {
     setShowLanguageMenu(!showLanguageMenu)
   }
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      const headerHeight = 100 // Account for fixed header
-      const elementPosition = element.offsetTop - headerHeight
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      })
-    }
+  const handleNavClick = (action: () => void) => {
+    action()
   }
 
-  const handleNavClick = (href: string) => {
-    setIsMenuOpen(false)
-    setActiveDropdown(null)
-    scrollToSection(href)
-  }
-
-  const handleDropdownItemClick = (href: string) => {
+  const handleDropdownItemClick = (action: () => void) => {
     setActiveDropdown(null)
     setIsMenuOpen(false)
-    scrollToSection(href)
+    action()
   }
 
   return (
@@ -132,9 +110,9 @@ export default function Header() {
       {/* Fixed Header Container */}
       <motion.header 
         className="fixed top-0 left-0 right-0 z-50 px-4 pt-4"
-        variants={headerVariants}
-        initial="initial"
-        animate="animate"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* Centered Rounded Navbar */}
         <motion.div 
@@ -161,67 +139,47 @@ export default function Header() {
               className="flex items-center cursor-pointer"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
-              onClick={() => scrollToSection('#hero')}
+              onClick={() => scrollToSection('hero')}
             >
               <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                 <motion.div 
                   className="text-purple-500 text-2xl font-bold"
-                  variants={logoVariants}
                   whileHover={{ 
                     rotate: 360,
                     transition: { duration: 0.6 }
                   }}
                 >
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <motion.path 
-                      d="M20 5L35 35H5L20 5Z" 
-                      fill="#A100FF"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                    />
+                    <path d="M20 5L35 35H5L20 5Z" fill="#A100FF" />
                   </svg>
                 </motion.div>
-                <motion.span 
-                  className="text-gray-900 dark:text-white font-bold text-xl"
-                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
+                <span className="text-gray-900 dark:text-white font-bold text-xl">
                   MovinWare
-                </motion.span>
+                </span>
               </div>
             </motion.button>
 
             {/* Navigation */}
             <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
-              {navItems.map((item, index) => (
-                <motion.div 
-                  key={item.key}
-                  className="relative group"
-                  variants={navItemVariants}
-                  initial="initial"
-                  animate="animate"
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                >
+              {navItems.map((item) => (
+                <div key={item.key} className="relative group">
                   <motion.button
-                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 relative overflow-hidden group"
+                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={(e) => {
                       if (item.hasDropdown) {
                         handleDropdownClick(e, item.key)
                       } else {
-                        handleNavClick(item.href!)
+                        handleNavClick(item.action!)
                       }
                     }}
                   >
-                    <span className={`relative z-10 font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
+                    <span className={`font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
                       {item.key}
                     </span>
                     {item.hasDropdown && (
                       <motion.div
-                        className="relative z-10"
                         animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -246,7 +204,7 @@ export default function Header() {
                             <button
                               key={dropdownItem.key}
                               className={`w-full block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
-                              onClick={() => handleDropdownItemClick(dropdownItem.href)}
+                              onClick={() => handleDropdownItemClick(dropdownItem.action)}
                             >
                               {dropdownItem.key}
                             </button>
@@ -255,17 +213,12 @@ export default function Header() {
                       )}
                     </AnimatePresence>
                   )}
-                </motion.div>
+                </div>
               ))}
             </nav>
 
             {/* Right side */}
-            <motion.div 
-              className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
-              initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
+            <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
               {/* Search Button */}
               <motion.button
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
@@ -335,16 +288,13 @@ export default function Header() {
 
               {/* CTA Button - Hidden on mobile */}
               <motion.button
-                className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 border border-white/10"
-                style={{
-                  boxShadow: '0 4px 15px rgba(168, 85, 247, 0.3)'
-                }}
+                className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300"
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 6px 20px rgba(168, 85, 247, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('#contact')}
+                onClick={() => scrollToSection('contact')}
               >
                 <span>Get Started</span>
                 <motion.svg 
@@ -358,39 +308,39 @@ export default function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
                 </motion.svg>
               </motion.button>
-            </motion.div>
 
-            {/* Mobile menu button */}
-            <motion.button
-              className="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="w-6 h-6 text-gray-700 dark:text-gray-200" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="w-6 h-6 text-gray-700 dark:text-gray-200" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+              {/* Mobile menu button */}
+              <motion.button
+                className="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <AnimatePresence mode="wait">
+                  {isMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
           </div>
         </motion.div>
 
@@ -411,19 +361,13 @@ export default function Header() {
                   WebkitBackdropFilter: 'blur(20px)',
                 }}
               >
-                <motion.div 
-                  className="space-y-2 p-6"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
+                <div className="space-y-2 p-6">
                   {/* Mobile Navigation Items */}
                   <motion.button 
                     className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                     whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleNavClick('#about')}
+                    onClick={() => scrollToSection('about')}
                   >
                     About
                   </motion.button>
@@ -432,7 +376,7 @@ export default function Header() {
                     className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                     whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleNavClick('#services')}
+                    onClick={() => scrollToSection('services')}
                   >
                     Services
                   </motion.button>
@@ -441,7 +385,7 @@ export default function Header() {
                     className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                     whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleNavClick('#industries')}
+                    onClick={() => scrollToSection('industries')}
                   >
                     Industries
                   </motion.button>
@@ -450,7 +394,7 @@ export default function Header() {
                     className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                     whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleNavClick('#implementation')}
+                    onClick={() => scrollToSection('implementation')}
                   >
                     Implementation
                   </motion.button>
@@ -459,7 +403,7 @@ export default function Header() {
                     className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                     whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleNavClick('#testimonials')}
+                    onClick={() => scrollToSection('testimonials')}
                   >
                     Testimonials
                   </motion.button>
@@ -468,27 +412,21 @@ export default function Header() {
                     className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                     whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleNavClick('#contact')}
+                    onClick={() => scrollToSection('contact')}
                   >
                     Contact
                   </motion.button>
                   
                   {/* Mobile CTA */}
                   <motion.button
-                    className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 border border-white/10 mt-4"
-                    style={{
-                      boxShadow: '0 4px 15px rgba(168, 85, 247, 0.3)'
-                    }}
-                    initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
+                    className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 mt-4"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => handleNavClick('#contact')}
+                    onClick={() => scrollToSection('contact')}
                   >
                     Get Started
                   </motion.button>
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           )}
