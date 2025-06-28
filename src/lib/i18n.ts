@@ -14,14 +14,16 @@ export const translations = {
     
     // Navigation Dropdowns
     'nav.dropdown.solutions.erp': 'نظام تخطيط موارد المؤسسات',
-    'nav.dropdown.solutions.ai': 'الذكاء الاصطناعي',
-    'nav.dropdown.solutions.integration': 'التكامل',
-    'nav.dropdown.solutions.migration': 'الترحيل',
+    'nav.dropdown.solutions.ai': 'الذكاء الاصطناعي والأتمتة',
+    'nav.dropdown.solutions.integration': 'التكامل مع الأنظمة',
+    'nav.dropdown.solutions.migration': 'ترحيل البيانات',
+    
     'nav.dropdown.industries.education': 'التعليم',
     'nav.dropdown.industries.healthcare': 'الرعاية الصحية',
     'nav.dropdown.industries.logistics': 'اللوجستيات',
     'nav.dropdown.industries.retail': 'التجارة',
     'nav.dropdown.industries.manufacturing': 'التصنيع',
+    
     'nav.dropdown.about.company': 'الشركة',
     'nav.dropdown.about.team': 'الفريق',
     'nav.dropdown.about.careers': 'الوظائف',
@@ -118,7 +120,7 @@ export const translations = {
     'services.ux.features.mobile': 'تحسين الهاتف المحمول',
     
     'services.migration.title': 'ترحيل البيانات القديمة والتكاملات',
-    'services.migration.description': 'انتقال سلس من الأنظمة القديمة مع تكاملات شاملة مع أطراف ثالثة.',
+    'services.migration.description': 'انتقال سلس من الأنظمة القديمة مع تكاملات شاملة مع الطرف الثالث.',
     'services.migration.features.mapping': 'رسم خرائط البيانات والتحقق',
     'services.migration.features.api': 'تكاملات API',
     'services.migration.features.sync': 'مزامنة النظام',
@@ -168,7 +170,7 @@ export const translations = {
     'solutions.manufacturing.features.quality': 'فحوصات الجودة',
     
     'solutions.assets.title': 'إدارة الأصول',
-    'solutions.assets.description': 'دورة حياة الأصول وإدارة الصيانة التنبؤية.',
+    'solutions.assets.description': 'إدارة دورة حياة الأصول والصيانة التنبؤية.',
     'solutions.assets.features.depreciation': 'إهلاك الأصول',
     'solutions.assets.features.maintenance': 'جدولة الصيانة',
     'solutions.assets.features.qr': 'علامات رمز الاستجابة السريعة',
@@ -210,7 +212,7 @@ export const translations = {
     'industries.clientSize.title': 'مبني لكل حجم عمل',
     'industries.clientSize.description': 'من الشركات الناشئة الطموحة إلى المؤسسات الراسخة، حلولنا تنمو مع احتياجات عملك.',
     
-    // Education Industry
+    // Industries Content
     'industries.education.title': 'المؤسسات التعليمية',
     'industries.education.description': 'أنظمة معلومات الطلاب الشاملة والجدولة وبوابات أولياء الأمور',
     'industries.education.features.student': 'إدارة الطلاب',
@@ -222,7 +224,6 @@ export const translations = {
     'industries.education.clients.training': 'مراكز التدريب',
     'industries.education.clients.online': 'الأكاديميات الإلكترونية',
     
-    // Logistics Industry
     'industries.logistics.title': 'اللوجستيات والمستودعات',
     'industries.logistics.description': 'إدارة الأسطول وتحسين المسارات ورؤية سلسلة التوريد',
     'industries.logistics.features.fleet': 'تتبع الأسطول',
@@ -234,9 +235,8 @@ export const translations = {
     'industries.logistics.clients.distribution': 'مراكز التوزيع',
     'industries.logistics.clients.freight': 'وسطاء الشحن',
     
-    // Retail Industry
     'industries.retail.title': 'التجارة والتجارة الإلكترونية',
-    'industries.retail.description': 'عمليات التجارة متعددة القنوات مع نقاط البيع المتكاملة والمنصات الإلكترونية',
+    'industries.retail.description': 'عمليات التجارة متعددة القنوات مع أنظمة نقاط البيع والمنصات الإلكترونية المتكاملة',
     'industries.retail.features.pos': 'تكامل نقاط البيع',
     'industries.retail.features.sync': 'مزامنة المخزون',
     'industries.retail.features.loyalty': 'ولاء العملاء',
@@ -246,7 +246,6 @@ export const translations = {
     'industries.retail.clients.fashion': 'علامات الأزياء',
     'industries.retail.clients.electronics': 'تجار الإلكترونيات',
     
-    // Manufacturing Industry
     'industries.manufacturing.title': 'التصنيع والإنتاج',
     'industries.manufacturing.description': 'تخطيط الإنتاج ومراقبة الجودة وإدارة سلسلة التوريد',
     'industries.manufacturing.features.planning': 'تخطيط الإنتاج',
@@ -258,7 +257,7 @@ export const translations = {
     'industries.manufacturing.clients.food': 'معالجة الأغذية',
     'industries.manufacturing.clients.textile': 'شركات النسيج',
     
-    // Client Size Categories
+    // Client Sizes
     'industries.startups.title': 'الشركات الناشئة',
     'industries.startups.description': 'حلول نشر سريع تنمو مع نموك',
     'industries.startups.benefits.implementation': 'تنفيذ سريع',
@@ -315,13 +314,13 @@ export const translations = {
     
     'implementation.phase3.title': 'البناء الرشيق',
     'implementation.phase3.duration': '4-8 أسابيع',
-    'implementation.phase3.description': 'تطوير تكراري مع عروض أسبوعية واختبار مستمر وترحيل البيانات',
+    'implementation.phase3.description': 'تطوير تكراري مع عروض توضيحية أسبوعية واختبار مستمر وترحيل البيانات',
     'implementation.phase3.activities.development': 'تطوير الوحدات',
-    'implementation.phase3.activities.demos': 'عروض أسبوعية',
+    'implementation.phase3.activities.demos': 'عروض توضيحية أسبوعية',
     'implementation.phase3.activities.migration': 'ترحيل البيانات',
     'implementation.phase3.activities.testing': 'اختبار التكامل',
     'implementation.phase3.deliverables.system': 'نظام عمل',
-    'implementation.phase3.deliverables.data': 'بيانات مرحلة',
+    'implementation.phase3.deliverables.data': 'بيانات مهاجرة',
     'implementation.phase3.deliverables.results': 'نتائج الاختبار',
     'implementation.phase3.deliverables.documentation': 'وثائق المستخدم',
     
@@ -373,14 +372,14 @@ export const translations = {
     'testimonials.labels.adoption': 'تبني المستخدم',
     
     // Case Studies
-    'testimonials.case1.client': 'HealthPlus Clinics',
+    'testimonials.case1.client': 'عيادات HealthPlus',
     'testimonials.case1.industry': 'الرعاية الصحية',
     'testimonials.case1.challenge': 'إدارة مواقع عيادات متعددة بأنظمة متباينة للموارد البشرية والمحاسبة والمخزون',
     'testimonials.case1.solution': 'ERP متكامل مع لوحات معلومات ثنائية اللغة وتقارير في الوقت الفعلي عبر جميع المواقع',
     'testimonials.case1.results.timeline': 'جدول زمني للتنفيذ 60 يوماً',
     'testimonials.case1.results.efficiency': 'تحسن 40% في الكفاءة التشغيلية',
     'testimonials.case1.results.visibility': 'رؤية في الوقت الفعلي عبر جميع العيادات',
-    'testimonials.case1.results.processes': 'عمليات الموارد البشرية والرواتب المبسطة',
+    'testimonials.case1.results.processes': 'عمليات موارد بشرية ورواتب مبسطة',
     'testimonials.case1.quote': 'حولت MovinWare عملياتنا بالكامل. كانت الواجهة ثنائية اللغة حاسمة لفريقنا المتنوع، ولوحات المعلومات في الوقت الفعلي تمنحنا رؤية لم نحصل عليها من قبل.',
     'testimonials.case1.author': 'د. سارة المحمود',
     'testimonials.case1.position': 'مدير العمليات الرئيسي',
@@ -388,13 +387,13 @@ export const translations = {
     'testimonials.case1.metrics.efficiency': '+40%',
     'testimonials.case1.metrics.adoption': '92%',
     
-    'testimonials.case2.client': 'EduTrack School Group',
+    'testimonials.case2.client': 'مجموعة مدارس EduTrack',
     'testimonials.case2.industry': 'التعليم',
     'testimonials.case2.challenge': 'إدارة معلومات الطلاب المعقدة عبر مدارس متعددة مع متطلبات العربية/الإنجليزية',
     'testimonials.case2.solution': 'نظام معلومات طلاب شامل مع إدارة الامتحانات وبوابة أولياء الأمور والتوافق الثقافي',
     'testimonials.case2.results.cultural': 'حل متوافق ثقافياً مع التقويم الهجري',
-    'testimonials.case2.results.communication': 'تحسين التواصل بين أولياء الأمور والمدرسة',
-    'testimonials.case2.results.exams': 'عمليات الامتحانات والدرجات المبسطة',
+    'testimonials.case2.results.communication': 'تحسين التواصل بين الأهل والمدرسة',
+    'testimonials.case2.results.exams': 'عمليات امتحانات وتقييم مبسطة',
     'testimonials.case2.results.management': 'إدارة محسنة لبيانات الطلاب',
     'testimonials.case2.quote': 'كان الفهم الثقافي الذي جلبته MovinWare لمشروعنا استثنائياً. النظام يعمل بالضبط كما تعمل مدارسنا، وليس العكس.',
     'testimonials.case2.author': 'أحمد الراشد',
@@ -403,11 +402,11 @@ export const translations = {
     'testimonials.case2.metrics.efficiency': '+35%',
     'testimonials.case2.metrics.adoption': '89%',
     
-    'testimonials.case3.client': 'LogixPro Logistics',
+    'testimonials.case3.client': 'LogixPro للوجستيات',
     'testimonials.case3.industry': 'اللوجستيات',
-    'testimonials.case3.challenge': 'إدارة الأسطول غير الفعالة وتخطيط المسارات مما يؤدي إلى تكاليف تشغيلية عالية',
-    'testimonials.case3.solution': 'تحسين الأسطول المدعوم بالذكاء الاصطناعي مع التحليلات التنبؤية وتخطيط المسارات',
-    'testimonials.case3.results.reduction': 'تقليل 30% في النفقات التشغيلية',
+    'testimonials.case3.challenge': 'إدارة أسطول غير فعالة وتخطيط المسارات مما يؤدي إلى تكاليف تشغيلية عالية',
+    'testimonials.case3.solution': 'تحسين الأسطول مدعوم بالذكاء الاصطناعي مع التحليلات التنبؤية وتخطيط المسارات',
+    'testimonials.case3.results.reduction': 'انخفاض 30% في النفقات التشغيلية',
     'testimonials.case3.results.delivery': 'تحسين أوقات التسليم ورضا العملاء',
     'testimonials.case3.results.maintenance': 'صيانة تنبؤية لمركبات الأسطول',
     'testimonials.case3.results.tracking': 'تتبع وتحسين في الوقت الفعلي',
@@ -450,15 +449,15 @@ export const translations = {
     
     // Footer
     'footer.tagline': 'العمليات الذكية.\nالتحول السلس.',
-    'footer.description': 'نحول الشركات بحلول ERP مدعومة بالذكاء الاصطناعي تحقق السرعة إلى القيمة والتحول السلس للمؤسسة الحديثة.',
-    'footer.copyright': '© 2025 MovinWare. جميع الحقوق محفوظة. | العمليات الذكية. التحول السلس.',
+    'footer.description': 'نحول الشركات بحلول ERP مدعومة بالذكاء الاصطناعي تحقق السرعة إلى القيمة والتحول السلس.',
+    'footer.copyright': '© 2025 MovinWare. جميع الحقوق محفوظة.',
     
     // Footer Sections
     'footer.sections.solutions.title': 'الحلول',
     'footer.sections.solutions.erp': 'نظام تخطيط موارد المؤسسات',
-    'footer.sections.solutions.ai': 'الذكاء الاصطناعي',
-    'footer.sections.solutions.integration': 'التكامل',
-    'footer.sections.solutions.migration': 'الترحيل',
+    'footer.sections.solutions.ai': 'الذكاء الاصطناعي والأتمتة',
+    'footer.sections.solutions.integration': 'التكامل مع الأنظمة',
+    'footer.sections.solutions.migration': 'ترحيل البيانات',
     
     'footer.sections.services.title': 'الخدمات',
     'footer.sections.services.implementation': 'التنفيذ',
@@ -484,8 +483,8 @@ export const translations = {
     'footer.contact.location': 'الموقع',
     
     // Footer CTA
-    'footer.cta.title': 'ابدأ تحولك اليوم',
-    'footer.cta.description': 'اكتشف كيف يمكن لـ MovinWare تسريع رحلة التحول الرقمي الخاصة بك.',
+    'footer.cta.title': 'مستعد للبدء؟',
+    'footer.cta.description': 'احجز عرضاً توضيحياً أو استشارة مجانية اليوم.',
     'footer.cta.demo': 'احجز عرضاً توضيحياً',
     'footer.cta.consultation': 'استشارة مجانية',
     
@@ -512,14 +511,16 @@ export const translations = {
     
     // Navigation Dropdowns
     'nav.dropdown.solutions.erp': 'ERP Systems',
-    'nav.dropdown.solutions.ai': 'AI Automation',
-    'nav.dropdown.solutions.integration': 'Integration',
-    'nav.dropdown.solutions.migration': 'Migration',
+    'nav.dropdown.solutions.ai': 'AI & Automation',
+    'nav.dropdown.solutions.integration': 'System Integration',
+    'nav.dropdown.solutions.migration': 'Data Migration',
+    
     'nav.dropdown.industries.education': 'Education',
     'nav.dropdown.industries.healthcare': 'Healthcare',
     'nav.dropdown.industries.logistics': 'Logistics',
     'nav.dropdown.industries.retail': 'Retail',
     'nav.dropdown.industries.manufacturing': 'Manufacturing',
+    
     'nav.dropdown.about.company': 'Company',
     'nav.dropdown.about.team': 'Team',
     'nav.dropdown.about.careers': 'Careers',
@@ -708,7 +709,7 @@ export const translations = {
     'industries.clientSize.title': 'Built for Every Business Size',
     'industries.clientSize.description': 'From ambitious startups to established enterprises, our solutions scale with your business needs.',
     
-    // Education Industry
+    // Industries Content
     'industries.education.title': 'Educational Institutions',
     'industries.education.description': 'Comprehensive student information systems, scheduling, and parent portals',
     'industries.education.features.student': 'Student Management',
@@ -720,7 +721,6 @@ export const translations = {
     'industries.education.clients.training': 'Training Centers',
     'industries.education.clients.online': 'Online Academies',
     
-    // Logistics Industry
     'industries.logistics.title': 'Logistics & Warehousing',
     'industries.logistics.description': 'Fleet management, route optimization, and supply chain visibility',
     'industries.logistics.features.fleet': 'Fleet Tracking',
@@ -732,7 +732,6 @@ export const translations = {
     'industries.logistics.clients.distribution': 'Distribution Centers',
     'industries.logistics.clients.freight': 'Freight Forwarders',
     
-    // Retail Industry
     'industries.retail.title': 'Retail & E-commerce',
     'industries.retail.description': 'Omnichannel retail operations with integrated POS and online platforms',
     'industries.retail.features.pos': 'POS Integration',
@@ -744,7 +743,6 @@ export const translations = {
     'industries.retail.clients.fashion': 'Fashion Brands',
     'industries.retail.clients.electronics': 'Electronics Retailers',
     
-    // Manufacturing Industry
     'industries.manufacturing.title': 'Manufacturing & Production',
     'industries.manufacturing.description': 'Production planning, quality control, and supply chain management',
     'industries.manufacturing.features.planning': 'Production Planning',
@@ -756,7 +754,7 @@ export const translations = {
     'industries.manufacturing.clients.food': 'Food Processing',
     'industries.manufacturing.clients.textile': 'Textile Companies',
     
-    // Client Size Categories
+    // Client Sizes
     'industries.startups.title': 'Startups',
     'industries.startups.description': 'Rapid deployment solutions that scale with your growth',
     'industries.startups.benefits.implementation': 'Quick implementation',
@@ -948,15 +946,15 @@ export const translations = {
     
     // Footer
     'footer.tagline': 'Intelligent Operations.\nSeamless Transformation.',
-    'footer.description': 'We transform businesses with AI-powered ERP solutions that deliver speed-to-value and seamless transformation for the modern enterprise.',
-    'footer.copyright': '© 2025 MovinWare. All Rights Reserved. | Intelligent Operations. Seamless Transformation.',
+    'footer.description': 'We transform businesses with AI-powered ERP solutions that deliver speed-to-value and seamless transformation.',
+    'footer.copyright': '© 2025 MovinWare. All Rights Reserved.',
     
     // Footer Sections
     'footer.sections.solutions.title': 'Solutions',
     'footer.sections.solutions.erp': 'ERP Systems',
-    'footer.sections.solutions.ai': 'AI Automation',
-    'footer.sections.solutions.integration': 'Integration',
-    'footer.sections.solutions.migration': 'Migration',
+    'footer.sections.solutions.ai': 'AI & Automation',
+    'footer.sections.solutions.integration': 'System Integration',
+    'footer.sections.solutions.migration': 'Data Migration',
     
     'footer.sections.services.title': 'Services',
     'footer.sections.services.implementation': 'Implementation',
@@ -973,7 +971,7 @@ export const translations = {
     'footer.sections.company.title': 'Company',
     'footer.sections.company.about': 'About Us',
     'footer.sections.company.careers': 'Careers',
-    'footer.sections.company.contact': 'Contact Us',
+    'footer.sections.company.contact': 'Contact',
     'footer.sections.company.blog': 'Blog',
     
     // Footer Contact
@@ -982,8 +980,8 @@ export const translations = {
     'footer.contact.location': 'Location',
     
     // Footer CTA
-    'footer.cta.title': 'Start Your Transformation Today',
-    'footer.cta.description': 'Discover how MovinWare can accelerate your digital transformation journey.',
+    'footer.cta.title': 'Ready to Get Started?',
+    'footer.cta.description': 'Book a demo or free consultation today.',
     'footer.cta.demo': 'Book a Demo',
     'footer.cta.consultation': 'Free Consultation',
     

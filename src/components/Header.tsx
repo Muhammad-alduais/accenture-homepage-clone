@@ -63,10 +63,10 @@ export default function Header() {
       key: 'nav.solutions', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'nav.dropdown.solutions.erp', href: '#erp' },
-        { key: 'nav.dropdown.solutions.ai', href: '#ai' },
-        { key: 'nav.dropdown.solutions.integration', href: '#integration' },
-        { key: 'nav.dropdown.solutions.migration', href: '#migration' }
+        { key: 'nav.dropdown.solutions.erp', href: '#services' },
+        { key: 'nav.dropdown.solutions.ai', href: '#services' },
+        { key: 'nav.dropdown.solutions.integration', href: '#services' },
+        { key: 'nav.dropdown.solutions.migration', href: '#services' }
       ]
     },
     { key: 'nav.services', hasDropdown: false, href: '#services' },
@@ -74,20 +74,20 @@ export default function Header() {
       key: 'nav.industries', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'nav.dropdown.industries.education', href: '#education' },
-        { key: 'nav.dropdown.industries.healthcare', href: '#healthcare' },
-        { key: 'nav.dropdown.industries.logistics', href: '#logistics' },
-        { key: 'nav.dropdown.industries.retail', href: '#retail' },
-        { key: 'nav.dropdown.industries.manufacturing', href: '#manufacturing' }
+        { key: 'nav.dropdown.industries.education', href: '#industries' },
+        { key: 'nav.dropdown.industries.healthcare', href: '#industries' },
+        { key: 'nav.dropdown.industries.logistics', href: '#industries' },
+        { key: 'nav.dropdown.industries.retail', href: '#industries' },
+        { key: 'nav.dropdown.industries.manufacturing', href: '#industries' }
       ]
     },
     { 
       key: 'nav.about', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'nav.dropdown.about.company', href: '#company' },
-        { key: 'nav.dropdown.about.team', href: '#team' },
-        { key: 'nav.dropdown.about.careers', href: '#careers' },
+        { key: 'nav.dropdown.about.company', href: '#about' },
+        { key: 'nav.dropdown.about.team', href: '#about' },
+        { key: 'nav.dropdown.about.careers', href: '#contact' },
         { key: 'nav.dropdown.about.contact', href: '#contact' }
       ]
     }
@@ -101,6 +101,28 @@ export default function Header() {
   const handleLanguageClick = (e: React.MouseEvent) => {
     e.stopPropagation()
     setShowLanguageMenu(!showLanguageMenu)
+  }
+
+  const handleNavClick = (href: string) => {
+    setIsMenuOpen(false)
+    setActiveDropdown(null)
+    
+    // Smooth scroll to section
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const handleDropdownItemClick = (href: string) => {
+    setActiveDropdown(null)
+    setIsMenuOpen(false)
+    
+    // Smooth scroll to section
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (
@@ -134,9 +156,10 @@ export default function Header() {
           <div className={`flex items-center justify-between h-16 px-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
             {/* Logo */}
             <motion.div 
-              className="flex items-center"
+              className="flex items-center cursor-pointer"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
+              onClick={() => handleNavClick('#hero')}
             >
               <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                 <motion.div 
@@ -183,7 +206,13 @@ export default function Header() {
                     className="flex items-center space-x-1 px-4 py-2 rounded-full text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 relative overflow-hidden group"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={(e) => item.hasDropdown ? handleDropdownClick(e, item.key) : undefined}
+                    onClick={(e) => {
+                      if (item.hasDropdown) {
+                        handleDropdownClick(e, item.key)
+                      } else {
+                        handleNavClick(item.href!)
+                      }
+                    }}
                   >
                     <span className={`relative z-10 font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
                       {t(item.key)}
@@ -212,14 +241,13 @@ export default function Header() {
                           onClick={(e) => e.stopPropagation()}
                         >
                           {item.dropdownItems?.map((dropdownItem) => (
-                            <a
+                            <button
                               key={dropdownItem.key}
-                              href={dropdownItem.href}
-                              className={`block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
-                              onClick={() => setActiveDropdown(null)}
+                              className={`w-full block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
+                              onClick={() => handleDropdownItemClick(dropdownItem.href)}
                             >
                               {t(dropdownItem.key)}
-                            </a>
+                            </button>
                           ))}
                         </motion.div>
                       )}
@@ -314,6 +342,7 @@ export default function Header() {
                   boxShadow: "0 6px 20px rgba(168, 85, 247, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => handleNavClick('#contact')}
               >
                 <span>{t('nav.getStarted')}</span>
                 <motion.svg 
@@ -398,6 +427,7 @@ export default function Header() {
                         className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                         whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        onClick={() => handleNavClick(item.href || '#')}
                       >
                         {t(item.key)}
                       </button>
@@ -415,6 +445,7 @@ export default function Header() {
                     transition={{ delay: 0.4 }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavClick('#contact')}
                   >
                     {t('nav.getStarted')}
                   </motion.button>
