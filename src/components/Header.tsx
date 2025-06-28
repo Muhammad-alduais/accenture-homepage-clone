@@ -55,57 +55,27 @@ export default function Header() {
       >
         {/* Centered Rounded Navbar */}
         <motion.div 
-          className={`max-w-6xl mx-auto transition-all duration-500 ease-out relative ${
+          className={`max-w-6xl mx-auto transition-all duration-500 ease-out ${
             scrolled 
-              ? 'bg-white/20 dark:bg-gray-900/30 backdrop-blur-2xl' 
-              : 'bg-white/15 dark:bg-gray-900/25 backdrop-blur-xl'
+              ? 'bg-white/25 dark:bg-gray-900/40 backdrop-blur-xl' 
+              : 'bg-white/20 dark:bg-gray-900/30 backdrop-blur-lg'
           }`}
           style={{
-            borderRadius: '28px',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '24px',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
             boxShadow: scrolled 
-              ? '0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-              : '0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(168, 85, 247, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
+              ? '0 8px 32px rgba(0, 0, 0, 0.12)'
+              : '0 4px 24px rgba(0, 0, 0, 0.08)'
           }}
           animate={{
             scale: scrolled ? 0.98 : 1,
-            y: scrolled ? 8 : 0
+            y: scrolled ? 4 : 0
           }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          {/* Glow Effect */}
-          <motion.div
-            className="absolute inset-0 rounded-[28px] opacity-60"
-            style={{
-              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(168, 85, 247, 0.1) 100%)',
-              filter: 'blur(1px)'
-            }}
-            animate={{
-              opacity: scrolled ? 0.8 : 0.6
-            }}
-            transition={{ duration: 0.3 }}
-          />
-          
-          {/* Border Glow */}
-          <motion.div
-            className="absolute inset-0 rounded-[28px] pointer-events-none"
-            style={{
-              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.3))',
-              padding: '1px',
-              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-              WebkitMaskComposite: 'exclude',
-              mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-              maskComposite: 'exclude'
-            }}
-            animate={{
-              opacity: scrolled ? 0.8 : 0.6
-            }}
-            transition={{ duration: 0.3 }}
-          />
-
-          <div className="relative flex items-center justify-between h-16 px-6">
+          <div className="flex items-center justify-between h-16 px-6">
             {/* Logo */}
             <motion.div 
               className="flex items-center"
@@ -114,7 +84,7 @@ export default function Header() {
             >
               <div className="flex items-center space-x-3">
                 <motion.div 
-                  className="text-purple-500 text-2xl font-bold relative"
+                  className="text-purple-500 text-2xl font-bold"
                   variants={logoVariants}
                   whileHover={{ 
                     rotate: 360,
@@ -122,19 +92,9 @@ export default function Header() {
                   }}
                 >
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <defs>
-                      <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge> 
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                    </defs>
                     <motion.path 
                       d="M20 5L35 35H5L20 5Z" 
                       fill="#A100FF"
-                      filter="url(#glow)"
                       initial={{ pathLength: 0 }}
                       animate={{ pathLength: 1 }}
                       transition={{ duration: 1, delay: 0.5 }}
@@ -142,9 +102,9 @@ export default function Header() {
                   </svg>
                 </motion.div>
                 <motion.span 
-                  className="text-white font-bold text-xl drop-shadow-lg"
+                  className="text-white font-bold text-xl"
                   style={{
-                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(168, 85, 247, 0.3)'
+                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
                   }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -167,22 +127,16 @@ export default function Header() {
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
                   <motion.button
-                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-white/90 hover:text-white transition-all duration-300 relative overflow-hidden group backdrop-blur-sm"
+                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-white/90 hover:text-white transition-all duration-300 relative overflow-hidden group"
                     style={{
                       textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
                     }}
                     whileHover={{ 
                       scale: 1.05,
-                      backgroundColor: 'rgba(255, 255, 255, 0.15)'
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {/* Hover background effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-purple-600/20 rounded-full opacity-0 group-hover:opacity-100 border border-white/10"
-                      transition={{ duration: 0.3 }}
-                    />
-                    
                     <span className="relative z-10 font-medium">{item}</span>
                     {(item === 'Solutions' || item === 'Industries' || item === 'About') && (
                       <motion.div
@@ -208,7 +162,7 @@ export default function Header() {
             >
               {/* Search Button */}
               <motion.button
-                className="p-2 rounded-full hover:bg-white/15 transition-colors duration-300 backdrop-blur-sm"
+                className="p-2 rounded-full hover:bg-white/10 transition-colors duration-300"
                 whileHover={{ scale: 1.1, rotate: 15 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -217,7 +171,7 @@ export default function Header() {
 
               {/* Language Selector */}
               <motion.button 
-                className="flex items-center space-x-1 px-3 py-2 rounded-full hover:bg-white/15 text-white/90 hover:text-white transition-all duration-300 backdrop-blur-sm"
+                className="flex items-center space-x-1 px-3 py-2 rounded-full hover:bg-white/10 text-white/90 hover:text-white transition-all duration-300"
                 style={{
                   textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
                 }}
@@ -240,13 +194,13 @@ export default function Header() {
 
               {/* CTA Button - Hidden on mobile */}
               <motion.button
-                className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 backdrop-blur-sm border border-white/20"
+                className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 border border-white/10"
                 style={{
-                  boxShadow: '0 4px 15px rgba(168, 85, 247, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                  boxShadow: '0 4px 15px rgba(168, 85, 247, 0.3)'
                 }}
                 whileHover={{ 
                   scale: 1.05,
-                  boxShadow: "0 8px 25px rgba(168, 85, 247, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3)"
+                  boxShadow: "0 6px 20px rgba(168, 85, 247, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -266,7 +220,7 @@ export default function Header() {
 
             {/* Mobile menu button */}
             <motion.button
-              className="lg:hidden p-2 rounded-full hover:bg-white/15 transition-colors duration-300 backdrop-blur-sm"
+              className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors duration-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -318,25 +272,16 @@ export default function Header() {
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div 
-                className="bg-white/20 dark:bg-gray-900/30 backdrop-blur-2xl rounded-2xl relative"
+                className="bg-white/25 dark:bg-gray-900/40 backdrop-blur-xl rounded-2xl"
                 style={{
-                  backdropFilter: 'blur(24px)',
-                  WebkitBackdropFilter: 'blur(24px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)'
                 }}
               >
-                {/* Mobile menu glow effect */}
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-60"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(168, 85, 247, 0.1) 100%)',
-                    filter: 'blur(1px)'
-                  }}
-                />
-                
                 <motion.div 
-                  className="relative space-y-4 p-6"
+                  className="space-y-2 p-6"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -345,7 +290,7 @@ export default function Header() {
                   {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
                     <motion.button 
                       key={item}
-                      className="w-full text-left px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/15 transition-all duration-300 font-medium backdrop-blur-sm"
+                      className="w-full text-left px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
                       style={{
                         textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
                       }}
@@ -361,9 +306,9 @@ export default function Header() {
                   
                   {/* Mobile CTA */}
                   <motion.button
-                    className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 backdrop-blur-sm border border-white/20"
+                    className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 border border-white/10 mt-4"
                     style={{
-                      boxShadow: '0 4px 15px rgba(168, 85, 247, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                      boxShadow: '0 4px 15px rgba(168, 85, 247, 0.3)'
                     }}
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}

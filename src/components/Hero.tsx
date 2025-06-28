@@ -16,7 +16,7 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.2,
         duration: 0.8
       }
     }
@@ -46,7 +46,7 @@ export default function Hero() {
       y: 0,
       transition: {
         duration: 0.6,
-        delay: 0.8,
+        delay: 0.6,
         ease: "easeOut"
       }
     }
@@ -57,9 +57,9 @@ export default function Hero() {
       {/* Black Hole Animation Background */}
       <BlackHole />
 
-      {/* Video Background with Animation (reduced opacity to show black hole) */}
+      {/* Video Background with Animation */}
       <motion.div 
-        className="absolute inset-0 opacity-30 dark:opacity-30"
+        className="absolute inset-0 opacity-30 dark:opacity-20"
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.3 }}
         transition={{ duration: 2, ease: "easeOut" }}
@@ -74,7 +74,7 @@ export default function Hero() {
           <source src="https://ext.same-assets.com/2900598000/2585685094.mp4" type="video/mp4" />
         </video>
         <motion.div 
-          className="absolute inset-0 bg-white/60 dark:bg-black/60"
+          className="absolute inset-0 bg-white/40 dark:bg-black/50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
@@ -90,7 +90,7 @@ export default function Hero() {
         animate={inView ? "visible" : "hidden"}
       >
         <motion.h1 
-          className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8"
+          className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
           variants={itemVariants}
         >
           AI-Powered ERP.
@@ -104,7 +104,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p 
-          className="text-xl md:text-2xl text-gray-700 dark:text-white mb-12 max-w-4xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-200 mb-10 max-w-4xl mx-auto leading-relaxed"
           variants={itemVariants}
         >
           Streamline operations, boost efficiency, and future-proof your business with intelligent automation, 
@@ -112,11 +112,11 @@ export default function Hero() {
         </motion.p>
 
         <motion.div 
-          className="flex items-center justify-center space-x-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
           variants={buttonVariants}
         >
           <motion.button 
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300"
+            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg"
             whileHover={{ 
               scale: 1.05,
               boxShadow: "0 10px 30px rgba(168, 85, 247, 0.4)"
@@ -126,15 +126,33 @@ export default function Hero() {
             Start Your Transformation
           </motion.button>
           <motion.button 
-            className="border border-gray-900 dark:border-white text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black px-8 py-4 rounded-lg font-medium transition-all duration-300"
+            className="border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg"
             whileHover={{ 
-              scale: 1.05,
-              backgroundColor: "rgba(0, 0, 0, 0.1)"
+              scale: 1.05
             }}
             whileTap={{ scale: 0.95 }}
           >
             Book a Free Consultation
           </motion.button>
+        </motion.div>
+
+        {/* Key Benefits */}
+        <motion.div 
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          variants={itemVariants}
+        >
+          <div className="text-center">
+            <div className="text-3xl font-bold text-purple-600 mb-2">50%</div>
+            <div className="text-gray-700 dark:text-gray-300">Faster Implementation</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-purple-600 mb-2">87%</div>
+            <div className="text-gray-700 dark:text-gray-300">User Adoption Rate</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+            <div className="text-gray-700 dark:text-gray-300">Expert Support</div>
+          </div>
         </motion.div>
       </motion.div>
 
@@ -152,6 +170,26 @@ export default function Hero() {
       >
         <Play className="w-6 h-6 text-gray-900 dark:text-white" />
       </motion.button>
+
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 2 }}
+      >
+        <motion.div 
+          className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <motion.div 
+            className="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
