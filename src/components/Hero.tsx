@@ -3,6 +3,7 @@
 import { Play } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '@/contexts/LanguageContext'
 import BlackHole from './BlackHole'
 
 export default function Hero() {
@@ -10,6 +11,7 @@ export default function Hero() {
     threshold: 0.1,
     triggerOnce: true
   })
+  const { t, isRTL } = useLanguage()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -84,7 +86,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div 
         ref={ref}
-        className="relative z-20 text-center px-4 max-w-6xl mx-auto"
+        className={`relative z-20 px-4 max-w-6xl mx-auto ${isRTL ? 'text-right' : 'text-center'}`}
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
@@ -93,13 +95,13 @@ export default function Hero() {
           className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
           variants={itemVariants}
         >
-          AI-Powered ERP.
+          {t('hero.title')}
           <br />
           <motion.span 
             className="italic bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent"
             variants={itemVariants}
           >
-            Designed for Your Workflow.
+            {t('hero.subtitle')}
           </motion.span>
         </motion.h1>
 
@@ -107,12 +109,11 @@ export default function Hero() {
           className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-200 mb-10 max-w-4xl mx-auto leading-relaxed"
           variants={itemVariants}
         >
-          Streamline operations, boost efficiency, and future-proof your business with intelligent automation, 
-          adaptive workflows, and seamless transformation designed for the modern enterprise.
+          {t('hero.description')}
         </motion.p>
 
         <motion.div 
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className={`flex flex-col sm:flex-row items-center gap-4 ${isRTL ? 'justify-center sm:flex-row-reverse' : 'justify-center'}`}
           variants={buttonVariants}
         >
           <motion.button 
@@ -123,7 +124,7 @@ export default function Hero() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            Start Your Transformation
+            {t('hero.cta.primary')}
           </motion.button>
           <motion.button 
             className="border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg"
@@ -132,7 +133,7 @@ export default function Hero() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            Book a Free Consultation
+            {t('hero.cta.secondary')}
           </motion.button>
         </motion.div>
 
@@ -141,24 +142,24 @@ export default function Hero() {
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           variants={itemVariants}
         >
-          <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">50%</div>
-            <div className="text-gray-700 dark:text-gray-300">Faster Implementation</div>
+          <div className={isRTL ? 'text-center' : 'text-center'}>
+            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">50%</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">87%</div>
-            <div className="text-gray-700 dark:text-gray-300">User Adoption Rate</div>
+          <div className={isRTL ? 'text-center' : 'text-center'}>
+            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">87%</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
           </div>
-          <div className="text-center">
+          <div className={isRTL ? 'text-center' : 'text-center'}>
             <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
-            <div className="text-gray-700 dark:text-gray-300">Expert Support</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
           </div>
         </motion.div>
       </motion.div>
 
       {/* Play button for video */}
       <motion.button 
-        className="absolute bottom-8 left-8 bg-white/20 dark:bg-white/20 hover:bg-white/30 dark:hover:bg-white/30 rounded-full p-4 transition-all duration-300 z-20"
+        className={`absolute bottom-8 ${isRTL ? 'right-8' : 'left-8'} bg-white/20 dark:bg-white/20 hover:bg-white/30 dark:hover:bg-white/30 rounded-full p-4 transition-all duration-300 z-20`}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 1.5 }}

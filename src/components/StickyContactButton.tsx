@@ -2,10 +2,12 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function StickyContactButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
+  const { t, isRTL } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +23,7 @@ export default function StickyContactButton() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed bottom-6 right-6 z-50"
+          className={`fixed bottom-6 z-50 ${isRTL ? 'left-6' : 'right-6'}`}
           initial={{ opacity: 0, scale: 0, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0, y: 100 }}
@@ -45,12 +47,12 @@ export default function StickyContactButton() {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div
-                className="flex items-center space-x-3"
+                className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
                 animate={{ opacity: isExpanded ? 1 : 0 }}
                 transition={{ duration: 0.2 }}
               >
                 <span className="font-medium whitespace-nowrap">
-                  Talk to an Expert
+                  {t('contact.talkToExpert')}
                 </span>
               </motion.div>
               

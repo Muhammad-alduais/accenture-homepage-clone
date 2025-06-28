@@ -3,11 +3,14 @@
 import { useState, useEffect } from 'react'
 import { ChevronDown, Search, Globe } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
 import ThemeToggle from './ThemeToggle'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false)
+  const { locale, t, isRTL, switchLanguage } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +30,7 @@ export default function Header() {
   }
 
   const logoVariants = {
-    initial: { scale: 0, rotate: -180 },
+    initial: { scale: 0, rotate: isRTL ? 180 : -180 },
     animate: { 
       scale: 1, 
       rotate: 0,
@@ -43,6 +46,13 @@ export default function Header() {
       transition: { duration: 0.4, ease: "easeOut" }
     }
   }
+
+  const navItems = [
+    { key: 'nav.solutions', hasDropdown: true },
+    { key: 'nav.services', hasDropdown: false },
+    { key: 'nav.industries', hasDropdown: true },
+    { key: 'nav.about', hasDropdown: true }
+  ]
 
   return (
     <>
@@ -75,14 +85,14 @@ export default function Header() {
           }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <div className="flex items-center justify-between h-16 px-6">
+          <div className={`flex items-center justify-between h-16 px-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
             {/* Logo */}
             <motion.div 
               className="flex items-center"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="flex items-center space-x-3">
+              <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                 <motion.div 
                   className="text-purple-500 text-2xl font-bold"
                   variants={logoVariants}
@@ -106,7 +116,7 @@ export default function Header() {
                   style={{
                     textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
                   }}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
@@ -116,10 +126,10 @@ export default function Header() {
             </motion.div>
 
             {/* Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1">
-              {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
+            <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
+              {navItems.map((item, index) => (
                 <motion.div 
-                  key={item}
+                  key={item.key}
                   className="relative group"
                   variants={navItemVariants}
                   initial="initial"
@@ -137,8 +147,10 @@ export default function Header() {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <span className="relative z-10 font-medium">{item}</span>
-                    {(item === 'Solutions' || item === 'Industries' || item === 'About') && (
+                    <span className={`relative z-10 font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
+                      {t(item.key)}
+                    </span>
+                    {item.hasDropdown && (
                       <motion.div
                         className="relative z-10"
                         animate={{ rotate: 0 }}
@@ -155,8 +167,8 @@ export default function Header() {
 
             {/* Right side */}
             <motion.div 
-              className="flex items-center space-x-3"
-              initial={{ opacity: 0, x: 20 }}
+              className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
+              initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
@@ -165,29 +177,66 @@ export default function Header() {
                 className="p-2 rounded-full hover:bg-white/10 transition-colors duration-300"
                 whileHover={{ scale: 1.1, rotate: 15 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label={t('nav.search')}
               >
                 <Search className="w-5 h-5 text-white/90 hover:text-white transition-colors duration-300" style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }} />
               </motion.button>
 
               {/* Language Selector */}
-              <motion.button 
-                className="flex items-center space-x-1 px-3 py-2 rounded-full hover:bg-white/10 text-white/90 hover:text-white transition-all duration-300"
-                style={{
-                  textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">UAE</span>
-                <motion.div
-                  animate={{ rotate: 0 }}
-                  whileHover={{ rotate: 180 }}
-                  transition={{ duration: 0.3 }}
+              <div className="relative">
+                <motion.button 
+                  className={`flex items-center px-3 py-2 rounded-full hover:bg-white/10 text-white/90 hover:text-white transition-all duration-300 ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}
+                  style={{
+                    textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowLanguageMenu(!showLanguageMenu)}
                 >
-                  <ChevronDown className="w-4 h-4" />
-                </motion.div>
-              </motion.button>
+                  <Globe className="w-4 h-4" />
+                  <span className="text-sm font-medium">
+                    {locale === 'ar' ? 'العربية' : 'English'}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: showLanguageMenu ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </motion.div>
+                </motion.button>
+
+                {/* Language Dropdown */}
+                <AnimatePresence>
+                  {showLanguageMenu && (
+                    <motion.div
+                      className="absolute top-full mt-2 right-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[120px]"
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <button
+                        className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors"
+                        onClick={() => {
+                          switchLanguage('ar')
+                          setShowLanguageMenu(false)
+                        }}
+                      >
+                        العربية
+                      </button>
+                      <button
+                        className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors"
+                        onClick={() => {
+                          switchLanguage('en')
+                          setShowLanguageMenu(false)
+                        }}
+                      >
+                        English
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               
               {/* Theme Toggle */}
               <ThemeToggle />
@@ -204,16 +253,16 @@ export default function Header() {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Get Started</span>
+                <span>{t('nav.getStarted')}</span>
                 <motion.svg 
                   className="w-4 h-4" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
-                  whileHover={{ x: 3 }}
+                  whileHover={{ x: isRTL ? -3 : 3 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
                 </motion.svg>
               </motion.button>
             </motion.div>
@@ -287,20 +336,20 @@ export default function Header() {
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  {['Solutions', 'Services', 'Industries', 'About'].map((item, index) => (
+                  {navItems.map((item, index) => (
                     <motion.button 
-                      key={item}
-                      className="w-full text-left px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+                      key={item.key}
+                      className={`w-full px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
                       style={{
                         textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
                       }}
-                      initial={{ x: -20, opacity: 0 }}
+                      initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: index * 0.1 }}
-                      whileHover={{ x: 10, scale: 1.02 }}
+                      whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {item}
+                      {t(item.key)}
                     </motion.button>
                   ))}
                   
@@ -310,13 +359,13 @@ export default function Header() {
                     style={{
                       boxShadow: '0 4px 15px rgba(168, 85, 247, 0.3)'
                     }}
-                    initial={{ x: -20, opacity: 0 }}
+                    initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Get Started
+                    {t('nav.getStarted')}
                   </motion.button>
                 </motion.div>
               </div>

@@ -75,8 +75,28 @@ export default {
       },
       mixBlendMode: {
         'plus-lighter': 'plus-lighter',
+      },
+      fontFamily: {
+        'arabic': ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
+        'english': ['Inter', 'system-ui', 'sans-serif'],
+      },
+      spacing: {
+        'rtl': '0 0 0 auto',
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addUtilities }: { addUtilities: any }) {
+      const newUtilities = {
+        '.rtl\\:space-x-reverse > * + *': {
+          '--tw-space-x-reverse': '1',
+        },
+        '.rtl\\:flex-row-reverse': {
+          'flex-direction': 'row-reverse',
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ],
 } satisfies Config;
