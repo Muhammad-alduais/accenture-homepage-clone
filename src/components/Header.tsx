@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ChevronDown, Search, Globe } from 'lucide-react'
+import { ChevronDown, Search, Globe, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import ThemeToggle from './ThemeToggle'
@@ -10,6 +10,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const { locale, t, isRTL, switchLanguage } = useLanguage()
 
   useEffect(() => {
@@ -18,6 +19,16 @@ export default function Header() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setActiveDropdown(null)
+      setShowLanguageMenu(false)
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
   }, [])
 
   const headerVariants = {
@@ -48,11 +59,49 @@ export default function Header() {
   }
 
   const navItems = [
-    { key: 'nav.solutions', hasDropdown: true },
-    { key: 'nav.services', hasDropdown: false },
-    { key: 'nav.industries', hasDropdown: true },
-    { key: 'nav.about', hasDropdown: true }
+    { 
+      key: 'nav.solutions', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'nav.dropdown.solutions.erp', href: '#erp' },
+        { key: 'nav.dropdown.solutions.ai', href: '#ai' },
+        { key: 'nav.dropdown.solutions.integration', href: '#integration' },
+        { key: 'nav.dropdown.solutions.migration', href: '#migration' }
+      ]
+    },
+    { key: 'nav.services', hasDropdown: false, href: '#services' },
+    { 
+      key: 'nav.industries', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'nav.dropdown.industries.education', href: '#education' },
+        { key: 'nav.dropdown.industries.healthcare', href: '#healthcare' },
+        { key: 'nav.dropdown.industries.logistics', href: '#logistics' },
+        { key: 'nav.dropdown.industries.retail', href: '#retail' },
+        { key: 'nav.dropdown.industries.manufacturing', href: '#manufacturing' }
+      ]
+    },
+    { 
+      key: 'nav.about', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'nav.dropdown.about.company', href: '#company' },
+        { key: 'nav.dropdown.about.team', href: '#team' },
+        { key: 'nav.dropdown.about.careers', href: '#careers' },
+        { key: 'nav.dropdown.about.contact', href: '#contact' }
+      ]
+    }
   ]
+
+  const handleDropdownClick = (e: React.MouseEvent, itemKey: string) => {
+    e.stopPropagation()
+    setActiveDropdown(activeDropdown === itemKey ? null : itemKey)
+  }
+
+  const handleLanguageClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setShowLanguageMenu(!showLanguageMenu)
+  }
 
   return (
     <>
@@ -67,17 +116,14 @@ export default function Header() {
         <motion.div 
           className={`max-w-6xl mx-auto transition-all duration-500 ease-out ${
             scrolled 
-              ? 'bg-white/25 dark:bg-gray-900/40 backdrop-blur-xl' 
-              : 'bg-white/20 dark:bg-gray-900/30 backdrop-blur-lg'
+              ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-lg' 
+              : 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-md'
           }`}
           style={{
             borderRadius: '24px',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             border: '1px solid rgba(255, 255, 255, 0.15)',
-            boxShadow: scrolled 
-              ? '0 8px 32px rgba(0, 0, 0, 0.12)'
-              : '0 4px 24px rgba(0, 0, 0, 0.08)'
           }}
           animate={{
             scale: scrolled ? 0.98 : 1,
@@ -112,10 +158,7 @@ export default function Header() {
                   </svg>
                 </motion.div>
                 <motion.span 
-                  className="text-white font-bold text-xl"
-                  style={{
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-                  }}
+                  className="text-gray-900 dark:text-white font-bold text-xl"
                   initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
@@ -137,15 +180,10 @@ export default function Header() {
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
                   <motion.button
-                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-white/90 hover:text-white transition-all duration-300 relative overflow-hidden group"
-                    style={{
-                      textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                    }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                    }}
+                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 relative overflow-hidden group"
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={(e) => item.hasDropdown ? handleDropdownClick(e, item.key) : undefined}
                   >
                     <span className={`relative z-10 font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
                       {t(item.key)}
@@ -153,14 +191,40 @@ export default function Header() {
                     {item.hasDropdown && (
                       <motion.div
                         className="relative z-10"
-                        animate={{ rotate: 0 }}
-                        whileHover={{ rotate: 180 }}
+                        animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
                         <ChevronDown className="w-4 h-4" />
                       </motion.div>
                     )}
                   </motion.button>
+
+                  {/* Dropdown Menu */}
+                  {item.hasDropdown && (
+                    <AnimatePresence>
+                      {activeDropdown === item.key && (
+                        <motion.div
+                          className={`absolute top-full mt-2 ${isRTL ? 'right-0' : 'left-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[200px] z-50`}
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {item.dropdownItems?.map((dropdownItem) => (
+                            <a
+                              key={dropdownItem.key}
+                              href={dropdownItem.href}
+                              className={`block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              {t(dropdownItem.key)}
+                            </a>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
                 </motion.div>
               ))}
             </nav>
@@ -174,24 +238,21 @@ export default function Header() {
             >
               {/* Search Button */}
               <motion.button
-                className="p-2 rounded-full hover:bg-white/10 transition-colors duration-300"
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
                 whileHover={{ scale: 1.1, rotate: 15 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label={t('nav.search')}
               >
-                <Search className="w-5 h-5 text-white/90 hover:text-white transition-colors duration-300" style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }} />
+                <Search className="w-5 h-5 text-gray-700 dark:text-gray-200" />
               </motion.button>
 
               {/* Language Selector */}
               <div className="relative">
                 <motion.button 
-                  className={`flex items-center px-3 py-2 rounded-full hover:bg-white/10 text-white/90 hover:text-white transition-all duration-300 ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}
-                  style={{
-                    textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                  }}
+                  className={`flex items-center px-3 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 transition-all duration-300 ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+                  onClick={handleLanguageClick}
                 >
                   <Globe className="w-4 h-4" />
                   <span className="text-sm font-medium">
@@ -209,11 +270,12 @@ export default function Header() {
                 <AnimatePresence>
                   {showLanguageMenu && (
                     <motion.div
-                      className="absolute top-full mt-2 right-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[120px]"
+                      className={`absolute top-full mt-2 ${isRTL ? 'left-0' : 'right-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[120px] z-50`}
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <button
                         className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors"
@@ -269,43 +331,34 @@ export default function Header() {
 
             {/* Mobile menu button */}
             <motion.button
-              className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors duration-300"
+              className="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <motion.div 
-                className="w-6 h-6 flex flex-col justify-center items-center space-y-1"
-                animate={isMenuOpen ? "open" : "closed"}
-              >
-                <motion.div 
-                  className="w-5 h-0.5 bg-white rounded-full"
-                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }}
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: 45, y: 6 }
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.div 
-                  className="w-5 h-0.5 bg-white rounded-full"
-                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }}
-                  variants={{
-                    closed: { opacity: 1 },
-                    open: { opacity: 0 }
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.div 
-                  className="w-5 h-0.5 bg-white rounded-full"
-                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }}
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: -45, y: -6 }
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
+              <AnimatePresence mode="wait">
+                {isMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.button>
           </div>
         </motion.div>
@@ -321,12 +374,10 @@ export default function Header() {
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div 
-                className="bg-white/25 dark:bg-gray-900/40 backdrop-blur-xl rounded-2xl"
+                className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700"
                 style={{
                   backdropFilter: 'blur(20px)',
                   WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)'
                 }}
               >
                 <motion.div 
@@ -337,20 +388,20 @@ export default function Header() {
                   transition={{ delay: 0.1 }}
                 >
                   {navItems.map((item, index) => (
-                    <motion.button 
+                    <motion.div
                       key={item.key}
-                      className={`w-full px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
-                      style={{
-                        textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                      }}
                       initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: index * 0.1 }}
-                      whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
                     >
-                      {t(item.key)}
-                    </motion.button>
+                      <button 
+                        className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                        whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {t(item.key)}
+                      </button>
+                    </motion.div>
                   ))}
                   
                   {/* Mobile CTA */}
