@@ -86,7 +86,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div 
         ref={ref}
-        className={`relative z-20 px-4 max-w-6xl mx-auto ${isRTL ? 'text-right' : 'text-center'}`}
+        className="relative z-20 px-4 max-w-6xl mx-auto text-center"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
@@ -142,15 +142,15 @@ export default function Hero() {
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           variants={itemVariants}
         >
-          <div className={isRTL ? 'text-center' : 'text-center'}>
+          <div className="text-center">
             <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">50%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
           </div>
-          <div className={isRTL ? 'text-center' : 'text-center'}>
+          <div className="text-center">
             <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">87%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
           </div>
-          <div className={isRTL ? 'text-center' : 'text-center'}>
+          <div className="text-center">
             <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
           </div>
