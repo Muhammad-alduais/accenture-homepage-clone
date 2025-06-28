@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ValueSection() {
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true
   })
+  const { t, isRTL } = useLanguage()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -108,18 +110,7 @@ export default function ValueSection() {
                 transition: { duration: 0.3 }
               }}
             >
-              INTELLIGENT
-            </motion.span>
-            {" "}
-            <motion.span
-              className="inline-block"
-              whileHover={{ 
-                scale: 1.05,
-                color: "#A100FF",
-                transition: { duration: 0.3 }
-              }}
-            >
-              OPERATIONS
+              {t('value.title')}
             </motion.span>
           </motion.h2>
           
@@ -127,7 +118,7 @@ export default function ValueSection() {
             className="text-2xl md:text-3xl text-gray-700 dark:text-white max-w-4xl mx-auto leading-relaxed mb-12"
             variants={subtitleVariants}
           >
-            Every day, we transform businesses with AI-powered ERP solutions
+            {t('value.subtitle')}
             <br />
             <motion.span
               className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent"
@@ -135,12 +126,12 @@ export default function ValueSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
             >
-              that deliver speed-to-value and seamless transformation.
+              {t('value.subtitleHighlight')}
             </motion.span>
           </motion.p>
           
           <motion.button 
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto group"
+            className={`bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto group ${isRTL ? 'flex-row-reverse' : ''}`}
             variants={buttonVariants}
             whileHover={{ 
               scale: 1.05,
@@ -150,21 +141,21 @@ export default function ValueSection() {
           >
             <motion.span
               initial={{ x: 0 }}
-              whileHover={{ x: -5 }}
+              whileHover={{ x: isRTL ? 5 : -5 }}
               transition={{ duration: 0.3 }}
             >
-              Discover Our Approach
+              {t('value.cta')}
             </motion.span>
             <motion.svg 
-              className="w-5 h-5 ml-2" 
+              className={`w-5 h-5 ${isRTL ? 'mr-2' : 'ml-2'}`}
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
               initial={{ x: 0 }}
-              whileHover={{ x: 5 }}
+              whileHover={{ x: isRTL ? -5 : 5 }}
               transition={{ duration: 0.3 }}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
             </motion.svg>
           </motion.button>
         </motion.div>
