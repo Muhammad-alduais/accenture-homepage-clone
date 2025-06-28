@@ -22,103 +22,183 @@ export default function ServicesSection() {
   const content = {
     services: [
       {
-        title: "ERP Implementation & Core Configuration",
-        description: "Complete ERP deployment with industry-specific customizations and seamless data migration.",
-        features: ["System architecture design", "Custom module development", "Data migration", "User training"],
+        titleKey: 'services.erp.title',
+        descriptionKey: 'services.erp.description',
+        featuresKeys: [
+          'services.erp.features.architecture',
+          'services.erp.features.development',
+          'services.erp.features.migration',
+          'services.erp.features.training'
+        ],
         icon: "⚙️"
       },
       {
-        title: "Industry-Specific Module Development",
-        description: "Tailored solutions for clinics, schools, gyms, logistics, and other specialized industries.",
-        features: ["Healthcare management", "Education systems", "Fitness club operations", "Logistics optimization"],
+        titleKey: 'services.industry.title',
+        descriptionKey: 'services.industry.description',
+        featuresKeys: [
+          'services.industry.features.healthcare',
+          'services.industry.features.education',
+          'services.industry.features.fitness',
+          'services.industry.features.logistics'
+        ],
         icon: "🏭"
       },
       {
-        title: "AI Automation Enhancements",
-        description: "Built-in intelligence that transforms your operations with predictive capabilities.",
-        features: ["Smart forecasting", "ERP-integrated chatbots", "Advanced OCR", "Workflow automation"],
+        titleKey: 'services.ai.title',
+        descriptionKey: 'services.ai.description',
+        featuresKeys: [
+          'services.ai.features.forecasting',
+          'services.ai.features.chatbots',
+          'services.ai.features.ocr',
+          'services.ai.features.automation'
+        ],
         icon: "🤖"
       },
       {
-        title: "UX/UI Bilingual Enhancement",
-        description: "RTL-compliant, culturally-aligned interfaces with true Arabic/English parity.",
-        features: ["RTL interface design", "Cultural localization", "Accessibility compliance", "Mobile optimization"],
+        titleKey: 'services.ux.title',
+        descriptionKey: 'services.ux.description',
+        featuresKeys: [
+          'services.ux.features.rtl',
+          'services.ux.features.localization',
+          'services.ux.features.accessibility',
+          'services.ux.features.mobile'
+        ],
         icon: "🎨"
       },
       {
-        title: "Legacy Data Migration & Integrations",
-        description: "Seamless transition from legacy systems with comprehensive third-party integrations.",
-        features: ["Data mapping & validation", "API integrations", "System synchronization", "Backup & recovery"],
+        titleKey: 'services.migration.title',
+        descriptionKey: 'services.migration.description',
+        featuresKeys: [
+          'services.migration.features.mapping',
+          'services.migration.features.api',
+          'services.migration.features.sync',
+          'services.migration.features.backup'
+        ],
         icon: "🔄"
       },
       {
-        title: "Continuous Lifecycle Support",
-        description: "Ongoing optimization, updates, and performance monitoring for sustained success.",
-        features: ["Regular updates", "Performance tuning", "New feature development", "24/7 monitoring"],
+        titleKey: 'services.support.title',
+        descriptionKey: 'services.support.description',
+        featuresKeys: [
+          'services.support.features.updates',
+          'services.support.features.tuning',
+          'services.support.features.development',
+          'services.support.features.monitoring'
+        ],
         icon: "🛡️"
       }
     ],
     solutions: [
       {
-        title: "Accounting & Finance",
-        description: "Complete financial management with local compliance including Zakat and VAT.",
-        features: ["General Ledger", "Invoicing & Billing", "Financial Reporting", "Zakat/VAT Compliance"],
+        titleKey: 'solutions.accounting.title',
+        descriptionKey: 'solutions.accounting.description',
+        featuresKeys: [
+          'solutions.accounting.features.ledger',
+          'solutions.accounting.features.invoicing',
+          'solutions.accounting.features.reporting',
+          'solutions.accounting.features.compliance'
+        ],
         icon: "💰"
       },
       {
-        title: "HR & Payroll",
-        description: "Comprehensive human resource management with bilingual support.",
-        features: ["Employee Records", "Attendance Tracking", "Payroll Processing", "Hijri/Gregorian Sync"],
+        titleKey: 'solutions.hr.title',
+        descriptionKey: 'solutions.hr.description',
+        featuresKeys: [
+          'solutions.hr.features.records',
+          'solutions.hr.features.attendance',
+          'solutions.hr.features.payroll',
+          'solutions.hr.features.calendar'
+        ],
         icon: "👥"
       },
       {
-        title: "Sales & CRM",
-        description: "End-to-end sales and customer relationship management.",
-        features: ["Lead Management", "Quote Generation", "Order Processing", "Customer Portal"],
+        titleKey: 'solutions.sales.title',
+        descriptionKey: 'solutions.sales.description',
+        featuresKeys: [
+          'solutions.sales.features.leads',
+          'solutions.sales.features.quotes',
+          'solutions.sales.features.orders',
+          'solutions.sales.features.portal'
+        ],
         icon: "📈"
       },
       {
-        title: "Inventory & Procurement",
-        description: "Complete inventory control with Arabic labeling support.",
-        features: ["Stock Management", "Warehousing", "Dynamic Pricing", "Arabic Labeling"],
+        titleKey: 'solutions.inventory.title',
+        descriptionKey: 'solutions.inventory.description',
+        featuresKeys: [
+          'solutions.inventory.features.stock',
+          'solutions.inventory.features.warehousing',
+          'solutions.inventory.features.pricing',
+          'solutions.inventory.features.labeling'
+        ],
         icon: "📦"
       },
       {
-        title: "Manufacturing",
-        description: "Production planning and quality control systems.",
-        features: ["Bill of Materials", "Work Orders", "Production Planning", "Quality Inspections"],
+        titleKey: 'solutions.manufacturing.title',
+        descriptionKey: 'solutions.manufacturing.description',
+        featuresKeys: [
+          'solutions.manufacturing.features.bom',
+          'solutions.manufacturing.features.orders',
+          'solutions.manufacturing.features.planning',
+          'solutions.manufacturing.features.quality'
+        ],
         icon: "🏭"
       },
       {
-        title: "Asset Management",
-        description: "Asset lifecycle and predictive maintenance management.",
-        features: ["Asset Depreciation", "Maintenance Scheduling", "QR Code Tags", "Predictive Alerts"],
+        titleKey: 'solutions.assets.title',
+        descriptionKey: 'solutions.assets.description',
+        featuresKeys: [
+          'solutions.assets.features.depreciation',
+          'solutions.assets.features.maintenance',
+          'solutions.assets.features.qr',
+          'solutions.assets.features.alerts'
+        ],
         icon: "🔧"
       }
     ],
     value: [
       {
-        title: "AI by Design",
-        description: "Built-in automation, predictive analytics, and smart workflows that adapt to your business.",
-        features: ["Predictive forecasting", "Intelligent automation", "Adaptive workflows", "Smart analytics"],
+        titleKey: 'value.ai.title',
+        descriptionKey: 'value.ai.description',
+        featuresKeys: [
+          'value.ai.features.forecasting',
+          'value.ai.features.automation',
+          'value.ai.features.workflows',
+          'value.ai.features.analytics'
+        ],
         icon: "🧠"
       },
       {
-        title: "Speed-to-Value",
-        description: "50% faster implementation with business value from day one.",
-        features: ["Rapid deployment", "Quick ROI", "Immediate benefits", "Agile methodology"],
+        titleKey: 'value.speed.title',
+        descriptionKey: 'value.speed.description',
+        featuresKeys: [
+          'value.speed.features.deployment',
+          'value.speed.features.roi',
+          'value.speed.features.benefits',
+          'value.speed.features.methodology'
+        ],
         icon: "⚡"
       },
       {
-        title: "Cultural & Language Parity",
-        description: "True Arabic/English parity with full RTL support and local compliance.",
-        features: ["Bilingual interface", "RTL support", "Local compliance", "Cultural alignment"],
+        titleKey: 'value.cultural.title',
+        descriptionKey: 'value.cultural.description',
+        featuresKeys: [
+          'value.cultural.features.bilingual',
+          'value.cultural.features.rtl',
+          'value.cultural.features.compliance',
+          'value.cultural.features.alignment'
+        ],
         icon: "🌍"
       },
       {
-        title: "User Adoption Excellence",
-        description: "87%+ user adoption rates through adoption-first design principles.",
-        features: ["Intuitive design", "Comprehensive training", "User-friendly interface", "Ongoing support"],
+        titleKey: 'value.adoption.title',
+        descriptionKey: 'value.adoption.description',
+        featuresKeys: [
+          'value.adoption.features.design',
+          'value.adoption.features.training',
+          'value.adoption.features.interface',
+          'value.adoption.features.support'
+        ],
         icon: "👍"
       }
     ]
@@ -207,23 +287,23 @@ export default function ServicesSection() {
           >
             {content[activeTab as keyof typeof content].map((item, index) => (
               <motion.div
-                key={item.title}
+                key={item.titleKey}
                 className="bg-white dark:bg-black rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="text-4xl mb-6">{item.icon}</div>
                 <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
-                  {item.title}
+                  {t(item.titleKey)}
                 </h3>
                 <p className={`text-gray-600 dark:text-gray-300 mb-6 leading-relaxed ${isRTL ? 'text-right' : 'text-left'}`}>
-                  {item.description}
+                  {t(item.descriptionKey)}
                 </p>
                 <ul className="space-y-2">
-                  {item.features.map((feature, idx) => (
+                  {item.featuresKeys.map((featureKey, idx) => (
                     <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                       <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      <span className="text-gray-700 dark:text-gray-300 text-sm">{feature}</span>
+                      <span className="text-gray-700 dark:text-gray-300 text-sm">{t(featureKey)}</span>
                     </li>
                   ))}
                 </ul>
