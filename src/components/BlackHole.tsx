@@ -31,7 +31,7 @@ export default function BlackHole() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
+  const [useSimpleVersion, setUseSimpleVersion] = useState(false)
 
   useEffect(() => {
     // Detect mobile devices and reduce complexity
@@ -39,10 +39,8 @@ export default function BlackHole() {
       const mobile = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       setIsMobile(mobile)
       
-      // Disable on very small screens or low-end devices
-      if (window.innerWidth < 480 || (mobile && window.devicePixelRatio > 2)) {
-        setIsVisible(false)
-      }
+      // Use simple version on very small screens but keep it visible
+      setUseSimpleVersion(window.innerWidth < 480)
     }
 
     checkMobile()
@@ -52,7 +50,7 @@ export default function BlackHole() {
   }, [])
 
   useEffect(() => {
-    if (!canvasRef.current || !containerRef.current || !isVisible) return
+    if (!canvasRef.current || !containerRef.current || useSimpleVersion) return
 
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true })
@@ -120,7 +118,7 @@ export default function BlackHole() {
       }
 
       // Reduce disc count on mobile
-      const totalDiscs = isMobile ? 50 : 100
+      const totalDiscs = isMobile ? 30 : 80
       let prevBottom = height
 
       for (let i = 0; i < totalDiscs; i++) {
@@ -176,7 +174,7 @@ export default function BlackHole() {
       particleArea.ex = (width - particleArea.ew) / 2
 
       // Reduce particle count on mobile
-      const totalParticles = isMobile ? 30 : 100
+      const totalParticles = isMobile ? 20 : 60
 
       for (let i = 0; i < totalParticles; i++) {
         const particle = initParticle(true)
@@ -188,9 +186,8 @@ export default function BlackHole() {
       const sx = particleArea.sx + particleArea.sw * Math.random()
       const ex = particleArea.ex + particleArea.ew * Math.random()
       const dx = ex - sx
-      const vx = 0.1 + Math.random() * 0.5
       const y = start ? particleArea.h * Math.random() : particleArea.h
-      const r = 0.5 + Math.random() * (isMobile ? 2 : 4)
+      const r = 0.5 + Math.random() * (isMobile ? 2 : 3)
       const vy = 0.5 + Math.random()
 
       return {
@@ -201,7 +198,7 @@ export default function BlackHole() {
         vy,
         p: 0,
         r,
-        c: `rgba(255, 255, 255, ${Math.random() * 0.8})`
+        c: `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.2})`
       }
     }
 
@@ -235,7 +232,7 @@ export default function BlackHole() {
       ctx.stroke()
 
       // Draw fewer discs on mobile
-      const step = isMobile ? 8 : 5
+      const step = isMobile ? 10 : 5
       discs.forEach((disc, i) => {
         if (i % step !== 0) return
 
@@ -271,7 +268,7 @@ export default function BlackHole() {
     }
 
     const moveDiscs = () => {
-      const speed = isMobile ? 0.0005 : 0.001
+      const speed = isMobile ? 0.0003 : 0.0008
       discs.forEach(disc => {
         disc.p = (disc.p + speed) % 1
         Object.assign(disc, tweenDisc(disc))
@@ -282,7 +279,7 @@ export default function BlackHole() {
       particles.forEach(particle => {
         particle.p = 1 - particle.y / particleArea.h
         particle.x = particle.sx + particle.dx * particle.p
-        particle.y -= particle.vy * (isMobile ? 0.5 : 1)
+        particle.y -= particle.vy * (isMobile ? 0.3 : 0.8)
 
         if (particle.y < 0) {
           const newParticle = initParticle()
@@ -339,17 +336,7 @@ export default function BlackHole() {
       }
       clearTimeout(resizeTimeout)
     }
-  }, [isMobile, isVisible])
-
-  // Don't render on very small screens or when disabled
-  if (!isVisible) {
-    return (
-      <div className="absolute inset-0 overflow-hidden bg-gradient-to-b from-purple-900/20 to-black">
-        {/* Simple gradient fallback for mobile */}
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 -translate-x-1/2 -translate-y-1/2 bg-purple-600/30 rounded-full blur-3xl" />
-      </div>
-    )
-  }
+  }, [isMobile, useSimpleVersion])
 
   return (
     <div 
@@ -357,23 +344,32 @@ export default function BlackHole() {
       className="absolute inset-0 overflow-hidden"
       style={{ background: 'transparent' }}
     >
-      <canvas 
-        ref={canvasRef}
-        className="block w-full h-full"
-        style={{ 
-          willChange: 'transform',
-          transform: 'translateZ(0)' // Force hardware acceleration
-        }}
-      />
+      {/* Canvas for complex animation or simple fallback */}
+      {useSimpleVersion ? (
+        // Simple CSS-only version for very small screens
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 w-32 h-32 md:w-48 md:h-48 -translate-x-1/2 -translate-y-1/2 bg-purple-600/40 rounded-full blur-2xl animate-pulse" />
+          <div className="absolute top-1/2 left-1/2 w-16 h-16 md:w-24 md:h-24 -translate-x-1/2 -translate-y-1/2 bg-purple-400/60 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
+        </div>
+      ) : (
+        <canvas 
+          ref={canvasRef}
+          className="block w-full h-full"
+          style={{ 
+            willChange: 'transform',
+            transform: 'translateZ(0)' // Force hardware acceleration
+          }}
+        />
+      )}
       
-      {/* Simplified aura effect for mobile */}
+      {/* Aura effect - simplified for mobile */}
       <div 
-        className={`absolute top-[-71.5%] left-1/2 z-[3] rounded-b-full opacity-75 mix-blend-plus-lighter ${
-          isMobile ? 'w-[40%] h-[120%] blur-[30px]' : 'w-[30%] h-[140%] blur-[50px]'
+        className={`absolute top-[-71.5%] left-1/2 z-[3] rounded-b-full opacity-60 mix-blend-plus-lighter ${
+          isMobile ? 'w-[50%] h-[100%] blur-[25px]' : 'w-[30%] h-[140%] blur-[50px]'
         }`}
         style={{
           background: isMobile 
-            ? 'linear-gradient(20deg, #00f8f1, #fe848f, #ffbd1e)'
+            ? 'linear-gradient(20deg, #00f8f1 0%, #fe848f 50%, #ffbd1e 100%)'
             : 'linear-gradient(20deg, #00f8f1, #ffbd1e20 16.5%, #fe848f 33%, #fe848f20 49.5%, #00f8f1 66%, #00f8f160 85.5%, #ffbd1e 100%) 0 100%/100% 200%',
           transform: 'translate3d(-50%, 0, 0)',
           animation: isMobile ? 'none' : 'aura-glow 5s infinite linear'
@@ -383,7 +379,7 @@ export default function BlackHole() {
       {/* Black hole gradient overlay */}
       <div 
         className={`absolute top-1/2 left-1/2 z-[2] block ${
-          isMobile ? 'w-[120%] h-[120%]' : 'w-[150%] h-[140%]'
+          isMobile ? 'w-[130%] h-[130%]' : 'w-[150%] h-[140%]'
         }`}
         style={{
           background: 'radial-gradient(ellipse at 50% 55%, transparent 10%, rgba(0,0,0,0.8) 50%)',
@@ -400,10 +396,10 @@ export default function BlackHole() {
         }}
       />
       
-      {/* Simplified scanline overlay for mobile */}
+      {/* Scanline overlay - only on desktop */}
       {!isMobile && (
         <div 
-          className="absolute top-0 left-0 z-[10] w-full h-full mix-blend-overlay opacity-30"
+          className="absolute top-0 left-0 z-[10] w-full h-full mix-blend-overlay opacity-20"
           style={{
             background: 'repeating-linear-gradient(transparent, transparent 2px, white 2px, white 3px)'
           }}
