@@ -22,103 +22,183 @@ export default function ServicesSection() {
   const content = {
     services: [
       {
-        title: "ERP Implementation & Core Configuration",
-        description: "Complete ERP deployment with industry-specific customizations and seamless data migration.",
-        features: ["System architecture design", "Custom module development", "Data migration", "User training"],
+        title: t('services.erp.title'),
+        description: t('services.erp.description'),
+        features: [
+          t('services.erp.features.architecture'),
+          t('services.erp.features.development'),
+          t('services.erp.features.migration'),
+          t('services.erp.features.training')
+        ],
         icon: "⚙️"
       },
       {
-        title: "Industry-Specific Module Development",
-        description: "Tailored solutions for clinics, schools, gyms, logistics, and other specialized industries.",
-        features: ["Healthcare management", "Education systems", "Fitness club operations", "Logistics optimization"],
+        title: t('services.industry.title'),
+        description: t('services.industry.description'),
+        features: [
+          t('services.industry.features.healthcare'),
+          t('services.industry.features.education'),
+          t('services.industry.features.fitness'),
+          t('services.industry.features.logistics')
+        ],
         icon: "🏭"
       },
       {
-        title: "AI Automation Enhancements",
-        description: "Built-in intelligence that transforms your operations with predictive capabilities.",
-        features: ["Smart forecasting", "ERP-integrated chatbots", "Advanced OCR", "Workflow automation"],
+        title: t('services.ai.title'),
+        description: t('services.ai.description'),
+        features: [
+          t('services.ai.features.forecasting'),
+          t('services.ai.features.chatbots'),
+          t('services.ai.features.ocr'),
+          t('services.ai.features.automation')
+        ],
         icon: "🤖"
       },
       {
-        title: "UX/UI Bilingual Enhancement",
-        description: "RTL-compliant, culturally-aligned interfaces with true Arabic/English parity.",
-        features: ["RTL interface design", "Cultural localization", "Accessibility compliance", "Mobile optimization"],
+        title: t('services.ux.title'),
+        description: t('services.ux.description'),
+        features: [
+          t('services.ux.features.rtl'),
+          t('services.ux.features.localization'),
+          t('services.ux.features.accessibility'),
+          t('services.ux.features.mobile')
+        ],
         icon: "🎨"
       },
       {
-        title: "Legacy Data Migration & Integrations",
-        description: "Seamless transition from legacy systems with comprehensive third-party integrations.",
-        features: ["Data mapping & validation", "API integrations", "System synchronization", "Backup & recovery"],
+        title: t('services.migration.title'),
+        description: t('services.migration.description'),
+        features: [
+          t('services.migration.features.mapping'),
+          t('services.migration.features.api'),
+          t('services.migration.features.sync'),
+          t('services.migration.features.backup')
+        ],
         icon: "🔄"
       },
       {
-        title: "Continuous Lifecycle Support",
-        description: "Ongoing optimization, updates, and performance monitoring for sustained success.",
-        features: ["Regular updates", "Performance tuning", "New feature development", "24/7 monitoring"],
+        title: t('services.support.title'),
+        description: t('services.support.description'),
+        features: [
+          t('services.support.features.updates'),
+          t('services.support.features.tuning'),
+          t('services.support.features.features'),
+          t('services.support.features.monitoring')
+        ],
         icon: "🛡️"
       }
     ],
     solutions: [
       {
-        title: "Accounting & Finance",
-        description: "Complete financial management with local compliance including Zakat and VAT.",
-        features: ["General Ledger", "Invoicing & Billing", "Financial Reporting", "Zakat/VAT Compliance"],
+        title: t('solutions.accounting.title'),
+        description: t('solutions.accounting.description'),
+        features: [
+          t('solutions.accounting.features.ledger'),
+          t('solutions.accounting.features.invoicing'),
+          t('solutions.accounting.features.reporting'),
+          t('solutions.accounting.features.compliance')
+        ],
         icon: "💰"
       },
       {
-        title: "HR & Payroll",
-        description: "Comprehensive human resource management with bilingual support.",
-        features: ["Employee Records", "Attendance Tracking", "Payroll Processing", "Hijri/Gregorian Sync"],
+        title: t('solutions.hr.title'),
+        description: t('solutions.hr.description'),
+        features: [
+          t('solutions.hr.features.records'),
+          t('solutions.hr.features.attendance'),
+          t('solutions.hr.features.payroll'),
+          t('solutions.hr.features.calendar')
+        ],
         icon: "👥"
       },
       {
-        title: "Sales & CRM",
-        description: "End-to-end sales and customer relationship management.",
-        features: ["Lead Management", "Quote Generation", "Order Processing", "Customer Portal"],
+        title: t('solutions.sales.title'),
+        description: t('solutions.sales.description'),
+        features: [
+          t('solutions.sales.features.leads'),
+          t('solutions.sales.features.quotes'),
+          t('solutions.sales.features.orders'),
+          t('solutions.sales.features.portal')
+        ],
         icon: "📈"
       },
       {
-        title: "Inventory & Procurement",
-        description: "Complete inventory control with Arabic labeling support.",
-        features: ["Stock Management", "Warehousing", "Dynamic Pricing", "Arabic Labeling"],
+        title: t('solutions.inventory.title'),
+        description: t('solutions.inventory.description'),
+        features: [
+          t('solutions.inventory.features.stock'),
+          t('solutions.inventory.features.warehousing'),
+          t('solutions.inventory.features.pricing'),
+          t('solutions.inventory.features.labeling')
+        ],
         icon: "📦"
       },
       {
-        title: "Manufacturing",
-        description: "Production planning and quality control systems.",
-        features: ["Bill of Materials", "Work Orders", "Production Planning", "Quality Inspections"],
+        title: t('solutions.manufacturing.title'),
+        description: t('solutions.manufacturing.description'),
+        features: [
+          t('solutions.manufacturing.features.bom'),
+          t('solutions.manufacturing.features.orders'),
+          t('solutions.manufacturing.features.planning'),
+          t('solutions.manufacturing.features.quality')
+        ],
         icon: "🏭"
       },
       {
-        title: "Asset Management",
-        description: "Asset lifecycle and predictive maintenance management.",
-        features: ["Asset Depreciation", "Maintenance Scheduling", "QR Code Tags", "Predictive Alerts"],
+        title: t('solutions.assets.title'),
+        description: t('solutions.assets.description'),
+        features: [
+          t('solutions.assets.features.depreciation'),
+          t('solutions.assets.features.maintenance'),
+          t('solutions.assets.features.qr'),
+          t('solutions.assets.features.alerts')
+        ],
         icon: "🔧"
       }
     ],
     value: [
       {
-        title: "AI by Design",
-        description: "Built-in automation, predictive analytics, and smart workflows that adapt to your business.",
-        features: ["Predictive forecasting", "Intelligent automation", "Adaptive workflows", "Smart analytics"],
+        title: t('value.ai.title'),
+        description: t('value.ai.description'),
+        features: [
+          t('value.ai.features.forecasting'),
+          t('value.ai.features.automation'),
+          t('value.ai.features.workflows'),
+          t('value.ai.features.analytics')
+        ],
         icon: "🧠"
       },
       {
-        title: "Speed-to-Value",
-        description: "50% faster implementation with business value from day one.",
-        features: ["Rapid deployment", "Quick ROI", "Immediate benefits", "Agile methodology"],
+        title: t('value.speed.title'),
+        description: t('value.speed.description'),
+        features: [
+          t('value.speed.features.deployment'),
+          t('value.speed.features.roi'),
+          t('value.speed.features.benefits'),
+          t('value.speed.features.methodology')
+        ],
         icon: "⚡"
       },
       {
-        title: "Cultural & Language Parity",
-        description: "True Arabic/English parity with full RTL support and local compliance.",
-        features: ["Bilingual interface", "RTL support", "Local compliance", "Cultural alignment"],
+        title: t('value.cultural.title'),
+        description: t('value.cultural.description'),
+        features: [
+          t('value.cultural.features.bilingual'),
+          t('value.cultural.features.rtl'),
+          t('value.cultural.features.compliance'),
+          t('value.cultural.features.alignment')
+        ],
         icon: "🌍"
       },
       {
-        title: "User Adoption Excellence",
-        description: "87%+ user adoption rates through adoption-first design principles.",
-        features: ["Intuitive design", "Comprehensive training", "User-friendly interface", "Ongoing support"],
+        title: t('value.adoption.title'),
+        description: t('value.adoption.description'),
+        features: [
+          t('value.adoption.features.design'),
+          t('value.adoption.features.training'),
+          t('value.adoption.features.interface'),
+          t('value.adoption.features.support')
+        ],
         icon: "👍"
       }
     ]
