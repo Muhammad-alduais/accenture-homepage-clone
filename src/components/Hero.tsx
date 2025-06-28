@@ -137,9 +137,9 @@ export default function Hero() {
           </motion.button>
         </motion.div>
 
-        {/* Key Benefits */}
+        {/* Key Benefits - Increased z-index to ensure visibility */}
         <motion.div 
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="relative z-30 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           variants={itemVariants}
         >
           <div className="text-center">
