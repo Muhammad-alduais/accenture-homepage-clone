@@ -15,66 +15,66 @@ export default function TestimonialsSection() {
 
   const caseStudies = [
     {
-      client: "HealthPlus Clinics",
-      industry: "Healthcare",
-      challenge: "Managing multiple clinic locations with disparate systems for HR, accounting, and inventory",
-      solution: "Integrated ERP with bilingual dashboards and real-time reporting across all locations",
-      results: [
-        "60-day implementation timeline",
-        "40% improvement in operational efficiency",
-        "Real-time visibility across all clinics",
-        "Streamlined HR and payroll processes"
+      clientKey: 'testimonials.case1.client',
+      industryKey: 'testimonials.case1.industry',
+      challengeKey: 'testimonials.case1.challenge',
+      solutionKey: 'testimonials.case1.solution',
+      resultsKeys: [
+        'testimonials.case1.results.timeline',
+        'testimonials.case1.results.efficiency',
+        'testimonials.case1.results.visibility',
+        'testimonials.case1.results.processes'
       ],
-      quote: "MovinWare transformed our operations completely. The bilingual interface was crucial for our diverse team, and the real-time dashboards give us visibility we never had before.",
-      author: "Dr. Sarah Al-Mahmoud",
-      position: "Chief Operations Officer",
+      quoteKey: 'testimonials.case1.quote',
+      authorKey: 'testimonials.case1.author',
+      positionKey: 'testimonials.case1.position',
       image: "https://ext.same-assets.com/2900598000/4049787973.jpeg",
       metrics: {
-        implementation: "60 days",
-        efficiency: "+40%",
-        adoption: "92%"
+        implementationKey: 'testimonials.case1.metrics.implementation',
+        efficiencyKey: 'testimonials.case1.metrics.efficiency',
+        adoptionKey: 'testimonials.case1.metrics.adoption'
       }
     },
     {
-      client: "EduTrack School Group",
-      industry: "Education",
-      challenge: "Complex student information management across multiple schools with Arabic/English requirements",
-      solution: "Comprehensive student information system with exam management, parent portal, and cultural alignment",
-      results: [
-        "Culturally aligned solution with Hijri calendar",
-        "Improved parent-school communication",
-        "Streamlined exam and grading processes",
-        "Enhanced student data management"
+      clientKey: 'testimonials.case2.client',
+      industryKey: 'testimonials.case2.industry',
+      challengeKey: 'testimonials.case2.challenge',
+      solutionKey: 'testimonials.case2.solution',
+      resultsKeys: [
+        'testimonials.case2.results.cultural',
+        'testimonials.case2.results.communication',
+        'testimonials.case2.results.exams',
+        'testimonials.case2.results.management'
       ],
-      quote: "The cultural understanding MovinWare brought to our project was exceptional. The system works exactly how our schools operate, not the other way around.",
-      author: "Ahmed Al-Rashid",
-      position: "IT Director",
+      quoteKey: 'testimonials.case2.quote',
+      authorKey: 'testimonials.case2.author',
+      positionKey: 'testimonials.case2.position',
       image: "https://ext.same-assets.com/2900598000/36195040.jpeg",
       metrics: {
-        implementation: "45 days",
-        efficiency: "+35%",
-        adoption: "89%"
+        implementationKey: 'testimonials.case2.metrics.implementation',
+        efficiencyKey: 'testimonials.case2.metrics.efficiency',
+        adoptionKey: 'testimonials.case2.metrics.adoption'
       }
     },
     {
-      client: "LogixPro Logistics",
-      industry: "Logistics",
-      challenge: "Inefficient fleet management and route planning leading to high operational costs",
-      solution: "AI-powered fleet optimization with predictive analytics and route planning",
-      results: [
-        "30% reduction in operational overhead",
-        "Improved delivery times and customer satisfaction",
-        "Predictive maintenance for fleet vehicles",
-        "Real-time tracking and optimization"
+      clientKey: 'testimonials.case3.client',
+      industryKey: 'testimonials.case3.industry',
+      challengeKey: 'testimonials.case3.challenge',
+      solutionKey: 'testimonials.case3.solution',
+      resultsKeys: [
+        'testimonials.case3.results.reduction',
+        'testimonials.case3.results.delivery',
+        'testimonials.case3.results.maintenance',
+        'testimonials.case3.results.tracking'
       ],
-      quote: "The AI-powered route optimization has been a game-changer. We're saving thousands monthly while improving our service quality.",
-      author: "Khalid Al-Mansouri",
-      position: "Operations Manager",
+      quoteKey: 'testimonials.case3.quote',
+      authorKey: 'testimonials.case3.author',
+      positionKey: 'testimonials.case3.position',
       image: "https://ext.same-assets.com/2900598000/1611683462.jpeg",
       metrics: {
-        implementation: "75 days",
-        efficiency: "+30%",
-        adoption: "95%"
+        implementationKey: 'testimonials.case3.metrics.implementation',
+        efficiencyKey: 'testimonials.case3.metrics.efficiency',
+        adoptionKey: 'testimonials.case3.metrics.adoption'
       }
     }
   ]
@@ -144,7 +144,7 @@ export default function TestimonialsSection() {
           >
             {caseStudies.map((study, index) => (
               <button
-                key={study.client}
+                key={study.clientKey}
                 onClick={() => setActiveCase(index)}
                 className={`px-6 py-3 mx-2 mb-4 rounded-lg font-medium transition-all duration-300 ${
                   activeCase === index
@@ -152,7 +152,7 @@ export default function TestimonialsSection() {
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
-                {study.client}
+                {t(study.clientKey)}
               </button>
             ))}
           </motion.div>
@@ -168,16 +168,16 @@ export default function TestimonialsSection() {
               <div className="relative h-64 lg:h-auto">
                 <img
                   src={caseStudies[activeCase].image}
-                  alt={caseStudies[activeCase].client}
+                  alt={t(caseStudies[activeCase].clientKey)}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className={`absolute bottom-6 ${isRTL ? 'right-6' : 'left-6'}`}>
                   <div className="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-2">
-                    {caseStudies[activeCase].industry}
+                    {t(caseStudies[activeCase].industryKey)}
                   </div>
                   <h3 className="text-2xl font-bold text-white">
-                    {caseStudies[activeCase].client}
+                    {t(caseStudies[activeCase].clientKey)}
                   </h3>
                 </div>
               </div>
@@ -185,22 +185,28 @@ export default function TestimonialsSection() {
               {/* Content */}
               <div className="p-8 lg:p-12">
                 <div className="mb-8">
-                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>Challenge</h4>
+                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t('testimonials.labels.challenge')}
+                  </h4>
                   <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
-                    {caseStudies[activeCase].challenge}
+                    {t(caseStudies[activeCase].challengeKey)}
                   </p>
                   
-                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>Solution</h4>
+                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t('testimonials.labels.solution')}
+                  </h4>
                   <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
-                    {caseStudies[activeCase].solution}
+                    {t(caseStudies[activeCase].solutionKey)}
                   </p>
                   
-                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>Results</h4>
+                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t('testimonials.labels.results')}
+                  </h4>
                   <ul className="space-y-2 mb-8">
-                    {caseStudies[activeCase].results.map((result, idx) => (
+                    {caseStudies[activeCase].resultsKeys.map((resultKey, idx) => (
                       <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-gray-700 dark:text-gray-300">{result}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{t(resultKey)}</span>
                       </li>
                     ))}
                   </ul>
@@ -209,15 +215,15 @@ export default function TestimonialsSection() {
                 {/* Quote */}
                 <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
                   <blockquote className={`text-lg text-gray-700 dark:text-gray-300 italic mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
-                    "{caseStudies[activeCase].quote}"
+                    "{t(caseStudies[activeCase].quoteKey)}"
                   </blockquote>
                   <div className={`flex items-center ${isRTL ? 'justify-end' : 'justify-start'}`}>
                     <div className={isRTL ? 'text-right' : 'text-left'}>
                       <div className="font-semibold text-gray-900 dark:text-white">
-                        {caseStudies[activeCase].author}
+                        {t(caseStudies[activeCase].authorKey)}
                       </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {caseStudies[activeCase].position}
+                        {t(caseStudies[activeCase].positionKey)}
                       </div>
                     </div>
                   </div>
@@ -227,21 +233,27 @@ export default function TestimonialsSection() {
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">
-                      {caseStudies[activeCase].metrics.implementation}
+                      {t(caseStudies[activeCase].metrics.implementationKey)}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Implementation</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('testimonials.labels.implementation')}
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">
-                      {caseStudies[activeCase].metrics.efficiency}
+                      {t(caseStudies[activeCase].metrics.efficiencyKey)}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Efficiency Gain</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('testimonials.labels.efficiency')}
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">
-                      {caseStudies[activeCase].metrics.adoption}
+                      {t(caseStudies[activeCase].metrics.adoptionKey)}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">User Adoption</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('testimonials.labels.adoption')}
+                    </div>
                   </div>
                 </div>
               </div>

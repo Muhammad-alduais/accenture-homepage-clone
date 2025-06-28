@@ -7,20 +7,20 @@ export default function Footer() {
 
   const footerLinks = {
     leftColumn: [
-      "Solutions",
-      "Services", 
-      "Industries",
-      "About Us",
-      "Contact Us",
-      "Careers"
+      { labelKey: 'footer.links.solutions', href: '#' },
+      { labelKey: 'footer.links.services', href: '#' },
+      { labelKey: 'footer.links.industries', href: '#' },
+      { labelKey: 'footer.links.about', href: '#' },
+      { labelKey: 'footer.links.contact', href: '#' },
+      { labelKey: 'footer.links.careers', href: '#' }
     ],
     rightColumn: [
-      "Privacy Policy",
-      "Terms of Service",
-      "Cookie Policy",
-      "Support Center",
-      "Documentation",
-      "Partner Program"
+      { labelKey: 'footer.links.privacy', href: '#' },
+      { labelKey: 'footer.links.terms', href: '#' },
+      { labelKey: 'footer.links.cookies', href: '#' },
+      { labelKey: 'footer.links.support', href: '#' },
+      { labelKey: 'footer.links.documentation', href: '#' },
+      { labelKey: 'footer.links.partner', href: '#' }
     ]
   }
 
@@ -31,7 +31,7 @@ export default function Footer() {
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 ${isRTL ? 'text-right' : 'text-left'}`}>
           {/* Left Side */}
           <div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8 whitespace-pre-line">
               {t('footer.tagline')}
             </h2>
 
@@ -39,10 +39,13 @@ export default function Footer() {
               <div>
                 <ul className="space-y-4">
                   {footerLinks.leftColumn.map((link) => (
-                    <li key={link}>
-                      <button className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}>
-                        {link}
-                      </button>
+                    <li key={link.labelKey}>
+                      <a 
+                        href={link.href}
+                        className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
+                      >
+                        {t(link.labelKey)}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -51,10 +54,13 @@ export default function Footer() {
               <div>
                 <ul className="space-y-4">
                   {footerLinks.rightColumn.map((link) => (
-                    <li key={link}>
-                      <button className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}>
-                        {link}
-                      </button>
+                    <li key={link.labelKey}>
+                      <a 
+                        href={link.href}
+                        className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
+                      >
+                        {t(link.labelKey)}
+                      </a>
                     </li>
                   ))}
                 </ul>
