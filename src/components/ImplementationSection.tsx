@@ -14,61 +14,111 @@ export default function ImplementationSection() {
   const phases = [
     {
       phase: "01",
-      title: "Deep Discovery",
-      duration: "1-2 Weeks",
-      description: "Comprehensive analysis of your current processes, pain points, and system requirements",
-      activities: ["Process Mapping", "Pain Point Analysis", "System Audit", "Requirements Gathering"],
-      deliverables: ["Current State Assessment", "Gap Analysis Report", "Technical Requirements", "Project Roadmap"]
+      titleKey: "implementation.phase1.title",
+      durationKey: "implementation.phase1.duration",
+      descriptionKey: "implementation.phase1.description",
+      activitiesKeys: [
+        "implementation.phase1.activities.mapping",
+        "implementation.phase1.activities.analysis", 
+        "implementation.phase1.activities.audit",
+        "implementation.phase1.activities.gathering"
+      ],
+      deliverablesKeys: [
+        "implementation.phase1.deliverables.assessment",
+        "implementation.phase1.deliverables.gap",
+        "implementation.phase1.deliverables.requirements",
+        "implementation.phase1.deliverables.roadmap"
+      ]
     },
     {
       phase: "02",
-      title: "Smart Blueprinting",
-      duration: "2-3 Weeks",
-      description: "Design optimal workflows with AI readiness and bilingual planning considerations",
-      activities: ["Workflow Design", "AI Integration Planning", "Bilingual Interface Design", "Security Architecture"],
-      deliverables: ["System Blueprint", "Technical Specifications", "UI/UX Mockups", "Integration Plan"]
+      titleKey: "implementation.phase2.title",
+      durationKey: "implementation.phase2.duration",
+      descriptionKey: "implementation.phase2.description",
+      activitiesKeys: [
+        "implementation.phase2.activities.workflow",
+        "implementation.phase2.activities.ai",
+        "implementation.phase2.activities.bilingual",
+        "implementation.phase2.activities.security"
+      ],
+      deliverablesKeys: [
+        "implementation.phase2.deliverables.blueprint",
+        "implementation.phase2.deliverables.specifications",
+        "implementation.phase2.deliverables.mockups",
+        "implementation.phase2.deliverables.integration"
+      ]
     },
     {
       phase: "03",
-      title: "Agile Build",
-      duration: "4-8 Weeks",
-      description: "Iterative development with weekly demos, continuous testing, and data migration",
-      activities: ["Module Development", "Weekly Demos", "Data Migration", "Integration Testing"],
-      deliverables: ["Working System", "Migrated Data", "Test Results", "User Documentation"]
+      titleKey: "implementation.phase3.title",
+      durationKey: "implementation.phase3.duration",
+      descriptionKey: "implementation.phase3.description",
+      activitiesKeys: [
+        "implementation.phase3.activities.development",
+        "implementation.phase3.activities.demos",
+        "implementation.phase3.activities.migration",
+        "implementation.phase3.activities.testing"
+      ],
+      deliverablesKeys: [
+        "implementation.phase3.deliverables.system",
+        "implementation.phase3.deliverables.data",
+        "implementation.phase3.deliverables.results",
+        "implementation.phase3.deliverables.documentation"
+      ]
     },
     {
       phase: "04",
-      title: "Launch",
-      duration: "1-2 Weeks",
-      description: "Role-based training, go-live support, and immediate optimization",
-      activities: ["User Training", "Go-Live Support", "Performance Monitoring", "Issue Resolution"],
-      deliverables: ["Trained Users", "Live System", "Support Documentation", "Performance Report"]
+      titleKey: "implementation.phase4.title",
+      durationKey: "implementation.phase4.duration",
+      descriptionKey: "implementation.phase4.description",
+      activitiesKeys: [
+        "implementation.phase4.activities.training",
+        "implementation.phase4.activities.support",
+        "implementation.phase4.activities.monitoring",
+        "implementation.phase4.activities.resolution"
+      ],
+      deliverablesKeys: [
+        "implementation.phase4.deliverables.users",
+        "implementation.phase4.deliverables.live",
+        "implementation.phase4.deliverables.support",
+        "implementation.phase4.deliverables.performance"
+      ]
     },
     {
       phase: "05",
-      title: "Evolution",
-      duration: "Ongoing",
-      description: "Continuous improvement with quarterly reviews, AI tuning, and feature upgrades",
-      activities: ["Quarterly Reviews", "AI Retuning", "Feature Upgrades", "Performance Optimization"],
-      deliverables: ["Optimization Reports", "New Features", "Enhanced Performance", "Growth Roadmap"]
+      titleKey: "implementation.phase5.title",
+      durationKey: "implementation.phase5.duration",
+      descriptionKey: "implementation.phase5.description",
+      activitiesKeys: [
+        "implementation.phase5.activities.reviews",
+        "implementation.phase5.activities.retuning",
+        "implementation.phase5.activities.upgrades",
+        "implementation.phase5.activities.optimization"
+      ],
+      deliverablesKeys: [
+        "implementation.phase5.deliverables.reports",
+        "implementation.phase5.deliverables.features",
+        "implementation.phase5.deliverables.enhanced",
+        "implementation.phase5.deliverables.growth"
+      ]
     }
   ]
 
   const proofPoints = [
     {
       metric: "50%",
-      description: "Faster than traditional ERP rollouts",
-      detail: "Our agile methodology delivers results in weeks, not months"
+      descriptionKey: "implementation.proof.faster",
+      detailKey: "implementation.proof.fasterDesc"
     },
     {
-      metric: "Zero",
-      description: "Downtime transitions",
-      detail: "Seamless migration with continuous business operations"
+      metric: t('implementation.proof.zero'),
+      descriptionKey: "implementation.proof.zeroDesc",
+      detailKey: "implementation.proof.zeroDetail"
     },
     {
       metric: "87%+",
-      description: "User adoption within 90 days",
-      detail: "Adoption-first design ensures team engagement from day one"
+      descriptionKey: "implementation.proof.adoption",
+      detailKey: "implementation.proof.adoptionDesc"
     }
   ]
 
@@ -160,25 +210,25 @@ export default function ImplementationSection() {
                     <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg">
                       <div className={`flex items-center justify-between mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <h3 className={`text-2xl font-bold text-gray-900 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}>
-                          {phase.title}
+                          {t(phase.titleKey)}
                         </h3>
                         <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
-                          {phase.duration}
+                          {t(phase.durationKey)}
                         </span>
                       </div>
                       
                       <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
-                        {phase.description}
+                        {t(phase.descriptionKey)}
                       </p>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Activities:</h4>
                           <ul className="space-y-1">
-                            {phase.activities.map((activity, idx) => (
+                            {phase.activitiesKeys.map((activityKey, idx) => (
                               <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                                 <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                                <span className="text-sm text-gray-700 dark:text-gray-300">{activity}</span>
+                                <span className="text-sm text-gray-700 dark:text-gray-300">{t(activityKey)}</span>
                               </li>
                             ))}
                           </ul>
@@ -187,10 +237,10 @@ export default function ImplementationSection() {
                         <div>
                           <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Deliverables:</h4>
                           <ul className="space-y-1">
-                            {phase.deliverables.map((deliverable, idx) => (
+                            {phase.deliverablesKeys.map((deliverableKey, idx) => (
                               <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                                <span className="text-sm text-gray-700 dark:text-gray-300">{deliverable}</span>
+                                <span className="text-sm text-gray-700 dark:text-gray-300">{t(deliverableKey)}</span>
                               </li>
                             ))}
                           </ul>
@@ -229,10 +279,10 @@ export default function ImplementationSection() {
                     {point.metric}
                   </div>
                   <div className="text-xl font-semibold mb-2">
-                    {point.description}
+                    {t(point.descriptionKey)}
                   </div>
                   <div className="text-purple-200">
-                    {point.detail}
+                    {t(point.detailKey)}
                   </div>
                 </motion.div>
               ))}
