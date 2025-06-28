@@ -25,14 +25,6 @@ export function LanguageProvider({
   const [locale, setLocale] = useState<Locale>(initialLocale)
 
   useEffect(() => {
-    // Update document direction and lang
-    document.documentElement.dir = isRTL(locale) ? 'rtl' : 'ltr'
-    document.documentElement.lang = locale
-    
-    // Update body classes for font handling
-    document.body.classList.remove('font-arabic', 'font-english')
-    document.body.classList.add(locale === 'ar' ? 'font-arabic' : 'font-english')
-    
     // Store locale preference
     localStorage.setItem('preferred-locale', locale)
   }, [locale])

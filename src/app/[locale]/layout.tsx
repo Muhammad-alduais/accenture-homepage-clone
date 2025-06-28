@@ -55,7 +55,7 @@ export default async function RootLayout({
   const isRTL = locale === 'ar';
 
   return (
-    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
