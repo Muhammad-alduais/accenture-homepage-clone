@@ -54,7 +54,8 @@ export default function Header() {
         { key: 'ERP Systems', action: () => scrollToSection('services') },
         { key: 'AI & Automation', action: () => scrollToSection('services') },
         { key: 'System Integration', action: () => scrollToSection('services') },
-        { key: 'Data Migration', action: () => scrollToSection('services') }
+        { key: 'Data Migration', action: () => scrollToSection('services') },
+        { key: 'Digital Transformation', action: () => scrollToSection('about') }
       ]
     },
     { 
@@ -68,19 +69,20 @@ export default function Header() {
       dropdownItems: [
         { key: 'Education', action: () => scrollToSection('industries') },
         { key: 'Healthcare', action: () => scrollToSection('industries') },
-        { key: 'Logistics', action: () => scrollToSection('industries') },
-        { key: 'Retail', action: () => scrollToSection('industries') },
-        { key: 'Manufacturing', action: () => scrollToSection('industries') }
+        { key: 'Logistics & Warehousing', action: () => scrollToSection('industries') },
+        { key: 'Retail & E-commerce', action: () => scrollToSection('industries') },
+        { key: 'Manufacturing', action: () => scrollToSection('industries') },
+        { key: 'All Industries', action: () => scrollToSection('industries') }
       ]
     },
     { 
       key: 'About', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'Company', action: () => scrollToSection('about') },
-        { key: 'Implementation', action: () => scrollToSection('implementation') },
-        { key: 'Testimonials', action: () => scrollToSection('testimonials') },
-        { key: 'Contact', action: () => scrollToSection('contact') }
+        { key: 'Our Story', action: () => scrollToSection('about') },
+        { key: 'Implementation Process', action: () => scrollToSection('implementation') },
+        { key: 'Success Stories', action: () => scrollToSection('testimonials') },
+        { key: 'Contact Us', action: () => scrollToSection('contact') }
       ]
     }
   ]
@@ -193,7 +195,7 @@ export default function Header() {
                     <AnimatePresence>
                       {activeDropdown === item.key && (
                         <motion.div
-                          className={`absolute top-full mt-2 ${isRTL ? 'right-0' : 'left-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[200px] z-50`}
+                          className={`absolute top-full mt-2 ${isRTL ? 'right-0' : 'left-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[220px] z-50`}
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -201,13 +203,15 @@ export default function Header() {
                           onClick={(e) => e.stopPropagation()}
                         >
                           {item.dropdownItems?.map((dropdownItem) => (
-                            <button
+                            <motion.button
                               key={dropdownItem.key}
                               className={`w-full block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
                               onClick={() => handleDropdownItemClick(dropdownItem.action)}
+                              whileHover={{ x: isRTL ? -5 : 5 }}
+                              transition={{ duration: 0.2 }}
                             >
                               {dropdownItem.key}
-                            </button>
+                            </motion.button>
                           ))}
                         </motion.div>
                       )}
@@ -369,7 +373,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('about')}
                   >
-                    About
+                    Our Story
                   </motion.button>
 
                   <motion.button 
@@ -378,7 +382,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('services')}
                   >
-                    Services
+                    Services & Solutions
                   </motion.button>
 
                   <motion.button 
@@ -387,7 +391,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('industries')}
                   >
-                    Industries
+                    Industries We Serve
                   </motion.button>
 
                   <motion.button 
@@ -396,7 +400,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('implementation')}
                   >
-                    Implementation
+                    Implementation Process
                   </motion.button>
 
                   <motion.button 
@@ -405,7 +409,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('testimonials')}
                   >
-                    Testimonials
+                    Success Stories
                   </motion.button>
 
                   <motion.button 
@@ -414,7 +418,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('contact')}
                   >
-                    Contact
+                    Contact Us
                   </motion.button>
                   
                   {/* Mobile CTA */}
@@ -424,7 +428,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('contact')}
                   >
-                    Get Started
+                    Get Started Today
                   </motion.button>
                 </div>
               </div>
