@@ -103,26 +103,28 @@ export default function Header() {
     setShowLanguageMenu(!showLanguageMenu)
   }
 
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      const headerHeight = 100 // Account for fixed header
+      const elementPosition = element.offsetTop - headerHeight
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false)
     setActiveDropdown(null)
-    
-    // Smooth scroll to section
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    scrollToSection(href)
   }
 
   const handleDropdownItemClick = (href: string) => {
     setActiveDropdown(null)
     setIsMenuOpen(false)
-    
-    // Smooth scroll to section
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    scrollToSection(href)
   }
 
   return (
@@ -155,11 +157,11 @@ export default function Header() {
         >
           <div className={`flex items-center justify-between h-16 px-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
             {/* Logo */}
-            <motion.div 
+            <motion.button 
               className="flex items-center cursor-pointer"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
-              onClick={() => handleNavClick('#hero')}
+              onClick={() => scrollToSection('#hero')}
             >
               <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                 <motion.div 
@@ -189,7 +191,7 @@ export default function Header() {
                   MovinWare
                 </motion.span>
               </div>
-            </motion.div>
+            </motion.button>
 
             {/* Navigation */}
             <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
@@ -342,7 +344,7 @@ export default function Header() {
                   boxShadow: "0 6px 20px rgba(168, 85, 247, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => handleNavClick('#contact')}
+                onClick={() => scrollToSection('#contact')}
               >
                 <span>Get Started</span>
                 <motion.svg 
