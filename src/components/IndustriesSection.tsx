@@ -13,53 +13,108 @@ export default function IndustriesSection() {
 
   const industries = [
     {
-      title: "Educational Institutions",
-      description: "Comprehensive student information systems, scheduling, and parent portals",
+      titleKey: 'industries.education.title',
+      descriptionKey: 'industries.education.description',
       image: "https://ext.same-assets.com/2900598000/36195040.jpeg",
-      features: ["Student Management", "Academic Planning", "Parent Communication", "Fee Management"],
-      clientTypes: ["Schools", "Universities", "Training Centers", "Online Academies"]
+      featuresKeys: [
+        'industries.education.features.student',
+        'industries.education.features.academic',
+        'industries.education.features.parent',
+        'industries.education.features.fee'
+      ],
+      clientTypesKeys: [
+        'industries.education.clients.schools',
+        'industries.education.clients.universities',
+        'industries.education.clients.training',
+        'industries.education.clients.online'
+      ]
     },
     {
-      title: "Logistics & Warehousing",
-      description: "Fleet management, route optimization, and supply chain visibility",
+      titleKey: 'industries.logistics.title',
+      descriptionKey: 'industries.logistics.description',
       image: "https://ext.same-assets.com/2900598000/1611683462.jpeg",
-      features: ["Fleet Tracking", "Route Planning", "Inventory Control", "Customs Integration"],
-      clientTypes: ["Shipping Companies", "3PL Providers", "Distribution Centers", "Freight Forwarders"]
+      featuresKeys: [
+        'industries.logistics.features.fleet',
+        'industries.logistics.features.route',
+        'industries.logistics.features.inventory',
+        'industries.logistics.features.customs'
+      ],
+      clientTypesKeys: [
+        'industries.logistics.clients.shipping',
+        'industries.logistics.clients.3pl',
+        'industries.logistics.clients.distribution',
+        'industries.logistics.clients.freight'
+      ]
     },
     {
-      title: "Retail & E-commerce",
-      description: "Omnichannel retail operations with integrated POS and online platforms",
+      titleKey: 'industries.retail.title',
+      descriptionKey: 'industries.retail.description',
       image: "https://ext.same-assets.com/2900598000/4049787973.jpeg",
-      features: ["POS Integration", "Inventory Sync", "Customer Loyalty", "Multi-channel Sales"],
-      clientTypes: ["Retail Chains", "Online Stores", "Fashion Brands", "Electronics Retailers"]
+      featuresKeys: [
+        'industries.retail.features.pos',
+        'industries.retail.features.sync',
+        'industries.retail.features.loyalty',
+        'industries.retail.features.multichannel'
+      ],
+      clientTypesKeys: [
+        'industries.retail.clients.chains',
+        'industries.retail.clients.online',
+        'industries.retail.clients.fashion',
+        'industries.retail.clients.electronics'
+      ]
     },
     {
-      title: "Manufacturing & Production",
-      description: "Production planning, quality control, and supply chain management",
+      titleKey: 'industries.manufacturing.title',
+      descriptionKey: 'industries.manufacturing.description',
       image: "https://ext.same-assets.com/2900598000/3965891193.jpeg",
-      features: ["Production Planning", "Quality Control", "Supply Chain", "Equipment Maintenance"],
-      clientTypes: ["Manufacturers", "Assembly Plants", "Food Processing", "Textile Companies"]
+      featuresKeys: [
+        'industries.manufacturing.features.planning',
+        'industries.manufacturing.features.quality',
+        'industries.manufacturing.features.supply',
+        'industries.manufacturing.features.maintenance'
+      ],
+      clientTypesKeys: [
+        'industries.manufacturing.clients.manufacturers',
+        'industries.manufacturing.clients.assembly',
+        'industries.manufacturing.clients.food',
+        'industries.manufacturing.clients.textile'
+      ]
     }
   ]
 
   const targetClients = [
     {
-      type: "Startups",
-      description: "Rapid deployment solutions that scale with your growth",
+      titleKey: 'industries.startups.title',
+      descriptionKey: 'industries.startups.description',
       icon: "🚀",
-      benefits: ["Quick implementation", "Scalable architecture", "Cost-effective", "Growth-ready"]
+      benefitsKeys: [
+        'industries.startups.benefits.implementation',
+        'industries.startups.benefits.scalable',
+        'industries.startups.benefits.cost',
+        'industries.startups.benefits.growth'
+      ]
     },
     {
-      type: "SMEs",
-      description: "Comprehensive ERP solutions tailored for mid-market businesses",
+      titleKey: 'industries.smes.title',
+      descriptionKey: 'industries.smes.description',
       icon: "🏢",
-      benefits: ["Full-featured ERP", "Industry customization", "Integration capabilities", "Expert support"]
+      benefitsKeys: [
+        'industries.smes.benefits.featured',
+        'industries.smes.benefits.customization',
+        'industries.smes.benefits.integration',
+        'industries.smes.benefits.support'
+      ]
     },
     {
-      type: "Enterprises",
-      description: "Enterprise-grade solutions with advanced features and compliance",
+      titleKey: 'industries.enterprises.title',
+      descriptionKey: 'industries.enterprises.description',
       icon: "🏭",
-      benefits: ["Advanced analytics", "Multi-entity support", "Compliance tools", "24/7 support"]
+      benefitsKeys: [
+        'industries.enterprises.benefits.analytics',
+        'industries.enterprises.benefits.multi',
+        'industries.enterprises.benefits.compliance',
+        'industries.enterprises.benefits.support247'
+      ]
     }
   ]
 
@@ -121,7 +176,7 @@ export default function IndustriesSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
             {industries.map((industry, index) => (
               <motion.div
-                key={industry.title}
+                key={industry.titleKey}
                 className="bg-white dark:bg-black rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
@@ -129,26 +184,26 @@ export default function IndustriesSection() {
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={industry.image}
-                    alt={industry.title}
+                    alt={t(industry.titleKey)}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <div className="p-6">
                   <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
-                    {industry.title}
+                    {t(industry.titleKey)}
                   </h3>
                   <p className={`text-gray-600 dark:text-gray-300 mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
-                    {industry.description}
+                    {t(industry.descriptionKey)}
                   </p>
                   
                   <div className="mb-4">
                     <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Key Features:</h4>
                     <div className="grid grid-cols-2 gap-2">
-                      {industry.features.map((feature, idx) => (
+                      {industry.featuresKeys.map((featureKey, idx) => (
                         <div key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                           <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{feature}</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">{t(featureKey)}</span>
                         </div>
                       ))}
                     </div>
@@ -157,9 +212,9 @@ export default function IndustriesSection() {
                   <div>
                     <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Client Types:</h4>
                     <div className="flex flex-wrap gap-2">
-                      {industry.clientTypes.map((type, idx) => (
+                      {industry.clientTypesKeys.map((typeKey, idx) => (
                         <span key={idx} className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs">
-                          {type}
+                          {t(typeKey)}
                         </span>
                       ))}
                     </div>
@@ -188,23 +243,23 @@ export default function IndustriesSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {targetClients.map((client, index) => (
               <motion.div
-                key={client.type}
+                key={client.titleKey}
                 className="bg-white dark:bg-black rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="text-4xl mb-4">{client.icon}</div>
                 <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  {client.type}
+                  {t(client.titleKey)}
                 </h4>
                 <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-center' : 'text-center'}`}>
-                  {client.description}
+                  {t(client.descriptionKey)}
                 </p>
                 <div className="space-y-2">
-                  {client.benefits.map((benefit, idx) => (
+                  {client.benefitsKeys.map((benefitKey, idx) => (
                     <div key={idx} className={`flex items-center justify-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                       <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{benefit}</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300">{t(benefitKey)}</span>
                     </div>
                   ))}
                 </div>
