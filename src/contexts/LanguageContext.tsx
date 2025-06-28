@@ -37,14 +37,6 @@ export function LanguageProvider({
     localStorage.setItem('preferred-locale', locale)
   }, [locale])
 
-  useEffect(() => {
-    // Load preferred locale from localStorage on client-side only
-    const preferredLocale = localStorage.getItem('preferred-locale') as Locale
-    if (preferredLocale && preferredLocale !== locale) {
-      setLocale(preferredLocale)
-    }
-  }, [locale])
-
   const t = (key: string) => {
     const translation = getTranslation(locale, key)
     console.log(`Translation for "${key}" in "${locale}":`, translation) // Debug log
