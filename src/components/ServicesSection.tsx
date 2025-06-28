@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ServicesSection() {
   const [activeTab, setActiveTab] = useState('services')
@@ -10,11 +11,12 @@ export default function ServicesSection() {
     threshold: 0.1,
     triggerOnce: true
   })
+  const { t, isRTL } = useLanguage()
 
   const tabs = [
-    { id: 'services', label: 'Our Services', icon: '⚙️' },
-    { id: 'solutions', label: 'ERP Solutions', icon: '🏢' },
-    { id: 'value', label: 'Why Choose Us', icon: '⭐' }
+    { id: 'services', label: t('services.tabs.services'), icon: '⚙️' },
+    { id: 'solutions', label: t('services.tabs.solutions'), icon: '🏢' },
+    { id: 'value', label: t('services.tabs.value'), icon: '⭐' }
   ]
 
   const content = {
@@ -154,10 +156,10 @@ export default function ServicesSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
               <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
-                Complete Solutions
+                {t('services.badge')}
               </span>
             </motion.div>
             
@@ -165,18 +167,14 @@ export default function ServicesSection() {
               className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
             >
-              Everything You Need for
-              <br />
-              <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                Digital Transformation
-              </span>
+              {t('services.title')}
             </motion.h2>
             
             <motion.p 
               className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              From implementation to optimization, we provide comprehensive ERP solutions that deliver measurable results.
+              {t('services.description')}
             </motion.p>
           </div>
 
@@ -189,7 +187,7 @@ export default function ServicesSection() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 px-6 py-3 mx-2 mb-4 rounded-lg font-medium transition-all duration-300 ${
+                className={`flex items-center px-6 py-3 mx-2 mb-4 rounded-lg font-medium transition-all duration-300 ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'} ${
                   activeTab === tab.id
                     ? 'bg-purple-600 text-white shadow-lg'
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -215,15 +213,15 @@ export default function ServicesSection() {
                 whileHover={{ y: -5 }}
               >
                 <div className="text-4xl mb-6">{item.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
                   {item.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                <p className={`text-gray-600 dark:text-gray-300 mb-6 leading-relaxed ${isRTL ? 'text-right' : 'text-left'}`}>
                   {item.description}
                 </p>
                 <ul className="space-y-2">
                   {item.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center space-x-3">
+                    <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                       <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                       <span className="text-gray-700 dark:text-gray-300 text-sm">{feature}</span>
                     </li>

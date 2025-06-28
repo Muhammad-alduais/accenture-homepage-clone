@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function TestimonialsSection() {
   const [activeCase, setActiveCase] = useState(0)
@@ -10,6 +11,7 @@ export default function TestimonialsSection() {
     threshold: 0.1,
     triggerOnce: true
   })
+  const { t, isRTL } = useLanguage()
 
   const caseStudies = [
     {
@@ -109,10 +111,10 @@ export default function TestimonialsSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
               <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
-                Success Stories
+                {t('testimonials.badge')}
               </span>
             </motion.div>
             
@@ -120,10 +122,10 @@ export default function TestimonialsSection() {
               className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
             >
-              Real Results,
+              {t('testimonials.title')}
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                Real Impact
+                {t('testimonials.titleHighlight')}
               </span>
             </motion.h2>
             
@@ -131,7 +133,7 @@ export default function TestimonialsSection() {
               className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              See how organizations across different industries have transformed their operations with MovinWare.
+              {t('testimonials.description')}
             </motion.p>
           </div>
 
@@ -161,7 +163,7 @@ export default function TestimonialsSection() {
             variants={itemVariants}
             key={activeCase}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className={`grid grid-cols-1 lg:grid-cols-2 ${isRTL ? 'lg:grid-cols-2' : ''}`}>
               {/* Image */}
               <div className="relative h-64 lg:h-auto">
                 <img
@@ -170,7 +172,7 @@ export default function TestimonialsSection() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-6 left-6">
+                <div className={`absolute bottom-6 ${isRTL ? 'right-6' : 'left-6'}`}>
                   <div className="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-2">
                     {caseStudies[activeCase].industry}
                   </div>
@@ -183,20 +185,20 @@ export default function TestimonialsSection() {
               {/* Content */}
               <div className="p-8 lg:p-12">
                 <div className="mb-8">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Challenge</h4>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>Challenge</h4>
+                  <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
                     {caseStudies[activeCase].challenge}
                   </p>
                   
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Solution</h4>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>Solution</h4>
+                  <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
                     {caseStudies[activeCase].solution}
                   </p>
                   
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Results</h4>
+                  <h4 className={`text-lg font-semibold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>Results</h4>
                   <ul className="space-y-2 mb-8">
                     {caseStudies[activeCase].results.map((result, idx) => (
-                      <li key={idx} className="flex items-center space-x-3">
+                      <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                         <span className="text-gray-700 dark:text-gray-300">{result}</span>
                       </li>
@@ -206,11 +208,11 @@ export default function TestimonialsSection() {
 
                 {/* Quote */}
                 <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
-                  <blockquote className="text-lg text-gray-700 dark:text-gray-300 italic mb-4">
+                  <blockquote className={`text-lg text-gray-700 dark:text-gray-300 italic mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
                     "{caseStudies[activeCase].quote}"
                   </blockquote>
-                  <div className="flex items-center">
-                    <div>
+                  <div className={`flex items-center ${isRTL ? 'justify-end' : 'justify-start'}`}>
+                    <div className={isRTL ? 'text-right' : 'text-left'}>
                       <div className="font-semibold text-gray-900 dark:text-white">
                         {caseStudies[activeCase].author}
                       </div>

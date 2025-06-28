@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ImplementationSection() {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
   })
+  const { t, isRTL } = useLanguage()
 
   const phases = [
     {
@@ -102,10 +104,10 @@ export default function ImplementationSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
               <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
-                Implementation Approach
+                {t('implementation.badge')}
               </span>
             </motion.div>
             
@@ -113,10 +115,10 @@ export default function ImplementationSection() {
               className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
             >
-              Proven Process,
+              {t('implementation.title')}
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                Predictable Results
+                {t('implementation.titleHighlight')}
               </span>
             </motion.h2>
             
@@ -124,14 +126,14 @@ export default function ImplementationSection() {
               className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              Our battle-tested methodology ensures rapid deployment with minimal risk and maximum user adoption.
+              {t('implementation.description')}
             </motion.p>
           </div>
 
           {/* Implementation Timeline */}
           <div className="relative mb-20">
             {/* Timeline Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-purple-200 dark:bg-purple-800 transform md:-translate-x-0.5"></div>
+            <div className={`absolute top-0 bottom-0 w-0.5 bg-purple-200 dark:bg-purple-800 ${isRTL ? 'right-8 md:right-1/2' : 'left-8 md:left-1/2'} transform md:-translate-x-0.5`}></div>
             
             <div className="space-y-12">
               {phases.map((phase, index) => (
@@ -139,21 +141,25 @@ export default function ImplementationSection() {
                   key={phase.phase}
                   className={`relative flex items-center ${
                     index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
+                  } ${isRTL ? 'flex-row-reverse' : ''}`}
                   variants={itemVariants}
                 >
                   {/* Phase Number */}
-                  <div className="absolute left-8 md:left-1/2 w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg transform md:-translate-x-1/2 z-10">
+                  <div className={`absolute w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg transform z-10 ${
+                    isRTL ? 'right-8 md:right-1/2 md:translate-x-1/2' : 'left-8 md:left-1/2 md:-translate-x-1/2'
+                  }`}>
                     {phase.phase}
                   </div>
                   
                   {/* Content */}
-                  <div className={`w-full md:w-5/12 ml-28 md:ml-0 ${
-                    index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
+                  <div className={`w-full md:w-5/12 ${
+                    isRTL 
+                      ? `mr-28 md:mr-0 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`
+                      : `ml-28 md:ml-0 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`
                   }`}>
                     <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <div className={`flex items-center justify-between mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                        <h3 className={`text-2xl font-bold text-gray-900 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}>
                           {phase.title}
                         </h3>
                         <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
@@ -161,16 +167,16 @@ export default function ImplementationSection() {
                         </span>
                       </div>
                       
-                      <p className="text-gray-600 dark:text-gray-300 mb-6">
+                      <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
                         {phase.description}
                       </p>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Activities:</h4>
+                          <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Activities:</h4>
                           <ul className="space-y-1">
                             {phase.activities.map((activity, idx) => (
-                              <li key={idx} className="flex items-center space-x-2">
+                              <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                                 <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
                                 <span className="text-sm text-gray-700 dark:text-gray-300">{activity}</span>
                               </li>
@@ -179,10 +185,10 @@ export default function ImplementationSection() {
                         </div>
                         
                         <div>
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Deliverables:</h4>
+                          <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Deliverables:</h4>
                           <ul className="space-y-1">
                             {phase.deliverables.map((deliverable, idx) => (
-                              <li key={idx} className="flex items-center space-x-2">
+                              <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                                 <span className="text-sm text-gray-700 dark:text-gray-300">{deliverable}</span>
                               </li>
@@ -204,10 +210,10 @@ export default function ImplementationSection() {
           >
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                Proven Results
+                {t('implementation.provenResults')}
               </h3>
               <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-                Our methodology consistently delivers exceptional outcomes across all implementations.
+                {t('implementation.provenDescription')}
               </p>
             </div>
             

@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function IndustriesSection() {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
   })
+  const { t, isRTL } = useLanguage()
 
   const industries = [
     {
@@ -93,10 +95,10 @@ export default function IndustriesSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
               <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
-                Industries We Serve
+                {t('industries.badge')}
               </span>
             </motion.div>
             
@@ -104,14 +106,14 @@ export default function IndustriesSection() {
               className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
             >
-              Specialized Solutions for Every Industry
+              {t('industries.title')}
             </motion.h2>
             
             <motion.p 
               className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              Deep industry expertise combined with flexible technology to deliver solutions that understand your unique business challenges.
+              {t('industries.description')}
             </motion.p>
           </div>
 
@@ -133,18 +135,18 @@ export default function IndustriesSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
                     {industry.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  <p className={`text-gray-600 dark:text-gray-300 mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
                     {industry.description}
                   </p>
                   
                   <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Key Features:</h4>
+                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Key Features:</h4>
                     <div className="grid grid-cols-2 gap-2">
                       {industry.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center space-x-2">
+                        <div key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                           <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{feature}</span>
                         </div>
@@ -153,7 +155,7 @@ export default function IndustriesSection() {
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Client Types:</h4>
+                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Client Types:</h4>
                     <div className="flex flex-wrap gap-2">
                       {industry.clientTypes.map((type, idx) => (
                         <span key={idx} className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs">
@@ -173,13 +175,13 @@ export default function IndustriesSection() {
               className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
             >
-              Built for Every Business Size
+              {t('industries.clientSize.title')}
             </motion.h3>
             <motion.p 
               className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
               variants={itemVariants}
             >
-              From ambitious startups to established enterprises, our solutions scale with your business needs.
+              {t('industries.clientSize.description')}
             </motion.p>
           </div>
 
@@ -195,12 +197,12 @@ export default function IndustriesSection() {
                 <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   {client.type}
                 </h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-center' : 'text-center'}`}>
                   {client.description}
                 </p>
                 <div className="space-y-2">
                   {client.benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-center justify-center space-x-2">
+                    <div key={idx} className={`flex items-center justify-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                       <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
                       <span className="text-sm text-gray-700 dark:text-gray-300">{benefit}</span>
                     </div>
