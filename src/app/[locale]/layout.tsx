@@ -36,22 +36,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // Await params before accessing its properties
-  const resolvedParams = await params;
-  
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(resolvedParams.locale as Locale)) {
+  if (!locales.includes(params.locale as Locale)) {
     notFound();
   }
 
-  const locale = resolvedParams.locale as Locale;
+  const locale = params.locale as Locale;
   const isRTL = locale === 'ar';
 
   return (
