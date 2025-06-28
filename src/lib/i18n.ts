@@ -257,14 +257,8 @@ export const translations = {
 };
 
 export function getTranslation(locale: Locale, key: string): string {
-  const keys = key.split('.');
-  let value: any = translations[locale];
-  
-  for (const k of keys) {
-    value = value?.[k];
-  }
-  
-  return value || key;
+  const translation = translations[locale]?.[key as keyof typeof translations[typeof locale]];
+  return translation || key;
 }
 
 export function isRTL(locale: Locale): boolean {
