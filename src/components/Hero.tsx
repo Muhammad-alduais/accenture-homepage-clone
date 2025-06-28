@@ -3,7 +3,7 @@
 import { Play } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import LightAnimation from './LightAnimation'
+import BlackHole from './BlackHole'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -54,14 +54,14 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Light Animation Background */}
-      <LightAnimation />
+      {/* Black Hole Animation Background */}
+      <BlackHole />
 
-      {/* Video Background with Animation */}
+      {/* Video Background with Animation (reduced opacity to show black hole) */}
       <motion.div 
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-30"
         initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 0.4 }}
+        animate={{ scale: 1, opacity: 0.3 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
         <video
@@ -74,7 +74,7 @@ export default function Hero() {
           <source src="https://ext.same-assets.com/2900598000/2585685094.mp4" type="video/mp4" />
         </video>
         <motion.div 
-          className="absolute inset-0 bg-black bg-opacity-50"
+          className="absolute inset-0 bg-black bg-opacity-60"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
