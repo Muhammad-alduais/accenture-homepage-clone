@@ -14,30 +14,14 @@ export default function Home() {
     <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       <Header />
       <main>
-        <section id="hero">
-          <Hero />
-        </section>
-        <section id="about">
-          <AboutSection />
-        </section>
-        <section id="value">
-          <ValueSection />
-        </section>
-        <section id="services">
-          <ServicesSection />
-        </section>
-        <section id="industries">
-          <IndustriesSection />
-        </section>
-        <section id="implementation">
-          <ImplementationSection />
-        </section>
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
-        <section id="contact">
-          <ContactSection />
-        </section>
+        <Hero />
+        <AboutSection />
+        <ValueSection />
+        <ServicesSection />
+        <IndustriesSection />
+        <ImplementationSection />
+        <TestimonialsSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>
