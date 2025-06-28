@@ -45,7 +45,11 @@ export function LanguageProvider({
     }
   }, [locale, mounted])
 
-  const t = (key: string) => getTranslation(locale, key)
+  const t = (key: string) => {
+    const translation = getTranslation(locale, key)
+    console.log(`Translation for "${key}" in "${locale}":`, translation) // Debug log
+    return translation
+  }
 
   const switchLanguage = (newLocale: Locale) => {
     // Get current path without locale prefix
@@ -57,8 +61,9 @@ export function LanguageProvider({
     router.push(newPath)
   }
 
+  // Don't render anything until mounted to prevent hydration issues
   if (!mounted) {
-    return null
+    return <div>{children}</div>
   }
 
   return (
