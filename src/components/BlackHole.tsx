@@ -411,11 +411,11 @@ export default function BlackHole() {
         }}
       />
       
-      {/* Scanline overlay - only on desktop and theme-aware */}
+      {/* Scanline overlay - only on desktop and theme-aware with much lower opacity */}
       {!isMobile && (
         <div 
           className={`absolute top-0 left-0 z-[10] w-full h-full mix-blend-overlay ${
-            theme === 'dark' ? 'opacity-20' : 'opacity-10'
+            theme === 'dark' ? 'opacity-5' : 'opacity-3'
           }`}
           style={{
             background: theme === 'dark'
