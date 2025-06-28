@@ -1,28 +1,75 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+interface Disc {
+  x: number
+  y: number
+  w: number
+  h: number
+  p: number
+}
+
+interface Particle {
+  x: number
+  y: number
+  sx: number
+  dx: number
+  vy: number
+  p: number
+  r: number
+  c: string
+}
+
+interface RenderConfig {
+  width: number
+  height: number
+  dpi: number
+}
 
 export default function BlackHole() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    if (!canvasRef.current || !containerRef.current) return
+    // Detect mobile devices and reduce complexity
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      setIsMobile(mobile)
+      
+      // Disable on very small screens or low-end devices
+      if (window.innerWidth < 480 || (mobile && window.devicePixelRatio > 2)) {
+        setIsVisible(false)
+      }
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (!canvasRef.current || !containerRef.current || !isVisible) return
 
     const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true })
     if (!ctx) return
 
     let animationId: number
-    let discs: any[] = []
-    let lines: any[] = []
-    let particles: any[] = []
+    let discs: Disc[] = []
+    let particles: Particle[] = []
     let rect: DOMRect
-    let render: any
-    let startDisc: any
-    let endDisc: any
-    let clip: any
-    let particleArea: any
+    let render: RenderConfig
+    let startDisc: Disc
+    let endDisc: Disc
+    let clip: { disc: Disc; path: Path2D; i: number }
+    let particleArea: { sw: number; ew: number; h: number; sx: number; ex: number }
+    let lastTime = 0
+    const targetFPS = isMobile ? 30 : 60
+    const frameInterval = 1000 / targetFPS
 
     // Easing function
     const easeInExpo = (t: number) => t === 0 ? 0 : Math.pow(2, 10 * (t - 1))
@@ -31,10 +78,12 @@ export default function BlackHole() {
       if (!containerRef.current || !canvas) return
       
       rect = containerRef.current.getBoundingClientRect()
+      const dpi = isMobile ? Math.min(window.devicePixelRatio, 2) : window.devicePixelRatio || 1
+      
       render = {
         width: rect.width,
         height: rect.height,
-        dpi: window.devicePixelRatio || 1
+        dpi
       }
 
       canvas.width = render.width * render.dpi
@@ -58,92 +107,76 @@ export default function BlackHole() {
         x: width * 0.5,
         y: height * 0.45,
         w: width * 0.75,
-        h: height * 0.7
+        h: height * 0.7,
+        p: 0
       }
 
       endDisc = {
         x: width * 0.5,
         y: height * 0.95,
         w: 0,
-        h: 0
+        h: 0,
+        p: 1
       }
 
-      const totalDiscs = 100
+      // Reduce disc count on mobile
+      const totalDiscs = isMobile ? 50 : 100
       let prevBottom = height
-      clip = {}
 
       for (let i = 0; i < totalDiscs; i++) {
         const p = i / totalDiscs
-        const disc = tweenDisc({ p })
+        const disc = tweenDisc({ ...startDisc, p })
         const bottom = disc.y + disc.h
 
-        if (bottom <= prevBottom) {
+        if (bottom <= prevBottom && !clip) {
           clip = {
             disc: { ...disc },
-            i
+            i,
+            path: new Path2D()
           }
+          
+          clip.path.ellipse(
+            clip.disc.x,
+            clip.disc.y,
+            clip.disc.w,
+            clip.disc.h,
+            0,
+            0,
+            Math.PI * 2
+          )
+
+          clip.path.rect(
+            clip.disc.x - clip.disc.w,
+            0,
+            clip.disc.w * 2,
+            clip.disc.y
+          )
         }
 
         prevBottom = bottom
         discs.push(disc)
       }
-
-      clip.path = new Path2D()
-      clip.path.ellipse(
-        clip.disc.x,
-        clip.disc.y,
-        clip.disc.w,
-        clip.disc.h,
-        0,
-        0,
-        Math.PI * 2
-      )
-
-      clip.path.rect(
-        clip.disc.x - clip.disc.w,
-        0,
-        clip.disc.w * 2,
-        clip.disc.y
-      )
-    }
-
-    const setLines = () => {
-      const { width, height } = rect
-      lines = []
-
-      const totalLines = 100
-      const linesAngle = Math.PI * 2 / totalLines
-
-      for (let i = 0; i < totalLines; i++) {
-        lines.push([])
-      }
-
-      discs.forEach(disc => {
-        for (let i = 0; i < totalLines; i++) {
-          const angle = i * linesAngle
-          const p = {
-            x: disc.x + Math.cos(angle) * disc.w,
-            y: disc.y + Math.sin(angle) * disc.h
-          }
-          lines[i].push(p)
-        }
-      })
     }
 
     const setParticles = () => {
+      if (!clip) return
+      
       const { width, height } = rect
       particles = []
 
       particleArea = {
         sw: clip.disc.w * 0.5,
         ew: clip.disc.w * 2,
-        h: height * 0.85
+        h: height * 0.85,
+        sx: 0,
+        ex: 0
       }
 
       particleArea.sx = (width - particleArea.sw) / 2
       particleArea.ex = (width - particleArea.ew) / 2
 
-      const totalParticles = 100
+      // Reduce particle count on mobile
+      const totalParticles = isMobile ? 30 : 100
 
       for (let i = 0; i < totalParticles; i++) {
         const particle = initParticle(true)
@@ -151,13 +184,13 @@ export default function BlackHole() {
       }
     }
 
-    const initParticle = (start = false) => {
+    const initParticle = (start = false): Particle => {
       const sx = particleArea.sx + particleArea.sw * Math.random()
       const ex = particleArea.ex + particleArea.ew * Math.random()
       const dx = ex - sx
       const vx = 0.1 + Math.random() * 0.5
       const y = start ? particleArea.h * Math.random() : particleArea.h
-      const r = 0.5 + Math.random() * 4
+      const r = 0.5 + Math.random() * (isMobile ? 2 : 4)
       const vy = 0.5 + Math.random()
 
       return {
@@ -168,40 +201,43 @@ export default function BlackHole() {
         vy,
         p: 0,
         r,
-        c: `rgba(255, 255, 255, ${Math.random()})`
+        c: `rgba(255, 255, 255, ${Math.random() * 0.8})`
       }
     }
 
-    const tweenDisc = (disc: any) => {
-      disc.x = tweenValue(startDisc.x, endDisc.x, disc.p)
-      disc.y = tweenValue(startDisc.y, endDisc.y, disc.p, true)
-      disc.w = tweenValue(startDisc.w, endDisc.w, disc.p)
-      disc.h = tweenValue(startDisc.h, endDisc.h, disc.p)
-      return disc
+    const tweenDisc = (disc: Disc): Disc => {
+      return {
+        ...disc,
+        x: tweenValue(startDisc.x, endDisc.x, disc.p),
+        y: tweenValue(startDisc.y, endDisc.y, disc.p, true),
+        w: tweenValue(startDisc.w, endDisc.w, disc.p),
+        h: tweenValue(startDisc.h, endDisc.h, disc.p)
+      }
     }
 
     const drawDiscs = () => {
-      ctx.strokeStyle = "#444"
-      ctx.lineWidth = 2
+      if (!clip) return
+      
+      ctx.strokeStyle = isMobile ? "#333" : "#444"
+      ctx.lineWidth = isMobile ? 1 : 2
 
       // Outer disc
-      const outerDisc = startDisc
       ctx.beginPath()
       ctx.ellipse(
-        outerDisc.x,
-        outerDisc.y,
-        outerDisc.w,
-        outerDisc.h,
+        startDisc.x,
+        startDisc.y,
+        startDisc.w,
+        startDisc.h,
         0,
         0,
         Math.PI * 2
       )
       ctx.stroke()
-      ctx.closePath()
 
-      // Discs
+      // Draw fewer discs on mobile
+      const step = isMobile ? 8 : 5
       discs.forEach((disc, i) => {
-        if (i % 5 !== 0) return
+        if (i % step !== 0) return
 
         if (disc.w < clip.disc.w - 5) {
           ctx.save()
@@ -211,7 +247,6 @@ export default function BlackHole() {
         ctx.beginPath()
         ctx.ellipse(disc.x, disc.y, disc.w, disc.h, 0, 0, Math.PI * 2)
         ctx.stroke()
-        ctx.closePath()
 
         if (disc.w < clip.disc.w - 5) {
           ctx.restore()
@@ -219,36 +254,9 @@ export default function BlackHole() {
       })
     }
 
-    const drawLines = () => {
-      lines.forEach((line) => {
-        ctx.save()
-        let lineIsIn = false
-
-        line.forEach((p1: any, j: number) => {
-          if (j === 0) return
-
-          const p0 = line[j - 1]
-
-          if (!lineIsIn && ctx.isPointInPath(clip.path, p1.x, p1.y)) {
-            lineIsIn = true
-          } else if (lineIsIn) {
-            ctx.clip(clip.path)
-          }
-
-          ctx.beginPath()
-          ctx.moveTo(p0.x, p0.y)
-          ctx.lineTo(p1.x, p1.y)
-          ctx.strokeStyle = "#444"
-          ctx.lineWidth = 2
-          ctx.stroke()
-          ctx.closePath()
-        })
-
-        ctx.restore()
-      })
-    }
-
     const drawParticles = () => {
+      if (!clip) return
+      
       ctx.save()
       ctx.clip(clip.path)
 
@@ -256,7 +264,6 @@ export default function BlackHole() {
         ctx.fillStyle = particle.c
         ctx.beginPath()
         ctx.rect(particle.x, particle.y, particle.r, particle.r)
-        ctx.closePath()
         ctx.fill()
       })
 
@@ -264,9 +271,10 @@ export default function BlackHole() {
     }
 
     const moveDiscs = () => {
+      const speed = isMobile ? 0.0005 : 0.001
       discs.forEach(disc => {
-        disc.p = (disc.p + 0.001) % 1
-        tweenDisc(disc)
+        disc.p = (disc.p + speed) % 1
+        Object.assign(disc, tweenDisc(disc))
       })
     }
 
@@ -274,7 +282,7 @@ export default function BlackHole() {
       particles.forEach(particle => {
         particle.p = 1 - particle.y / particleArea.h
         particle.x = particle.sx + particle.dx * particle.p
-        particle.y -= particle.vy
+        particle.y -= particle.vy * (isMobile ? 0.5 : 1)
 
         if (particle.y < 0) {
           const newParticle = initParticle()
@@ -283,14 +291,19 @@ export default function BlackHole() {
       })
     }
 
-    const tick = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+    const tick = (currentTime: number) => {
+      if (currentTime - lastTime < frameInterval) {
+        animationId = requestAnimationFrame(tick)
+        return
+      }
+
+      lastTime = currentTime
+
+      ctx.clearRect(0, 0, render.width, render.height)
 
       moveDiscs()
       moveParticles()
-
       drawDiscs()
-      drawLines()
       drawParticles()
 
       animationId = requestAnimationFrame(tick)
@@ -299,55 +312,79 @@ export default function BlackHole() {
     const init = () => {
       setSize()
       setDiscs()
-      setLines()
       setParticles()
-      tick()
+      tick(0)
     }
 
     const handleResize = () => {
       setSize()
       setDiscs()
-      setLines()
       setParticles()
     }
 
-    window.addEventListener('resize', handleResize)
+    // Throttle resize events
+    let resizeTimeout: NodeJS.Timeout
+    const throttledResize = () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(handleResize, 250)
+    }
+
+    window.addEventListener('resize', throttledResize)
     init()
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', throttledResize)
       if (animationId) {
         cancelAnimationFrame(animationId)
       }
+      clearTimeout(resizeTimeout)
     }
-  }, [])
+  }, [isMobile, isVisible])
+
+  // Don't render on very small screens or when disabled
+  if (!isVisible) {
+    return (
+      <div className="absolute inset-0 overflow-hidden bg-gradient-to-b from-purple-900/20 to-black">
+        {/* Simple gradient fallback for mobile */}
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 -translate-x-1/2 -translate-y-1/2 bg-purple-600/30 rounded-full blur-3xl" />
+      </div>
+    )
+  }
 
   return (
     <div 
       ref={containerRef}
       className="absolute inset-0 overflow-hidden"
-      style={{
-        background: 'transparent'
-      }}
+      style={{ background: 'transparent' }}
     >
       <canvas 
         ref={canvasRef}
         className="block w-full h-full"
+        style={{ 
+          willChange: 'transform',
+          transform: 'translateZ(0)' // Force hardware acceleration
+        }}
       />
       
-      {/* Aura effect */}
+      {/* Simplified aura effect for mobile */}
       <div 
-        className="absolute top-[-71.5%] left-1/2 z-[3] w-[30%] h-[140%] rounded-b-full opacity-75 mix-blend-plus-lighter blur-[50px]"
+        className={`absolute top-[-71.5%] left-1/2 z-[3] rounded-b-full opacity-75 mix-blend-plus-lighter ${
+          isMobile ? 'w-[40%] h-[120%] blur-[30px]' : 'w-[30%] h-[140%] blur-[50px]'
+        }`}
         style={{
-          background: 'linear-gradient(20deg, #00f8f1, #ffbd1e20 16.5%, #fe848f 33%, #fe848f20 49.5%, #00f8f1 66%, #00f8f160 85.5%, #ffbd1e 100%) 0 100%/100% 200%',
+          background: isMobile 
+            ? 'linear-gradient(20deg, #00f8f1, #fe848f, #ffbd1e)'
+            : 'linear-gradient(20deg, #00f8f1, #ffbd1e20 16.5%, #fe848f 33%, #fe848f20 49.5%, #00f8f1 66%, #00f8f160 85.5%, #ffbd1e 100%) 0 100%/100% 200%',
           transform: 'translate3d(-50%, 0, 0)',
-          animation: 'aura-glow 5s infinite linear'
+          animation: isMobile ? 'none' : 'aura-glow 5s infinite linear'
         }}
       />
       
       {/* Black hole gradient overlay */}
       <div 
-        className="absolute top-1/2 left-1/2 z-[2] block w-[150%] h-[140%]"
+        className={`absolute top-1/2 left-1/2 z-[2] block ${
+          isMobile ? 'w-[120%] h-[120%]' : 'w-[150%] h-[140%]'
+        }`}
         style={{
           background: 'radial-gradient(ellipse at 50% 55%, transparent 10%, rgba(0,0,0,0.8) 50%)',
           transform: 'translate3d(-50%, -50%, 0)'
@@ -363,22 +400,20 @@ export default function BlackHole() {
         }}
       />
       
-      {/* Scanline overlay */}
-      <div 
-        className="absolute top-0 left-0 z-[10] w-full h-full mix-blend-overlay opacity-50"
-        style={{
-          background: 'repeating-linear-gradient(transparent, transparent 1px, white 1px, white 2px)'
-        }}
-      />
+      {/* Simplified scanline overlay for mobile */}
+      {!isMobile && (
+        <div 
+          className="absolute top-0 left-0 z-[10] w-full h-full mix-blend-overlay opacity-30"
+          style={{
+            background: 'repeating-linear-gradient(transparent, transparent 2px, white 2px, white 3px)'
+          }}
+        />
+      )}
 
       <style jsx>{`
         @keyframes aura-glow {
-          0% {
-            background-position: 0 100%;
-          }
-          100% {
-            background-position: 0 300%;
-          }
+          0% { background-position: 0 100%; }
+          100% { background-position: 0 300%; }
         }
       `}</style>
     </div>
