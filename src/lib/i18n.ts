@@ -12,6 +12,21 @@ export const translations = {
     'nav.search': 'بحث',
     'nav.language': 'اللغة',
     
+    // Navigation Dropdowns
+    'nav.dropdown.solutions.erp': 'تنفيذ ERP',
+    'nav.dropdown.solutions.ai': 'الذكاء الاصطناعي',
+    'nav.dropdown.solutions.integration': 'التكامل',
+    'nav.dropdown.solutions.migration': 'ترحيل البيانات',
+    'nav.dropdown.industries.education': 'التعليم',
+    'nav.dropdown.industries.healthcare': 'الرعاية الصحية',
+    'nav.dropdown.industries.logistics': 'اللوجستيات',
+    'nav.dropdown.industries.retail': 'التجارة',
+    'nav.dropdown.industries.manufacturing': 'التصنيع',
+    'nav.dropdown.about.company': 'الشركة',
+    'nav.dropdown.about.team': 'الفريق',
+    'nav.dropdown.about.careers': 'الوظائف',
+    'nav.dropdown.about.contact': 'اتصل بنا',
+    
     // Hero Section
     'hero.title': 'نظام تخطيط موارد المؤسسات مدعوم بالذكاء الاصطناعي.',
     'hero.subtitle': 'مصمم لسير عملك.',
@@ -72,115 +87,115 @@ export const translations = {
     'services.tabs.services': 'خدماتنا',
     'services.tabs.solutions': 'حلول ERP',
     'services.tabs.value': 'لماذا تختارنا',
-
+    
     // Services Content
     'services.erp.title': 'تنفيذ ERP والتكوين الأساسي',
-    'services.erp.description': 'نشر ERP كامل مع تخصيصات خاصة بالصناعة وترحيل البيانات السلس.',
+    'services.erp.description': 'نشر ERP كامل مع تخصيصات خاصة بالصناعة وترحيل بيانات سلس.',
     'services.erp.features.architecture': 'تصميم هندسة النظام',
     'services.erp.features.development': 'تطوير وحدات مخصصة',
     'services.erp.features.migration': 'ترحيل البيانات',
     'services.erp.features.training': 'تدريب المستخدمين',
-
+    
     'services.industry.title': 'تطوير وحدات خاصة بالصناعة',
     'services.industry.description': 'حلول مخصصة للعيادات والمدارس والصالات الرياضية واللوجستيات والصناعات المتخصصة الأخرى.',
     'services.industry.features.healthcare': 'إدارة الرعاية الصحية',
     'services.industry.features.education': 'أنظمة التعليم',
-    'services.industry.features.fitness': 'عمليات النوادي الرياضية',
+    'services.industry.features.fitness': 'عمليات النادي الرياضي',
     'services.industry.features.logistics': 'تحسين اللوجستيات',
-
+    
     'services.ai.title': 'تحسينات أتمتة الذكاء الاصطناعي',
     'services.ai.description': 'ذكاء مدمج يحول عملياتك بقدرات تنبؤية.',
     'services.ai.features.forecasting': 'التنبؤ الذكي',
-    'services.ai.features.chatbots': 'روبوتات دردشة متكاملة مع ERP',
-    'services.ai.features.ocr': 'تقنية OCR متقدمة',
+    'services.ai.features.chatbots': 'روبوتات الدردشة المدمجة في ERP',
+    'services.ai.features.ocr': 'OCR متقدم',
     'services.ai.features.automation': 'أتمتة سير العمل',
-
-    'services.ux.title': 'تحسين واجهة المستخدم ثنائية اللغة',
-    'services.ux.description': 'واجهات متوافقة مع RTL ومتوائمة ثقافياً مع تكافؤ حقيقي بين العربية والإنجليزية.',
+    
+    'services.ux.title': 'تحسين UX/UI ثنائي اللغة',
+    'services.ux.description': 'واجهات متوافقة مع RTL ومتوافقة ثقافياً مع تكافؤ حقيقي بين العربية والإنجليزية.',
     'services.ux.features.rtl': 'تصميم واجهة RTL',
     'services.ux.features.localization': 'التوطين الثقافي',
     'services.ux.features.accessibility': 'امتثال إمكانية الوصول',
     'services.ux.features.mobile': 'تحسين الهاتف المحمول',
-
+    
     'services.migration.title': 'ترحيل البيانات القديمة والتكاملات',
     'services.migration.description': 'انتقال سلس من الأنظمة القديمة مع تكاملات شاملة مع أطراف ثالثة.',
-    'services.migration.features.mapping': 'رسم خرائط البيانات والتحقق',
+    'services.migration.features.mapping': 'تخطيط البيانات والتحقق',
     'services.migration.features.api': 'تكاملات API',
     'services.migration.features.sync': 'مزامنة النظام',
     'services.migration.features.backup': 'النسخ الاحتياطي والاستعادة',
-
+    
     'services.support.title': 'دعم دورة الحياة المستمر',
     'services.support.description': 'تحسين مستمر وتحديثات ومراقبة الأداء للنجاح المستدام.',
     'services.support.features.updates': 'تحديثات منتظمة',
     'services.support.features.tuning': 'ضبط الأداء',
     'services.support.features.development': 'تطوير ميزات جديدة',
     'services.support.features.monitoring': 'مراقبة 24/7',
-
+    
     // Solutions Content
     'solutions.accounting.title': 'المحاسبة والمالية',
     'solutions.accounting.description': 'إدارة مالية كاملة مع الامتثال المحلي بما في ذلك الزكاة وضريبة القيمة المضافة.',
     'solutions.accounting.features.ledger': 'دفتر الأستاذ العام',
-    'solutions.accounting.features.invoicing': 'الفوترة والتحصيل',
+    'solutions.accounting.features.invoicing': 'الفوترة والفواتير',
     'solutions.accounting.features.reporting': 'التقارير المالية',
     'solutions.accounting.features.compliance': 'امتثال الزكاة/ضريبة القيمة المضافة',
-
+    
     'solutions.hr.title': 'الموارد البشرية والرواتب',
     'solutions.hr.description': 'إدارة شاملة للموارد البشرية مع دعم ثنائي اللغة.',
     'solutions.hr.features.records': 'سجلات الموظفين',
     'solutions.hr.features.attendance': 'تتبع الحضور',
     'solutions.hr.features.payroll': 'معالجة الرواتب',
     'solutions.hr.features.calendar': 'مزامنة الهجري/الميلادي',
-
+    
     'solutions.sales.title': 'المبيعات وإدارة علاقات العملاء',
     'solutions.sales.description': 'إدارة شاملة للمبيعات وعلاقات العملاء من البداية إلى النهاية.',
     'solutions.sales.features.leads': 'إدارة العملاء المحتملين',
     'solutions.sales.features.quotes': 'إنشاء عروض الأسعار',
     'solutions.sales.features.orders': 'معالجة الطلبات',
     'solutions.sales.features.portal': 'بوابة العملاء',
-
+    
     'solutions.inventory.title': 'المخزون والمشتريات',
-    'solutions.inventory.description': 'تحكم كامل في المخزون مع دعم الملصقات العربية.',
+    'solutions.inventory.description': 'تحكم كامل في المخزون مع دعم وضع العلامات العربية.',
     'solutions.inventory.features.stock': 'إدارة المخزون',
-    'solutions.inventory.features.warehousing': 'إدارة المستودعات',
+    'solutions.inventory.features.warehousing': 'التخزين',
     'solutions.inventory.features.pricing': 'التسعير الديناميكي',
-    'solutions.inventory.features.labeling': 'الملصقات العربية',
-
+    'solutions.inventory.features.labeling': 'وضع العلامات العربية',
+    
     'solutions.manufacturing.title': 'التصنيع',
     'solutions.manufacturing.description': 'تخطيط الإنتاج وأنظمة مراقبة الجودة.',
     'solutions.manufacturing.features.bom': 'قائمة المواد',
     'solutions.manufacturing.features.orders': 'أوامر العمل',
     'solutions.manufacturing.features.planning': 'تخطيط الإنتاج',
     'solutions.manufacturing.features.quality': 'فحوصات الجودة',
-
+    
     'solutions.assets.title': 'إدارة الأصول',
     'solutions.assets.description': 'دورة حياة الأصول وإدارة الصيانة التنبؤية.',
-    'solutions.assets.features.depreciation': 'استهلاك الأصول',
+    'solutions.assets.features.depreciation': 'إهلاك الأصول',
     'solutions.assets.features.maintenance': 'جدولة الصيانة',
     'solutions.assets.features.qr': 'علامات رمز الاستجابة السريعة',
     'solutions.assets.features.alerts': 'تنبيهات تنبؤية',
-
-    // Value Content
+    
+    // Value Propositions
     'value.ai.title': 'الذكاء الاصطناعي بالتصميم',
     'value.ai.description': 'أتمتة مدمجة وتحليلات تنبؤية وسير عمل ذكي يتكيف مع عملك.',
     'value.ai.features.forecasting': 'التنبؤ التنبؤي',
     'value.ai.features.automation': 'الأتمتة الذكية',
     'value.ai.features.workflows': 'سير العمل التكيفي',
     'value.ai.features.analytics': 'التحليلات الذكية',
-
+    
     'value.speed.title': 'السرعة إلى القيمة',
     'value.speed.description': 'تنفيذ أسرع بنسبة 50% مع قيمة تجارية من اليوم الأول.',
     'value.speed.features.deployment': 'نشر سريع',
     'value.speed.features.roi': 'عائد استثمار سريع',
     'value.speed.features.benefits': 'فوائد فورية',
     'value.speed.features.methodology': 'منهجية رشيقة',
-
+    
     'value.cultural.title': 'التكافؤ الثقافي واللغوي',
     'value.cultural.description': 'تكافؤ حقيقي بين العربية والإنجليزية مع دعم RTL كامل والامتثال المحلي.',
     'value.cultural.features.bilingual': 'واجهة ثنائية اللغة',
     'value.cultural.features.rtl': 'دعم RTL',
     'value.cultural.features.compliance': 'الامتثال المحلي',
     'value.cultural.features.alignment': 'التوافق الثقافي',
-
+    
     'value.adoption.title': 'تميز تبني المستخدم',
     'value.adoption.description': 'معدلات تبني المستخدم 87%+ من خلال مبادئ التصميم التي تركز على التبني أولاً.',
     'value.adoption.features.design': 'تصميم بديهي',
@@ -194,20 +209,20 @@ export const translations = {
     'industries.description': 'خبرة صناعية عميقة مدمجة مع تكنولوجيا مرنة لتقديم حلول تفهم تحديات عملك الفريدة.',
     'industries.clientSize.title': 'مبني لكل حجم عمل',
     'industries.clientSize.description': 'من الشركات الناشئة الطموحة إلى المؤسسات الراسخة، حلولنا تنمو مع احتياجات عملك.',
-
+    
     // Industries Content
     'industries.education.title': 'المؤسسات التعليمية',
     'industries.education.description': 'أنظمة معلومات الطلاب الشاملة والجدولة وبوابات أولياء الأمور',
     'industries.education.features.student': 'إدارة الطلاب',
     'industries.education.features.academic': 'التخطيط الأكاديمي',
-    'industries.education.features.parent': 'التواصل مع أولياء الأمور',
+    'industries.education.features.parent': 'تواصل أولياء الأمور',
     'industries.education.features.fee': 'إدارة الرسوم',
     'industries.education.clients.schools': 'المدارس',
     'industries.education.clients.universities': 'الجامعات',
     'industries.education.clients.training': 'مراكز التدريب',
     'industries.education.clients.online': 'الأكاديميات الإلكترونية',
-
-    'industries.logistics.title': 'اللوجستيات والمستودعات',
+    
+    'industries.logistics.title': 'اللوجستيات والتخزين',
     'industries.logistics.description': 'إدارة الأسطول وتحسين المسارات ورؤية سلسلة التوريد',
     'industries.logistics.features.fleet': 'تتبع الأسطول',
     'industries.logistics.features.route': 'تخطيط المسارات',
@@ -217,18 +232,18 @@ export const translations = {
     'industries.logistics.clients.3pl': 'مقدمو الخدمات اللوجستية',
     'industries.logistics.clients.distribution': 'مراكز التوزيع',
     'industries.logistics.clients.freight': 'وسطاء الشحن',
-
-    'industries.retail.title': 'التجارة الإلكترونية والتجزئة',
-    'industries.retail.description': 'عمليات التجزئة متعددة القنوات مع نقاط البيع المتكاملة والمنصات الإلكترونية',
+    
+    'industries.retail.title': 'التجارة والتجارة الإلكترونية',
+    'industries.retail.description': 'عمليات التجارة متعددة القنوات مع نقاط البيع المتكاملة والمنصات الإلكترونية',
     'industries.retail.features.pos': 'تكامل نقاط البيع',
     'industries.retail.features.sync': 'مزامنة المخزون',
     'industries.retail.features.loyalty': 'ولاء العملاء',
-    'industries.retail.features.multichannel': 'المبيعات متعددة القنوات',
+    'industries.retail.features.multichannel': 'مبيعات متعددة القنوات',
     'industries.retail.clients.chains': 'سلاسل التجزئة',
     'industries.retail.clients.online': 'المتاجر الإلكترونية',
     'industries.retail.clients.fashion': 'علامات الأزياء',
     'industries.retail.clients.electronics': 'تجار الإلكترونيات',
-
+    
     'industries.manufacturing.title': 'التصنيع والإنتاج',
     'industries.manufacturing.description': 'تخطيط الإنتاج ومراقبة الجودة وإدارة سلسلة التوريد',
     'industries.manufacturing.features.planning': 'تخطيط الإنتاج',
@@ -239,22 +254,22 @@ export const translations = {
     'industries.manufacturing.clients.assembly': 'مصانع التجميع',
     'industries.manufacturing.clients.food': 'معالجة الأغذية',
     'industries.manufacturing.clients.textile': 'شركات النسيج',
-
-    // Client Size Content
+    
+    // Client Types
     'industries.startups.title': 'الشركات الناشئة',
-    'industries.startups.description': 'حلول النشر السريع التي تنمو مع نموك',
+    'industries.startups.description': 'حلول نشر سريع تنمو مع نموك',
     'industries.startups.benefits.implementation': 'تنفيذ سريع',
     'industries.startups.benefits.scalable': 'هندسة قابلة للتوسع',
     'industries.startups.benefits.cost': 'فعال من حيث التكلفة',
     'industries.startups.benefits.growth': 'جاهز للنمو',
-
+    
     'industries.smes.title': 'الشركات الصغيرة والمتوسطة',
-    'industries.smes.description': 'حلول ERP شاملة مصممة للشركات متوسطة الحجم',
+    'industries.smes.description': 'حلول ERP شاملة مصممة للشركات متوسطة السوق',
     'industries.smes.benefits.featured': 'ERP كامل الميزات',
     'industries.smes.benefits.customization': 'تخصيص الصناعة',
     'industries.smes.benefits.integration': 'قدرات التكامل',
     'industries.smes.benefits.support': 'دعم الخبراء',
-
+    
     'industries.enterprises.title': 'المؤسسات',
     'industries.enterprises.description': 'حلول على مستوى المؤسسة مع ميزات متقدمة والامتثال',
     'industries.enterprises.benefits.analytics': 'تحليلات متقدمة',
@@ -269,12 +284,12 @@ export const translations = {
     'implementation.description': 'منهجيتنا المجربة في المعركة تضمن النشر السريع مع الحد الأدنى من المخاطر والحد الأقصى من تبني المستخدمين.',
     'implementation.provenResults': 'النتائج المثبتة',
     'implementation.provenDescription': 'منهجيتنا تحقق باستمرار نتائج استثنائية عبر جميع التنفيذات.',
-
+    
     // Implementation Phases
     'implementation.phase1.title': 'الاكتشاف العميق',
     'implementation.phase1.duration': '1-2 أسابيع',
     'implementation.phase1.description': 'تحليل شامل لعملياتك الحالية ونقاط الألم ومتطلبات النظام',
-    'implementation.phase1.activities.mapping': 'رسم خرائط العمليات',
+    'implementation.phase1.activities.mapping': 'تخطيط العمليات',
     'implementation.phase1.activities.analysis': 'تحليل نقاط الألم',
     'implementation.phase1.activities.audit': 'تدقيق النظام',
     'implementation.phase1.activities.gathering': 'جمع المتطلبات',
@@ -282,7 +297,7 @@ export const translations = {
     'implementation.phase1.deliverables.gap': 'تقرير تحليل الفجوات',
     'implementation.phase1.deliverables.requirements': 'المتطلبات التقنية',
     'implementation.phase1.deliverables.roadmap': 'خارطة طريق المشروع',
-
+    
     'implementation.phase2.title': 'المخطط الذكي',
     'implementation.phase2.duration': '2-3 أسابيع',
     'implementation.phase2.description': 'تصميم سير العمل الأمثل مع جاهزية الذكاء الاصطناعي واعتبارات التخطيط ثنائي اللغة',
@@ -292,9 +307,9 @@ export const translations = {
     'implementation.phase2.activities.security': 'هندسة الأمان',
     'implementation.phase2.deliverables.blueprint': 'مخطط النظام',
     'implementation.phase2.deliverables.specifications': 'المواصفات التقنية',
-    'implementation.phase2.deliverables.mockups': 'نماذج واجهة المستخدم',
+    'implementation.phase2.deliverables.mockups': 'نماذج UI/UX',
     'implementation.phase2.deliverables.integration': 'خطة التكامل',
-
+    
     'implementation.phase3.title': 'البناء الرشيق',
     'implementation.phase3.duration': '4-8 أسابيع',
     'implementation.phase3.description': 'تطوير تكراري مع عروض أسبوعية واختبار مستمر وترحيل البيانات',
@@ -306,7 +321,7 @@ export const translations = {
     'implementation.phase3.deliverables.data': 'بيانات مهاجرة',
     'implementation.phase3.deliverables.results': 'نتائج الاختبار',
     'implementation.phase3.deliverables.documentation': 'وثائق المستخدم',
-
+    
     'implementation.phase4.title': 'الإطلاق',
     'implementation.phase4.duration': '1-2 أسابيع',
     'implementation.phase4.description': 'تدريب قائم على الأدوار ودعم الإطلاق والتحسين الفوري',
@@ -318,7 +333,7 @@ export const translations = {
     'implementation.phase4.deliverables.live': 'نظام مباشر',
     'implementation.phase4.deliverables.support': 'وثائق الدعم',
     'implementation.phase4.deliverables.performance': 'تقرير الأداء',
-
+    
     'implementation.phase5.title': 'التطور',
     'implementation.phase5.duration': 'مستمر',
     'implementation.phase5.description': 'تحسين مستمر مع مراجعات ربع سنوية وضبط الذكاء الاصطناعي وترقيات الميزات',
@@ -330,14 +345,14 @@ export const translations = {
     'implementation.phase5.deliverables.features': 'ميزات جديدة',
     'implementation.phase5.deliverables.enhanced': 'أداء محسن',
     'implementation.phase5.deliverables.growth': 'خارطة طريق النمو',
-
+    
     // Implementation Proof Points
     'implementation.proof.faster': 'أسرع من عمليات نشر ERP التقليدية',
     'implementation.proof.fasterDesc': 'منهجيتنا الرشيقة تحقق النتائج في أسابيع، وليس شهور',
     'implementation.proof.zero': 'صفر',
     'implementation.proof.zeroDesc': 'انتقالات بدون توقف',
     'implementation.proof.zeroDetail': 'ترحيل سلس مع استمرار العمليات التجارية',
-    'implementation.proof.adoption': 'تبني المستخدم خلال 90 يوماً',
+    'implementation.proof.adoption': 'تبني المستخدمين خلال 90 يوماً',
     'implementation.proof.adoptionDesc': 'التصميم الذي يركز على التبني يضمن مشاركة الفريق من اليوم الأول',
     
     // Testimonials Section
@@ -345,7 +360,7 @@ export const translations = {
     'testimonials.title': 'نتائج حقيقية،',
     'testimonials.titleHighlight': 'تأثير حقيقي',
     'testimonials.description': 'شاهد كيف حولت المنظمات عبر الصناعات المختلفة عملياتها مع MovinWare.',
-
+    
     // Testimonials Labels
     'testimonials.labels.challenge': 'التحدي',
     'testimonials.labels.solution': 'الحل',
@@ -353,47 +368,47 @@ export const translations = {
     'testimonials.labels.implementation': 'التنفيذ',
     'testimonials.labels.efficiency': 'كسب الكفاءة',
     'testimonials.labels.adoption': 'تبني المستخدم',
-
+    
     // Case Studies
-    'testimonials.case1.client': 'عيادات هيلث بلس',
+    'testimonials.case1.client': 'عيادات HealthPlus',
     'testimonials.case1.industry': 'الرعاية الصحية',
-    'testimonials.case1.challenge': 'إدارة مواقع عيادات متعددة بأنظمة متباينة للموارد البشرية والمحاسبة والمخزون',
+    'testimonials.case1.challenge': 'إدارة مواقع عيادات متعددة بأنظمة منفصلة للموارد البشرية والمحاسبة والمخزون',
     'testimonials.case1.solution': 'ERP متكامل مع لوحات معلومات ثنائية اللغة وتقارير في الوقت الفعلي عبر جميع المواقع',
     'testimonials.case1.results.timeline': 'جدول زمني للتنفيذ 60 يوماً',
     'testimonials.case1.results.efficiency': 'تحسن 40% في الكفاءة التشغيلية',
     'testimonials.case1.results.visibility': 'رؤية في الوقت الفعلي عبر جميع العيادات',
     'testimonials.case1.results.processes': 'عمليات موارد بشرية ورواتب مبسطة',
-    'testimonials.case1.quote': 'حولت MovinWare عملياتنا بالكامل. كانت الواجهة ثنائية اللغة أمراً بالغ الأهمية لفريقنا المتنوع، ولوحات المعلومات في الوقت الفعلي تمنحنا رؤية لم نحصل عليها من قبل.',
+    'testimonials.case1.quote': 'حولت MovinWare عملياتنا بالكامل. كانت الواجهة ثنائية اللغة حاسمة لفريقنا المتنوع، ولوحات المعلومات في الوقت الفعلي تمنحنا رؤية لم نحصل عليها من قبل.',
     'testimonials.case1.author': 'د. سارة المحمود',
     'testimonials.case1.position': 'مدير العمليات الرئيسي',
     'testimonials.case1.metrics.implementation': '60 يوماً',
     'testimonials.case1.metrics.efficiency': '+40%',
     'testimonials.case1.metrics.adoption': '92%',
-
-    'testimonials.case2.client': 'مجموعة مدارس إيدو تراك',
+    
+    'testimonials.case2.client': 'مجموعة مدارس EduTrack',
     'testimonials.case2.industry': 'التعليم',
     'testimonials.case2.challenge': 'إدارة معلومات الطلاب المعقدة عبر مدارس متعددة مع متطلبات العربية/الإنجليزية',
     'testimonials.case2.solution': 'نظام معلومات طلاب شامل مع إدارة الامتحانات وبوابة أولياء الأمور والتوافق الثقافي',
     'testimonials.case2.results.cultural': 'حل متوافق ثقافياً مع التقويم الهجري',
-    'testimonials.case2.results.communication': 'تحسين التواصل بين أولياء الأمور والمدرسة',
+    'testimonials.case2.results.communication': 'تحسن التواصل بين أولياء الأمور والمدرسة',
     'testimonials.case2.results.exams': 'عمليات امتحانات وتقييم مبسطة',
     'testimonials.case2.results.management': 'إدارة محسنة لبيانات الطلاب',
     'testimonials.case2.quote': 'كان الفهم الثقافي الذي جلبته MovinWare لمشروعنا استثنائياً. يعمل النظام بالضبط كما تعمل مدارسنا، وليس العكس.',
     'testimonials.case2.author': 'أحمد الراشد',
-    'testimonials.case2.position': 'مدير تقنية المعلومات',
+    'testimonials.case2.position': 'مدير تكنولوجيا المعلومات',
     'testimonials.case2.metrics.implementation': '45 يوماً',
     'testimonials.case2.metrics.efficiency': '+35%',
     'testimonials.case2.metrics.adoption': '89%',
-
-    'testimonials.case3.client': 'لوجيكس برو للوجستيات',
+    
+    'testimonials.case3.client': 'LogixPro للوجستيات',
     'testimonials.case3.industry': 'اللوجستيات',
     'testimonials.case3.challenge': 'إدارة أسطول غير فعالة وتخطيط مسارات يؤدي إلى تكاليف تشغيلية عالية',
     'testimonials.case3.solution': 'تحسين أسطول مدعوم بالذكاء الاصطناعي مع تحليلات تنبؤية وتخطيط مسارات',
     'testimonials.case3.results.reduction': 'تقليل 30% في النفقات التشغيلية',
-    'testimonials.case3.results.delivery': 'تحسين أوقات التسليم ورضا العملاء',
+    'testimonials.case3.results.delivery': 'تحسن أوقات التسليم ورضا العملاء',
     'testimonials.case3.results.maintenance': 'صيانة تنبؤية لمركبات الأسطول',
     'testimonials.case3.results.tracking': 'تتبع وتحسين في الوقت الفعلي',
-    'testimonials.case3.quote': 'كان تحسين المسارات المدعوم بالذكاء الاصطناعي بمثابة تغيير جذري. نحن نوفر آلاف الدولارات شهرياً بينما نحسن جودة خدمتنا.',
+    'testimonials.case3.quote': 'كان تحسين المسارات المدعوم بالذكاء الاصطناعي بمثابة تغيير جذري. نوفر آلاف الدولارات شهرياً بينما نحسن جودة خدمتنا.',
     'testimonials.case3.author': 'خالد المنصوري',
     'testimonials.case3.position': 'مدير العمليات',
     'testimonials.case3.metrics.implementation': '75 يوماً',
@@ -432,19 +447,54 @@ export const translations = {
     
     // Footer
     'footer.tagline': 'العمليات الذكية.\nالتحول السلس.',
-    'footer.copyright': '© 2025 MovinWare. جميع الحقوق محفوظة. | العمليات الذكية. التحول السلس.',
-    'footer.links.solutions': 'الحلول',
-    'footer.links.services': 'الخدمات',
-    'footer.links.industries': 'الصناعات',
-    'footer.links.about': 'من نحن',
-    'footer.links.contact': 'اتصل بنا',
-    'footer.links.careers': 'الوظائف',
-    'footer.links.privacy': 'سياسة الخصوصية',
-    'footer.links.terms': 'شروط الخدمة',
-    'footer.links.cookies': 'سياسة ملفات تعريف الارتباط',
-    'footer.links.support': 'مركز الدعم',
-    'footer.links.documentation': 'الوثائق',
-    'footer.links.partner': 'برنامج الشراكة',
+    'footer.description': 'نحول الشركات بحلول ERP مدعومة بالذكاء الاصطناعي تحقق السرعة إلى القيمة والتحول السلس.',
+    'footer.copyright': '© 2025 MovinWare. جميع الحقوق محفوظة.',
+    
+    // Footer Sections
+    'footer.sections.solutions.title': 'الحلول',
+    'footer.sections.solutions.erp': 'تنفيذ ERP',
+    'footer.sections.solutions.ai': 'الذكاء الاصطناعي',
+    'footer.sections.solutions.integration': 'التكامل',
+    'footer.sections.solutions.migration': 'ترحيل البيانات',
+    
+    'footer.sections.services.title': 'الخدمات',
+    'footer.sections.services.implementation': 'التنفيذ',
+    'footer.sections.services.consulting': 'الاستشارات',
+    'footer.sections.services.support': 'الدعم',
+    'footer.sections.services.training': 'التدريب',
+    
+    'footer.sections.industries.title': 'الصناعات',
+    'footer.sections.industries.education': 'التعليم',
+    'footer.sections.industries.healthcare': 'الرعاية الصحية',
+    'footer.sections.industries.logistics': 'اللوجستيات',
+    'footer.sections.industries.retail': 'التجارة',
+    
+    'footer.sections.company.title': 'الشركة',
+    'footer.sections.company.about': 'من نحن',
+    'footer.sections.company.careers': 'الوظائف',
+    'footer.sections.company.contact': 'اتصل بنا',
+    'footer.sections.company.blog': 'المدونة',
+    
+    // Footer Contact
+    'footer.contact.email': 'البريد الإلكتروني',
+    'footer.contact.phone': 'الهاتف',
+    'footer.contact.location': 'الموقع',
+    
+    // Footer Newsletter
+    'footer.newsletter.title': 'ابق على اطلاع',
+    'footer.newsletter.description': 'احصل على آخر الأخبار والرؤى حول تحويل ERP.',
+    'footer.newsletter.placeholder': 'عنوان بريدك الإلكتروني',
+    'footer.newsletter.subscribe': 'اشترك',
+    
+    // Footer CTA
+    'footer.cta.demo': 'احجز عرضاً توضيحياً',
+    'footer.cta.consultation': 'استشارة مجانية',
+    
+    // Footer Legal
+    'footer.legal.privacy': 'سياسة الخصوصية',
+    'footer.legal.terms': 'شروط الخدمة',
+    'footer.legal.cookies': 'سياسة ملفات تعريف الارتباط',
+    'footer.legal.security': 'الأمان',
   },
   en: {
     // Navigation
@@ -455,6 +505,21 @@ export const translations = {
     'nav.getStarted': 'Get Started',
     'nav.search': 'Search',
     'nav.language': 'Language',
+    
+    // Navigation Dropdowns
+    'nav.dropdown.solutions.erp': 'ERP Implementation',
+    'nav.dropdown.solutions.ai': 'AI Solutions',
+    'nav.dropdown.solutions.integration': 'Integration',
+    'nav.dropdown.solutions.migration': 'Data Migration',
+    'nav.dropdown.industries.education': 'Education',
+    'nav.dropdown.industries.healthcare': 'Healthcare',
+    'nav.dropdown.industries.logistics': 'Logistics',
+    'nav.dropdown.industries.retail': 'Retail',
+    'nav.dropdown.industries.manufacturing': 'Manufacturing',
+    'nav.dropdown.about.company': 'Company',
+    'nav.dropdown.about.team': 'Team',
+    'nav.dropdown.about.careers': 'Careers',
+    'nav.dropdown.about.contact': 'Contact',
     
     // Hero Section
     'hero.title': 'AI-Powered ERP.',
@@ -516,7 +581,7 @@ export const translations = {
     'services.tabs.services': 'Our Services',
     'services.tabs.solutions': 'ERP Solutions',
     'services.tabs.value': 'Why Choose Us',
-
+    
     // Services Content
     'services.erp.title': 'ERP Implementation & Core Configuration',
     'services.erp.description': 'Complete ERP deployment with industry-specific customizations and seamless data migration.',
@@ -524,42 +589,42 @@ export const translations = {
     'services.erp.features.development': 'Custom module development',
     'services.erp.features.migration': 'Data migration',
     'services.erp.features.training': 'User training',
-
+    
     'services.industry.title': 'Industry-Specific Module Development',
     'services.industry.description': 'Tailored solutions for clinics, schools, gyms, logistics, and other specialized industries.',
     'services.industry.features.healthcare': 'Healthcare management',
     'services.industry.features.education': 'Education systems',
     'services.industry.features.fitness': 'Fitness club operations',
     'services.industry.features.logistics': 'Logistics optimization',
-
+    
     'services.ai.title': 'AI Automation Enhancements',
     'services.ai.description': 'Built-in intelligence that transforms your operations with predictive capabilities.',
     'services.ai.features.forecasting': 'Smart forecasting',
     'services.ai.features.chatbots': 'ERP-integrated chatbots',
     'services.ai.features.ocr': 'Advanced OCR',
     'services.ai.features.automation': 'Workflow automation',
-
+    
     'services.ux.title': 'UX/UI Bilingual Enhancement',
     'services.ux.description': 'RTL-compliant, culturally-aligned interfaces with true Arabic/English parity.',
     'services.ux.features.rtl': 'RTL interface design',
     'services.ux.features.localization': 'Cultural localization',
     'services.ux.features.accessibility': 'Accessibility compliance',
     'services.ux.features.mobile': 'Mobile optimization',
-
+    
     'services.migration.title': 'Legacy Data Migration & Integrations',
     'services.migration.description': 'Seamless transition from legacy systems with comprehensive third-party integrations.',
     'services.migration.features.mapping': 'Data mapping & validation',
     'services.migration.features.api': 'API integrations',
     'services.migration.features.sync': 'System synchronization',
     'services.migration.features.backup': 'Backup & recovery',
-
+    
     'services.support.title': 'Continuous Lifecycle Support',
     'services.support.description': 'Ongoing optimization, updates, and performance monitoring for sustained success.',
     'services.support.features.updates': 'Regular updates',
     'services.support.features.tuning': 'Performance tuning',
     'services.support.features.development': 'New feature development',
     'services.support.features.monitoring': '24/7 monitoring',
-
+    
     // Solutions Content
     'solutions.accounting.title': 'Accounting & Finance',
     'solutions.accounting.description': 'Complete financial management with local compliance including Zakat and VAT.',
@@ -567,64 +632,64 @@ export const translations = {
     'solutions.accounting.features.invoicing': 'Invoicing & Billing',
     'solutions.accounting.features.reporting': 'Financial Reporting',
     'solutions.accounting.features.compliance': 'Zakat/VAT Compliance',
-
+    
     'solutions.hr.title': 'HR & Payroll',
     'solutions.hr.description': 'Comprehensive human resource management with bilingual support.',
     'solutions.hr.features.records': 'Employee Records',
     'solutions.hr.features.attendance': 'Attendance Tracking',
     'solutions.hr.features.payroll': 'Payroll Processing',
     'solutions.hr.features.calendar': 'Hijri/Gregorian Sync',
-
+    
     'solutions.sales.title': 'Sales & CRM',
     'solutions.sales.description': 'End-to-end sales and customer relationship management.',
     'solutions.sales.features.leads': 'Lead Management',
     'solutions.sales.features.quotes': 'Quote Generation',
     'solutions.sales.features.orders': 'Order Processing',
     'solutions.sales.features.portal': 'Customer Portal',
-
+    
     'solutions.inventory.title': 'Inventory & Procurement',
     'solutions.inventory.description': 'Complete inventory control with Arabic labeling support.',
     'solutions.inventory.features.stock': 'Stock Management',
     'solutions.inventory.features.warehousing': 'Warehousing',
     'solutions.inventory.features.pricing': 'Dynamic Pricing',
     'solutions.inventory.features.labeling': 'Arabic Labeling',
-
+    
     'solutions.manufacturing.title': 'Manufacturing',
     'solutions.manufacturing.description': 'Production planning and quality control systems.',
     'solutions.manufacturing.features.bom': 'Bill of Materials',
     'solutions.manufacturing.features.orders': 'Work Orders',
     'solutions.manufacturing.features.planning': 'Production Planning',
     'solutions.manufacturing.features.quality': 'Quality Inspections',
-
+    
     'solutions.assets.title': 'Asset Management',
     'solutions.assets.description': 'Asset lifecycle and predictive maintenance management.',
     'solutions.assets.features.depreciation': 'Asset Depreciation',
     'solutions.assets.features.maintenance': 'Maintenance Scheduling',
     'solutions.assets.features.qr': 'QR Code Tags',
     'solutions.assets.features.alerts': 'Predictive Alerts',
-
-    // Value Content
+    
+    // Value Propositions
     'value.ai.title': 'AI by Design',
     'value.ai.description': 'Built-in automation, predictive analytics, and smart workflows that adapt to your business.',
     'value.ai.features.forecasting': 'Predictive forecasting',
     'value.ai.features.automation': 'Intelligent automation',
     'value.ai.features.workflows': 'Adaptive workflows',
     'value.ai.features.analytics': 'Smart analytics',
-
+    
     'value.speed.title': 'Speed-to-Value',
     'value.speed.description': '50% faster implementation with business value from day one.',
     'value.speed.features.deployment': 'Rapid deployment',
     'value.speed.features.roi': 'Quick ROI',
     'value.speed.features.benefits': 'Immediate benefits',
     'value.speed.features.methodology': 'Agile methodology',
-
+    
     'value.cultural.title': 'Cultural & Language Parity',
     'value.cultural.description': 'True Arabic/English parity with full RTL support and local compliance.',
     'value.cultural.features.bilingual': 'Bilingual interface',
     'value.cultural.features.rtl': 'RTL support',
     'value.cultural.features.compliance': 'Local compliance',
     'value.cultural.features.alignment': 'Cultural alignment',
-
+    
     'value.adoption.title': 'User Adoption Excellence',
     'value.adoption.description': '87%+ user adoption rates through adoption-first design principles.',
     'value.adoption.features.design': 'Intuitive design',
@@ -638,7 +703,7 @@ export const translations = {
     'industries.description': 'Deep industry expertise combined with flexible technology to deliver solutions that understand your unique business challenges.',
     'industries.clientSize.title': 'Built for Every Business Size',
     'industries.clientSize.description': 'From ambitious startups to established enterprises, our solutions scale with your business needs.',
-
+    
     // Industries Content
     'industries.education.title': 'Educational Institutions',
     'industries.education.description': 'Comprehensive student information systems, scheduling, and parent portals',
@@ -650,7 +715,7 @@ export const translations = {
     'industries.education.clients.universities': 'Universities',
     'industries.education.clients.training': 'Training Centers',
     'industries.education.clients.online': 'Online Academies',
-
+    
     'industries.logistics.title': 'Logistics & Warehousing',
     'industries.logistics.description': 'Fleet management, route optimization, and supply chain visibility',
     'industries.logistics.features.fleet': 'Fleet Tracking',
@@ -661,7 +726,7 @@ export const translations = {
     'industries.logistics.clients.3pl': '3PL Providers',
     'industries.logistics.clients.distribution': 'Distribution Centers',
     'industries.logistics.clients.freight': 'Freight Forwarders',
-
+    
     'industries.retail.title': 'Retail & E-commerce',
     'industries.retail.description': 'Omnichannel retail operations with integrated POS and online platforms',
     'industries.retail.features.pos': 'POS Integration',
@@ -672,7 +737,7 @@ export const translations = {
     'industries.retail.clients.online': 'Online Stores',
     'industries.retail.clients.fashion': 'Fashion Brands',
     'industries.retail.clients.electronics': 'Electronics Retailers',
-
+    
     'industries.manufacturing.title': 'Manufacturing & Production',
     'industries.manufacturing.description': 'Production planning, quality control, and supply chain management',
     'industries.manufacturing.features.planning': 'Production Planning',
@@ -683,22 +748,22 @@ export const translations = {
     'industries.manufacturing.clients.assembly': 'Assembly Plants',
     'industries.manufacturing.clients.food': 'Food Processing',
     'industries.manufacturing.clients.textile': 'Textile Companies',
-
-    // Client Size Content
+    
+    // Client Types
     'industries.startups.title': 'Startups',
     'industries.startups.description': 'Rapid deployment solutions that scale with your growth',
     'industries.startups.benefits.implementation': 'Quick implementation',
     'industries.startups.benefits.scalable': 'Scalable architecture',
     'industries.startups.benefits.cost': 'Cost-effective',
     'industries.startups.benefits.growth': 'Growth-ready',
-
+    
     'industries.smes.title': 'SMEs',
     'industries.smes.description': 'Comprehensive ERP solutions tailored for mid-market businesses',
     'industries.smes.benefits.featured': 'Full-featured ERP',
     'industries.smes.benefits.customization': 'Industry customization',
     'industries.smes.benefits.integration': 'Integration capabilities',
     'industries.smes.benefits.support': 'Expert support',
-
+    
     'industries.enterprises.title': 'Enterprises',
     'industries.enterprises.description': 'Enterprise-grade solutions with advanced features and compliance',
     'industries.enterprises.benefits.analytics': 'Advanced analytics',
@@ -713,7 +778,7 @@ export const translations = {
     'implementation.description': 'Our battle-tested methodology ensures rapid deployment with minimal risk and maximum user adoption.',
     'implementation.provenResults': 'Proven Results',
     'implementation.provenDescription': 'Our methodology consistently delivers exceptional outcomes across all implementations.',
-
+    
     // Implementation Phases
     'implementation.phase1.title': 'Deep Discovery',
     'implementation.phase1.duration': '1-2 Weeks',
@@ -726,7 +791,7 @@ export const translations = {
     'implementation.phase1.deliverables.gap': 'Gap Analysis Report',
     'implementation.phase1.deliverables.requirements': 'Technical Requirements',
     'implementation.phase1.deliverables.roadmap': 'Project Roadmap',
-
+    
     'implementation.phase2.title': 'Smart Blueprinting',
     'implementation.phase2.duration': '2-3 Weeks',
     'implementation.phase2.description': 'Design optimal workflows with AI readiness and bilingual planning considerations',
@@ -738,7 +803,7 @@ export const translations = {
     'implementation.phase2.deliverables.specifications': 'Technical Specifications',
     'implementation.phase2.deliverables.mockups': 'UI/UX Mockups',
     'implementation.phase2.deliverables.integration': 'Integration Plan',
-
+    
     'implementation.phase3.title': 'Agile Build',
     'implementation.phase3.duration': '4-8 Weeks',
     'implementation.phase3.description': 'Iterative development with weekly demos, continuous testing, and data migration',
@@ -750,7 +815,7 @@ export const translations = {
     'implementation.phase3.deliverables.data': 'Migrated Data',
     'implementation.phase3.deliverables.results': 'Test Results',
     'implementation.phase3.deliverables.documentation': 'User Documentation',
-
+    
     'implementation.phase4.title': 'Launch',
     'implementation.phase4.duration': '1-2 Weeks',
     'implementation.phase4.description': 'Role-based training, go-live support, and immediate optimization',
@@ -762,7 +827,7 @@ export const translations = {
     'implementation.phase4.deliverables.live': 'Live System',
     'implementation.phase4.deliverables.support': 'Support Documentation',
     'implementation.phase4.deliverables.performance': 'Performance Report',
-
+    
     'implementation.phase5.title': 'Evolution',
     'implementation.phase5.duration': 'Ongoing',
     'implementation.phase5.description': 'Continuous improvement with quarterly reviews, AI tuning, and feature upgrades',
@@ -774,7 +839,7 @@ export const translations = {
     'implementation.phase5.deliverables.features': 'New Features',
     'implementation.phase5.deliverables.enhanced': 'Enhanced Performance',
     'implementation.phase5.deliverables.growth': 'Growth Roadmap',
-
+    
     // Implementation Proof Points
     'implementation.proof.faster': 'Faster than traditional ERP rollouts',
     'implementation.proof.fasterDesc': 'Our agile methodology delivers results in weeks, not months',
@@ -789,7 +854,7 @@ export const translations = {
     'testimonials.title': 'Real Results,',
     'testimonials.titleHighlight': 'Real Impact',
     'testimonials.description': 'See how organizations across different industries have transformed their operations with MovinWare.',
-
+    
     // Testimonials Labels
     'testimonials.labels.challenge': 'Challenge',
     'testimonials.labels.solution': 'Solution',
@@ -797,7 +862,7 @@ export const translations = {
     'testimonials.labels.implementation': 'Implementation',
     'testimonials.labels.efficiency': 'Efficiency Gain',
     'testimonials.labels.adoption': 'User Adoption',
-
+    
     // Case Studies
     'testimonials.case1.client': 'HealthPlus Clinics',
     'testimonials.case1.industry': 'Healthcare',
@@ -813,7 +878,7 @@ export const translations = {
     'testimonials.case1.metrics.implementation': '60 days',
     'testimonials.case1.metrics.efficiency': '+40%',
     'testimonials.case1.metrics.adoption': '92%',
-
+    
     'testimonials.case2.client': 'EduTrack School Group',
     'testimonials.case2.industry': 'Education',
     'testimonials.case2.challenge': 'Complex student information management across multiple schools with Arabic/English requirements',
@@ -828,7 +893,7 @@ export const translations = {
     'testimonials.case2.metrics.implementation': '45 days',
     'testimonials.case2.metrics.efficiency': '+35%',
     'testimonials.case2.metrics.adoption': '89%',
-
+    
     'testimonials.case3.client': 'LogixPro Logistics',
     'testimonials.case3.industry': 'Logistics',
     'testimonials.case3.challenge': 'Inefficient fleet management and route planning leading to high operational costs',
@@ -876,19 +941,54 @@ export const translations = {
     
     // Footer
     'footer.tagline': 'Intelligent Operations.\nSeamless Transformation.',
-    'footer.copyright': '© 2025 MovinWare. All Rights Reserved. | Intelligent Operations. Seamless Transformation.',
-    'footer.links.solutions': 'Solutions',
-    'footer.links.services': 'Services',
-    'footer.links.industries': 'Industries',
-    'footer.links.about': 'About Us',
-    'footer.links.contact': 'Contact Us',
-    'footer.links.careers': 'Careers',
-    'footer.links.privacy': 'Privacy Policy',
-    'footer.links.terms': 'Terms of Service',
-    'footer.links.cookies': 'Cookie Policy',
-    'footer.links.support': 'Support Center',
-    'footer.links.documentation': 'Documentation',
-    'footer.links.partner': 'Partner Program',
+    'footer.description': 'We transform businesses with AI-powered ERP solutions that deliver speed-to-value and seamless transformation.',
+    'footer.copyright': '© 2025 MovinWare. All Rights Reserved.',
+    
+    // Footer Sections
+    'footer.sections.solutions.title': 'Solutions',
+    'footer.sections.solutions.erp': 'ERP Implementation',
+    'footer.sections.solutions.ai': 'AI Solutions',
+    'footer.sections.solutions.integration': 'Integration',
+    'footer.sections.solutions.migration': 'Data Migration',
+    
+    'footer.sections.services.title': 'Services',
+    'footer.sections.services.implementation': 'Implementation',
+    'footer.sections.services.consulting': 'Consulting',
+    'footer.sections.services.support': 'Support',
+    'footer.sections.services.training': 'Training',
+    
+    'footer.sections.industries.title': 'Industries',
+    'footer.sections.industries.education': 'Education',
+    'footer.sections.industries.healthcare': 'Healthcare',
+    'footer.sections.industries.logistics': 'Logistics',
+    'footer.sections.industries.retail': 'Retail',
+    
+    'footer.sections.company.title': 'Company',
+    'footer.sections.company.about': 'About Us',
+    'footer.sections.company.careers': 'Careers',
+    'footer.sections.company.contact': 'Contact',
+    'footer.sections.company.blog': 'Blog',
+    
+    // Footer Contact
+    'footer.contact.email': 'Email',
+    'footer.contact.phone': 'Phone',
+    'footer.contact.location': 'Location',
+    
+    // Footer Newsletter
+    'footer.newsletter.title': 'Stay Updated',
+    'footer.newsletter.description': 'Get the latest news and insights about ERP transformation.',
+    'footer.newsletter.placeholder': 'Your email address',
+    'footer.newsletter.subscribe': 'Subscribe',
+    
+    // Footer CTA
+    'footer.cta.demo': 'Book a Demo',
+    'footer.cta.consultation': 'Free Consultation',
+    
+    // Footer Legal
+    'footer.legal.privacy': 'Privacy Policy',
+    'footer.legal.terms': 'Terms of Service',
+    'footer.legal.cookies': 'Cookie Policy',
+    'footer.legal.security': 'Security',
   }
 };
 
