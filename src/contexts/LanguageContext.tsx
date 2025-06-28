@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter, usePathname } from 'next/navigation'
 import { Locale, getTranslation, isRTL } from '@/lib/i18n'
 
 interface LanguageContextType {
@@ -15,15 +15,24 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
+  const pathname = usePathname()
   const [locale, setLocale] = useState<Locale>('ar')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    if (router.locale) {
-      setLocale(router.locale as Locale)
+    // Extract locale from pathname
+    const pathSegments = pathname.split('/')
+    const currentLocale = pathSegments[1] as Locale
+    
+    // Set locale based on pathname, default to 'ar' if not found
+    if (currentLocale === 'ar' || currentLocale === 'en') {
+      setLocale(currentLocale)
+    } else {
+      setLocale('ar')
     }
+    
     setMounted(true)
-  }, [router.locale])
+  }, [pathname])
 
   useEffect(() => {
     if (mounted) {
@@ -40,7 +49,21 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const t = (key: string) => getTranslation(locale, key)
 
   const switchLanguage = (newLocale: Locale) => {
-    router.push(router.pathname, router.asPath, { locale: newLocale })
+    // Get current path without locale prefix
+    const pathSegments = pathname.split('/')
+    const currentLocale = pathSegments[1]
+    
+    let newPath: string
+    if (currentLocale === 'ar' || currentLocale === 'en') {
+      // Replace existing locale
+      pathSegments[1] = newLocale
+      newPath = pathSegments.join('/')
+    } else {
+      // Add locale prefix
+      newPath = `/${newLocale}${pathname}`
+    }
+    
+    router.push(newPath)
   }
 
   if (!mounted) {
