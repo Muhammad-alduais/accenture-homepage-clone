@@ -2,7 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 
 export default function Footer() {
   const { t, isRTL } = useLanguage()
@@ -86,7 +86,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         {/* Main Footer Content */}
         <div className="py-16">
-          {/* Top Section - Company Info */}
+          {/* Top Section - Company Info & Newsletter */}
           <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 ${isRTL ? 'text-right' : 'text-left'}`}>
             {/* Company Info */}
             <motion.div
@@ -141,7 +141,7 @@ export default function Footer() {
               </div>
             </motion.div>
 
-            {/* CTA Section */}
+            {/* Newsletter & CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -150,44 +150,46 @@ export default function Footer() {
               className={`${isRTL ? 'text-right' : 'text-left'}`}
             >
               <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                {t('footer.cta.title')}
+                {t('footer.newsletter.title')}
               </h4>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">
-                {t('footer.cta.description')}
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                {t('footer.newsletter.description')}
               </p>
 
-              {/* CTA Buttons */}
-              <div className="space-y-4">
+              {/* Newsletter Form */}
+              <div className={`flex ${isRTL ? 'flex-row-reverse' : ''} gap-3 mb-8`}>
+                <input
+                  type="email"
+                  placeholder={t('footer.newsletter.placeholder')}
+                  className={`flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent ${isRTL ? 'text-right' : 'text-left'}`}
+                  dir={isRTL ? 'rtl' : 'ltr'}
+                />
                 <motion.button
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-4 rounded-lg font-medium transition-colors text-lg"
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className={isRTL ? 'ml-2' : 'mr-2'}>{t('footer.newsletter.subscribe')}</span>
+                  <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+                </motion.button>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="space-y-3">
+                <motion.button
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   {t('footer.cta.demo')}
                 </motion.button>
                 <motion.button
-                  className="w-full border border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white px-6 py-4 rounded-lg font-medium transition-colors text-lg"
+                  className="w-full border border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   {t('footer.cta.consultation')}
                 </motion.button>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="mt-8 grid grid-cols-3 gap-4 p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">50%</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{t('footer.stats.faster')}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">87%</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{t('footer.stats.adoption')}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">24/7</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{t('footer.stats.support')}</div>
-                </div>
               </div>
             </motion.div>
           </div>
