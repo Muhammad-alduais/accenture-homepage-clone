@@ -1,19 +1,20 @@
 export default function Footer() {
   const footerLinks = {
     leftColumn: [
-      "Preference Center",
-      "Careers",
+      "Solutions",
+      "Services", 
+      "Industries",
       "About Us",
       "Contact Us",
-      "Locations",
-      "Sitemap"
+      "Careers"
     ],
     rightColumn: [
-      "Privacy Statement",
-      "Terms & Conditions",
-      "Cookie Policy/Settings",
-      "Accessibility Statement",
-      "Do Not Sell/Share My Personal Information"
+      "Privacy Policy",
+      "Terms of Service",
+      "Cookie Policy",
+      "Support Center",
+      "Documentation",
+      "Partner Program"
     ]
   }
 
@@ -25,7 +26,9 @@ export default function Footer() {
           {/* Left Side */}
           <div>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-              Let there be change
+              Intelligent Operations.
+              <br />
+              Seamless Transformation.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -55,12 +58,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Right Side - Large Accenture Logo */}
+          {/* Right Side - Large MovinWare Logo */}
           <div className="flex items-center justify-center lg:justify-end">
             <div className="text-white text-8xl md:text-9xl font-bold opacity-20">
               <svg width="400" height="200" viewBox="0 0 400 200" fill="none">
-                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="48" fill="white">
-                  accenture
+                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="36" fill="white">
+                  MovinWare
                 </text>
               </svg>
             </div>
@@ -70,7 +73,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8">
           <p className="text-gray-400 text-sm">
-            © 2025 Accenture. All Rights Reserved.
+            © 2025 MovinWare. All Rights Reserved. | Intelligent Operations. Seamless Transformation.
           </p>
         </div>
       </div>

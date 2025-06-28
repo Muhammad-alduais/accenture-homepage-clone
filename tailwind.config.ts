@@ -73,6 +73,9 @@ export default {
         '2xl': '1536px',
       },
       },
+      mixBlendMode: {
+        'plus-lighter': 'plus-lighter',
+      }
     }
   },
   plugins: [require("tailwindcss-animate")],

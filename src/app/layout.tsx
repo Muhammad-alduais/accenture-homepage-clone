@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "U.S. | Let There Be Change | Accenture",
-  description: "Accenture embraces the power of change to create 360° value and shared success for our clients, people, shareholders, partners and communities. Learn more.",
+  title: "MovinWare | Intelligent Operations. Seamless Transformation.",
+  description: "AI-Powered ERP designed for your workflow. Streamline operations, boost efficiency, and future-proof your business with MovinWare's intelligent solutions.",
 };
 
 export default function RootLayout({

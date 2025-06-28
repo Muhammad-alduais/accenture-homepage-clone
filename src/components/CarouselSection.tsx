@@ -8,20 +8,20 @@ export default function CarouselSection() {
 
   const slides = [
     {
-      title: "AI Refinery: Smarter, faster marketing",
-      description: "Accenture's marketers can focus on more creative, strategic work with AI agents, thanks to a strong digital core that paved the way for agentic architecture.",
+      title: "AI by Design: Smarter, Faster Operations",
+      description: "MovinWare's AI-first approach delivers built-in automation, predictive analytics, and smart workflows that adapt to your business needs, ensuring continuous optimization and growth.",
       image: "https://ext.same-assets.com/2900598000/3218290035.jpeg",
       link: "#"
     },
     {
-      title: "The future of work is here",
-      description: "Discover how leading organizations are transforming their workforce with AI and automation to create new opportunities for growth.",
+      title: "Outcome-Driven Implementation",
+      description: "Experience 30% faster deployment with our proven methodology that focuses on business value from day one, ensuring measurable results and rapid return on investment.",
       image: "https://ext.same-assets.com/2900598000/958512902.jpeg",
       link: "#"
     },
     {
-      title: "Digital transformation at scale",
-      description: "Learn how enterprises are leveraging cloud technologies and data analytics to drive innovation and competitive advantage.",
+      title: "Cultural & Language Parity",
+      description: "True bilingual ERP with Arabic/English parity, full RTL support, and local compliance features including Zakat calculations and Hijri calendar integration.",
       image: "https://ext.same-assets.com/2900598000/2573060216.jpeg",
       link: "#"
     }
@@ -52,7 +52,7 @@ export default function CarouselSection() {
                       {slide.description}
                     </p>
                     <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-colors flex items-center">
-                      Read more
+                      Learn More
                       <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>

@@ -1,96 +1,187 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
 export default function ContentGrid() {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  })
+
   const content = [
     {
-      type: "RESEARCH REPORT",
-      title: "Resilience redefined: From readiness to reinvention",
-      description: "Resilience appears to be rebounding to post-pandemic highs, but the gains mask a deeper vulnerability. Increased volatility requires adaptative resilience for competitiveness and growth.",
+      type: "CASE STUDY",
+      title: "HealthPlus Clinics: Complete Digital Transformation",
+      description: "Streamlined HR, accounting, and inventory management with bilingual dashboards deployed in under 60 days. Achieved improved efficiency and real-time visibility across all operations.",
       image: "https://ext.same-assets.com/2900598000/4049787973.jpeg",
       link: "#"
     },
     {
-      type: "RESEARCH REPORT",
-      title: "Trying to scale AI? You're going to need to think big. And act bigger.",
-      description: "The race to reinvent with generative AI is well underway. The time to determine if you're leading or being left behind is now. Discover the front-runners' guide to scaling AI.",
+      type: "SUCCESS STORY",
+      title: "EduTrack School Group: Culturally-Aligned ERP Solution",
+      description: "Implemented comprehensive student information system with exam management and parent portal. Delivered culturally aligned solution with Arabic/English parity and Hijri calendar support.",
       image: "https://ext.same-assets.com/2900598000/36195040.jpeg",
       link: "#"
     },
     {
-      type: "RESEARCH REPORT",
-      title: "Are you ready for autonomous supply chains?",
-      description: "Companies are seeing diminishing returns from classic business efficiency strategies. To create value, supply chains need to be fast, agile and sustainable, not just cost-efficient. Could AI-powered autonomy be the key to unlocking this?",
+      type: "CASE STUDY",
+      title: "LogixPro Logistics: AI-Powered Fleet Optimization",
+      description: "Optimized fleet management and route planning with predictive analytics. Reduced operational overhead by 30% and improved delivery times through intelligent automation.",
       image: "https://ext.same-assets.com/2900598000/1611683462.jpeg",
       link: "#"
     },
     {
-      type: "RESEARCH REPORT",
-      title: "Redefining the workplace through human, AI and robotic collaboration",
-      description: "Accenture and Wharton are partnering to study how human strengths can be combined with AI and robotics, exploring the implications for individuals, economies, organizations and society.",
+      type: "SOLUTION BRIEF",
+      title: "AI by Design: Built-in Automation for Modern Business",
+      description: "Discover how MovinWare's AI-first approach delivers predictive analytics, smart workflows, and adaptive chatbots that learn and evolve with your business needs.",
       image: "https://ext.same-assets.com/2900598000/3804182897.png",
       link: "#"
     },
     {
-      type: "RESEARCH REPORT",
-      title: "Me, my brand and AI: The new world of consumer engagement",
-      description: "AI is evolving from a useful tool to a trusted guide, loyal companion and second self. Building resilient relationships between consumers, brands and AI in times of uncertainty is essential to remain seen and relevant.",
+      type: "WHITEPAPER",
+      title: "The Future of ERP: Speed-to-Value in Digital Transformation",
+      description: "Learn how modern ERP implementations can achieve 50% faster deployment times while maintaining 87%+ user adoption rates through adoption-first design principles.",
       image: "https://ext.same-assets.com/2900598000/3993689749.jpeg",
       link: "#"
     },
     {
-      type: "CASE STUDY",
-      title: "How the National Cyber Security Centre defends the UK's digital frontier",
-      description: "The next phase of its protective domain name service blocks over 350 million threats a month, ensuring a safer digital future for UK services, people and organizations.",
+      type: "INDUSTRY INSIGHT",
+      title: "Bilingual ERP: Breaking Language Barriers in Business",
+      description: "Explore how true Arabic/English parity with full RTL support and local compliance features transforms user experience and operational efficiency in the MENA region.",
       image: "https://ext.same-assets.com/2900598000/177288228.jpeg",
       link: "#"
     },
     {
-      type: "RESEARCH REPORT",
-      title: "The art of dealmaking in the age of AI",
-      description: "New technologies can transform dealmaking—but only when firms move beyond ad hoc adoption and apply them in structured fashion. Three things separate advantaged acquirers from their peers and enable them to unlock alpha.",
+      type: "SOLUTION GUIDE",
+      title: "From Legacy to Leading: ERP Modernization Strategies",
+      description: "A comprehensive guide to transforming outdated systems into intelligent, cloud-native platforms that drive business growth and operational excellence.",
       image: "https://ext.same-assets.com/2900598000/396614146.jpeg",
       link: "#"
     },
     {
-      type: "CASE STUDY",
-      title: "Revolutionizing the UAE's payment systems",
-      description: "The United Arab Emirates is embarking on a bold transition toward a connected, digital-first economy, reinventing its financial services ecosystem and positioning itself as a leading FinTech hub.",
+      type: "IMPLEMENTATION GUIDE",
+      title: "Zero Downtime ERP Transitions: A Proven Methodology",
+      description: "Discover MovinWare's agile implementation approach that delivers business value from day one while ensuring seamless transitions and continuous operations.",
       image: "https://ext.same-assets.com/2900598000/3965891193.jpeg",
       link: "#"
     }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.6
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  }
+
   return (
     <section className="py-16 px-4">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {content.map((item) => (
-            <div key={item.title} className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-lg mb-4">
-                <img
+        <motion.div 
+          ref={ref}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          {content.map((item, index) => (
+            <motion.div 
+              key={item.title} 
+              className="group cursor-pointer"
+              variants={itemVariants}
+              whileHover={{ 
+                y: -8,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+            >
+              <motion.div 
+                className="relative overflow-hidden rounded-lg mb-4"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-48 object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 />
-                <div className="absolute top-4 left-4">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div 
+                  className="absolute top-4 left-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 + 0.3 }}
+                >
                   <span className="bg-purple-600 text-white text-xs font-medium px-3 py-1 rounded">
                     {item.type}
                   </span>
-                </div>
-              </div>
-              <h3 className="text-white text-xl font-semibold mb-3 group-hover:text-purple-300 transition-colors">
+                </motion.div>
+              </motion.div>
+              
+              <motion.h3 
+                className="text-white text-xl font-semibold mb-3 group-hover:text-purple-300 transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 + 0.4 }}
+              >
                 {item.title}
-              </h3>
-              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              </motion.h3>
+              
+              <motion.p 
+                className="text-gray-300 text-sm leading-relaxed mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 + 0.5 }}
+              >
                 {item.description}
-              </p>
-              <button className="text-purple-400 hover:text-purple-300 text-sm font-medium flex items-center">
-                Expand
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              </motion.p>
+              
+              <motion.button 
+                className="text-purple-400 hover:text-purple-300 text-sm font-medium flex items-center group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 + 0.6 }}
+                whileHover={{ x: 5 }}
+              >
+                Read More
+                <motion.svg 
+                  className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+                </motion.svg>
+              </motion.button>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

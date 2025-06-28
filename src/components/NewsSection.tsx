@@ -8,33 +8,33 @@ export default function NewsSection() {
 
   const news = [
     {
-      date: "January 06, 2025",
-      title: "Accenture Launches AI Refinery for Industry to Reinvent Processes and Accelerate Agentic AI Journeys",
+      date: "January 15, 2025",
+      title: "MovinWare Launches AI-Powered ERP Suite with Built-in Automation",
       link: "#"
     },
     {
-      date: "January 07, 2025",
-      title: "Accenture Technology Vision 2025: New Age of AI to Bring Unprecedented Autonomy to Business",
+      date: "February 03, 2025",
+      title: "Breaking Language Barriers: MovinWare Introduces True Bilingual ERP with RTL Support",
       link: "#"
     },
     {
-      date: "March 18, 2025",
-      title: "Accenture Expands AI Refinery and Launches New Industry Agent Solutions to Accelerate Agentic AI Adoption",
+      date: "February 20, 2025",
+      title: "Speed-to-Value Revolution: MovinWare Achieves 50% Faster ERP Implementations",
       link: "#"
     },
     {
-      date: "April 01, 2025",
-      title: "Accenture and Schaeffler Pave the Way for Industrial Humanoid Robots with NVIDIA and Microsoft Technologies",
+      date: "March 10, 2025",
+      title: "Regional Expansion: MovinWare Opens New Innovation Hub in Dubai",
       link: "#"
     },
     {
-      date: "May 13, 2025",
-      title: "Telstra and Accenture Launch Silicon Valley Hub to Rapidly Advance Benefits of AI for Telstra Customers and People",
+      date: "March 25, 2025",
+      title: "Industry Recognition: MovinWare Wins 'Best ERP Innovation' Award at TechMENA 2025",
       link: "#"
     },
     {
-      date: "June 20, 2025",
-      title: "Accenture Reports Third-Quarter Fiscal 2025 Results",
+      date: "April 08, 2025",
+      title: "Partnership Announcement: MovinWare Collaborates with Leading Cloud Providers",
       link: "#"
     }
   ]
@@ -51,7 +51,7 @@ export default function NewsSection() {
     <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
-          Accenture news
+          MovinWare updates
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -99,25 +99,21 @@ export default function NewsSection() {
           </button>
         </div>
 
-        {/* App Download Section */}
+        {/* Contact Section */}
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold text-white mb-4">
-            Like this content?
+            Ready to transform your operations?
           </h3>
           <p className="text-xl text-white mb-8">
-            Stay ahead of change by downloading the Accenture Foresight App.
+            Connect with our ERP experts and discover how MovinWare can accelerate your digital transformation.
           </p>
           <div className="flex justify-center space-x-4">
-            <img
-              src="https://ext.same-assets.com/2900598000/4220347965.png"
-              alt="Download on App Store"
-              className="h-12 cursor-pointer hover:opacity-80 transition-opacity"
-            />
-            <img
-              src="https://ext.same-assets.com/2900598000/4220347965.png"
-              alt="Get it on Google Play"
-              className="h-12 cursor-pointer hover:opacity-80 transition-opacity"
-            />
+            <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-colors">
+              Get Started Today
+            </button>
+            <button className="border border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-lg font-medium transition-colors">
+              Download Brochure
+            </button>
           </div>
         </div>
       </div>
