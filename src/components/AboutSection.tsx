@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function AboutSection() {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
   })
+  const { t, isRTL } = useLanguage()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,10 +44,10 @@ export default function AboutSection() {
           animate={inView ? "visible" : "hidden"}
         >
           {/* Founding Story */}
-          <div className="max-w-4xl mx-auto text-center mb-20">
+          <div className={`max-w-4xl mx-auto mb-20 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
               <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
-                Our Story
+                {t('about.badge')}
               </span>
             </motion.div>
             
@@ -53,10 +55,10 @@ export default function AboutSection() {
               className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8"
               variants={itemVariants}
             >
-              Born from Frustration,
+              {t('about.title')}
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                Built for Success
+                {t('about.titleHighlight')}
               </span>
             </motion.h2>
             
@@ -64,14 +66,14 @@ export default function AboutSection() {
               className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8"
               variants={itemVariants}
             >
-              MovinWare was conceived in 2025 by veteran ERP consultants who were frustrated by the industry's persistent challenges: "Forever Implementations," rigid systems that couldn't adapt, ineffective AI that promised much but delivered little, and widespread user abandonment that left businesses worse off than before.
+              {t('about.description1')}
             </motion.p>
             
             <motion.p 
               className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
               variants={itemVariants}
             >
-              This frustration inspired a new paradigm based on four core principles that guide everything we do.
+              {t('about.description2')}
             </motion.p>
           </div>
 
@@ -79,38 +81,38 @@ export default function AboutSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {[
               {
-                title: "Speed-to-Value",
-                description: "Deliver measurable business impact from day one, not months later",
+                titleKey: 'about.principles.speed.title',
+                descriptionKey: 'about.principles.speed.description',
                 icon: "⚡"
               },
               {
-                title: "Adaptive Intelligence",
-                description: "AI that learns and evolves with your business needs",
+                titleKey: 'about.principles.intelligence.title',
+                descriptionKey: 'about.principles.intelligence.description',
                 icon: "🧠"
               },
               {
-                title: "Adoption by Design",
-                description: "User-first interfaces that teams actually want to use",
+                titleKey: 'about.principles.adoption.title',
+                descriptionKey: 'about.principles.adoption.description',
                 icon: "👥"
               },
               {
-                title: "Growth Partnership",
-                description: "Success measured by your business growth, not our deployment",
+                titleKey: 'about.principles.growth.title',
+                descriptionKey: 'about.principles.growth.description',
                 icon: "📈"
               }
             ].map((principle, index) => (
               <motion.div
-                key={principle.title}
-                className="text-center p-6 rounded-lg bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+                key={principle.titleKey}
+                className={`p-6 rounded-lg bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 ${isRTL ? 'text-center' : 'text-center'}`}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="text-4xl mb-4">{principle.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {principle.title}
+                  {t(principle.titleKey)}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  {principle.description}
+                  {t(principle.descriptionKey)}
                 </p>
               </motion.div>
             ))}
@@ -119,45 +121,51 @@ export default function AboutSection() {
           {/* Vision & Mission */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
             <motion.div variants={itemVariants}>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Vision</h3>
-              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                Make intelligent business operations accessible to every organization, regardless of size or complexity.
+              <h3 className={`text-3xl font-bold text-gray-900 dark:text-white mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+                {t('about.vision.title')}
+              </h3>
+              <p className={`text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+                {t('about.vision.description')}
               </p>
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
+                <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-gray-700 dark:text-gray-300">Democratize enterprise-grade ERP</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t('about.vision.points.democratize')}</span>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-gray-700 dark:text-gray-300">Eliminate technology barriers</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t('about.vision.points.eliminate')}</span>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-gray-700 dark:text-gray-300">Enable global competitiveness</span>
+                  <span className="text-gray-700 dark:text-gray-300">{t('about.vision.points.enable')}</span>
                 </div>
               </div>
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Mission</h3>
-              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                Replace ERP frustration with fluid digital transformation through tailored solutions, built-in AI automation, and adoption-first design.
+              <h3 className={`text-3xl font-bold text-gray-900 dark:text-white mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+                {t('about.mission.title')}
+              </h3>
+              <p className={`text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+                {t('about.mission.description')}
               </p>
               <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-3">Success Metrics</h4>
+                <h4 className={`font-bold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  {t('about.mission.metrics.title')}
+                </h4>
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-purple-600">Days</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">to Value</div>
+                    <div className="text-2xl font-bold text-purple-600">{t('about.mission.metrics.days')}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">{t('about.mission.metrics.daysDesc')}</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-purple-600">Process</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Efficiency</div>
+                    <div className="text-2xl font-bold text-purple-600">{t('about.mission.metrics.process')}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">{t('about.mission.metrics.processDesc')}</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-purple-600">User</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Adoption</div>
+                    <div className="text-2xl font-bold text-purple-600">{t('about.mission.metrics.user')}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">{t('about.mission.metrics.userDesc')}</div>
                   </div>
                 </div>
               </div>
@@ -170,26 +178,26 @@ export default function AboutSection() {
             variants={itemVariants}
           >
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Local Roots, Global Outlook
+              {t('about.regional.title')}
             </h3>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              We combine deep regional understanding with global standards, delivering bilingual solutions that respect local business practices while enabling international growth.
+              {t('about.regional.description')}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
                 <div className="text-3xl mb-3">🌍</div>
-                <h4 className="font-bold mb-2">Regional Understanding</h4>
-                <p className="text-purple-100">Deep knowledge of MENA business culture and requirements</p>
+                <h4 className="font-bold mb-2">{t('about.regional.understanding.title')}</h4>
+                <p className="text-purple-100">{t('about.regional.understanding.description')}</p>
               </div>
               <div>
                 <div className="text-3xl mb-3">🗣️</div>
-                <h4 className="font-bold mb-2">Bilingual Delivery</h4>
-                <p className="text-purple-100">True Arabic/English parity with full RTL support</p>
+                <h4 className="font-bold mb-2">{t('about.regional.bilingual.title')}</h4>
+                <p className="text-purple-100">{t('about.regional.bilingual.description')}</p>
               </div>
               <div>
                 <div className="text-3xl mb-3">⭐</div>
-                <h4 className="font-bold mb-2">Global Standards</h4>
-                <p className="text-purple-100">International best practices and compliance</p>
+                <h4 className="font-bold mb-2">{t('about.regional.standards.title')}</h4>
+                <p className="text-purple-100">{t('about.regional.standards.description')}</p>
               </div>
             </div>
           </motion.div>

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import ClientBody from "./ClientBody";
+import "../globals.css";
+import ClientBody from "../ClientBody";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import StickyContactButton from "@/components/StickyContactButton";
+import { locales, type Locale } from "@/lib/i18n";
+import { notFound } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,6 +17,10 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = {
   title: "MovinWare | العمليات الذكية. التحول السلس.",
@@ -32,14 +38,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}) {
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(params.locale as Locale)) {
+    notFound();
+  }
+
+  const locale = params.locale as Locale;
+  const isRTL = locale === 'ar';
+
   return (
-    <html lang="ar" dir="rtl" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body suppressHydrationWarning className="antialiased font-arabic">
+    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body suppressHydrationWarning className={`antialiased ${isRTL ? 'font-arabic' : 'font-english'}`}>
         <ThemeProvider>
-          <LanguageProvider>
+          <LanguageProvider initialLocale={locale}>
             <ClientBody>{children}</ClientBody>
             <StickyContactButton />
           </LanguageProvider>

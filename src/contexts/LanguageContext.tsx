@@ -13,26 +13,22 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({ 
+  children, 
+  initialLocale 
+}: { 
+  children: React.ReactNode
+  initialLocale: Locale 
+}) {
   const router = useRouter()
   const pathname = usePathname()
-  const [locale, setLocale] = useState<Locale>('ar')
+  const [locale, setLocale] = useState<Locale>(initialLocale)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Extract locale from pathname
-    const pathSegments = pathname.split('/')
-    const currentLocale = pathSegments[1] as Locale
-    
-    // Set locale based on pathname, default to 'ar' if not found
-    if (currentLocale === 'ar' || currentLocale === 'en') {
-      setLocale(currentLocale)
-    } else {
-      setLocale('ar')
-    }
-    
+    setLocale(initialLocale)
     setMounted(true)
-  }, [pathname])
+  }, [initialLocale])
 
   useEffect(() => {
     if (mounted) {
@@ -41,8 +37,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.lang = locale
       
       // Update body classes for font handling
-      document.body.classList.toggle('font-arabic', locale === 'ar')
-      document.body.classList.toggle('font-english', locale === 'en')
+      document.body.classList.remove('font-arabic', 'font-english')
+      document.body.classList.add(locale === 'ar' ? 'font-arabic' : 'font-english')
+      
+      // Store locale preference
+      localStorage.setItem('preferred-locale', locale)
     }
   }, [locale, mounted])
 
@@ -51,18 +50,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const switchLanguage = (newLocale: Locale) => {
     // Get current path without locale prefix
     const pathSegments = pathname.split('/')
-    const currentLocale = pathSegments[1]
+    const currentPath = pathSegments.slice(2).join('/') // Remove empty string and current locale
     
-    let newPath: string
-    if (currentLocale === 'ar' || currentLocale === 'en') {
-      // Replace existing locale
-      pathSegments[1] = newLocale
-      newPath = pathSegments.join('/')
-    } else {
-      // Add locale prefix
-      newPath = `/${newLocale}${pathname}`
-    }
-    
+    // Navigate to new locale
+    const newPath = `/${newLocale}${currentPath ? `/${currentPath}` : ''}`
     router.push(newPath)
   }
 
