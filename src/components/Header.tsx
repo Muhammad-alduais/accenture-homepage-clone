@@ -60,35 +60,35 @@ export default function Header() {
 
   const navItems = [
     { 
-      key: 'nav.solutions', 
+      key: 'Solutions', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'nav.dropdown.solutions.erp', href: '#services' },
-        { key: 'nav.dropdown.solutions.ai', href: '#services' },
-        { key: 'nav.dropdown.solutions.integration', href: '#services' },
-        { key: 'nav.dropdown.solutions.migration', href: '#services' }
+        { key: 'ERP Systems', href: '#services' },
+        { key: 'AI & Automation', href: '#services' },
+        { key: 'System Integration', href: '#services' },
+        { key: 'Data Migration', href: '#services' }
       ]
     },
-    { key: 'nav.services', hasDropdown: false, href: '#services' },
+    { key: 'Services', hasDropdown: false, href: '#services' },
     { 
-      key: 'nav.industries', 
+      key: 'Industries', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'nav.dropdown.industries.education', href: '#industries' },
-        { key: 'nav.dropdown.industries.healthcare', href: '#industries' },
-        { key: 'nav.dropdown.industries.logistics', href: '#industries' },
-        { key: 'nav.dropdown.industries.retail', href: '#industries' },
-        { key: 'nav.dropdown.industries.manufacturing', href: '#industries' }
+        { key: 'Education', href: '#industries' },
+        { key: 'Healthcare', href: '#industries' },
+        { key: 'Logistics', href: '#industries' },
+        { key: 'Retail', href: '#industries' },
+        { key: 'Manufacturing', href: '#industries' }
       ]
     },
     { 
-      key: 'nav.about', 
+      key: 'About', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'nav.dropdown.about.company', href: '#about' },
-        { key: 'nav.dropdown.about.team', href: '#about' },
-        { key: 'nav.dropdown.about.careers', href: '#contact' },
-        { key: 'nav.dropdown.about.contact', href: '#contact' }
+        { key: 'Company', href: '#about' },
+        { key: 'Implementation', href: '#implementation' },
+        { key: 'Testimonials', href: '#testimonials' },
+        { key: 'Contact', href: '#contact' }
       ]
     }
   ]
@@ -110,7 +110,7 @@ export default function Header() {
     // Smooth scroll to section
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
@@ -121,7 +121,7 @@ export default function Header() {
     // Smooth scroll to section
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
@@ -215,7 +215,7 @@ export default function Header() {
                     }}
                   >
                     <span className={`relative z-10 font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
-                      {t(item.key)}
+                      {item.key}
                     </span>
                     {item.hasDropdown && (
                       <motion.div
@@ -246,7 +246,7 @@ export default function Header() {
                               className={`w-full block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
                               onClick={() => handleDropdownItemClick(dropdownItem.href)}
                             >
-                              {t(dropdownItem.key)}
+                              {dropdownItem.key}
                             </button>
                           ))}
                         </motion.div>
@@ -269,7 +269,7 @@ export default function Header() {
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
                 whileHover={{ scale: 1.1, rotate: 15 }}
                 whileTap={{ scale: 0.9 }}
-                aria-label={t('nav.search')}
+                aria-label="Search"
               >
                 <Search className="w-5 h-5 text-gray-700 dark:text-gray-200" />
               </motion.button>
@@ -344,7 +344,7 @@ export default function Header() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleNavClick('#contact')}
               >
-                <span>{t('nav.getStarted')}</span>
+                <span>Get Started</span>
                 <motion.svg 
                   className="w-4 h-4" 
                   fill="none" 
@@ -416,23 +416,60 @@ export default function Header() {
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  {navItems.map((item, index) => (
-                    <motion.div
-                      key={item.key}
-                      initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <button 
-                        className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
-                        whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => handleNavClick(item.href || '#')}
-                      >
-                        {t(item.key)}
-                      </button>
-                    </motion.div>
-                  ))}
+                  {/* Mobile Navigation Items */}
+                  <motion.button 
+                    className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                    whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavClick('#about')}
+                  >
+                    About
+                  </motion.button>
+
+                  <motion.button 
+                    className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                    whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavClick('#services')}
+                  >
+                    Services
+                  </motion.button>
+
+                  <motion.button 
+                    className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                    whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavClick('#industries')}
+                  >
+                    Industries
+                  </motion.button>
+
+                  <motion.button 
+                    className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                    whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavClick('#implementation')}
+                  >
+                    Implementation
+                  </motion.button>
+
+                  <motion.button 
+                    className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                    whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavClick('#testimonials')}
+                  >
+                    Testimonials
+                  </motion.button>
+
+                  <motion.button 
+                    className={`w-full px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                    whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleNavClick('#contact')}
+                  >
+                    Contact
+                  </motion.button>
                   
                   {/* Mobile CTA */}
                   <motion.button
@@ -447,7 +484,7 @@ export default function Header() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleNavClick('#contact')}
                   >
-                    {t('nav.getStarted')}
+                    Get Started
                   </motion.button>
                 </motion.div>
               </div>
