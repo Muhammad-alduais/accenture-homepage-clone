@@ -36,15 +36,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  // Access the locale directly from params (no await needed)
-  const { locale } = params;
+  // Await the params object before destructuring
+  const { locale } = await params;
   
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as Locale)) {
