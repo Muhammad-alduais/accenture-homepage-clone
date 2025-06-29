@@ -48,12 +48,12 @@ export default function GridBackground() {
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: ${theme === 'dark' ? '#1a1a1a' : '#f8f9fa'};
+          background-color: ${theme === 'dark' ? '#0a0a0a' : '#ffffff'};
           background-image: 
-            linear-gradient(${theme === 'dark' ? '#333' : '#e5e7eb'} 1px, transparent 1px),
-            linear-gradient(90deg, ${theme === 'dark' ? '#333' : '#e5e7eb'} 1px, transparent 1px);
+            linear-gradient(${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'} 1px, transparent 1px),
+            linear-gradient(90deg, ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'} 1px, transparent 1px);
           background-size: 50px 50px;
-          opacity: ${theme === 'dark' ? '0.8' : '0.6'};
+          opacity: 1;
           z-index: -2;
         }
 
@@ -66,8 +66,8 @@ export default function GridBackground() {
           background: radial-gradient(
             600px circle at var(--cursor-x) var(--cursor-y),
             ${theme === 'dark' 
-              ? 'rgba(59, 130, 246, 0.15)' 
-              : 'rgba(168, 85, 247, 0.1)'
+              ? 'rgba(59, 130, 246, 0.2)' 
+              : 'rgba(168, 85, 247, 0.15)'
             },
             transparent 40%
           );
@@ -80,15 +80,17 @@ export default function GridBackground() {
         @media (max-width: 768px) {
           .grid-background {
             background-size: 30px 30px;
-            opacity: ${theme === 'dark' ? '0.6' : '0.4'};
+            background-image: 
+              linear-gradient(${theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'} 1px, transparent 1px),
+              linear-gradient(90deg, ${theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'} 1px, transparent 1px);
           }
           
           .interactive-glow {
             background: radial-gradient(
               400px circle at var(--cursor-x) var(--cursor-y),
               ${theme === 'dark' 
-                ? 'rgba(59, 130, 246, 0.1)' 
-                : 'rgba(168, 85, 247, 0.08)'
+                ? 'rgba(59, 130, 246, 0.15)' 
+                : 'rgba(168, 85, 247, 0.12)'
               },
               transparent 40%
             );
@@ -101,8 +103,8 @@ export default function GridBackground() {
             background: radial-gradient(
               circle at 50% 50%,
               ${theme === 'dark' 
-                ? 'rgba(59, 130, 246, 0.08)' 
-                : 'rgba(168, 85, 247, 0.06)'
+                ? 'rgba(59, 130, 246, 0.12)' 
+                : 'rgba(168, 85, 247, 0.1)'
               },
               transparent 60%
             );
@@ -120,10 +122,16 @@ export default function GridBackground() {
         @media (prefers-contrast: high) {
           .grid-background {
             background-image: 
-              linear-gradient(${theme === 'dark' ? '#666' : '#999'} 1px, transparent 1px),
-              linear-gradient(90deg, ${theme === 'dark' ? '#666' : '#999'} 1px, transparent 1px);
-            opacity: 1;
+              linear-gradient(${theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'} 1px, transparent 1px),
+              linear-gradient(90deg, ${theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'} 1px, transparent 1px);
           }
+        }
+
+        /* Hover enhancement */
+        .grid-background:hover {
+          background-image: 
+            linear-gradient(${theme === 'dark' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'} 1px, transparent 1px),
+            linear-gradient(90deg, ${theme === 'dark' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'} 1px, transparent 1px);
         }
       `}</style>
     </div>
