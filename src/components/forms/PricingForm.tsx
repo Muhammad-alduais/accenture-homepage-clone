@@ -30,7 +30,7 @@ export default function PricingForm() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
   const { isRTL, locale } = useLanguage()
-  const { t, loading: translationsLoading } = useTranslations('forms', locale)
+  const { t, translations, loading: translationsLoading } = useTranslations('forms', locale)
 
   const initialFormData: PricingFormData = {
     companyName: '',
@@ -102,8 +102,15 @@ export default function PricingForm() {
 
   // Get options from translations
   const getOptions = (optionKey: string) => {
-    if (translationsLoading) return []
-    return t(`forms.pricing.options.${optionKey}`) || []
+    if (translationsLoading || !translations) return []
+    
+    try {
+      const options = translations?.forms?.pricing?.options?.[optionKey]
+      return Array.isArray(options) ? options : []
+    } catch (error) {
+      console.warn(`Failed to get options for ${optionKey}:`, error)
+      return []
+    }
   }
 
   const onSubmit = async (formData: PricingFormData) => {
