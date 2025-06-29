@@ -98,20 +98,25 @@ export default function ValueSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
+          {/* Animated Gradient Title */}
           <motion.h2 
-            className="text-6xl md:text-8xl font-bold text-gray-900 dark:text-white mb-8"
+            className="value-title flex justify-center text-center flex-wrap text-6xl md:text-8xl font-bold mb-8"
             variants={titleVariants}
+            aria-label={t('value.title')}
           >
-            <motion.span
-              className="inline-block"
-              whileHover={{ 
-                scale: 1.05,
-                color: "#A100FF",
-                transition: { duration: 0.3 }
-              }}
+            <span 
+              className="animated-gradient-text-background animated-gradient-text-background-3"
+              style={{
+                '--content': `'${t('value.title')}'`,
+                '--padding': '0.05em',
+                '--start-color': '#ff4d4d',
+                '--end-color': '#f9cb28'
+              } as React.CSSProperties}
             >
-              {t('value.title')}
-            </motion.span>
+              <span className="animated-gradient-text-foreground animated-gradient-text-foreground-3">
+                {t('value.title')}
+              </span>
+            </span>
           </motion.h2>
           
           <motion.p 
@@ -160,6 +165,89 @@ export default function ValueSection() {
           </motion.button>
         </motion.div>
       </div>
+
+      {/* Value Section Animated Gradient Text Styles */}
+      <style jsx>{`
+        .value-title {
+          letter-spacing: -0.06em;
+          margin: 0 0 40px;
+        }
+
+        .animated-gradient-text-background {
+          position: relative;
+          display: block;
+          -webkit-user-select: none;
+          user-select: none;
+        }
+
+        .animated-gradient-text-background-3:before {
+          animation: fade-background-3 8s infinite;
+        }
+
+        .animated-gradient-text-foreground-3 {
+          animation: fade-foreground-3 8s infinite;
+        }
+
+        .animated-gradient-text-foreground {
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
+          position: relative;
+          z-index: 1;
+        }
+
+        .animated-gradient-text-background:before {
+          content: var(--content);
+          position: absolute;
+          display: block;
+          width: 100%;
+          text-align: center;
+          margin-bottom: -10px;
+          background: linear-gradient(180deg, #fff, hsla(0,0%,100%,.75));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 0;
+        }
+
+        .dark .animated-gradient-text-background:before {
+          background: linear-gradient(180deg, #000, hsla(0,0%,0%,.75));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes fade-foreground-3 {
+          0%, 50%, 100% { opacity: 0; }
+          66.667%, 83.333% { opacity: 1; }
+        }
+
+        @keyframes fade-background-3 {
+          0%, 58.333%, 91.667%, 100% { opacity: 1; }
+          66.667%, 83.333% { opacity: 0; }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .value-title {
+          direction: rtl;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .value-title {
+            font-size: 4rem;
+            line-height: 1.1;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .value-title {
+            font-size: 3rem;
+          }
+        }
+      `}</style>
     </section>
   )
 }

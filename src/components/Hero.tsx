@@ -77,18 +77,38 @@ export default function Hero() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
+        {/* Animated Gradient Hero Title */}
         <motion.h1 
-          className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
+          className="hero-title flex justify-center text-center flex-wrap text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
           variants={itemVariants}
+          aria-label={`${t('hero.title')}. ${t('hero.subtitle')}.`}
         >
-          {t('hero.title')}
-          <br />
-          <motion.span 
-            className="italic bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent"
-            variants={itemVariants}
+          <span 
+            className="animated-gradient-text-background animated-gradient-text-background-1"
+            style={{
+              '--content': `'${t('hero.title')}'`,
+              '--padding': '0.05em',
+              '--start-color': '#007cf0',
+              '--end-color': '#00dfd8'
+            } as React.CSSProperties}
           >
-            {t('hero.subtitle')}
-          </motion.span>
+            <span className="animated-gradient-text-foreground animated-gradient-text-foreground-1">
+              {t('hero.title')}
+            </span>
+          </span>
+          <span 
+            className="animated-gradient-text-background animated-gradient-text-background-2"
+            style={{
+              '--content': `'${t('hero.subtitle')}'`,
+              '--padding': '0.05em',
+              '--start-color': '#7928ca',
+              '--end-color': '#ff0080'
+            } as React.CSSProperties}
+          >
+            <span className={`${isRTL ? 'mr-4' : 'mx-4'} animated-gradient-text-foreground animated-gradient-text-foreground-2`}>
+              {t('hero.subtitle')}
+            </span>
+          </span>
         </motion.h1>
 
         <motion.p 
@@ -117,6 +137,111 @@ export default function Hero() {
           </div>
         </motion.div>
       </motion.div>
+
+      {/* Animated Gradient Text Styles */}
+      <style jsx>{`
+        .hero-title {
+          letter-spacing: -0.06em;
+          margin: 0 0 40px;
+        }
+
+        .animated-gradient-text-background {
+          position: relative;
+          display: block;
+          -webkit-user-select: none;
+          user-select: none;
+        }
+
+        .animated-gradient-text-background-1:before {
+          animation: fade-background-1 8s infinite;
+        }
+
+        .animated-gradient-text-foreground-1 {
+          animation: fade-foreground-1 8s infinite;
+        }
+
+        .animated-gradient-text-background-2:before {
+          animation: fade-background-2 8s infinite;
+        }
+
+        .animated-gradient-text-foreground-2 {
+          animation: fade-foreground-2 8s infinite;
+        }
+
+        .animated-gradient-text-foreground {
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
+          position: relative;
+          z-index: 1;
+        }
+
+        .animated-gradient-text-background:before {
+          content: var(--content);
+          position: absolute;
+          display: block;
+          width: 100%;
+          text-align: center;
+          margin-bottom: -10px;
+          background: linear-gradient(180deg, #fff, hsla(0,0%,100%,.75));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 0;
+        }
+
+        .dark .animated-gradient-text-background:before {
+          background: linear-gradient(180deg, #000, hsla(0,0%,0%,.75));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes fade-foreground-1 {
+          0%, 16.667%, 100% { opacity: 1; }
+          33.333%, 83.333% { opacity: 0; }
+        }
+
+        @keyframes fade-background-1 {
+          0%, 16.667%, 100% { opacity: 0; }
+          25%, 91.667% { opacity: 1; }
+        }
+
+        @keyframes fade-foreground-2 {
+          0%, 100% { opacity: 0; }
+          33.333%, 50% { opacity: 1; }
+          16.667%, 66.667% { opacity: 0; }
+        }
+
+        @keyframes fade-background-2 {
+          0%, 100% { opacity: 1; }
+          33.333%, 50% { opacity: 0; }
+          25%, 58.333% { opacity: 1; }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .hero-title {
+          direction: rtl;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 3rem;
+            line-height: 1.1;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+        }
+      `}</style>
     </section>
   )
 }
