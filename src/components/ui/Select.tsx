@@ -195,7 +195,7 @@ export default function Select({
           <div className="flex-1 min-w-0">
             {multiple && Array.isArray(value) && value.length > 0 ? (
               <div className="flex flex-wrap gap-1">
-                {selectedOptions.slice(0, 3).map((option) => (
+                {(selectedOptions as SelectOption[]).slice(0, 3).map((option) => (
                   <span
                     key={option.value}
                     className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-brand-primary dark:text-brand-accent rounded text-sm"
