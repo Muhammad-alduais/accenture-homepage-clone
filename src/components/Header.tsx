@@ -217,7 +217,7 @@ export default function Header() {
             >
               <a 
                 href={`/${locale}`}
-                className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
+                className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}
                 aria-label={t('nav.homeLink')}
               >
                 <motion.div 
@@ -232,16 +232,20 @@ export default function Header() {
                   <Image
                     src="/LOGO-removebg-preview.png"
                     alt="MovinWare Logo"
-                    width={40}
-                    height={40}
+                    width={56}
+                    height={56}
                     className="object-contain"
+                    style={{
+                      filter: 'brightness(0) saturate(100%) invert(29%) sepia(89%) saturate(1729%) hue-rotate(244deg) brightness(95%) contrast(91%)'
+                    }}
                     priority
                   />
                 </motion.div>
                 <motion.span 
-                  className="text-white font-bold text-xl"
+                  className="text-white font-logo font-bold text-2xl"
                   style={{
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                    color: '#4942E4'
                   }}
                   initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   animate={{ opacity: 1, x: 0 }}

@@ -108,6 +108,7 @@ export default {
       fontFamily: {
         'arabic': ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
         'english': ['Inter', 'system-ui', 'sans-serif'],
+        'logo': ['Glacial Indifference', 'Inter', 'system-ui', 'sans-serif'],
       },
       spacing: {
         'rtl': '0 0 0 auto',
