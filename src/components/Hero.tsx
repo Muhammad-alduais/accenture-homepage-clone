@@ -104,25 +104,6 @@ export default function Hero() {
         >
           {t('hero.description')}
         </motion.p>
-
-        {/* Key Benefits */}
-        <motion.div 
-          className="relative z-30 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-          variants={itemVariants}
-        >
-          <div className="text-center">
-            <div className="text-3xl font-bold text-brand-primary mb-2 arabic-numbers">50%</div>
-            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-brand-primary mb-2 arabic-numbers">87%</div>
-            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-brand-primary mb-2">24/7</div>
-            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* Custom Animated Gradient Text Styles */}
