@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { ArrowRight, Play, Sparkles } from 'lucide-react'
+import GridBackground from './GridBackground'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -40,158 +40,300 @@ export default function Hero() {
     }
   }
 
-  const floatingVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
+  // Get animated texts based on language
+  const getAnimatedTexts = () => {
+    if (isRTL) {
+      // Arabic: Single horizontal text with gradient animation
+      return [
+        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }
+      ]
+    } else {
+      // English: "We" + three action words vertically
+      return [
+        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }, // "We"
+        { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }, // "Innovate"
+        { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }, // "Develop"
+        { text: t('hero.quaternary'), colorStart: '#00c851', colorEnd: '#007e33' } // "Simplify"
+      ]
     }
   }
 
+  const animatedTexts = getAnimatedTexts()
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
-        <motion.div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-huly-blue-400/20 to-huly-purple-400/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-huly-purple-400/20 to-huly-blue-400/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.5, 0.3, 0.5],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-        
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
-      </div>
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
+      {/* Grid Background */}
+      <GridBackground />
 
       {/* Content */}
       <motion.div 
         ref={ref}
-        className="relative z-20 px-4 max-w-7xl mx-auto text-center"
+        className="relative z-20 px-4 max-w-6xl mx-auto text-center"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {/* Badge */}
-        <motion.div 
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-8"
-          variants={itemVariants}
-        >
-          <Sparkles className="w-4 h-4" />
-          <span className="text-sm font-medium">AI-Powered ERP Platform</span>
-        </motion.div>
-
-        {/* Main Heading */}
+        {/* Custom Animated Gradient Hero Title */}
         <motion.h1 
-          className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8"
+          className={`hero-title ${
+            isRTL 
+              ? 'flex justify-center items-center text-center' 
+              : 'flex flex-col items-center justify-center text-center'
+          } font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl`}
           variants={itemVariants}
+          aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
         >
-          <span className="block text-foreground">
-            {isRTL ? 'نُبتكر. نُطوّر.' : 'We Innovate.'}
-          </span>
-          <span className="block text-gradient-blue">
-            {isRTL ? 'نُبسّط.' : 'We Develop.'}
-          </span>
-          <span className="block text-gradient-purple">
-            {isRTL ? '' : 'We Simplify.'}
-          </span>
+          {animatedTexts.map((item, index) => (
+            <span 
+              key={index}
+              className={`animated-text text-${index + 1} ${isRTL ? 'inline-block' : 'block'} ${isRTL && index > 0 ? 'mr-4' : ''}`}
+              style={{
+                '--content': `'${item.text}'`,
+                '--start-color': item.colorStart,
+                '--end-color': item.colorEnd
+              } as React.CSSProperties}
+            >
+              <span className="foreground">
+                {item.text}
+              </span>
+            </span>
+          ))}
         </motion.h1>
 
-        {/* Description */}
         <motion.p 
-          className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-200 mb-10 max-w-4xl mx-auto leading-relaxed"
           variants={itemVariants}
         >
           {t('hero.description')}
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* Key Benefits */}
         <motion.div 
-          className={`flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
-          variants={itemVariants}
-        >
-          <motion.button
-            className="btn-primary px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-2 shadow-huly-lg"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span>Get Started Free</span>
-            <ArrowRight className="w-5 h-5" />
-          </motion.button>
-          
-          <motion.button
-            className="btn-ghost px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-2 border border-border"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Play className="w-5 h-5" />
-            <span>Watch Demo</span>
-          </motion.button>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="relative z-30 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           variants={itemVariants}
         >
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">50%</div>
-            <div className="text-muted-foreground">{t('hero.metrics.implementation')}</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">50%</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">87%</div>
-            <div className="text-muted-foreground">{t('hero.metrics.adoption')}</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">87%</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">24/7</div>
-            <div className="text-muted-foreground">{t('hero.metrics.support')}</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
           </div>
         </motion.div>
-
-        {/* Floating Elements */}
-        <motion.div 
-          className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-huly-blue-400 to-huly-blue-600 rounded-2xl opacity-20"
-          variants={floatingVariants}
-          animate="animate"
-        />
-        <motion.div 
-          className="absolute bottom-20 right-10 w-16 h-16 bg-gradient-to-r from-huly-purple-400 to-huly-purple-600 rounded-full opacity-20"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 1 }}
-        />
-        <motion.div 
-          className="absolute top-1/2 right-20 w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg opacity-20"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 2 }}
-        />
       </motion.div>
 
-      {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* Custom Animated Gradient Text Styles */}
+      <style jsx>{`
+        .hero-title {
+          letter-spacing: -0.06em;
+          margin: 0 0 40px;
+          line-height: 1.2;
+          font-weight: 800;
+        }
+
+        .animated-text {
+          position: relative;
+          display: ${isRTL ? 'inline-block' : 'block'};
+          -webkit-user-select: none;
+          user-select: none;
+          margin-bottom: ${isRTL ? '0' : '0.1em'};
+          ${isRTL ? 'margin-right: 0.3em;' : ''}
+        }
+
+        .animated-text:before {
+          content: var(--content);
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          background: linear-gradient(180deg, #fff, hsla(0,0%,100%,0.75));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 0;
+        }
+
+        .dark .animated-text:before {
+          background: linear-gradient(180deg, #000, hsla(0,0%,0%,0.75));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .foreground {
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          position: relative;
+          z-index: 1;
+          background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
+        }
+
+        ${isRTL ? `
+        /* Arabic - Single horizontal text with gradient animation */
+        .text-1:before {
+          animation: fade-bg-ar 6s infinite;
+        }
+        .text-1 .foreground {
+          animation: fade-fg-ar 6s infinite;
+        }
+
+        @keyframes fade-fg-ar {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+
+        @keyframes fade-bg-ar {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.3; }
+        }
+        ` : `
+        /* English - "We" + three action words vertically */
+        .text-1:before {
+          animation: fade-bg-en-1 12s infinite;
+        }
+        .text-1 .foreground {
+          animation: fade-fg-en-1 12s infinite;
+        }
+
+        .text-2:before {
+          animation: fade-bg-en-2 12s infinite;
+        }
+        .text-2 .foreground {
+          animation: fade-fg-en-2 12s infinite;
+        }
+
+        .text-3:before {
+          animation: fade-bg-en-3 12s infinite;
+        }
+        .text-3 .foreground {
+          animation: fade-fg-en-3 12s infinite;
+        }
+
+        .text-4:before {
+          animation: fade-bg-en-4 12s infinite;
+        }
+        .text-4 .foreground {
+          animation: fade-fg-en-4 12s infinite;
+        }
+
+        /* "We" - Always visible */
+        @keyframes fade-fg-en-1 {
+          0%, 100% { opacity: 1; }
+        }
+
+        @keyframes fade-bg-en-1 {
+          0%, 100% { opacity: 0; }
+        }
+
+        /* "Innovate" */
+        @keyframes fade-fg-en-2 {
+          0%, 20%, 100% { opacity: 1; }
+          35%, 85% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-en-2 {
+          0%, 20%, 100% { opacity: 0; }
+          30%, 90% { opacity: 1; }
+        }
+
+        /* "Develop" */
+        @keyframes fade-fg-en-3 {
+          0%, 30% { opacity: 0; }
+          40%, 60% { opacity: 1; }
+          70%, 100% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-en-3 {
+          0%, 35% { opacity: 1; }
+          40%, 60% { opacity: 0; }
+          65%, 100% { opacity: 1; }
+        }
+
+        /* "Simplify" */
+        @keyframes fade-fg-en-4 {
+          0%, 65% { opacity: 0; }
+          75%, 95% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-en-4 {
+          0%, 70% { opacity: 1; }
+          75%, 95% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+        `}
+
+        /* RTL Support */
+        [dir="rtl"] .hero-title {
+          direction: rtl;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 3rem;
+            line-height: 1.1;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2.5rem;
+          }
+          
+          .animated-text {
+            margin-bottom: 0.05em;
+          }
+        }
+
+        /* Enhanced visual effects */
+        @media (prefers-reduced-motion: no-preference) {
+          .animated-text {
+            transition: transform 0.3s ease;
+          }
+          
+          .animated-text:hover {
+            transform: scale(1.02);
+          }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+          .animated-text:before {
+            background: currentColor;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .text-1:before,
+          .text-1 .foreground,
+          .text-2:before,
+          .text-2 .foreground,
+          .text-3:before,
+          .text-3 .foreground,
+          .text-4:before,
+          .text-4 .foreground {
+            animation: none;
+          }
+          
+          .foreground {
+            opacity: 1;
+          }
+          
+          .animated-text:before {
+            opacity: 0;
+          }
+        }
+      `}</style>
     </section>
   )
 }
