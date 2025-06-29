@@ -5,6 +5,7 @@ import { ChevronDown, Globe, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import ThemeToggle from './ThemeToggle'
+import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -208,7 +209,7 @@ export default function Header() {
           aria-label={t('nav.mainNavigation')}
         >
           <div className={`flex items-center justify-between h-16 px-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            {/* Logo with Brand Colors */}
+            {/* Simple Logo */}
             <motion.div 
               className="flex items-center"
               whileHover={{ scale: 1.05 }}
@@ -224,21 +225,17 @@ export default function Header() {
                   variants={logoVariants}
                   aria-hidden="true"
                 >
-                  {/* Custom SVG Logo with Brand Colors */}
-                  <svg width="80" height="80" viewBox="0 0 100 100" fill="none" className="object-contain">
-                    {/* Main Logo Shape with Brand Primary Color */}
-                    <path 
-                      d="M20 15L50 75L80 15H65L50 45L35 15H20Z" 
-                      fill="#4942E4"
-                    />
-                    {/* Accent Elements with Brand Accent Color */}
-                    <circle cx="25" cy="20" r="3" fill="#00D1B2" />
-                    <circle cx="75" cy="20" r="3" fill="#00D1B2" />
-                    <path 
-                      d="M45 50L55 50L52.5 55L45 50Z" 
-                      fill="#00D1B2"
-                    />
-                  </svg>
+                  <Image
+                    src="/LOGO-removebg-preview.png"
+                    alt="MovinWare Logo"
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                    style={{
+                      filter: 'brightness(0) saturate(100%) invert(29%) sepia(89%) saturate(1729%) hue-rotate(244deg) brightness(95%) contrast(91%)'
+                    }}
+                    priority
+                  />
                 </motion.div>
                 <motion.span 
                   className="text-white font-logo font-bold text-xl"
