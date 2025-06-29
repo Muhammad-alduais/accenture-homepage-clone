@@ -68,7 +68,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div 
         ref={ref}
-        className="relative z-20 px-4 max-w-6xl mx-auto text-center"
+        className="relative z-10 px-4 max-w-6xl mx-auto text-center"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
@@ -109,7 +109,7 @@ export default function Hero() {
 
         {/* Key Benefits */}
         <motion.div 
-          className="relative z-30 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="relative z-20 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           variants={itemVariants}
         >
           <div className="text-center">
