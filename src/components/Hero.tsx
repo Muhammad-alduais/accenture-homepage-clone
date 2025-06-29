@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import BlackHoleBackground from './BlackHoleBackground'
+import InteractiveGridBackground from './InteractiveGridBackground'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -61,9 +61,9 @@ export default function Hero() {
   const animatedTexts = getAnimatedTexts()
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Black Hole Background */}
-      <BlackHoleBackground />
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
+      {/* Interactive Grid Background */}
+      <InteractiveGridBackground />
 
       {/* Content */}
       <motion.div 
@@ -79,11 +79,11 @@ export default function Hero() {
             isRTL 
               ? 'flex justify-center items-center text-center' 
               : 'flex flex-col items-center justify-center text-center'
-          } font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl text-white`}
+          } font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl text-gray-900 dark:text-white`}
           variants={itemVariants}
           aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
           style={{
-            textShadow: '0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(168, 85, 247, 0.3)'
+            textShadow: '0 2px 20px rgba(168, 85, 247, 0.3)'
           }}
         >
           {animatedTexts.map((item, index) => (
@@ -104,10 +104,10 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p 
-          className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-10 max-w-4xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-200 mb-10 max-w-4xl mx-auto leading-relaxed"
           variants={itemVariants}
           style={{
-            textShadow: '0 2px 10px rgba(0, 0, 0, 0.7)'
+            textShadow: '0 1px 10px rgba(0, 0, 0, 0.1)'
           }}
         >
           {t('hero.description')}
@@ -119,16 +119,16 @@ export default function Hero() {
           variants={itemVariants}
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2 arabic-numbers" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.6)' }}>50%</div>
-            <div className="text-gray-300">{t('hero.metrics.implementation')}</div>
+            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 arabic-numbers" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}>50%</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2 arabic-numbers" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.6)' }}>87%</div>
-            <div className="text-gray-300">{t('hero.metrics.adoption')}</div>
+            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 arabic-numbers" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}>87%</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.6)' }}>24/7</div>
-            <div className="text-gray-300">{t('hero.metrics.support')}</div>
+            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}>24/7</div>
+            <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
           </div>
         </motion.div>
       </motion.div>
@@ -156,13 +156,19 @@ export default function Hero() {
           position: absolute;
           width: 100%;
           text-align: center;
-          background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+          background: linear-gradient(180deg, #fff, hsla(0,0%,100%,0.75));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           top: 0;
           bottom: 0;
           left: 0;
           z-index: 0;
+        }
+
+        .dark .animated-text:before {
+          background: linear-gradient(180deg, #000, hsla(0,0%,0%,0.75));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
 
         .foreground {
@@ -172,7 +178,7 @@ export default function Hero() {
           position: relative;
           z-index: 1;
           background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
-          filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+          filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
         }
 
         ${isRTL ? `
