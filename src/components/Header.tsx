@@ -5,6 +5,7 @@ import { ChevronDown, Globe, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import ThemeToggle from './ThemeToggle'
+import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -220,7 +221,7 @@ export default function Header() {
                 aria-label={t('nav.homeLink')}
               >
                 <motion.div 
-                  className="text-brand-primary text-2xl font-bold"
+                  className="relative"
                   variants={logoVariants}
                   whileHover={{ 
                     rotate: 360,
@@ -228,15 +229,14 @@ export default function Header() {
                   }}
                   aria-hidden="true"
                 >
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <motion.path 
-                      d="M20 5L35 35H5L20 5Z" 
-                      fill="#4942E4"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                    />
-                  </svg>
+                  <Image
+                    src="/LOGO-removebg-preview.png"
+                    alt="MovinWare Logo"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                    priority
+                  />
                 </motion.div>
                 <motion.span 
                   className="text-white font-bold text-xl"
