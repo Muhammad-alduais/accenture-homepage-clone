@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { ChevronDown, Search, Globe, Menu, X } from 'lucide-react'
+import { ChevronDown, Globe, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePathname } from 'next/navigation'
@@ -276,6 +276,12 @@ export default function Header() {
                         onClick={() => {
                           if (item.hasDropdown) {
                             setActiveDropdown(activeDropdown === item.key ? null : item.key)
+                          } else {
+                            // Navigate to section for non-dropdown items
+                            const element = document.querySelector(item.href)
+                            if (element) {
+                              element.scrollIntoView({ behavior: 'smooth' })
+                            }
                           }
                         }}
                         onKeyDown={(e) => handleKeyNavigation(e as any, index)}
@@ -341,16 +347,6 @@ export default function Header() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              {/* Search Button */}
-              <motion.button
-                className="p-2 rounded-full hover:bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
-                whileHover={{ scale: 1.1, rotate: 15 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label={t('nav.search')}
-              >
-                <Search className="w-5 h-5 text-white/90 hover:text-white transition-colors duration-300" style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }} />
-              </motion.button>
-
               {/* Language Selector */}
               <div className="relative">
                 <motion.button 
@@ -417,29 +413,6 @@ export default function Header() {
               
               {/* Theme Toggle */}
               <ThemeToggle />
-
-              {/* CTA Button - Hidden on mobile */}
-              <motion.a
-                href="#contact"
-                className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent shadow-lg"
-                whileHover={{ 
-                  scale: 1.05
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>{t('nav.getStarted')}</span>
-                <motion.svg 
-                  className="w-4 h-4" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                  whileHover={{ x: isRTL ? -3 : 3 }}
-                  transition={{ duration: 0.2 }}
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
-                </motion.svg>
-              </motion.a>
             </motion.div>
 
             {/* Mobile menu button */}
@@ -512,8 +485,18 @@ export default function Header() {
                     <ul className="space-y-2" role="menu">
                       {navItems.map((item, index) => (
                         <li key={item.key} role="none">
-                          <motion.a 
-                            href={item.href}
+                          <motion.button 
+                            onClick={() => {
+                              if (item.hasDropdown) {
+                                setActiveDropdown(activeDropdown === item.key ? null : item.key)
+                              } else {
+                                const element = document.querySelector(item.href)
+                                if (element) {
+                                  element.scrollIntoView({ behavior: 'smooth' })
+                                }
+                                setIsMenuOpen(false)
+                              }
+                            }}
                             className={`block w-full px-4 py-3 rounded-xl transition-all duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${
                               isCurrentPage(item.href)
                                 ? 'text-white bg-white/20'
@@ -527,30 +510,54 @@ export default function Header() {
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            onClick={() => setIsMenuOpen(false)}
                             role="menuitem"
                             aria-current={isCurrentPage(item.href) ? "page" : undefined}
                           >
-                            {t(item.key)}
-                          </motion.a>
+                            <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
+                              <span>{t(item.key)}</span>
+                              {item.hasDropdown && (
+                                <motion.div
+                                  animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <ChevronDown className="w-4 h-4" />
+                                </motion.div>
+                              )}
+                            </div>
+                          </motion.button>
+                          
+                          {/* Mobile Dropdown */}
+                          {item.hasDropdown && (
+                            <AnimatePresence>
+                              {activeDropdown === item.key && (
+                                <motion.div
+                                  className="mt-2 ml-4 space-y-1"
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: 'auto' }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  {item.dropdownItems?.map((dropdownItem) => (
+                                    <a
+                                      key={dropdownItem.key}
+                                      href={dropdownItem.href}
+                                      className={`block px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
+                                      onClick={() => {
+                                        setIsMenuOpen(false)
+                                        setActiveDropdown(null)
+                                      }}
+                                    >
+                                      {t(dropdownItem.key)}
+                                    </a>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          )}
                         </li>
                       ))}
                     </ul>
                   </nav>
-                  
-                  {/* Mobile CTA */}
-                  <motion.a
-                    href="#contact"
-                    className="block w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 border border-white/10 mt-4 text-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent shadow-lg"
-                    initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {t('nav.getStarted')}
-                  </motion.a>
                 </motion.div>
               </div>
             </motion.div>
