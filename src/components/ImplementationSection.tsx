@@ -223,7 +223,9 @@ export default function ImplementationSection() {
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Activities:</h4>
+                          <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
+                            {t('testimonials.labels.activities')}:
+                          </h4>
                           <ul className="space-y-1">
                             {phase.activitiesKeys.map((activityKey, idx) => (
                               <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
@@ -235,7 +237,9 @@ export default function ImplementationSection() {
                         </div>
                         
                         <div>
-                          <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Deliverables:</h4>
+                          <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
+                            {t('testimonials.labels.deliverables')}:
+                          </h4>
                           <ul className="space-y-1">
                             {phase.deliverablesKeys.map((deliverableKey, idx) => (
                               <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
