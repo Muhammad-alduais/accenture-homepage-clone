@@ -10,6 +10,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   
   const { locale, t, isRTL, switchLanguage } = useLanguage()
   const navRef = useRef<HTMLElement>(null)
@@ -28,6 +29,7 @@ export default function Header() {
       if (e.key === 'Escape') {
         setIsMenuOpen(false)
         setShowLanguageMenu(false)
+        setActiveDropdown(null)
       }
     }
 
@@ -49,6 +51,7 @@ export default function Header() {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setShowLanguageMenu(false)
+        setActiveDropdown(null)
       }
     }
 
@@ -84,10 +87,41 @@ export default function Header() {
   }
 
   const navItems = [
-    { key: 'nav.solutions', href: '#services', hasDropdown: true },
+    { 
+      key: 'nav.solutions', 
+      href: '#services', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'solutions.accounting.title', href: '#services' },
+        { key: 'solutions.hr.title', href: '#services' },
+        { key: 'solutions.sales.title', href: '#services' },
+        { key: 'solutions.inventory.title', href: '#services' },
+        { key: 'solutions.manufacturing.title', href: '#services' },
+        { key: 'solutions.assets.title', href: '#services' }
+      ]
+    },
     { key: 'nav.services', href: '#services', hasDropdown: false },
-    { key: 'nav.industries', href: '#industries', hasDropdown: true },
-    { key: 'nav.about', href: '#about', hasDropdown: true },
+    { 
+      key: 'nav.industries', 
+      href: '#industries', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'industries.education.title', href: '#industries' },
+        { key: 'industries.logistics.title', href: '#industries' },
+        { key: 'industries.retail.title', href: '#industries' },
+        { key: 'industries.manufacturing.title', href: '#industries' }
+      ]
+    },
+    { 
+      key: 'nav.about', 
+      href: '#about', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'about.vision.title', href: '#about' },
+        { key: 'about.mission.title', href: '#about' },
+        { key: 'implementation.title', href: '#about' }
+      ]
+    },
     { key: 'nav.contact', href: '#contact', hasDropdown: false }
   ]
 
@@ -97,6 +131,11 @@ export default function Header() {
       element.scrollIntoView({ behavior: 'smooth' })
     }
     setIsMenuOpen(false)
+    setActiveDropdown(null)
+  }
+
+  const handleDropdownToggle = (itemKey: string) => {
+    setActiveDropdown(activeDropdown === itemKey ? null : itemKey)
   }
 
   return (
@@ -195,7 +234,13 @@ export default function Header() {
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
                   <motion.button
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={() => {
+                      if (item.hasDropdown) {
+                        handleDropdownToggle(item.key)
+                      } else {
+                        handleNavClick(item.href)
+                      }
+                    }}
                     className="flex items-center space-x-1 px-4 py-2 rounded-full text-white/90 hover:text-white transition-all duration-300 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
                     style={{
                       textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
@@ -212,14 +257,38 @@ export default function Header() {
                     {item.hasDropdown && (
                       <motion.div
                         className="relative z-10"
-                        animate={{ rotate: 0 }}
-                        whileHover={{ rotate: 180 }}
+                        animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
                         <ChevronDown className="w-4 h-4" />
                       </motion.div>
                     )}
                   </motion.button>
+
+                  {/* Dropdown Menu */}
+                  {item.hasDropdown && (
+                    <AnimatePresence>
+                      {activeDropdown === item.key && (
+                        <motion.div
+                          className={`absolute top-full mt-2 ${isRTL ? 'right-0' : 'left-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[200px]`}
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {item.dropdownItems?.map((dropdownItem) => (
+                            <button
+                              key={dropdownItem.key}
+                              className={`w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}
+                              onClick={() => handleNavClick(dropdownItem.href)}
+                            >
+                              {t(dropdownItem.key)}
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
                 </motion.div>
               ))}
             </nav>
@@ -370,21 +439,57 @@ export default function Header() {
                   transition={{ delay: 0.1 }}
                 >
                   {navItems.map((item, index) => (
-                    <motion.button 
-                      key={item.key}
-                      onClick={() => handleNavClick(item.href)}
-                      className={`w-full px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium focus:outline-none focus:bg-white/10 ${isRTL ? 'text-right' : 'text-left'}`}
-                      style={{
-                        textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                      }}
-                      initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {t(item.key)}
-                    </motion.button>
+                    <div key={item.key}>
+                      <motion.button 
+                        onClick={() => {
+                          if (item.hasDropdown) {
+                            handleDropdownToggle(item.key)
+                          } else {
+                            handleNavClick(item.href)
+                          }
+                        }}
+                        className={`w-full px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium focus:outline-none focus:bg-white/10 flex items-center justify-between ${isRTL ? 'text-right' : 'text-left'}`}
+                        style={{
+                          textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
+                        }}
+                        initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span>{t(item.key)}</span>
+                        {item.hasDropdown && (
+                          <motion.div
+                            animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown className="w-4 h-4" />
+                          </motion.div>
+                        )}
+                      </motion.button>
+                      
+                      {/* Mobile Dropdown */}
+                      {item.hasDropdown && activeDropdown === item.key && (
+                        <motion.div
+                          className="ml-4 mt-2 space-y-1"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {item.dropdownItems?.map((dropdownItem) => (
+                            <button
+                              key={dropdownItem.key}
+                              className={`w-full px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
+                              onClick={() => handleNavClick(dropdownItem.href)}
+                            >
+                              {t(dropdownItem.key)}
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </div>
                   ))}
                 </motion.div>
               </div>
