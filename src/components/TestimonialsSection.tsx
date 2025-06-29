@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
+import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function TestimonialsSection() {
@@ -103,7 +104,7 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-900">
+    <section className="py-24 bg-gray-50 dark:bg-gray-900" aria-labelledby="testimonials-heading">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -111,7 +112,7 @@ export default function TestimonialsSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
+          <header className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
               <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
                 {t('testimonials.badge')}
@@ -119,6 +120,7 @@ export default function TestimonialsSection() {
             </motion.div>
             
             <motion.h2 
+              id="testimonials-heading"
               className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
             >
@@ -135,30 +137,32 @@ export default function TestimonialsSection() {
             >
               {t('testimonials.description')}
             </motion.p>
-          </div>
+          </header>
 
           {/* Case Study Navigation */}
-          <motion.div 
+          <motion.nav 
             className="flex flex-wrap justify-center mb-12"
             variants={itemVariants}
+            aria-label="Case study navigation"
           >
             {caseStudies.map((study, index) => (
               <button
                 key={study.clientKey}
                 onClick={() => setActiveCase(index)}
-                className={`px-6 py-3 mx-2 mb-4 rounded-lg font-medium transition-all duration-300 ${
+                className={`px-6 py-3 mx-2 mb-4 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 ${
                   activeCase === index
                     ? 'bg-purple-600 text-white shadow-lg'
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
+                aria-pressed={activeCase === index}
               >
                 {t(study.clientKey)}
               </button>
             ))}
-          </motion.div>
+          </motion.nav>
 
           {/* Active Case Study */}
-          <motion.div 
+          <motion.article 
             className="bg-white dark:bg-black rounded-2xl overflow-hidden shadow-xl"
             variants={itemVariants}
             key={activeCase}
@@ -166,10 +170,13 @@ export default function TestimonialsSection() {
             <div className={`grid grid-cols-1 lg:grid-cols-2 ${isRTL ? 'lg:grid-cols-2' : ''}`}>
               {/* Image */}
               <div className="relative h-64 lg:h-auto">
-                <img
+                <Image
                   src={caseStudies[activeCase].image}
                   alt={t(caseStudies[activeCase].clientKey)}
+                  width={600}
+                  height={400}
                   className="w-full h-full object-cover"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className={`absolute bottom-6 ${isRTL ? 'right-6' : 'left-6'}`}>
@@ -205,7 +212,7 @@ export default function TestimonialsSection() {
                   <ul className="space-y-2 mb-8">
                     {caseStudies[activeCase].resultsKeys.map((resultKey, idx) => (
                       <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-green-500 rounded-full" aria-hidden="true"></div>
                         <span className="text-gray-700 dark:text-gray-300">{t(resultKey)}</span>
                       </li>
                     ))}
@@ -213,21 +220,21 @@ export default function TestimonialsSection() {
                 </div>
 
                 {/* Quote */}
-                <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
-                  <blockquote className={`text-lg text-gray-700 dark:text-gray-300 italic mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                <blockquote className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
+                  <p className={`text-lg text-gray-700 dark:text-gray-300 italic mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
                     "{t(caseStudies[activeCase].quoteKey)}"
-                  </blockquote>
-                  <div className={`flex items-center ${isRTL ? 'justify-end' : 'justify-start'}`}>
+                  </p>
+                  <footer className={`flex items-center ${isRTL ? 'justify-end' : 'justify-start'}`}>
                     <div className={isRTL ? 'text-right' : 'text-left'}>
-                      <div className="font-semibold text-gray-900 dark:text-white">
+                      <cite className="font-semibold text-gray-900 dark:text-white not-italic">
                         {t(caseStudies[activeCase].authorKey)}
-                      </div>
+                      </cite>
                       <div className="text-sm text-gray-600 dark:text-gray-400">
                         {t(caseStudies[activeCase].positionKey)}
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </footer>
+                </blockquote>
 
                 {/* Metrics */}
                 <div className="grid grid-cols-3 gap-4">
@@ -258,7 +265,7 @@ export default function TestimonialsSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </motion.article>
         </motion.div>
       </div>
     </section>
