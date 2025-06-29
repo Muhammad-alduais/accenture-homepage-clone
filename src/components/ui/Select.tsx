@@ -178,12 +178,12 @@ export default function Select({
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
         className={cn(
-          "w-full px-4 py-3 text-left bg-white dark:bg-gray-800 border rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent",
+          "w-full px-4 py-3 text-left bg-white dark:bg-gray-800 border rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent",
           error 
             ? "border-red-500 dark:border-red-400" 
             : "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500",
           disabled && "opacity-50 cursor-not-allowed bg-gray-50 dark:bg-gray-900",
-          isOpen && "ring-2 ring-purple-500 border-transparent"
+          isOpen && "ring-2 ring-brand-primary border-transparent"
         )}
         aria-label={ariaLabel}
         aria-describedby={ariaDescribedBy}
@@ -197,13 +197,13 @@ export default function Select({
                 {selectedOptions.slice(0, 3).map((option) => (
                   <span
                     key={option.value}
-                    className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded text-sm"
+                    className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-brand-primary dark:text-brand-accent rounded text-sm"
                   >
                     {option.label}
                     <button
                       type="button"
                       onClick={(e) => handleRemoveOption(option.value, e)}
-                      className="hover:bg-purple-200 dark:hover:bg-purple-800 rounded-full p-0.5"
+                      className="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full p-0.5"
                     >
                       <X className="w-3 h-3" />
                     </button>
@@ -229,7 +229,7 @@ export default function Select({
           
           <div className="flex items-center gap-2 ml-2">
             {loading && (
-              <div className="animate-spin w-4 h-4 border-2 border-purple-500 border-t-transparent rounded-full" />
+              <div className="animate-spin w-4 h-4 border-2 border-brand-primary border-t-transparent rounded-full" />
             )}
             {clearable && hasValue && !loading && (
               <button
@@ -271,7 +271,7 @@ export default function Select({
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search options..."
-                    className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                   />
                 </div>
               </div>
@@ -287,7 +287,7 @@ export default function Select({
             >
               {loading ? (
                 <div className="p-4 text-center text-gray-500 dark:text-gray-400">
-                  <div className="animate-spin w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full mx-auto mb-2" />
+                  <div className="animate-spin w-6 h-6 border-2 border-brand-primary border-t-transparent rounded-full mx-auto mb-2" />
                   Loading options...
                 </div>
               ) : filteredOptions.length === 0 ? (
@@ -313,7 +313,7 @@ export default function Select({
                           ? "opacity-50 cursor-not-allowed" 
                           : "hover:bg-gray-50 dark:hover:bg-gray-700",
                         isFocused && "bg-gray-50 dark:bg-gray-700",
-                        isSelected && "bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300"
+                        isSelected && "bg-blue-50 dark:bg-blue-900/20 text-brand-primary dark:text-brand-accent"
                       )}
                       role="option"
                       aria-selected={isSelected}
@@ -329,7 +329,7 @@ export default function Select({
                         )}
                       </div>
                       {isSelected && (
-                        <Check className="w-4 h-4 text-purple-600 dark:text-purple-400 ml-2" />
+                        <Check className="w-4 h-4 text-brand-primary dark:text-brand-accent ml-2" />
                       )}
                     </button>
                   )

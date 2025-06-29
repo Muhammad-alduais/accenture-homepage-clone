@@ -141,7 +141,7 @@ export default function PricingForm() {
   if (translationsLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full" />
+        <div className="animate-spin w-8 h-8 border-2 border-brand-primary border-t-transparent rounded-full" />
       </div>
     )
   }
@@ -183,7 +183,7 @@ export default function PricingForm() {
               {/* Company Information Section */}
               <div>
                 <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <Building2 className={`w-6 h-6 text-purple-600 ${isRTL ? 'ml-3' : 'mr-3'}`} />
+                  <Building2 className={`w-6 h-6 text-brand-primary ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   Company Information
                 </h3>
                 
@@ -238,7 +238,7 @@ export default function PricingForm() {
               {/* Requirements Section */}
               <div>
                 <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <FileText className={`w-6 h-6 text-purple-600 ${isRTL ? 'ml-3' : 'mr-3'}`} />
+                  <FileText className={`w-6 h-6 text-brand-primary ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   Requirements & Budget
                 </h3>
                 
@@ -293,7 +293,7 @@ export default function PricingForm() {
               {/* Contact Information Section */}
               <div>
                 <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <Mail className={`w-6 h-6 text-purple-600 ${isRTL ? 'ml-3' : 'mr-3'}`} />
+                  <Mail className={`w-6 h-6 text-brand-primary ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   Contact Information
                 </h3>
                 
@@ -351,7 +351,7 @@ export default function PricingForm() {
                     onBlur={() => setTouched('requirements')}
                     placeholder={t('forms.pricing.fields.requirements.placeholder')}
                     rows={4}
-                    className={`w-full px-4 py-3 bg-white dark:bg-gray-800 border rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-vertical ${
+                    className={`w-full px-4 py-3 bg-white dark:bg-gray-800 border rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent resize-vertical ${
                       errors.requirements 
                         ? 'border-red-500 dark:border-red-400' 
                         : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
@@ -399,7 +399,7 @@ export default function PricingForm() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="flex-1 bg-brand-primary hover:bg-brand-primary/90 disabled:bg-brand-primary/50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2"
                   whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >

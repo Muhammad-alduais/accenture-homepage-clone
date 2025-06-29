@@ -86,7 +86,7 @@ export default function ValueSection() {
           ease: "linear"
         }}
         style={{
-          backgroundImage: "radial-gradient(circle, #A100FF 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, #4942E4 1px, transparent 1px)",
           backgroundSize: "50px 50px"
         }}
       />
@@ -109,8 +109,8 @@ export default function ValueSection() {
               style={{
                 '--content': `'${t('value.title')}'`,
                 '--padding': '0.05em',
-                '--start-color': '#ff4d4d',
-                '--end-color': '#f9cb28'
+                '--start-color': '#4942E4',
+                '--end-color': '#00D1B2'
               } as React.CSSProperties}
             >
               <span className="animated-gradient-text-foreground animated-gradient-text-foreground-3">
@@ -126,7 +126,7 @@ export default function ValueSection() {
             {t('value.subtitle')}
             <br />
             <motion.span
-              className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
@@ -136,11 +136,11 @@ export default function ValueSection() {
           </motion.p>
           
           <motion.button 
-            className={`bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto group ${isRTL ? 'flex-row-reverse' : ''}`}
+            className={`bg-brand-primary hover:bg-brand-primary/90 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto group ${isRTL ? 'flex-row-reverse' : ''}`}
             variants={buttonVariants}
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 15px 35px rgba(168, 85, 247, 0.4)"
+              boxShadow: "0 15px 35px rgba(73, 66, 228, 0.4)"
             }}
             whileTap={{ scale: 0.95 }}
           >

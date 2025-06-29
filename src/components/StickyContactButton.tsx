@@ -36,7 +36,7 @@ export default function StickyContactButton() {
           >
             {/* Main Button */}
             <motion.button
-              className="bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+              className="bg-brand-primary hover:bg-brand-primary/90 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
               animate={{
                 width: isExpanded ? 'auto' : '60px',
                 paddingLeft: isExpanded ? '20px' : '0px',
@@ -71,7 +71,7 @@ export default function StickyContactButton() {
 
             {/* Pulse Animation */}
             <motion.div
-              className="absolute inset-0 bg-purple-600 rounded-full -z-10"
+              className="absolute inset-0 bg-brand-primary rounded-full -z-10"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.7, 0, 0.7]

@@ -162,7 +162,7 @@ export default function ContactSection() {
         >
           <header className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
+              <span className="bg-brand-primary text-white text-sm font-medium px-4 py-2 rounded-full">
                 {t('contact.badge')}
               </span>
             </motion.div>
@@ -174,7 +174,7 @@ export default function ContactSection() {
             >
               {t('contact.title')}
               <br />
-              <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
                 {t('contact.titleHighlight')}
               </span>
             </motion.h2>
@@ -203,7 +203,7 @@ export default function ContactSection() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors ${
                         formErrors.name 
                           ? 'border-red-500 dark:border-red-400' 
                           : 'border-gray-300 dark:border-gray-600'
@@ -231,7 +231,7 @@ export default function ContactSection() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors ${
                         formErrors.email 
                           ? 'border-red-500 dark:border-red-400' 
                           : 'border-gray-300 dark:border-gray-600'
@@ -260,7 +260,7 @@ export default function ContactSection() {
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}
+                      className={`w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}
                       placeholder={t('contact.form.companyPlaceholder')}
                       dir={isRTL ? 'rtl' : 'ltr'}
                     />
@@ -276,7 +276,7 @@ export default function ContactSection() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}
+                      className={`w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}
                       placeholder={t('contact.form.phonePlaceholder')}
                       dir="ltr"
                     />
@@ -293,7 +293,7 @@ export default function ContactSection() {
                     required
                     value={formData.inquiryType}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors ${
                       formErrors.inquiryType 
                         ? 'border-red-500 dark:border-red-400' 
                         : 'border-gray-300 dark:border-gray-600'
@@ -325,7 +325,7 @@ export default function ContactSection() {
                     required
                     value={formData.message}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors resize-vertical ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors resize-vertical ${
                       formErrors.message 
                         ? 'border-red-500 dark:border-red-400' 
                         : 'border-gray-300 dark:border-gray-600'
@@ -362,7 +362,7 @@ export default function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-medium transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="w-full bg-brand-primary hover:bg-brand-primary/90 disabled:bg-brand-primary/50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-medium transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2"
                   whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
@@ -395,36 +395,36 @@ export default function ContactSection() {
               {/* Contact Methods */}
               <div className="space-y-6">
                 <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
+                    <svg className="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div className={isRTL ? 'text-right' : 'text-left'}>
                     <div className="font-semibold text-gray-900 dark:text-white">{t('contact.info.email')}</div>
-                    <a href="mailto:hello@movinware.com" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 transition-colors" dir="ltr">
+                    <a href="mailto:hello@movinware.com" className="text-gray-600 dark:text-gray-300 hover:text-brand-primary transition-colors" dir="ltr">
                       hello@movinware.com
                     </a>
                   </div>
                 </div>
 
                 <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
+                    <svg className="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <div className={isRTL ? 'text-right' : 'text-left'}>
                     <div className="font-semibold text-gray-900 dark:text-white">{t('contact.info.phone')}</div>
-                    <a href="tel:+97140000000" className="text-gray-600 dark:text-gray-300 hover:text-purple-600 transition-colors" dir="ltr">
+                    <a href="tel:+97140000000" className="text-gray-600 dark:text-gray-300 hover:text-brand-primary transition-colors" dir="ltr">
                       +971 4 XXX XXXX
                     </a>
                   </div>
                 </div>
 
                 <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center" aria-hidden="true">
+                    <svg className="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -443,7 +443,7 @@ export default function ContactSection() {
                 </h4>
                 <div className="space-y-3">
                   <motion.button 
-                    className={`w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 ${isRTL ? 'justify-center flex-row-reverse' : 'justify-center'}`}
+                    className={`w-full bg-brand-primary hover:bg-brand-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 ${isRTL ? 'justify-center flex-row-reverse' : 'justify-center'}`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -454,7 +454,7 @@ export default function ContactSection() {
                   </motion.button>
                   
                   <motion.button 
-                    className={`w-full border border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 ${isRTL ? 'justify-center flex-row-reverse' : 'justify-center'}`}
+                    className={`w-full border border-brand-primary text-brand-primary dark:text-brand-accent hover:bg-brand-primary hover:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 ${isRTL ? 'justify-center flex-row-reverse' : 'justify-center'}`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >

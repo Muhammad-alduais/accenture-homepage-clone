@@ -238,7 +238,7 @@ export default function ServicesSection() {
         >
           <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
+              <span className="bg-brand-primary text-white text-sm font-medium px-4 py-2 rounded-full">
                 {t('services.badge')}
               </span>
             </motion.div>
@@ -269,7 +269,7 @@ export default function ServicesSection() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center px-6 py-3 mx-2 mb-4 rounded-lg font-medium transition-all duration-300 ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'} ${
                   activeTab === tab.id
-                    ? 'bg-purple-600 text-white shadow-lg'
+                    ? 'bg-brand-primary text-white shadow-lg'
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
@@ -302,7 +302,7 @@ export default function ServicesSection() {
                 <ul className="space-y-2">
                   {item.featuresKeys.map((featureKey, idx) => (
                     <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-brand-primary rounded-full"></div>
                       <span className="text-gray-700 dark:text-gray-300 text-sm">{t(featureKey)}</span>
                     </li>
                   ))}

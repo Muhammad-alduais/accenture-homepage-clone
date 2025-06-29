@@ -173,7 +173,7 @@ export default function Header() {
       {/* Skip to main content link */}
       <a 
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-purple-600 text-white px-4 py-2 rounded-lg z-[60]"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-brand-primary text-white px-4 py-2 rounded-lg z-[60]"
       >
         {t('nav.skipToMain')}
       </a>
@@ -220,7 +220,7 @@ export default function Header() {
                 aria-label={t('nav.homeLink')}
               >
                 <motion.div 
-                  className="text-purple-500 text-2xl font-bold"
+                  className="text-brand-primary text-2xl font-bold"
                   variants={logoVariants}
                   whileHover={{ 
                     rotate: 360,
@@ -231,7 +231,7 @@ export default function Header() {
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                     <motion.path 
                       d="M20 5L35 35H5L20 5Z" 
-                      fill="#A100FF"
+                      fill="#4942E4"
                       initial={{ pathLength: 0 }}
                       animate={{ pathLength: 1 }}
                       transition={{ duration: 1, delay: 0.5 }}
@@ -271,7 +271,7 @@ export default function Header() {
                         handleNavClick(item.href)
                       }
                     }}
-                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-white/90 hover:text-white transition-all duration-300 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-white/90 hover:text-white transition-all duration-300 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-transparent"
                     style={{
                       textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
                     }}
@@ -325,7 +325,7 @@ export default function Header() {
               {/* Get Demo Button */}
               <motion.button
                 onClick={handleGetDemo}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 ml-4 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                className="bg-brand-primary hover:bg-brand-primary/90 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 ml-4 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-transparent"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -346,7 +346,7 @@ export default function Header() {
               {/* Language Selector */}
               <div className="relative">
                 <motion.button 
-                  className={`flex items-center px-3 py-2 rounded-full hover:bg-white/10 text-white/90 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}
+                  className={`flex items-center px-3 py-2 rounded-full hover:bg-white/10 text-white/90 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-transparent ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}
                   style={{
                     textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
                   }}
@@ -411,7 +411,7 @@ export default function Header() {
 
               {/* Mobile menu button */}
               <motion.button
-                className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-transparent"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -538,7 +538,7 @@ export default function Header() {
                   {/* Mobile Get Demo Button */}
                   <motion.button
                     onClick={handleGetDemo}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 mt-4"
+                    className="w-full bg-brand-primary hover:bg-brand-primary/90 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 mt-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: navItems.length * 0.1 + 0.2 }}
