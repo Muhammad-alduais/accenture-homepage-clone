@@ -38,7 +38,7 @@ export default function AnimatedBackground() {
     >
       {/* Main background wrapper */}
       <div className="bg-wrap">
-        {/* Tiled background pattern */}
+        {/* Interactive tiled background pattern */}
         <div className="bg-tiles" />
       </div>
       
@@ -73,7 +73,7 @@ export default function AnimatedBackground() {
             600px at var(--cursor-x) var(--cursor-y), 
             ${theme === 'dark' 
               ? 'rgba(255, 254, 241, 0.15)' 
-              : 'rgba(168, 85, 247, 0.1)'
+              : 'rgba(168, 85, 247, 0.12)'
             }, 
             transparent 40%
           );
@@ -84,7 +84,7 @@ export default function AnimatedBackground() {
 
         .bg-tiles {
           z-index: 1;
-          background-image: url("data:image/svg+xml,%3Csvg width='142' height='71' viewBox='0 0 142 71' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M71 0L142 35.5L71 71L0 35.5L71 0Z' fill='${theme === 'dark' ? '%23333' : '%23f0f0f0'}' fill-opacity='0.1'/%3E%3C/svg%3E");
+          background-image: url('https://res.cloudinary.com/du6mfjbbd/image/upload/v1702421944/632835c8722a32c6adef674b_bg-tile_fhldhc.svg');
           background-position: 50% 0;
           background-repeat: repeat;
           background-size: 142px 71px;
@@ -93,6 +93,8 @@ export default function AnimatedBackground() {
           bottom: 0%;
           left: 0%;
           right: 0%;
+          opacity: ${theme === 'dark' ? '0.3' : '0.2'};
+          transition: opacity 0.3s ease;
         }
 
         .home-hero-bg-bottom-overlay {
@@ -111,11 +113,20 @@ export default function AnimatedBackground() {
           right: 0%;
         }
 
-        /* Enhanced visual effects */
+        /* Enhanced visual effects for better interaction */
         @media (prefers-reduced-motion: no-preference) {
           .bg-wrap::before {
-            transition: background-image 0.3s ease;
+            transition: background-image 0.3s ease, opacity 0.3s ease;
           }
+          
+          .bg-tiles {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+          }
+        }
+
+        /* Hover effect enhancement */
+        .bg-wrap:hover .bg-tiles {
+          opacity: ${theme === 'dark' ? '0.4' : '0.3'};
         }
 
         /* Mobile optimization */
@@ -133,7 +144,36 @@ export default function AnimatedBackground() {
           
           .bg-tiles {
             background-size: 100px 50px;
-            opacity: 0.5;
+            opacity: ${theme === 'dark' ? '0.2' : '0.15'};
+          }
+        }
+
+        /* Touch device optimization */
+        @media (hover: none) and (pointer: coarse) {
+          .bg-wrap::before {
+            background-image: radial-gradient(
+              circle at 50% 50%, 
+              ${theme === 'dark' 
+                ? 'rgba(255, 254, 241, 0.08)' 
+                : 'rgba(168, 85, 247, 0.06)'
+              }, 
+              transparent 60%
+            );
+          }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+          .bg-tiles {
+            opacity: ${theme === 'dark' ? '0.5' : '0.4'};
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .bg-wrap::before,
+          .bg-tiles {
+            transition: none;
           }
         }
       `}</style>
