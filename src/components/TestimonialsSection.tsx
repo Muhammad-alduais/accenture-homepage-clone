@@ -29,7 +29,7 @@ export default function TestimonialsSection() {
       quoteKey: 'testimonials.case1.quote',
       authorKey: 'testimonials.case1.author',
       positionKey: 'testimonials.case1.position',
-      image: "https://ext.same-assets.com/2900598000/4049787973.jpeg",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       metrics: {
         implementationKey: 'testimonials.case1.metrics.implementation',
         efficiencyKey: 'testimonials.case1.metrics.efficiency',
@@ -50,7 +50,7 @@ export default function TestimonialsSection() {
       quoteKey: 'testimonials.case2.quote',
       authorKey: 'testimonials.case2.author',
       positionKey: 'testimonials.case2.position',
-      image: "https://ext.same-assets.com/2900598000/36195040.jpeg",
+      image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       metrics: {
         implementationKey: 'testimonials.case2.metrics.implementation',
         efficiencyKey: 'testimonials.case2.metrics.efficiency',
@@ -71,7 +71,7 @@ export default function TestimonialsSection() {
       quoteKey: 'testimonials.case3.quote',
       authorKey: 'testimonials.case3.author',
       positionKey: 'testimonials.case3.position',
-      image: "https://ext.same-assets.com/2900598000/1611683462.jpeg",
+      image: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       metrics: {
         implementationKey: 'testimonials.case3.metrics.implementation',
         efficiencyKey: 'testimonials.case3.metrics.efficiency',

@@ -59,7 +59,7 @@ export default function Hero() {
           muted
           playsInline
         >
-          <source src="https://ext.same-assets.com/2900598000/2585685094.mp4" type="video/mp4" />
+          <source src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" type="video/mp4" />
         </video>
         <motion.div 
           className="absolute inset-0 bg-white/40 dark:bg-black/50"
