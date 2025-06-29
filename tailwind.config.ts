@@ -49,6 +49,35 @@ export default {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))'
+        },
+        // Brand Colors
+        brand: {
+          primary: {
+            DEFAULT: '#4942E4',
+            50: '#F0EFFF',
+            100: '#E6E4FF',
+            200: '#D1CDFF',
+            300: '#B8B1FF',
+            400: '#9B8FFF',
+            500: '#4942E4',
+            600: '#3D37C7',
+            700: '#322CAA',
+            800: '#27218D',
+            900: '#1C1670'
+          },
+          accent: {
+            DEFAULT: '#00D1B2',
+            50: '#E6FFF9',
+            100: '#CCFFF3',
+            200: '#99FFE7',
+            300: '#66FFDB',
+            400: '#33FFCF',
+            500: '#00D1B2',
+            600: '#00A78E',
+            700: '#007D6A',
+            800: '#005346',
+            900: '#002923'
+          }
         }
       },
       borderRadius: {

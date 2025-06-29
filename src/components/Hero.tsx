@@ -45,17 +45,17 @@ export default function Hero() {
     if (isRTL) {
       // Arabic: Three action words vertically like English
       return [
-        { text: 'نُبتكر', colorStart: '#007cf0', colorEnd: '#00dfd8' },
-        { text: 'نُطوّر', colorStart: '#7928ca', colorEnd: '#ff0080' },
-        { text: 'نُبسّط', colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
+        { text: 'نُبتكر', colorStart: '#4942E4', colorEnd: '#00D1B2' },
+        { text: 'نُطوّر', colorStart: '#00D1B2', colorEnd: '#4942E4' },
+        { text: 'نُبسّط', colorStart: '#4942E4', colorEnd: '#00D1B2' }
       ]
     } else {
       // English: "We" + three action words vertically
       return [
-        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }, // "We"
-        { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }, // "Innovate"
-        { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }, // "Develop"
-        { text: t('hero.quaternary'), colorStart: '#00c851', colorEnd: '#007e33' } // "Simplify"
+        { text: t('hero.title'), colorStart: '#4942E4', colorEnd: '#00D1B2' }, // "We"
+        { text: t('hero.subtitle'), colorStart: '#00D1B2', colorEnd: '#4942E4' }, // "Innovate"
+        { text: t('hero.tertiary'), colorStart: '#4942E4', colorEnd: '#00D1B2' }, // "Develop"
+        { text: t('hero.quaternary'), colorStart: '#00D1B2', colorEnd: '#4942E4' } // "Simplify"
       ]
     }
   }
@@ -111,15 +111,15 @@ export default function Hero() {
           variants={itemVariants}
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">50%</div>
+            <div className="text-3xl font-bold text-brand-primary mb-2 arabic-numbers">50%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">87%</div>
+            <div className="text-3xl font-bold text-brand-primary mb-2 arabic-numbers">87%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+            <div className="text-3xl font-bold text-brand-primary mb-2">24/7</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
           </div>
         </motion.div>
