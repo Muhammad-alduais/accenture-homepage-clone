@@ -45,7 +45,7 @@ export default function Hero() {
     if (isRTL) {
       // Arabic: Three action words vertically
       return [
-        { text: 'نُبتكر', colorStart: '#7928ca', colorEnd: '#ff0080' }, // Preview gradient
+        { text: 'نَبتكر', colorStart: '#7928ca', colorEnd: '#ff0080' }, // Preview gradient
         { text: 'نُطوّر', colorStart: '#007cf0', colorEnd: '#00dfd8' }, // Develop gradient
         { text: 'نُبسّط', colorStart: '#ff4d4d', colorEnd: '#f9cb28' }  // Ship gradient
       ]
@@ -79,7 +79,7 @@ export default function Hero() {
         <motion.h1 
           className={`hero-title flex flex-col items-center justify-center text-center font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl`}
           variants={itemVariants}
-          aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
+          aria-label={isRTL ? "نَبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
         >
           {animatedTexts.map((item, index) => (
             <span 
