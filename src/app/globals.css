@@ -145,7 +145,7 @@
 /* Custom animations for enhanced user experience */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-20px); }
 }
 
 @keyframes pulse-glow {
@@ -159,8 +159,35 @@
   100% { background-position: 0% 50%; }
 }
 
+@keyframes gradient-breathe {
+  0%, 100% { 
+    background-size: 100% 100%;
+    filter: blur(0px);
+  }
+  50% { 
+    background-size: 120% 120%;
+    filter: blur(2px);
+  }
+}
+
+@keyframes gradient-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
@@ -255,4 +282,31 @@ html {
 /* Arabic number styling */
 [dir="rtl"] .arabic-numbers {
   font-feature-settings: "lnum" 1;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-gradient {
+    animation: none !important;
+  }
 }

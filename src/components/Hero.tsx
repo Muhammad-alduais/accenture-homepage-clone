@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import BlackHole from './BlackHole'
+import DynamicGradientBackground from './DynamicGradientBackground'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -42,14 +42,14 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
-      {/* Black Hole Animation Background */}
-      <BlackHole />
+      {/* Dynamic Gradient Background */}
+      <DynamicGradientBackground />
 
       {/* Video Background with Animation */}
       <motion.div 
-        className="absolute inset-0 opacity-30 dark:opacity-20"
+        className="absolute inset-0 opacity-20 dark:opacity-15 z-10"
         initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 0.3 }}
+        animate={{ scale: 1, opacity: 0.2 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
         <video
@@ -62,7 +62,7 @@ export default function Hero() {
           <source src="https://ext.same-assets.com/2900598000/2585685094.mp4" type="video/mp4" />
         </video>
         <motion.div 
-          className="absolute inset-0 bg-white/40 dark:bg-black/50"
+          className="absolute inset-0 bg-white/30 dark:bg-black/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
@@ -80,6 +80,9 @@ export default function Hero() {
         <motion.h1 
           className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
           variants={itemVariants}
+          style={{
+            textShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+          }}
         >
           {t('hero.title')}
           <br />
@@ -94,27 +97,79 @@ export default function Hero() {
         <motion.p 
           className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-200 mb-10 max-w-4xl mx-auto leading-relaxed"
           variants={itemVariants}
+          style={{
+            textShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+          }}
         >
           {t('hero.description')}
         </motion.p>
 
-        {/* Key Benefits - Increased z-index to ensure visibility */}
+        {/* CTA Buttons */}
         <motion.div 
-          className="relative z-30 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className={`flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
           variants={itemVariants}
         >
-          <div className="text-center">
+          <motion.button
+            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center group shadow-lg hover:shadow-xl"
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 15px 35px rgba(168, 85, 247, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span>{t('hero.cta.primary')}</span>
+            <motion.svg 
+              className={`w-5 h-5 ${isRTL ? 'mr-2' : 'ml-2'}`}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              whileHover={{ x: isRTL ? -3 : 3 }}
+              transition={{ duration: 0.2 }}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
+            </motion.svg>
+          </motion.button>
+
+          <motion.button
+            className="border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-600 hover:text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 backdrop-blur-sm"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {t('hero.cta.secondary')}
+          </motion.button>
+        </motion.div>
+
+        {/* Key Benefits - Increased z-index to ensure visibility */}
+        <motion.div 
+          className="relative z-30 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          variants={itemVariants}
+        >
+          <motion.div 
+            className="text-center backdrop-blur-sm bg-white/10 dark:bg-black/10 rounded-lg p-6 border border-white/20"
+            whileHover={{ y: -5, scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">50%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
-          </div>
-          <div className="text-center">
+          </motion.div>
+          
+          <motion.div 
+            className="text-center backdrop-blur-sm bg-white/10 dark:bg-black/10 rounded-lg p-6 border border-white/20"
+            whileHover={{ y: -5, scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">87%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
-          </div>
-          <div className="text-center">
+          </motion.div>
+          
+          <motion.div 
+            className="text-center backdrop-blur-sm bg-white/10 dark:bg-black/10 rounded-lg p-6 border border-white/20"
+            whileHover={{ y: -5, scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>
