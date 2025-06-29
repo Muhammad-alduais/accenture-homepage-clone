@@ -36,7 +36,7 @@ export function useFormValidation<T extends FormState>(
 ) {
   const [values, setValues] = useState<T>(initialState)
   const [errors, setErrors] = useState<FormErrors>({})
-  const [touched, setTouched] = useState<Record<string, boolean>>({})
+  const [touched, _setTouched] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Validation patterns
@@ -140,7 +140,7 @@ export function useFormValidation<T extends FormState>(
 
   // Set field as touched
   const setTouched = useCallback((name: string) => {
-    setTouched(prev => ({
+    _setTouched(prev => ({
       ...prev,
       [name]: true
     }))
@@ -153,13 +153,13 @@ export function useFormValidation<T extends FormState>(
         [name]: error
       }))
     }
-  }, [validateField, values])
+  }, [validateField, values, _setTouched, setErrors])
 
   // Reset form
   const reset = useCallback(() => {
     setValues(initialState)
     setErrors({})
-    setTouched({})
+    _setTouched({})
     setIsSubmitting(false)
   }, [initialState])
 
@@ -177,7 +177,7 @@ export function useFormValidation<T extends FormState>(
           ...acc,
           [key]: true
         }), {})
-        setTouched(allTouched)
+        _setTouched(allTouched)
         return false
       }
 
@@ -189,7 +189,7 @@ export function useFormValidation<T extends FormState>(
     } finally {
       setIsSubmitting(false)
     }
-  }, [values, config, validateForm])
+  }, [values, config, validateForm, _setTouched])
 
   return {
     values,
