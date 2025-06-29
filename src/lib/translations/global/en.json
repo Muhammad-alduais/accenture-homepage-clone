@@ -1,0 +1,641 @@
+{
+  "nav": {
+    "skipToMain": "Skip to main content",
+    "mainNavigation": "Main navigation",
+    "homeLink": "Home link",
+    "changeLanguage": "Change language",
+    "languageMenu": "Language menu",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "scrollToTop": "Scroll to top",
+    "platform": "Platform",
+    "industries": "Industries",
+    "whyMovinware": "Why MovinWare",
+    "pricing": "Pricing",
+    "resources": "Resources",
+    "getDemo": "Get Demo"
+  },
+  "platform": {
+    "coreModules": "Core Modules",
+    "aiFeatures": "AI Features",
+    "integration": "Integration Capabilities",
+    "mobileCloud": "Mobile & Cloud Access"
+  },
+  "industries": {
+    "education": "Education",
+    "retail": "Retail",
+    "manufacturing": "Manufacturing",
+    "logistics": "Logistics",
+    "viewAll": "View All Industries",
+    "badge": "Industries",
+    "title": "Tailored Solutions for Every Sector",
+    "description": "We deliver specialized ERP solutions designed specifically to meet the unique needs of your industry",
+    "clientSize": {
+      "title": "Solutions for Every Company Size",
+      "description": "From startups to enterprises, we have the right solution for you"
+    },
+    "education": {
+      "title": "Education",
+      "description": "Comprehensive solutions for managing educational institutions from schools to universities",
+      "features": {
+        "student": "Student Management",
+        "academic": "Academic Planning",
+        "parent": "Parent Portal",
+        "fee": "Fee Management"
+      },
+      "clients": {
+        "schools": "Schools",
+        "universities": "Universities",
+        "training": "Training Centers",
+        "online": "Online Learning"
+      }
+    },
+    "logistics": {
+      "title": "Logistics",
+      "description": "Optimize shipping and distribution operations with comprehensive fleet tracking",
+      "features": {
+        "fleet": "Fleet Management",
+        "route": "Route Optimization",
+        "inventory": "Inventory Tracking",
+        "customs": "Customs Management"
+      },
+      "clients": {
+        "shipping": "Shipping Companies",
+        "3pl": "3PL Providers",
+        "distribution": "Distribution Centers",
+        "freight": "Freight Companies"
+      }
+    },
+    "retail": {
+      "title": "Retail",
+      "description": "Integrated solutions for e-commerce and traditional retail with comprehensive inventory management",
+      "features": {
+        "pos": "Point of Sale",
+        "sync": "Inventory Sync",
+        "loyalty": "Loyalty Programs",
+        "multichannel": "Multi-channel Sales"
+      },
+      "clients": {
+        "chains": "Retail Chains",
+        "online": "Online Stores",
+        "fashion": "Fashion",
+        "electronics": "Electronics"
+      }
+    },
+    "manufacturing": {
+      "title": "Manufacturing",
+      "description": "Optimize production processes with advanced resource planning and quality management",
+      "features": {
+        "planning": "Production Planning",
+        "quality": "Quality Control",
+        "supply": "Supply Chain Management",
+        "maintenance": "Preventive Maintenance"
+      },
+      "clients": {
+        "manufacturers": "Manufacturers",
+        "assembly": "Assembly Lines",
+        "food": "Food Processing",
+        "textile": "Textile"
+      }
+    },
+    "startups": {
+      "title": "Startups",
+      "description": "Flexible and scalable solutions for fast-growing companies",
+      "benefits": {
+        "implementation": "Quick Implementation",
+        "scalable": "Scalable",
+        "cost": "Cost-Effective",
+        "growth": "Supports Rapid Growth"
+      }
+    },
+    "smes": {
+      "title": "Small & Medium Enterprises",
+      "description": "Comprehensive solutions designed for growing businesses",
+      "benefits": {
+        "featured": "Feature-Rich",
+        "customization": "Customizable",
+        "integration": "Easy Integration",
+        "support": "Dedicated Support"
+      }
+    },
+    "enterprises": {
+      "title": "Large Enterprises",
+      "description": "Advanced solutions for large and complex organizations",
+      "benefits": {
+        "analytics": "Advanced Analytics",
+        "multi": "Multi-Location",
+        "compliance": "Regulatory Compliance",
+        "support247": "24/7 Support"
+      }
+    }
+  },
+  "whyMovinware": {
+    "story": "Our Story & Mission",
+    "methodology": "Our Methodology",
+    "success": "Success Stories",
+    "expertise": "Regional Expertise"
+  },
+  "pricing": {
+    "startup": "Startup Package",
+    "sme": "SME Package",
+    "enterprise": "Enterprise Package",
+    "custom": "Custom Solutions"
+  },
+  "resources": {
+    "documentation": "Documentation",
+    "tutorials": "Tutorials",
+    "caseStudies": "Case Studies",
+    "blog": "Blog",
+    "support": "Support Center"
+  },
+  "hero": {
+    "title": "Smart Operations",
+    "subtitle": "Seamless Transformation",
+    "description": "AI-powered ERP system designed for your workflow. Streamline operations, boost efficiency, and future-proof your business with MovinWare's intelligent solutions.",
+    "metrics": {
+      "implementation": "Faster Implementation",
+      "adoption": "Adoption Rate",
+      "support": "Support"
+    }
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "We believe that",
+    "titleHighlight": "technology should work for you",
+    "description1": "MovinWare was founded on a simple vision: make advanced ERP systems accessible to every business, regardless of size or complexity. We've seen too many companies struggle with complex, expensive solutions that take months to implement and years to master.",
+    "description2": "That's why we built MovinWare - an ERP system that understands your business, adapts to your needs, and grows with you. With a focus on simplicity, intelligence, and speed, we empower businesses to transform digitally without the complexity.",
+    "principles": {
+      "speed": {
+        "title": "Speed to Value",
+        "description": "From setup to full operation in weeks, not months"
+      },
+      "intelligence": {
+        "title": "Built-in Intelligence",
+        "description": "AI and automation embedded in every aspect of the system"
+      },
+      "adoption": {
+        "title": "Easy Adoption",
+        "description": "Intuitive interfaces that make training and adoption effortless"
+      },
+      "growth": {
+        "title": "Sustainable Growth",
+        "description": "Scalable solutions that grow with your business and evolve with your needs"
+      }
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "We envision a world where every business, from startups to enterprises, has access to world-class ERP tools that enable them to focus on what they do best - serving their customers and growing their business.",
+      "points": {
+        "democratize": "Democratize access to enterprise technology",
+        "eliminate": "Eliminate barriers of complexity and cost",
+        "enable": "Enable every business to reach its full potential"
+      }
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "Our mission is simple: deliver the world's most powerful yet easiest ERP solution. We're committed to continuous innovation, service excellence, and our customers' success.",
+      "metrics": {
+        "title": "Our commitment to excellence:",
+        "days": "30",
+        "daysDesc": "Days to Implementation",
+        "process": "99%",
+        "processDesc": "Process Automation",
+        "user": "24/7",
+        "userDesc": "User Support"
+      }
+    },
+    "regional": {
+      "title": "Regional Expertise, Global Standards",
+      "description": "As a MENA-based company, we understand the unique challenges and opportunities facing businesses in our region. Our solutions are built with local cultural, linguistic, and regulatory considerations in mind.",
+      "understanding": {
+        "title": "Local Understanding",
+        "description": "Deep understanding of regional business practices and regulatory requirements"
+      },
+      "bilingual": {
+        "title": "Bilingual Support",
+        "description": "Native Arabic and English interfaces with full RTL support"
+      },
+      "standards": {
+        "title": "Global Standards",
+        "description": "World-class technology, security, and reliability"
+      }
+    }
+  },
+  "value": {
+    "title": "360° VALUE",
+    "subtitle": "We don't just build software",
+    "subtitleHighlight": "We build your business future",
+    "cta": "Start Your Journey",
+    "ai": {
+      "title": "Built-in AI",
+      "description": "Artificial intelligence embedded in every aspect of the system",
+      "features": {
+        "forecasting": "Automatic Forecasting",
+        "automation": "Decision Automation",
+        "workflows": "Smart Workflows",
+        "analytics": "Advanced Analytics"
+      }
+    },
+    "speed": {
+      "title": "Unmatched Speed",
+      "description": "From setup to full operation in record time",
+      "features": {
+        "deployment": "Rapid Deployment",
+        "roi": "Immediate ROI",
+        "benefits": "Instant Benefits",
+        "methodology": "Proven Methodology"
+      }
+    },
+    "cultural": {
+      "title": "Cultural Fit",
+      "description": "Designed specifically for MENA businesses",
+      "features": {
+        "bilingual": "Bilingual Support",
+        "rtl": "Native RTL Interfaces",
+        "compliance": "Local Compliance",
+        "alignment": "Cultural Alignment"
+      }
+    },
+    "adoption": {
+      "title": "Easy Adoption",
+      "description": "Intuitive interfaces ensure rapid adoption",
+      "features": {
+        "design": "Intuitive Design",
+        "training": "Simplified Training",
+        "interface": "User-Friendly Interface",
+        "support": "Ongoing Support"
+      }
+    }
+  },
+  "services": {
+    "badge": "Our Services",
+    "title": "Comprehensive Solutions for Every Need",
+    "description": "From implementation to ongoing support, we provide a complete range of services to ensure your success",
+    "tabs": {
+      "services": "Services",
+      "solutions": "Solutions",
+      "value": "Value Add"
+    },
+    "erp": {
+      "title": "ERP Implementation",
+      "description": "Comprehensive implementation with customization, integration, and training",
+      "features": {
+        "architecture": "Architecture Design",
+        "development": "Custom Development",
+        "migration": "Data Migration",
+        "training": "User Training"
+      }
+    },
+    "industry": {
+      "title": "Industry-Specific Solutions",
+      "description": "Tailored solutions for different industries with best practices",
+      "features": {
+        "healthcare": "Healthcare",
+        "education": "Education",
+        "fitness": "Fitness",
+        "logistics": "Logistics"
+      }
+    },
+    "ai": {
+      "title": "AI Integration",
+      "description": "Intelligent AI-powered solutions for automation and analytics",
+      "features": {
+        "forecasting": "Smart Forecasting",
+        "chatbots": "Chatbots",
+        "ocr": "Document Processing",
+        "automation": "Workflow Automation"
+      }
+    },
+    "ux": {
+      "title": "UX Design",
+      "description": "Intuitive interfaces designed for MENA users",
+      "features": {
+        "rtl": "Native RTL Support",
+        "localization": "Cultural Localization",
+        "accessibility": "Accessibility",
+        "mobile": "Responsive Design"
+      }
+    },
+    "migration": {
+      "title": "Data Migration",
+      "description": "Safe and seamless migration from legacy systems",
+      "features": {
+        "mapping": "Data Mapping",
+        "api": "API Integration",
+        "sync": "Real-time Sync",
+        "backup": "Backup & Recovery"
+      }
+    },
+    "support": {
+      "title": "Support & Maintenance",
+      "description": "Ongoing support, updates, and performance optimization",
+      "features": {
+        "updates": "Automatic Updates",
+        "tuning": "Performance Tuning",
+        "development": "Continuous Development",
+        "monitoring": "24/7 Monitoring"
+      }
+    }
+  },
+  "solutions": {
+    "accounting": {
+      "title": "Accounting & Finance",
+      "description": "Comprehensive financial management with real-time reporting",
+      "features": {
+        "ledger": "General Ledger",
+        "invoicing": "Automated Invoicing",
+        "reporting": "Financial Reporting",
+        "compliance": "Regulatory Compliance"
+      }
+    },
+    "hr": {
+      "title": "Human Resources",
+      "description": "Complete employee management from hire to retire",
+      "features": {
+        "records": "Employee Records",
+        "attendance": "Attendance Management",
+        "payroll": "Payroll Processing",
+        "calendar": "Leave Calendar"
+      }
+    },
+    "sales": {
+      "title": "Sales & CRM",
+      "description": "Complete sales cycle and customer relationship management",
+      "features": {
+        "leads": "Lead Management",
+        "quotes": "Quote Generation",
+        "orders": "Order Processing",
+        "portal": "Customer Portal"
+      }
+    },
+    "inventory": {
+      "title": "Inventory Management",
+      "description": "Real-time inventory tracking and management",
+      "features": {
+        "stock": "Stock Tracking",
+        "warehousing": "Warehouse Management",
+        "pricing": "Pricing Strategies",
+        "labeling": "Automated Labeling"
+      }
+    },
+    "manufacturing": {
+      "title": "Manufacturing",
+      "description": "Advanced production planning and control",
+      "features": {
+        "bom": "Bill of Materials",
+        "orders": "Production Orders",
+        "planning": "Resource Planning",
+        "quality": "Quality Control"
+      }
+    },
+    "assets": {
+      "title": "Asset Management",
+      "description": "Fixed asset tracking and maintenance",
+      "features": {
+        "depreciation": "Depreciation Calculation",
+        "maintenance": "Scheduled Maintenance",
+        "qr": "QR Code Tracking",
+        "alerts": "Maintenance Alerts"
+      }
+    }
+  },
+  "implementation": {
+    "badge": "Implementation",
+    "title": "Proven Methodology",
+    "titleHighlight": "Guaranteed Results",
+    "description": "Our structured approach ensures successful and smooth implementation with minimal disruption to your operations",
+    "phase1": {
+      "title": "Assessment & Planning",
+      "duration": "1-2 weeks",
+      "description": "Comprehensive analysis of your current processes and requirements",
+      "activities": {
+        "mapping": "Process Mapping",
+        "analysis": "Gap Analysis",
+        "audit": "System Audit",
+        "gathering": "Requirements Gathering"
+      },
+      "deliverables": {
+        "assessment": "Assessment Report",
+        "gap": "Gap Analysis",
+        "requirements": "Requirements Document",
+        "roadmap": "Implementation Roadmap"
+      }
+    },
+    "phase2": {
+      "title": "Design & Configuration",
+      "duration": "2-3 weeks",
+      "description": "System design and configuration according to your specific requirements",
+      "activities": {
+        "workflow": "Workflow Design",
+        "ai": "AI Configuration",
+        "bilingual": "Bilingual Setup",
+        "security": "Security Configuration"
+      },
+      "deliverables": {
+        "blueprint": "System Blueprint",
+        "specifications": "Configuration Specs",
+        "mockups": "UI Mockups",
+        "integration": "Integration Plan"
+      }
+    },
+    "phase3": {
+      "title": "Development & Testing",
+      "duration": "3-4 weeks",
+      "description": "Custom development and comprehensive system testing",
+      "activities": {
+        "development": "Custom Development",
+        "demos": "Demo Sessions",
+        "migration": "Data Migration",
+        "testing": "Comprehensive Testing"
+      },
+      "deliverables": {
+        "system": "Production-Ready System",
+        "data": "Migrated Data",
+        "results": "Test Results",
+        "documentation": "User Documentation"
+      }
+    },
+    "phase4": {
+      "title": "Deployment & Training",
+      "duration": "1-2 weeks",
+      "description": "System deployment and training your team for optimal usage",
+      "activities": {
+        "training": "User Training",
+        "support": "Go-Live Support",
+        "monitoring": "Performance Monitoring",
+        "resolution": "Issue Resolution"
+      },
+      "deliverables": {
+        "users": "Trained Users",
+        "live": "Live System",
+        "support": "Support Plan",
+        "performance": "Performance Reports"
+      }
+    },
+    "phase5": {
+      "title": "Optimization & Growth",
+      "duration": "Ongoing",
+      "description": "Continuous improvement and support for future growth",
+      "activities": {
+        "reviews": "Regular Reviews",
+        "retuning": "System Retuning",
+        "upgrades": "System Upgrades",
+        "optimization": "Performance Optimization"
+      },
+      "deliverables": {
+        "reports": "Performance Reports",
+        "features": "New Features",
+        "enhanced": "Enhanced System",
+        "growth": "Growth Plan"
+      }
+    },
+    "provenResults": "Proven Results",
+    "provenDescription": "Our proven methodology delivers exceptional results for our clients",
+    "proof": {
+      "faster": "Faster Implementation",
+      "fasterDesc": "Than industry average",
+      "zero": "Zero",
+      "zeroDesc": "Downtime",
+      "zeroDetail": "During implementation",
+      "adoption": "Adoption Rate",
+      "adoptionDesc": "Within first month"
+    }
+  },
+  "testimonials": {
+    "badge": "Success Stories",
+    "title": "Our Clients",
+    "titleHighlight": "Achieve Exceptional Results",
+    "description": "Discover how businesses transform their operations and achieve sustainable growth with MovinWare",
+    "caseStudyNavigation": "Case study navigation",
+    "labels": {
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "results": "Results",
+      "implementation": "Implementation",
+      "efficiency": "Efficiency",
+      "adoption": "Adoption"
+    },
+    "case1": {
+      "client": "Smart Commerce Group",
+      "industry": "E-commerce",
+      "challenge": "The company faced challenges managing inventory across multiple channels with no unified view of operations.",
+      "solution": "We implemented an integrated ERP solution with e-commerce integration and real-time inventory management.",
+      "results": {
+        "timeline": "Implemented in 6 weeks",
+        "efficiency": "40% efficiency improvement",
+        "visibility": "Complete inventory visibility",
+        "processes": "Fully automated processes"
+      },
+      "quote": "MovinWare completely transformed our operations. We now have complete visibility into our business and can make informed decisions quickly.",
+      "author": "Ahmed Al-Mansoori",
+      "position": "CEO",
+      "metrics": {
+        "implementation": "6 weeks",
+        "efficiency": "40%+",
+        "adoption": "95%"
+      }
+    },
+    "case2": {
+      "client": "Future Academy",
+      "industry": "Education",
+      "challenge": "Complex student and fee management with need for bilingual support and parent portal.",
+      "solution": "Comprehensive education solution with student management, parent portal, and automated billing system.",
+      "results": {
+        "cultural": "Full cultural support",
+        "communication": "Improved parent communication",
+        "exams": "Automated exam management",
+        "management": "Streamlined fee management"
+      },
+      "quote": "The bilingual support and cultural understanding made MovinWare the perfect choice for our educational institution.",
+      "author": "Dr. Fatima Al-Zahra",
+      "position": "Academy Director",
+      "metrics": {
+        "implementation": "4 weeks",
+        "efficiency": "60%+",
+        "adoption": "98%"
+      }
+    },
+    "case3": {
+      "client": "Advanced Logistics Co.",
+      "industry": "Logistics",
+      "challenge": "Complex shipment tracking and fleet management with need for route optimization and cost reduction.",
+      "solution": "Integrated logistics system with GPS tracking, route optimization, and comprehensive fleet management.",
+      "results": {
+        "reduction": "25% cost reduction",
+        "delivery": "Improved delivery times",
+        "maintenance": "Preventive maintenance",
+        "tracking": "Real-time tracking"
+      },
+      "quote": "The route optimization and real-time tracking saved us thousands of dollars monthly and significantly improved customer service.",
+      "author": "Khalid Al-Otaibi",
+      "position": "Operations Manager",
+      "metrics": {
+        "implementation": "8 weeks",
+        "efficiency": "35%+",
+        "adoption": "92%"
+      }
+    }
+  },
+  "contact": {
+    "badge": "Contact Us",
+    "title": "Ready to",
+    "titleHighlight": "Transform Your Business?",
+    "description": "Connect with our experts today and discover how MovinWare can transform your operations and accelerate your growth",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "company": "Company",
+      "companyPlaceholder": "Enter your company name",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your phone number",
+      "inquiryType": "Inquiry Type",
+      "inquiryPlaceholder": "Select inquiry type",
+      "message": "Message",
+      "messagePlaceholder": "Tell us how we can help you",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "validation": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "inquiryRequired": "Inquiry type is required",
+        "messageRequired": "Message is required"
+      },
+      "successMessage": "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+      "errorMessage": "There was an error sending your message. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "description": "Reach out to us directly or schedule a free consultation with our experts",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location"
+    },
+    "quickActions": "Quick Actions",
+    "talkToExpert": "Talk to Expert",
+    "scheduleConsultation": "Schedule Consultation",
+    "whatsappSupport": "WhatsApp Support",
+    "whatsappDescription": "Connect with us instantly on WhatsApp for quick support",
+    "chatWhatsapp": "Chat on WhatsApp"
+  },
+  "footer": {
+    "tagline": "Smart Operations.\nSeamless Transformation.",
+    "links": {
+      "solutions": "Solutions",
+      "services": "Services",
+      "industries": "Industries",
+      "about": "About",
+      "contact": "Contact",
+      "careers": "Careers",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions",
+      "cookies": "Cookie Policy",
+      "support": "Support",
+      "documentation": "Documentation",
+      "partner": "Become a Partner"
+    },
+    "copyright": "© 2024 MovinWare. All rights reserved."
+  }
+}

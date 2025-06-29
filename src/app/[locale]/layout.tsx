@@ -8,6 +8,8 @@ import StickyContactButton from "@/components/StickyContactButton";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { locales, type Locale } from "@/lib/i18n";
 import { notFound } from "next/navigation";
+import arGlobalTranslations from '@/lib/translations/global/ar.json';
+import enGlobalTranslations from '@/lib/translations/global/en.json';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,29 +25,38 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: "MovinWare | العمليات الذكية. التحول السلس.",
-  description: "نظام تخطيط موارد المؤسسات مدعوم بالذكاء الاصطناعي مصمم لسير عملك. تبسيط العمليات، وزيادة الكفاءة، وإعداد عملك للمستقبل مع حلول MovinWare الذكية.",
-  keywords: "ERP, AI, automation, digital transformation, business intelligence, Arabic ERP, bilingual ERP, UAE, MENA, نظام تخطيط موارد المؤسسات, ذكاء اصطناعي, أتمتة",
-  authors: [{ name: "MovinWare" }],
-  openGraph: {
+export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
+  const { locale } = params;
+  
+  const translations = locale === 'ar' ? arGlobalTranslations : enGlobalTranslations;
+  
+  return {
     title: "MovinWare | العمليات الذكية. التحول السلس.",
-    description: "نظام تخطيط موارد المؤسسات مدعوم بالذكاء الاصطناعي مصمم لسير عملك. تبسيط العمليات وزيادة الكفاءة.",
-    type: "website",
-    locale: "ar_AE",
-    alternateLocale: "en_US",
-  },
-};
+    description: locale === 'ar' 
+      ? "نظام تخطيط موارد المؤسسات مدعوم بالذكاء الاصطناعي مصمم لسير عملك. تبسيط العمليات، وزيادة الكفاءة، وإعداد عملك للمستقبل مع حلول MovinWare الذكية."
+      : "AI-powered ERP system designed for your workflow. Streamline operations, boost efficiency, and future-proof your business with MovinWare's intelligent solutions.",
+    keywords: "ERP, AI, automation, digital transformation, business intelligence, Arabic ERP, bilingual ERP, UAE, MENA, نظام تخطيط موارد المؤسسات, ذكاء اصطناعي, أتمتة",
+    authors: [{ name: "MovinWare" }],
+    openGraph: {
+      title: "MovinWare | العمليات الذكية. التحول السلس.",
+      description: locale === 'ar'
+        ? "نظام تخطيط موارد المؤسسات مدعوم بالذكاء الاصطناعي مصمم لسير عملك. تبسيط العمليات وزيادة الكفاءة."
+        : "AI-powered ERP system designed for your workflow. Streamline operations and boost efficiency.",
+      type: "website",
+      locale: locale === 'ar' ? 'ar_AE' : 'en_US',
+      alternateLocale: locale === 'ar' ? 'en_US' : 'ar_AE',
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  // Await the params object before destructuring
-  const { locale } = await params;
+  const { locale } = params;
   
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as Locale)) {

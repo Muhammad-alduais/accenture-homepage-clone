@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { Locale, getTranslation, isRTL } from '@/lib/i18n'
+import { Locale, isRTL } from '@/lib/i18n'
+import { useTranslations } from '@/hooks/useTranslations'
 
 interface LanguageContextType {
   locale: Locale
@@ -23,17 +24,13 @@ export function LanguageProvider({
   const router = useRouter()
   const pathname = usePathname()
   const [locale, setLocale] = useState<Locale>(initialLocale)
+  
+  const { t, loading: translationsLoading } = useTranslations('global')
 
   useEffect(() => {
     // Store locale preference
     localStorage.setItem('preferred-locale', locale)
   }, [locale])
-
-  const t = (key: string) => {
-    const translation = getTranslation(locale, key)
-    console.log(`Translation for "${key}" in "${locale}":`, translation) // Debug log
-    return translation
-  }
 
   const switchLanguage = (newLocale: Locale) => {
     // Get current path without locale prefix
