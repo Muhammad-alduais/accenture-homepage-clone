@@ -17,7 +17,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -173,7 +173,7 @@ export default function Header() {
       {/* Skip to main content link */}
       <a 
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-purple-600 text-white px-4 py-2 rounded-lg z-[60]"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg z-[60]"
       >
         {t('nav.skipToMain')}
       </a>
@@ -189,16 +189,14 @@ export default function Header() {
         {/* Centered Rounded Navbar */}
         <motion.nav 
           ref={navRef}
-          className={`max-w-6xl mx-auto transition-all duration-500 ease-out ${
+          className={`max-w-7xl mx-auto transition-all duration-300 ease-out ${
             scrolled 
-              ? 'bg-white/25 dark:bg-gray-900/40 backdrop-blur-xl shadow-lg' 
-              : 'bg-white/20 dark:bg-gray-900/30 backdrop-blur-lg shadow-md'
+              ? 'glass-effect dark:glass-effect-dark shadow-huly-lg' 
+              : 'bg-background/80 dark:bg-background/80 backdrop-blur-sm shadow-huly'
           }`}
           style={{
-            borderRadius: '24px',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.15)'
+            borderRadius: '16px',
+            border: '1px solid hsl(var(--border))'
           }}
           animate={{
             scale: scrolled ? 0.98 : 1,
@@ -220,7 +218,7 @@ export default function Header() {
                 aria-label={t('nav.homeLink')}
               >
                 <motion.div 
-                  className="text-purple-500 text-2xl font-bold"
+                  className="text-primary text-2xl font-bold"
                   variants={logoVariants}
                   whileHover={{ 
                     rotate: 360,
@@ -228,21 +226,27 @@ export default function Header() {
                   }}
                   aria-hidden="true"
                 >
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <motion.path 
-                      d="M20 5L35 35H5L20 5Z" 
-                      fill="#A100FF"
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <motion.rect 
+                      width="32" 
+                      height="32" 
+                      rx="8" 
+                      fill="currentColor"
                       initial={{ pathLength: 0 }}
                       animate={{ pathLength: 1 }}
                       transition={{ duration: 1, delay: 0.5 }}
                     />
+                    <motion.path 
+                      d="M8 12h16v8H8z" 
+                      fill="white"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 1 }}
+                    />
                   </svg>
                 </motion.div>
                 <motion.span 
-                  className="text-white font-bold text-xl"
-                  style={{
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-                  }}
+                  className="text-foreground font-semibold text-xl"
                   initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
@@ -271,15 +275,11 @@ export default function Header() {
                         handleNavClick(item.href)
                       }
                     }}
-                    className="flex items-center space-x-1 px-4 py-2 rounded-full text-white/90 hover:text-white transition-all duration-300 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
-                    style={{
-                      textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                    }}
+                    className="flex items-center space-x-1 px-4 py-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                     whileHover={{ 
-                      scale: 1.05,
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                      scale: 1.02,
                     }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <span className={`relative z-10 font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
                       {t(item.key)}
@@ -300,7 +300,7 @@ export default function Header() {
                     <AnimatePresence>
                       {activeDropdown === item.key && (
                         <motion.div
-                          className={`absolute top-full mt-2 ${isRTL ? 'right-0' : 'left-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[200px]`}
+                          className={`absolute top-full mt-2 ${isRTL ? 'right-0' : 'left-0'} bg-card border border-border rounded-xl shadow-huly-lg overflow-hidden min-w-[200px] z-50`}
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -309,7 +309,7 @@ export default function Header() {
                           {item.dropdownItems?.map((dropdownItem) => (
                             <button
                               key={dropdownItem.key}
-                              className={`w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}
+                              className={`w-full px-4 py-3 hover:bg-muted text-card-foreground transition-colors focus:outline-none focus:bg-muted ${isRTL ? 'text-right' : 'text-left'}`}
                               onClick={() => handleNavClick(dropdownItem.href)}
                             >
                               {t(dropdownItem.key)}
@@ -325,7 +325,7 @@ export default function Header() {
               {/* Get Demo Button */}
               <motion.button
                 onClick={handleGetDemo}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 ml-4 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                className="btn-primary px-6 py-2 rounded-xl font-medium ml-4"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -346,10 +346,7 @@ export default function Header() {
               {/* Language Selector */}
               <div className="relative">
                 <motion.button 
-                  className={`flex items-center px-3 py-2 rounded-full hover:bg-white/10 text-white/90 hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}
-                  style={{
-                    textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                  }}
+                  className={`flex items-center px-3 py-2 rounded-xl hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setShowLanguageMenu(!showLanguageMenu)}
@@ -373,7 +370,7 @@ export default function Header() {
                 <AnimatePresence>
                   {showLanguageMenu && (
                     <motion.div
-                      className={`absolute top-full mt-2 ${isRTL ? 'left-0' : 'right-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[120px]`}
+                      className={`absolute top-full mt-2 ${isRTL ? 'left-0' : 'right-0'} bg-card border border-border rounded-xl shadow-huly-lg overflow-hidden min-w-[120px] z-50`}
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -382,7 +379,7 @@ export default function Header() {
                       aria-label={t('nav.languageMenu')}
                     >
                       <button
-                        className={`w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}
+                        className={`w-full px-4 py-2 hover:bg-muted text-card-foreground transition-colors focus:outline-none focus:bg-muted ${isRTL ? 'text-right' : 'text-left'}`}
                         onClick={() => {
                           switchLanguage('ar')
                           setShowLanguageMenu(false)
@@ -392,7 +389,7 @@ export default function Header() {
                         العربية
                       </button>
                       <button
-                        className={`w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}
+                        className={`w-full px-4 py-2 hover:bg-muted text-card-foreground transition-colors focus:outline-none focus:bg-muted ${isRTL ? 'text-right' : 'text-left'}`}
                         onClick={() => {
                           switchLanguage('en')
                           setShowLanguageMenu(false)
@@ -411,7 +408,7 @@ export default function Header() {
 
               {/* Mobile menu button */}
               <motion.button
-                className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                className="lg:hidden p-2 rounded-xl hover:bg-muted/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -423,8 +420,7 @@ export default function Header() {
                   animate={isMenuOpen ? "open" : "closed"}
                 >
                   <motion.div 
-                    className="w-5 h-0.5 bg-white rounded-full"
-                    style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }}
+                    className="w-5 h-0.5 bg-foreground rounded-full"
                     variants={{
                       closed: { rotate: 0, y: 0 },
                       open: { rotate: 45, y: 6 }
@@ -432,8 +428,7 @@ export default function Header() {
                     transition={{ duration: 0.3 }}
                   />
                   <motion.div 
-                    className="w-5 h-0.5 bg-white rounded-full"
-                    style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }}
+                    className="w-5 h-0.5 bg-foreground rounded-full"
                     variants={{
                       closed: { opacity: 1 },
                       open: { opacity: 0 }
@@ -441,8 +436,7 @@ export default function Header() {
                     transition={{ duration: 0.3 }}
                   />
                   <motion.div 
-                    className="w-5 h-0.5 bg-white rounded-full"
-                    style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }}
+                    className="w-5 h-0.5 bg-foreground rounded-full"
                     variants={{
                       closed: { rotate: 0, y: 0 },
                       open: { rotate: -45, y: -6 }
@@ -459,21 +453,13 @@ export default function Header() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              className="lg:hidden mt-2 max-w-6xl mx-auto"
+              className="lg:hidden mt-2 max-w-7xl mx-auto"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <div 
-                className="bg-white/25 dark:bg-gray-900/40 backdrop-blur-xl rounded-2xl"
-                style={{
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)'
-                }}
-              >
+              <div className="glass-effect dark:glass-effect-dark rounded-2xl border border-border shadow-huly-lg">
                 <motion.div 
                   className="space-y-2 p-6"
                   initial={{ opacity: 0 }}
@@ -491,10 +477,7 @@ export default function Header() {
                             handleNavClick(item.href)
                           }
                         }}
-                        className={`w-full px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium focus:outline-none focus:bg-white/10 flex items-center justify-between ${isRTL ? 'text-right' : 'text-left'}`}
-                        style={{
-                          textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                        }}
+                        className={`w-full px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200 font-medium focus:outline-none focus:bg-muted/50 flex items-center justify-between ${isRTL ? 'text-right' : 'text-left'}`}
                         initial={{ x: isRTL ? 20 : -20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: index * 0.1 }}
@@ -524,7 +507,7 @@ export default function Header() {
                           {item.dropdownItems?.map((dropdownItem) => (
                             <button
                               key={dropdownItem.key}
-                              className={`w-full px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
+                              className={`w-full px-4 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-all duration-200 ${isRTL ? 'text-right' : 'text-left'}`}
                               onClick={() => handleNavClick(dropdownItem.href)}
                             >
                               {t(dropdownItem.key)}
@@ -538,7 +521,7 @@ export default function Header() {
                   {/* Mobile Get Demo Button */}
                   <motion.button
                     onClick={handleGetDemo}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 mt-4"
+                    className="w-full btn-primary px-6 py-3 rounded-xl font-medium mt-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: navItems.length * 0.1 + 0.2 }}

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { ArrowRight, Zap, Brain, Globe, Users } from 'lucide-react'
 
 export default function ValueSection() {
   const [ref, inView] = useInView({
@@ -16,238 +17,189 @@ export default function ValueSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.2,
         duration: 0.8
       }
     }
   }
 
-  const titleVariants = {
+  const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 100,
-      scale: 0.8
+      y: 60,
+      scale: 0.95
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 1.2,
+        duration: 0.8,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   }
 
-  const subtitleVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 60
-    },
-    visible: {
-      opacity: 1,
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   }
 
-  const buttonVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 40,
-      scale: 0.9
+  const valueProps = [
+    {
+      icon: Brain,
+      titleKey: 'value.ai.title',
+      descriptionKey: 'value.ai.description',
+      color: 'from-huly-blue-500 to-huly-blue-700',
+      features: [
+        'value.ai.features.forecasting',
+        'value.ai.features.automation',
+        'value.ai.features.workflows',
+        'value.ai.features.analytics'
+      ]
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
+    {
+      icon: Zap,
+      titleKey: 'value.speed.title',
+      descriptionKey: 'value.speed.description',
+      color: 'from-huly-purple-500 to-huly-purple-700',
+      features: [
+        'value.speed.features.deployment',
+        'value.speed.features.roi',
+        'value.speed.features.benefits',
+        'value.speed.features.methodology'
+      ]
+    },
+    {
+      icon: Globe,
+      titleKey: 'value.cultural.title',
+      descriptionKey: 'value.cultural.description',
+      color: 'from-emerald-500 to-emerald-700',
+      features: [
+        'value.cultural.features.bilingual',
+        'value.cultural.features.rtl',
+        'value.cultural.features.compliance',
+        'value.cultural.features.alignment'
+      ]
+    },
+    {
+      icon: Users,
+      titleKey: 'value.adoption.title',
+      descriptionKey: 'value.adoption.description',
+      color: 'from-orange-500 to-orange-700',
+      features: [
+        'value.adoption.features.design',
+        'value.adoption.features.training',
+        'value.adoption.features.interface',
+        'value.adoption.features.support'
+      ]
     }
-  }
+  ]
 
   return (
-    <section className="py-24 px-4 bg-gray-50 dark:bg-black relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <motion.div 
-        className="absolute inset-0 opacity-5"
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%"],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "linear"
-        }}
-        style={{
-          backgroundImage: "radial-gradient(circle, #A100FF 1px, transparent 1px)",
-          backgroundSize: "50px 50px"
-        }}
-      />
+    <section className="py-24 px-4 bg-gradient-to-br from-muted/20 via-background to-muted/20 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-huly-blue-400/10 to-huly-purple-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-huly-purple-400/10 to-huly-blue-400/10 rounded-full blur-3xl" />
+      </div>
       
-      <div className="container mx-auto text-center relative z-10">
+      <div className="container mx-auto relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {/* Animated Gradient Title */}
-          <motion.h2 
-            className="value-title flex justify-center text-center flex-wrap text-6xl md:text-8xl font-bold mb-8"
-            variants={titleVariants}
-            aria-label={t('value.title')}
-          >
-            <span 
-              className="animated-gradient-text-background animated-gradient-text-background-3"
-              style={{
-                '--content': `'${t('value.title')}'`,
-                '--padding': '0.05em',
-                '--start-color': '#ff4d4d',
-                '--end-color': '#f9cb28'
-              } as React.CSSProperties}
+          {/* Header */}
+          <div className="text-center mb-20">
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-8"
+              variants={itemVariants}
             >
-              <span className="animated-gradient-text-foreground animated-gradient-text-foreground-3">
-                {t('value.title')}
+              <span className="text-sm font-medium">360° VALUE</span>
+            </motion.div>
+
+            <motion.h2 
+              className="text-5xl md:text-7xl font-bold mb-8"
+              variants={itemVariants}
+            >
+              <span className="block text-foreground mb-2">
+                {t('value.subtitle')}
               </span>
-            </span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-2xl md:text-3xl text-gray-700 dark:text-white max-w-4xl mx-auto leading-relaxed mb-12"
-            variants={subtitleVariants}
-          >
-            {t('value.subtitle')}
-            <br />
-            <motion.span
-              className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
+              <span className="block text-gradient">
+                {t('value.subtitleHighlight')}
+              </span>
+            </motion.h2>
+            
+            <motion.button 
+              className="btn-primary px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-2 mx-auto shadow-huly-lg"
+              variants={itemVariants}
+              whileHover={{ 
+                scale: 1.05,
+                y: -2
+              }}
+              whileTap={{ scale: 0.95 }}
             >
-              {t('value.subtitleHighlight')}
-            </motion.span>
-          </motion.p>
-          
-          <motion.button 
-            className={`bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto group ${isRTL ? 'flex-row-reverse' : ''}`}
-            variants={buttonVariants}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 15px 35px rgba(168, 85, 247, 0.4)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.span
-              initial={{ x: 0 }}
-              whileHover={{ x: isRTL ? 5 : -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              {t('value.cta')}
-            </motion.span>
-            <motion.svg 
-              className={`w-5 h-5 ${isRTL ? 'mr-2' : 'ml-2'}`}
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-              initial={{ x: 0 }}
-              whileHover={{ x: isRTL ? -5 : 5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
-            </motion.svg>
-          </motion.button>
+              <span>{t('value.cta')}</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </div>
+
+          {/* Value Props Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {valueProps.map((prop, index) => (
+              <motion.div
+                key={prop.titleKey}
+                className="card-hover bg-card border border-border rounded-2xl p-8 relative overflow-hidden group"
+                variants={cardVariants}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Background Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${prop.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                
+                {/* Icon */}
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${prop.color} flex items-center justify-center mb-6 relative z-10`}>
+                  <prop.icon className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10">
+                  <h3 className={`text-2xl font-bold text-card-foreground mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t(prop.titleKey)}
+                  </h3>
+                  <p className={`text-muted-foreground mb-6 leading-relaxed ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t(prop.descriptionKey)}
+                  </p>
+                  
+                  {/* Features */}
+                  <ul className="space-y-3">
+                    {prop.features.map((featureKey, idx) => (
+                      <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
+                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${prop.color}`} />
+                        <span className="text-card-foreground text-sm font-medium">{t(featureKey)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Hover Effect */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-transparent rounded-2xl"
+                  whileHover={{
+                    borderImage: `linear-gradient(135deg, ${prop.color.split(' ')[1]}, ${prop.color.split(' ')[3]}) 1`
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
-
-      {/* Value Section Animated Gradient Text Styles */}
-      <style jsx>{`
-        .value-title {
-          letter-spacing: -0.06em;
-          margin: 0 0 40px;
-        }
-
-        .animated-gradient-text-background {
-          position: relative;
-          display: block;
-          -webkit-user-select: none;
-          user-select: none;
-        }
-
-        .animated-gradient-text-background-3:before {
-          animation: fade-background-3 8s infinite;
-        }
-
-        .animated-gradient-text-foreground-3 {
-          animation: fade-foreground-3 8s infinite;
-        }
-
-        .animated-gradient-text-foreground {
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
-          position: relative;
-          z-index: 1;
-        }
-
-        .animated-gradient-text-background:before {
-          content: var(--content);
-          position: absolute;
-          display: block;
-          width: 100%;
-          text-align: center;
-          margin-bottom: -10px;
-          background: linear-gradient(180deg, #fff, hsla(0,0%,100%,.75));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          z-index: 0;
-        }
-
-        .dark .animated-gradient-text-background:before {
-          background: linear-gradient(180deg, #000, hsla(0,0%,0%,.75));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        @keyframes fade-foreground-3 {
-          0%, 50%, 100% { opacity: 0; }
-          66.667%, 83.333% { opacity: 1; }
-        }
-
-        @keyframes fade-background-3 {
-          0%, 58.333%, 91.667%, 100% { opacity: 1; }
-          66.667%, 83.333% { opacity: 0; }
-        }
-
-        /* RTL Support */
-        [dir="rtl"] .value-title {
-          direction: rtl;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-          .value-title {
-            font-size: 4rem;
-            line-height: 1.1;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .value-title {
-            font-size: 3rem;
-          }
-        }
-      `}</style>
     </section>
   )
 }
