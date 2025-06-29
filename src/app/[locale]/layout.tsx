@@ -5,7 +5,6 @@ import ClientBody from "../ClientBody";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import StickyContactButton from "@/components/StickyContactButton";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { locales, type Locale } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 
@@ -70,7 +69,6 @@ export default async function RootLayout({
           <LanguageProvider initialLocale={validLocale}>
             <ClientBody>{children}</ClientBody>
             <StickyContactButton />
-            <ScrollToTopButton />
           </LanguageProvider>
         </ThemeProvider>
       </body>
