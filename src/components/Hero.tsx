@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import AnimatedBackground from './AnimatedBackground'
+import AccentureBackground from './AccentureBackground'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -62,8 +62,8 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
-      {/* Accenture-Style Background */}
-      <AnimatedBackground />
+      {/* Accenture-style Animated Background */}
+      <AccentureBackground />
 
       {/* Content */}
       <motion.div 
@@ -79,12 +79,9 @@ export default function Hero() {
             isRTL 
               ? 'flex justify-center items-center text-center' 
               : 'flex flex-col items-center justify-center text-center'
-          } font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl text-gray-900 dark:text-white`}
+          } font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl`}
           variants={itemVariants}
           aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
-          style={{
-            textShadow: '0 2px 20px rgba(168, 85, 247, 0.3)'
-          }}
         >
           {animatedTexts.map((item, index) => (
             <span 
@@ -106,9 +103,6 @@ export default function Hero() {
         <motion.p 
           className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-200 mb-10 max-w-4xl mx-auto leading-relaxed"
           variants={itemVariants}
-          style={{
-            textShadow: '0 1px 10px rgba(0, 0, 0, 0.1)'
-          }}
         >
           {t('hero.description')}
         </motion.p>
@@ -119,15 +113,15 @@ export default function Hero() {
           variants={itemVariants}
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 arabic-numbers" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}>50%</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">50%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.implementation')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 arabic-numbers" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}>87%</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2 arabic-numbers">87%</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.adoption')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}>24/7</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
             <div className="text-gray-700 dark:text-gray-300">{t('hero.metrics.support')}</div>
           </div>
         </motion.div>
@@ -178,7 +172,6 @@ export default function Hero() {
           position: relative;
           z-index: 1;
           background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
-          filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
         }
 
         ${isRTL ? `
