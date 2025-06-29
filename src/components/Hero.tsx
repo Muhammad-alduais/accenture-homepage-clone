@@ -43,14 +43,12 @@ export default function Hero() {
   // Get animated texts based on language
   const getAnimatedTexts = () => {
     if (isRTL) {
-      // Arabic: Three separate animated words
+      // Arabic: Single horizontal text with gradient animation
       return [
-        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' },
-        { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' },
-        { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
+        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }
       ]
     } else {
-      // English: "We" + three action words
+      // English: "We" + three action words vertically
       return [
         { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }, // "We"
         { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }, // "Innovate"
@@ -77,16 +75,18 @@ export default function Hero() {
       >
         {/* Custom Animated Gradient Hero Title */}
         <motion.h1 
-          className={`hero-title flex flex-col items-center justify-center text-center font-bold leading-tight mb-6 ${
-            isRTL ? 'text-5xl md:text-7xl lg:text-8xl' : 'text-5xl md:text-7xl lg:text-8xl'
-          }`}
+          className={`hero-title ${
+            isRTL 
+              ? 'flex justify-center items-center text-center' 
+              : 'flex flex-col items-center justify-center text-center'
+          } font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl`}
           variants={itemVariants}
           aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
         >
           {animatedTexts.map((item, index) => (
             <span 
               key={index}
-              className={`animated-text text-${index + 1} block`}
+              className={`animated-text text-${index + 1} ${isRTL ? 'inline-block' : 'block'} ${isRTL && index > 0 ? 'mr-4' : ''}`}
               style={{
                 '--content': `'${item.text}'`,
                 '--start-color': item.colorStart,
@@ -138,10 +138,11 @@ export default function Hero() {
 
         .animated-text {
           position: relative;
-          display: block;
+          display: ${isRTL ? 'inline-block' : 'block'};
           -webkit-user-select: none;
           user-select: none;
-          margin-bottom: ${isRTL ? '0.2em' : '0.1em'};
+          margin-bottom: ${isRTL ? '0' : '0.1em'};
+          ${isRTL ? 'margin-right: 0.3em;' : ''}
         }
 
         .animated-text:before {
@@ -173,62 +174,26 @@ export default function Hero() {
           background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
         }
 
-        /* Animation for Arabic (3 texts) */
         ${isRTL ? `
+        /* Arabic - Single horizontal text with gradient animation */
         .text-1:before {
-          animation: fade-bg-1 8s infinite;
+          animation: fade-bg-ar 6s infinite;
         }
         .text-1 .foreground {
-          animation: fade-fg-1 8s infinite;
+          animation: fade-fg-ar 6s infinite;
         }
 
-        .text-2:before {
-          animation: fade-bg-2 8s infinite;
-        }
-        .text-2 .foreground {
-          animation: fade-fg-2 8s infinite;
-        }
-
-        .text-3:before {
-          animation: fade-bg-3 8s infinite;
-        }
-        .text-3 .foreground {
-          animation: fade-fg-3 8s infinite;
-        }
-
-        @keyframes fade-fg-1 {
-          0%, 16.667%, 100% { opacity: 1; }
-          33.333%, 83.333% { opacity: 0; }
-        }
-
-        @keyframes fade-bg-1 {
-          0%, 16.667%, 100% { opacity: 0; }
-          25%, 91.667% { opacity: 1; }
-        }
-
-        @keyframes fade-fg-2 {
-          0%, 100% { opacity: 0; }
-          33.333%, 50% { opacity: 1; }
-          16.667%, 66.667% { opacity: 0; }
-        }
-
-        @keyframes fade-bg-2 {
+        @keyframes fade-fg-ar {
           0%, 100% { opacity: 1; }
-          33.333%, 50% { opacity: 0; }
-          25%, 58.333% { opacity: 1; }
+          50% { opacity: 0.7; }
         }
 
-        @keyframes fade-fg-3 {
-          0%, 50%, 100% { opacity: 0; }
-          66.667%, 83.333% { opacity: 1; }
-        }
-
-        @keyframes fade-bg-3 {
-          0%, 58.333%, 91.667%, 100% { opacity: 1; }
-          66.667%, 83.333% { opacity: 0; }
+        @keyframes fade-bg-ar {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.3; }
         }
         ` : `
-        /* Animation for English (4 texts) */
+        /* English - "We" + three action words vertically */
         .text-1:before {
           animation: fade-bg-en-1 12s infinite;
         }
