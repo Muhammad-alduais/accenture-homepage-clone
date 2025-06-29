@@ -13,15 +13,23 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
-        <AboutSection />
+        <section id="about">
+          <AboutSection />
+        </section>
         <ValueSection />
-        <ServicesSection />
-        <IndustriesSection />
+        <section id="services">
+          <ServicesSection />
+        </section>
+        <section id="industries">
+          <IndustriesSection />
+        </section>
         <ImplementationSection />
         <TestimonialsSection />
-        <ContactSection />
+        <section id="contact">
+          <ContactSection />
+        </section>
       </main>
       <Footer />
     </div>

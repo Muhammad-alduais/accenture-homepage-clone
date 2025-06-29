@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { ChevronDown, Globe, Menu, X } from 'lucide-react'
+import { Globe, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePathname } from 'next/navigation'
@@ -11,13 +11,11 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [focusedItem, setFocusedItem] = useState<number>(-1)
   
   const { locale, t, isRTL, switchLanguage } = useLanguage()
   const pathname = usePathname()
   const navRef = useRef<HTMLElement>(null)
-  const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,14 +30,12 @@ export default function Header() {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsMenuOpen(false)
-        setActiveDropdown(null)
         setShowLanguageMenu(false)
       }
     }
 
     if (isMenuOpen) {
       document.addEventListener('keydown', handleEscape)
-      // Prevent body scroll when menu is open
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
@@ -55,7 +51,6 @@ export default function Header() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setActiveDropdown(null)
         setShowLanguageMenu(false)
       }
     }
@@ -94,41 +89,43 @@ export default function Header() {
   const navItems = [
     { 
       key: 'nav.solutions', 
-      hasDropdown: true,
-      href: '#solutions',
-      dropdownItems: [
-        { key: 'nav.dropdown.erp', href: '#erp' },
-        { key: 'nav.dropdown.ai', href: '#ai' },
-        { key: 'nav.dropdown.integration', href: '#integration' }
-      ]
+      href: '#services',
+      sectionId: 'services'
     },
     { 
       key: 'nav.services', 
-      hasDropdown: false,
-      href: '#services'
+      href: '#services',
+      sectionId: 'services'
     },
     { 
       key: 'nav.industries', 
-      hasDropdown: true,
       href: '#industries',
-      dropdownItems: [
-        { key: 'nav.dropdown.education', href: '#education' },
-        { key: 'nav.dropdown.logistics', href: '#logistics' },
-        { key: 'nav.dropdown.retail', href: '#retail' },
-        { key: 'nav.dropdown.manufacturing', href: '#manufacturing' }
-      ]
+      sectionId: 'industries'
     },
     { 
       key: 'nav.about', 
-      hasDropdown: true,
       href: '#about',
-      dropdownItems: [
-        { key: 'nav.dropdown.company', href: '#company' },
-        { key: 'nav.dropdown.team', href: '#team' },
-        { key: 'nav.dropdown.careers', href: '#careers' }
-      ]
+      sectionId: 'about'
+    },
+    { 
+      key: 'nav.contact', 
+      href: '#contact',
+      sectionId: 'contact'
     }
   ]
+
+  const handleNavigation = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const headerHeight = 100 // Account for fixed header
+      const elementPosition = element.offsetTop - headerHeight
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
+    }
+    setIsMenuOpen(false)
+  }
 
   const handleKeyNavigation = (e: KeyboardEvent, index: number) => {
     switch (e.key) {
@@ -144,24 +141,17 @@ export default function Header() {
           setFocusedItem(index === 0 ? navItems.length - 1 : index - 1)
         }
         break
-      case 'ArrowDown':
-        e.preventDefault()
-        if (navItems[index].hasDropdown) {
-          setActiveDropdown(navItems[index].key)
-        }
-        break
       case 'Enter':
       case ' ':
         e.preventDefault()
-        if (navItems[index].hasDropdown) {
-          setActiveDropdown(activeDropdown === navItems[index].key ? null : navItems[index].key)
-        }
+        handleNavigation(navItems[index].sectionId)
         break
     }
   }
 
-  const isCurrentPage = (href: string) => {
-    return pathname.includes(href.replace('#', ''))
+  const isCurrentSection = (sectionId: string) => {
+    // Simple check - you could enhance this with intersection observer
+    return false // For now, we'll keep it simple
   }
 
   return (
@@ -262,7 +252,7 @@ export default function Header() {
                     >
                       <motion.button
                         className={`flex items-center space-x-1 px-4 py-2 rounded-full transition-all duration-300 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${
-                          isCurrentPage(item.href) 
+                          isCurrentSection(item.sectionId) 
                             ? 'text-white bg-white/20' 
                             : 'text-white/90 hover:text-white hover:bg-white/10'
                         }`}
@@ -273,67 +263,16 @@ export default function Header() {
                           scale: 1.05,
                         }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          if (item.hasDropdown) {
-                            setActiveDropdown(activeDropdown === item.key ? null : item.key)
-                          } else {
-                            // Navigate to section for non-dropdown items
-                            const element = document.querySelector(item.href)
-                            if (element) {
-                              element.scrollIntoView({ behavior: 'smooth' })
-                            }
-                          }
-                        }}
+                        onClick={() => handleNavigation(item.sectionId)}
                         onKeyDown={(e) => handleKeyNavigation(e as any, index)}
                         role="menuitem"
-                        aria-haspopup={item.hasDropdown ? "true" : "false"}
-                        aria-expanded={item.hasDropdown ? activeDropdown === item.key : undefined}
-                        aria-current={isCurrentPage(item.href) ? "page" : undefined}
+                        aria-current={isCurrentSection(item.sectionId) ? "page" : undefined}
                         tabIndex={focusedItem === index ? 0 : -1}
                       >
-                        <span className={`relative z-10 font-medium ${isRTL ? 'ml-1' : 'mr-1'}`}>
+                        <span className="relative z-10 font-medium">
                           {t(item.key)}
                         </span>
-                        {item.hasDropdown && (
-                          <motion.div
-                            className="relative z-10"
-                            animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                            aria-hidden="true"
-                          >
-                            <ChevronDown className="w-4 h-4" />
-                          </motion.div>
-                        )}
                       </motion.button>
-
-                      {/* Dropdown Menu */}
-                      {item.hasDropdown && (
-                        <AnimatePresence>
-                          {activeDropdown === item.key && (
-                            <motion.div
-                              className={`absolute top-full mt-2 ${isRTL ? 'right-0' : 'left-0'} bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden min-w-[200px]`}
-                              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                              animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                              transition={{ duration: 0.2 }}
-                              role="menu"
-                              aria-labelledby={`nav-${item.key}`}
-                            >
-                              {item.dropdownItems?.map((dropdownItem) => (
-                                <a
-                                  key={dropdownItem.key}
-                                  href={dropdownItem.href}
-                                  className={`block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white transition-colors focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}
-                                  role="menuitem"
-                                  onClick={() => setActiveDropdown(null)}
-                                >
-                                  {t(dropdownItem.key)}
-                                </a>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      )}
                     </motion.div>
                   </li>
                 ))}
@@ -365,13 +304,6 @@ export default function Header() {
                   <span className="text-sm font-medium">
                     {locale === 'ar' ? 'العربية' : 'English'}
                   </span>
-                  <motion.div
-                    animate={{ rotate: showLanguageMenu ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    aria-hidden="true"
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </motion.div>
                 </motion.button>
 
                 {/* Language Dropdown */}
@@ -457,7 +389,6 @@ export default function Header() {
           {isMenuOpen && (
             <motion.div 
               id="mobile-menu"
-              ref={mobileMenuRef}
               className="lg:hidden mt-2 max-w-6xl mx-auto"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -486,19 +417,9 @@ export default function Header() {
                       {navItems.map((item, index) => (
                         <li key={item.key} role="none">
                           <motion.button 
-                            onClick={() => {
-                              if (item.hasDropdown) {
-                                setActiveDropdown(activeDropdown === item.key ? null : item.key)
-                              } else {
-                                const element = document.querySelector(item.href)
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth' })
-                                }
-                                setIsMenuOpen(false)
-                              }
-                            }}
+                            onClick={() => handleNavigation(item.sectionId)}
                             className={`block w-full px-4 py-3 rounded-xl transition-all duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${
-                              isCurrentPage(item.href)
+                              isCurrentSection(item.sectionId)
                                 ? 'text-white bg-white/20'
                                 : 'text-white/90 hover:text-white hover:bg-white/10'
                             } ${isRTL ? 'text-right' : 'text-left'}`}
@@ -511,49 +432,10 @@ export default function Header() {
                             whileHover={{ x: isRTL ? -10 : 10, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             role="menuitem"
-                            aria-current={isCurrentPage(item.href) ? "page" : undefined}
+                            aria-current={isCurrentSection(item.sectionId) ? "page" : undefined}
                           >
-                            <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-                              <span>{t(item.key)}</span>
-                              {item.hasDropdown && (
-                                <motion.div
-                                  animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <ChevronDown className="w-4 h-4" />
-                                </motion.div>
-                              )}
-                            </div>
+                            {t(item.key)}
                           </motion.button>
-                          
-                          {/* Mobile Dropdown */}
-                          {item.hasDropdown && (
-                            <AnimatePresence>
-                              {activeDropdown === item.key && (
-                                <motion.div
-                                  className="mt-2 ml-4 space-y-1"
-                                  initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: 'auto' }}
-                                  exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.2 }}
-                                >
-                                  {item.dropdownItems?.map((dropdownItem) => (
-                                    <a
-                                      key={dropdownItem.key}
-                                      href={dropdownItem.href}
-                                      className={`block px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
-                                      onClick={() => {
-                                        setIsMenuOpen(false)
-                                        setActiveDropdown(null)
-                                      }}
-                                    >
-                                      {t(dropdownItem.key)}
-                                    </a>
-                                  ))}
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          )}
                         </li>
                       ))}
                     </ul>
