@@ -40,12 +40,25 @@ export default function Hero() {
     }
   }
 
-  // Synchronized animated text content for both languages
-  const animatedTexts = [
-    { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' },
-    { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' },
-    { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
-  ]
+  // Different structure for Arabic vs English
+  const getAnimatedTexts = () => {
+    if (isRTL) {
+      // Arabic: Three separate animated words
+      return [
+        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' },
+        { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' },
+        { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
+      ]
+    } else {
+      // English: "We" + combined action phrase
+      return [
+        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }, // "We"
+        { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }, // "Innovate. Develop. Simplify."
+      ]
+    }
+  }
+
+  const animatedTexts = getAnimatedTexts()
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
@@ -66,19 +79,21 @@ export default function Hero() {
             isRTL ? 'text-5xl md:text-7xl lg:text-8xl' : 'text-5xl md:text-7xl lg:text-8xl'
           }`}
           variants={itemVariants}
-          aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. We Develop. We Simplify."}
+          aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
         >
           {animatedTexts.map((item, index) => (
             <span 
               key={index}
-              className={`animated-text text-${index + 1}`}
+              className={`animated-text text-${index + 1} ${
+                !isRTL && index === 1 ? 'ml-4' : ''
+              }`}
               style={{
                 '--content': `'${item.text}'`,
                 '--start-color': item.colorStart,
                 '--end-color': item.colorEnd
               } as React.CSSProperties}
             >
-              <span className={`foreground ${index === 1 ? 'mx-2' : ''}`}>
+              <span className="foreground">
                 {item.text}
               </span>
             </span>
@@ -123,7 +138,7 @@ export default function Hero() {
 
         .animated-text {
           position: relative;
-          display: block;
+          display: ${isRTL ? 'block' : 'inline-block'};
           -webkit-user-select: none;
           user-select: none;
         }
@@ -157,6 +172,8 @@ export default function Hero() {
           background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
         }
 
+        /* Animation for Arabic (3 texts) */
+        ${isRTL ? `
         .text-1:before {
           animation: fade-bg-1 8s infinite;
         }
@@ -209,6 +226,44 @@ export default function Hero() {
           0%, 58.333%, 91.667%, 100% { opacity: 1; }
           66.667%, 83.333% { opacity: 0; }
         }
+        ` : `
+        /* Animation for English (2 texts) */
+        .text-1:before {
+          animation: fade-bg-en-1 6s infinite;
+        }
+        .text-1 .foreground {
+          animation: fade-fg-en-1 6s infinite;
+        }
+
+        .text-2:before {
+          animation: fade-bg-en-2 6s infinite;
+        }
+        .text-2 .foreground {
+          animation: fade-fg-en-2 6s infinite;
+        }
+
+        @keyframes fade-fg-en-1 {
+          0%, 25%, 100% { opacity: 1; }
+          50%, 75% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-en-1 {
+          0%, 25%, 100% { opacity: 0; }
+          35%, 90% { opacity: 1; }
+        }
+
+        @keyframes fade-fg-en-2 {
+          0%, 25% { opacity: 0; }
+          50%, 75% { opacity: 1; }
+          85%, 100% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-en-2 {
+          0%, 35% { opacity: 1; }
+          50%, 75% { opacity: 0; }
+          85%, 100% { opacity: 1; }
+        }
+        `}
 
         /* RTL Support */
         [dir="rtl"] .hero-title {
