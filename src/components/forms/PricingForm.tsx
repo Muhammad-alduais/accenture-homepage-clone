@@ -29,8 +29,8 @@ export default function PricingForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   
-  const { isRTL } = useLanguage()
-  const { t, loading: translationsLoading } = useTranslations('forms')
+  const { isRTL, locale } = useLanguage()
+  const { t, loading: translationsLoading } = useTranslations('forms', locale)
 
   const initialFormData: PricingFormData = {
     companyName: '',
