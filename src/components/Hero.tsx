@@ -40,6 +40,16 @@ export default function Hero() {
     }
   }
 
+  // Arabic animated text content
+  const animatedTexts = isRTL ? [
+    { text: 'نُبتكر.', colorStart: '#007cf0', colorEnd: '#00dfd8' },
+    { text: 'نُطوّر.', colorStart: '#7928ca', colorEnd: '#ff0080' },
+    { text: 'نُبسّط.', colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
+  ] : [
+    { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' },
+    { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }
+  ]
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
       {/* Interactive Animated Background */}
@@ -53,38 +63,29 @@ export default function Hero() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {/* Animated Gradient Hero Title */}
+        {/* Custom Animated Gradient Hero Title */}
         <motion.h1 
-          className="hero-title flex justify-center text-center flex-wrap text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
+          className={`hero-title flex justify-center text-center flex-wrap font-bold leading-tight mb-6 ${
+            isRTL ? 'text-5xl md:text-7xl lg:text-8xl' : 'text-5xl md:text-7xl lg:text-8xl'
+          }`}
           variants={itemVariants}
-          aria-label={`${t('hero.title')}. ${t('hero.subtitle')}.`}
+          aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : `${t('hero.title')}. ${t('hero.subtitle')}.`}
         >
-          <span 
-            className="animated-gradient-text-background animated-gradient-text-background-1"
-            style={{
-              '--content': `'${t('hero.title')}'`,
-              '--padding': '0.05em',
-              '--start-color': '#007cf0',
-              '--end-color': '#00dfd8'
-            } as React.CSSProperties}
-          >
-            <span className="animated-gradient-text-foreground animated-gradient-text-foreground-1">
-              {t('hero.title')}
+          {animatedTexts.map((item, index) => (
+            <span 
+              key={index}
+              className={`animated-text text-${index + 1}`}
+              style={{
+                '--content': `'${item.text}'`,
+                '--start-color': item.colorStart,
+                '--end-color': item.colorEnd
+              } as React.CSSProperties}
+            >
+              <span className={`foreground ${index === 1 && !isRTL ? 'mx-4' : index === 1 && isRTL ? 'mx-2' : ''}`}>
+                {item.text}
+              </span>
             </span>
-          </span>
-          <span 
-            className="animated-gradient-text-background animated-gradient-text-background-2"
-            style={{
-              '--content': `'${t('hero.subtitle')}'`,
-              '--padding': '0.05em',
-              '--start-color': '#7928ca',
-              '--end-color': '#ff0080'
-            } as React.CSSProperties}
-          >
-            <span className={`${isRTL ? 'mr-4' : 'mx-4'} animated-gradient-text-foreground animated-gradient-text-foreground-2`}>
-              {t('hero.subtitle')}
-            </span>
-          </span>
+          ))}
         </motion.h1>
 
         <motion.p 
@@ -114,53 +115,28 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Animated Gradient Text Styles */}
+      {/* Custom Animated Gradient Text Styles */}
       <style jsx>{`
         .hero-title {
           letter-spacing: -0.06em;
           margin: 0 0 40px;
+          line-height: 1.2;
+          font-weight: 800;
         }
 
-        .animated-gradient-text-background {
+        .animated-text {
           position: relative;
           display: block;
           -webkit-user-select: none;
           user-select: none;
         }
 
-        .animated-gradient-text-background-1:before {
-          animation: fade-background-1 8s infinite;
-        }
-
-        .animated-gradient-text-foreground-1 {
-          animation: fade-foreground-1 8s infinite;
-        }
-
-        .animated-gradient-text-background-2:before {
-          animation: fade-background-2 8s infinite;
-        }
-
-        .animated-gradient-text-foreground-2 {
-          animation: fade-foreground-2 8s infinite;
-        }
-
-        .animated-gradient-text-foreground {
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
-          position: relative;
-          z-index: 1;
-        }
-
-        .animated-gradient-text-background:before {
+        .animated-text:before {
           content: var(--content);
           position: absolute;
-          display: block;
           width: 100%;
           text-align: center;
-          margin-bottom: -10px;
-          background: linear-gradient(180deg, #fff, hsla(0,0%,100%,.75));
+          background: linear-gradient(180deg, #fff, hsla(0,0%,100%,0.75));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           top: 0;
@@ -169,32 +145,72 @@ export default function Hero() {
           z-index: 0;
         }
 
-        .dark .animated-gradient-text-background:before {
-          background: linear-gradient(180deg, #000, hsla(0,0%,0%,.75));
+        .dark .animated-text:before {
+          background: linear-gradient(180deg, #000, hsla(0,0%,0%,0.75));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
 
-        @keyframes fade-foreground-1 {
+        .foreground {
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          position: relative;
+          z-index: 1;
+          background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
+        }
+
+        .text-1:before {
+          animation: fade-bg-1 8s infinite;
+        }
+        .text-1 .foreground {
+          animation: fade-fg-1 8s infinite;
+        }
+
+        .text-2:before {
+          animation: fade-bg-2 8s infinite;
+        }
+        .text-2 .foreground {
+          animation: fade-fg-2 8s infinite;
+        }
+
+        .text-3:before {
+          animation: fade-bg-3 8s infinite;
+        }
+        .text-3 .foreground {
+          animation: fade-fg-3 8s infinite;
+        }
+
+        @keyframes fade-fg-1 {
           0%, 16.667%, 100% { opacity: 1; }
           33.333%, 83.333% { opacity: 0; }
         }
 
-        @keyframes fade-background-1 {
+        @keyframes fade-bg-1 {
           0%, 16.667%, 100% { opacity: 0; }
           25%, 91.667% { opacity: 1; }
         }
 
-        @keyframes fade-foreground-2 {
+        @keyframes fade-fg-2 {
           0%, 100% { opacity: 0; }
           33.333%, 50% { opacity: 1; }
           16.667%, 66.667% { opacity: 0; }
         }
 
-        @keyframes fade-background-2 {
+        @keyframes fade-bg-2 {
           0%, 100% { opacity: 1; }
           33.333%, 50% { opacity: 0; }
           25%, 58.333% { opacity: 1; }
+        }
+
+        @keyframes fade-fg-3 {
+          0%, 50%, 100% { opacity: 0; }
+          66.667%, 83.333% { opacity: 1; }
+        }
+
+        @keyframes fade-bg-3 {
+          0%, 58.333%, 91.667%, 100% { opacity: 1; }
+          66.667%, 83.333% { opacity: 0; }
         }
 
         /* RTL Support */
@@ -215,6 +231,46 @@ export default function Hero() {
             font-size: 2.5rem;
             flex-direction: column;
             gap: 0.5rem;
+          }
+        }
+
+        /* Enhanced visual effects */
+        @media (prefers-reduced-motion: no-preference) {
+          .animated-text {
+            transition: transform 0.3s ease;
+          }
+          
+          .animated-text:hover {
+            transform: scale(1.02);
+          }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+          .animated-text:before {
+            background: currentColor;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .text-1:before,
+          .text-1 .foreground,
+          .text-2:before,
+          .text-2 .foreground,
+          .text-3:before,
+          .text-3 .foreground {
+            animation: none;
+          }
+          
+          .foreground {
+            opacity: 1;
+          }
+          
+          .animated-text:before {
+            opacity: 0;
           }
         }
       `}</style>
