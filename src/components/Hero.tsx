@@ -40,7 +40,7 @@ export default function Hero() {
     }
   }
 
-  // Different structure for Arabic vs English
+  // Get animated texts based on language
   const getAnimatedTexts = () => {
     if (isRTL) {
       // Arabic: Three separate animated words
@@ -50,10 +50,12 @@ export default function Hero() {
         { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
       ]
     } else {
-      // English: "We" + combined action phrase
+      // English: "We" + three action words
       return [
         { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }, // "We"
-        { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }, // "Innovate. Develop. Simplify."
+        { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }, // "Innovate"
+        { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }, // "Develop"
+        { text: t('hero.quaternary'), colorStart: '#00c851', colorEnd: '#007e33' } // "Simplify"
       ]
     }
   }
@@ -75,7 +77,7 @@ export default function Hero() {
       >
         {/* Custom Animated Gradient Hero Title */}
         <motion.h1 
-          className={`hero-title flex justify-center text-center flex-wrap font-bold leading-tight mb-6 ${
+          className={`hero-title flex flex-col items-center justify-center text-center font-bold leading-tight mb-6 ${
             isRTL ? 'text-5xl md:text-7xl lg:text-8xl' : 'text-5xl md:text-7xl lg:text-8xl'
           }`}
           variants={itemVariants}
@@ -84,9 +86,7 @@ export default function Hero() {
           {animatedTexts.map((item, index) => (
             <span 
               key={index}
-              className={`animated-text text-${index + 1} ${
-                !isRTL && index === 1 ? 'ml-4' : ''
-              }`}
+              className={`animated-text text-${index + 1} block`}
               style={{
                 '--content': `'${item.text}'`,
                 '--start-color': item.colorStart,
@@ -138,9 +138,10 @@ export default function Hero() {
 
         .animated-text {
           position: relative;
-          display: ${isRTL ? 'block' : 'inline-block'};
+          display: block;
           -webkit-user-select: none;
           user-select: none;
+          margin-bottom: ${isRTL ? '0.2em' : '0.1em'};
         }
 
         .animated-text:before {
@@ -227,41 +228,79 @@ export default function Hero() {
           66.667%, 83.333% { opacity: 0; }
         }
         ` : `
-        /* Animation for English (2 texts) */
+        /* Animation for English (4 texts) */
         .text-1:before {
-          animation: fade-bg-en-1 6s infinite;
+          animation: fade-bg-en-1 12s infinite;
         }
         .text-1 .foreground {
-          animation: fade-fg-en-1 6s infinite;
+          animation: fade-fg-en-1 12s infinite;
         }
 
         .text-2:before {
-          animation: fade-bg-en-2 6s infinite;
+          animation: fade-bg-en-2 12s infinite;
         }
         .text-2 .foreground {
-          animation: fade-fg-en-2 6s infinite;
+          animation: fade-fg-en-2 12s infinite;
         }
 
+        .text-3:before {
+          animation: fade-bg-en-3 12s infinite;
+        }
+        .text-3 .foreground {
+          animation: fade-fg-en-3 12s infinite;
+        }
+
+        .text-4:before {
+          animation: fade-bg-en-4 12s infinite;
+        }
+        .text-4 .foreground {
+          animation: fade-fg-en-4 12s infinite;
+        }
+
+        /* "We" - Always visible */
         @keyframes fade-fg-en-1 {
-          0%, 25%, 100% { opacity: 1; }
-          50%, 75% { opacity: 0; }
+          0%, 100% { opacity: 1; }
         }
 
         @keyframes fade-bg-en-1 {
-          0%, 25%, 100% { opacity: 0; }
-          35%, 90% { opacity: 1; }
+          0%, 100% { opacity: 0; }
         }
 
+        /* "Innovate" */
         @keyframes fade-fg-en-2 {
-          0%, 25% { opacity: 0; }
-          50%, 75% { opacity: 1; }
-          85%, 100% { opacity: 0; }
+          0%, 20%, 100% { opacity: 1; }
+          35%, 85% { opacity: 0; }
         }
 
         @keyframes fade-bg-en-2 {
+          0%, 20%, 100% { opacity: 0; }
+          30%, 90% { opacity: 1; }
+        }
+
+        /* "Develop" */
+        @keyframes fade-fg-en-3 {
+          0%, 30% { opacity: 0; }
+          40%, 60% { opacity: 1; }
+          70%, 100% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-en-3 {
           0%, 35% { opacity: 1; }
-          50%, 75% { opacity: 0; }
-          85%, 100% { opacity: 1; }
+          40%, 60% { opacity: 0; }
+          65%, 100% { opacity: 1; }
+        }
+
+        /* "Simplify" */
+        @keyframes fade-fg-en-4 {
+          0%, 65% { opacity: 0; }
+          75%, 95% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-en-4 {
+          0%, 70% { opacity: 1; }
+          75%, 95% { opacity: 0; }
+          100% { opacity: 1; }
         }
         `}
 
@@ -281,8 +320,10 @@ export default function Hero() {
         @media (max-width: 480px) {
           .hero-title {
             font-size: 2.5rem;
-            flex-direction: column;
-            gap: 0.5rem;
+          }
+          
+          .animated-text {
+            margin-bottom: 0.05em;
           }
         }
 
@@ -313,7 +354,9 @@ export default function Hero() {
           .text-2:before,
           .text-2 .foreground,
           .text-3:before,
-          .text-3 .foreground {
+          .text-3 .foreground,
+          .text-4:before,
+          .text-4 .foreground {
             animation: none;
           }
           

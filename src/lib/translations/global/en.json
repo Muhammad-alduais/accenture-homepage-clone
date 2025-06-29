@@ -150,8 +150,9 @@
   },
   "hero": {
     "title": "We",
-    "subtitle": "Innovate. Develop. Simplify.",
-    "tertiary": "",
+    "subtitle": "Innovate",
+    "tertiary": "Develop",
+    "quaternary": "Simplify",
     "description": "AI-powered ERP system designed for your workflow. Streamline operations, boost efficiency, and future-proof your business with MovinWare's intelligent solutions.",
     "metrics": {
       "implementation": "Faster Implementation",
