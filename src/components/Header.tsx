@@ -320,19 +320,6 @@ export default function Header() {
                   )}
                 </motion.div>
               ))}
-              
-              {/* Get Demo Button */}
-              <motion.button
-                onClick={handleGetDemo}
-                className="bg-brand-primary hover:bg-brand-primary/90 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 ml-4 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-transparent"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              >
-                {t('nav.getDemo')}
-              </motion.button>
             </nav>
 
             {/* Right side - Controls + Mobile Menu */}
@@ -533,19 +520,6 @@ export default function Header() {
                       )}
                     </div>
                   ))}
-                  
-                  {/* Mobile Get Demo Button */}
-                  <motion.button
-                    onClick={handleGetDemo}
-                    className="w-full bg-brand-primary hover:bg-brand-primary/90 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 mt-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: navItems.length * 0.1 + 0.2 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {t('nav.getDemo')}
-                  </motion.button>
                 </motion.div>
               </div>
             </motion.div>
