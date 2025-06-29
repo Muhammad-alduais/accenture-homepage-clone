@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 
 export interface ValidationRule {
   required?: boolean
@@ -39,12 +39,12 @@ export function useFormValidation<T extends FormState>(
   const [touched, _setTouched] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Validation patterns
-  const patterns = {
+  // Validation patterns - memoized to prevent re-creation on every render
+  const patterns = useMemo(() => ({
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     phone: /^[\+]?[1-9][\d]{0,15}$/,
     url: /^https?:\/\/.+/
-  }
+  }), [])
 
   // Validate single field
   const validateField = useCallback((name: string, value: any): string | undefined => {
