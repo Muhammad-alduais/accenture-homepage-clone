@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import InteractiveGridBackground from './InteractiveGridBackground'
+import AnimatedBackground from './AnimatedBackground'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -62,8 +62,8 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
-      {/* Interactive Grid Background */}
-      <InteractiveGridBackground />
+      {/* Accenture-Style Background */}
+      <AnimatedBackground />
 
       {/* Content */}
       <motion.div 
