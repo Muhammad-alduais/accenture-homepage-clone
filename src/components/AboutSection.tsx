@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import GlassCard from '@/components/ui/GlassCard'
 
 export default function AboutSection() {
   const [ref, inView] = useInView({
@@ -78,45 +77,43 @@ export default function AboutSection() {
             </motion.p>
           </div>
 
-          {/* Core Principles - Using Glass Cards */}
+          {/* Core Principles */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {[
               {
                 titleKey: 'about.principles.speed.title',
                 descriptionKey: 'about.principles.speed.description',
-                icon: "⚡",
-                gradient: { from: '#4942E4', to: '#00D1B2' }
+                icon: "⚡"
               },
               {
                 titleKey: 'about.principles.intelligence.title',
                 descriptionKey: 'about.principles.intelligence.description',
-                icon: "🧠",
-                gradient: { from: '#00D1B2', to: '#4942E4' }
+                icon: "🧠"
               },
               {
                 titleKey: 'about.principles.adoption.title',
                 descriptionKey: 'about.principles.adoption.description',
-                icon: "👥",
-                gradient: { from: '#4942E4', to: '#00D1B2' }
+                icon: "👥"
               },
               {
                 titleKey: 'about.principles.growth.title',
                 descriptionKey: 'about.principles.growth.description',
-                icon: "📈",
-                gradient: { from: '#00D1B2', to: '#4942E4' }
+                icon: "📈"
               }
             ].map((principle, index) => (
               <motion.div
                 key={principle.titleKey}
+                className={`p-6 rounded-lg bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300 ${isRTL ? 'text-center' : 'text-center'}`}
                 variants={itemVariants}
+                whileHover={{ y: -5 }}
               >
-                <GlassCard
-                  className="h-full"
-                  gradient={principle.gradient}
-                  title={t(principle.titleKey)}
-                  subtitle={t(principle.descriptionKey)}
-                  logo={principle.icon}
-                />
+                <div className="text-4xl mb-4">{principle.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  {t(principle.titleKey)}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {t(principle.descriptionKey)}
+                </p>
               </motion.div>
             ))}
           </div>

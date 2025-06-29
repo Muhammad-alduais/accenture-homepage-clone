@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
-import GlassCard from '@/components/ui/GlassCard'
 
 export default function IndustriesSection() {
   const [ref, inView] = useInView({
@@ -29,8 +28,7 @@ export default function IndustriesSection() {
         'industries.education.clients.universities',
         'industries.education.clients.training',
         'industries.education.clients.online'
-      ],
-      gradient: { from: '#4942E4', to: '#00D1B2' }
+      ]
     },
     {
       titleKey: 'industries.logistics.title',
@@ -47,8 +45,7 @@ export default function IndustriesSection() {
         'industries.logistics.clients.3pl',
         'industries.logistics.clients.distribution',
         'industries.logistics.clients.freight'
-      ],
-      gradient: { from: '#00D1B2', to: '#4942E4' }
+      ]
     },
     {
       titleKey: 'industries.retail.title',
@@ -65,8 +62,7 @@ export default function IndustriesSection() {
         'industries.retail.clients.online',
         'industries.retail.clients.fashion',
         'industries.retail.clients.electronics'
-      ],
-      gradient: { from: '#4942E4', to: '#00D1B2' }
+      ]
     },
     {
       titleKey: 'industries.manufacturing.title',
@@ -83,8 +79,7 @@ export default function IndustriesSection() {
         'industries.manufacturing.clients.assembly',
         'industries.manufacturing.clients.food',
         'industries.manufacturing.clients.textile'
-      ],
-      gradient: { from: '#00D1B2', to: '#4942E4' }
+      ]
     }
   ]
 
@@ -98,8 +93,7 @@ export default function IndustriesSection() {
         'industries.startups.benefits.scalable',
         'industries.startups.benefits.cost',
         'industries.startups.benefits.growth'
-      ],
-      gradient: { from: '#4942E4', to: '#00D1B2' }
+      ]
     },
     {
       titleKey: 'industries.smes.title',
@@ -110,8 +104,7 @@ export default function IndustriesSection() {
         'industries.smes.benefits.customization',
         'industries.smes.benefits.integration',
         'industries.smes.benefits.support'
-      ],
-      gradient: { from: '#00D1B2', to: '#4942E4' }
+      ]
     },
     {
       titleKey: 'industries.enterprises.title',
@@ -122,8 +115,7 @@ export default function IndustriesSection() {
         'industries.enterprises.benefits.multi',
         'industries.enterprises.benefits.compliance',
         'industries.enterprises.benefits.support247'
-      ],
-      gradient: { from: '#4942E4', to: '#00D1B2' }
+      ]
     }
   ]
 
@@ -182,72 +174,67 @@ export default function IndustriesSection() {
             </motion.p>
           </header>
 
-          {/* Industries Grid - Using Glass Cards */}
+          {/* Industries Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
             {industries.map((industry, index) => (
               <motion.article
                 key={industry.titleKey}
+                className="bg-white dark:bg-black rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
+                whileHover={{ y: -5 }}
               >
-                <GlassCard
-                  className="h-full"
-                  gradient={industry.gradient}
-                  hover={true}
-                >
-                  <div className="flex flex-col h-full">
-                    <div className="relative h-48 overflow-hidden rounded-lg mb-6">
-                      <Image
-                        src={industry.image}
-                        alt={t(industry.titleKey)}
-                        width={600}
-                        height={300}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        priority={index < 2}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    </div>
-                    
-                    <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
-                      {t(industry.titleKey)}
-                    </h3>
-                    <p className={`text-gray-600 dark:text-gray-300 mb-4 flex-grow ${isRTL ? 'text-right' : 'text-left'}`}>
-                      {t(industry.descriptionKey)}
-                    </p>
-                    
-                    <div className="mb-4">
-                      <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
-                        {t('testimonials.labels.keyFeatures')}:
-                      </h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {industry.featuresKeys.map((featureKey, idx) => (
-                          <div key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                            <div className="w-1.5 h-1.5 bg-brand-primary rounded-full" aria-hidden="true"></div>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">{t(featureKey)}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
-                        {t('testimonials.labels.clientTypes')}:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {industry.clientTypesKeys.map((typeKey, idx) => (
-                          <span key={idx} className="bg-blue-100 dark:bg-blue-900/30 text-brand-primary dark:text-brand-accent px-3 py-1 rounded-full text-xs">
-                            {t(typeKey)}
-                          </span>
-                        ))}
-                      </div>
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={industry.image}
+                    alt={t(industry.titleKey)}
+                    width={600}
+                    height={300}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    priority={index < 2}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-3 ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t(industry.titleKey)}
+                  </h3>
+                  <p className={`text-gray-600 dark:text-gray-300 mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                    {t(industry.descriptionKey)}
+                  </p>
+                  
+                  <div className="mb-4">
+                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {t('testimonials.labels.keyFeatures')}:
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {industry.featuresKeys.map((featureKey, idx) => (
+                        <div key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+                          <div className="w-1.5 h-1.5 bg-brand-primary rounded-full" aria-hidden="true"></div>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">{t(featureKey)}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </GlassCard>
+                  
+                  <div>
+                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {t('testimonials.labels.clientTypes')}:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {industry.clientTypesKeys.map((typeKey, idx) => (
+                        <span key={idx} className="bg-blue-100 dark:bg-blue-900/30 text-brand-primary dark:text-brand-accent px-3 py-1 rounded-full text-xs">
+                          {t(typeKey)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </motion.article>
             ))}
           </div>
 
-          {/* Target Clients - Using Glass Cards */}
+          {/* Target Clients */}
           <header className="text-center mb-12">
             <motion.h3 
               className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
@@ -267,30 +254,25 @@ export default function IndustriesSection() {
             {targetClients.map((client, index) => (
               <motion.article
                 key={client.titleKey}
+                className="bg-white dark:bg-black rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
+                whileHover={{ y: -5 }}
               >
-                <GlassCard
-                  className="h-full"
-                  gradient={client.gradient}
-                  logo={client.icon}
-                >
-                  <div className="text-center h-full flex flex-col">
-                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                      {t(client.titleKey)}
-                    </h4>
-                    <p className={`text-gray-600 dark:text-gray-300 mb-6 flex-grow ${isRTL ? 'text-center' : 'text-center'}`}>
-                      {t(client.descriptionKey)}
-                    </p>
-                    <ul className="space-y-2">
-                      {client.benefitsKeys.map((benefitKey, idx) => (
-                        <li key={idx} className={`flex items-center justify-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                          <div className="w-1.5 h-1.5 bg-brand-primary rounded-full" aria-hidden="true"></div>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{t(benefitKey)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </GlassCard>
+                <div className="text-4xl mb-4" aria-hidden="true">{client.icon}</div>
+                <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  {t(client.titleKey)}
+                </h4>
+                <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-center' : 'text-center'}`}>
+                  {t(client.descriptionKey)}
+                </p>
+                <ul className="space-y-2">
+                  {client.benefitsKeys.map((benefitKey, idx) => (
+                    <li key={idx} className={`flex items-center justify-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+                      <div className="w-1.5 h-1.5 bg-brand-primary rounded-full" aria-hidden="true"></div>
+                      <span className="text-sm text-gray-700 dark:text-gray-300">{t(benefitKey)}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.article>
             ))}
           </div>
