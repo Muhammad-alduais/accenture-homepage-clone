@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface GlassCardProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
   title?: string
   subtitle?: string

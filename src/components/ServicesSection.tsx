@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import GlassCard from '@/components/ui/GlassCard'
 
 export default function ServicesSection() {
   const [activeTab, setActiveTab] = useState('services')
@@ -30,7 +31,8 @@ export default function ServicesSection() {
           'services.erp.features.migration',
           'services.erp.features.training'
         ],
-        icon: "⚙️"
+        icon: "⚙️",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'services.industry.title',
@@ -41,7 +43,8 @@ export default function ServicesSection() {
           'services.industry.features.fitness',
           'services.industry.features.logistics'
         ],
-        icon: "🏭"
+        icon: "🏭",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       },
       {
         titleKey: 'services.ai.title',
@@ -52,7 +55,8 @@ export default function ServicesSection() {
           'services.ai.features.ocr',
           'services.ai.features.automation'
         ],
-        icon: "🤖"
+        icon: "🤖",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'services.ux.title',
@@ -63,7 +67,8 @@ export default function ServicesSection() {
           'services.ux.features.accessibility',
           'services.ux.features.mobile'
         ],
-        icon: "🎨"
+        icon: "🎨",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       },
       {
         titleKey: 'services.migration.title',
@@ -74,7 +79,8 @@ export default function ServicesSection() {
           'services.migration.features.sync',
           'services.migration.features.backup'
         ],
-        icon: "🔄"
+        icon: "🔄",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'services.support.title',
@@ -85,7 +91,8 @@ export default function ServicesSection() {
           'services.support.features.development',
           'services.support.features.monitoring'
         ],
-        icon: "🛡️"
+        icon: "🛡️",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       }
     ],
     solutions: [
@@ -98,7 +105,8 @@ export default function ServicesSection() {
           'solutions.accounting.features.reporting',
           'solutions.accounting.features.compliance'
         ],
-        icon: "💰"
+        icon: "💰",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'solutions.hr.title',
@@ -109,7 +117,8 @@ export default function ServicesSection() {
           'solutions.hr.features.payroll',
           'solutions.hr.features.calendar'
         ],
-        icon: "👥"
+        icon: "👥",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       },
       {
         titleKey: 'solutions.sales.title',
@@ -120,7 +129,8 @@ export default function ServicesSection() {
           'solutions.sales.features.orders',
           'solutions.sales.features.portal'
         ],
-        icon: "📈"
+        icon: "📈",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'solutions.inventory.title',
@@ -131,7 +141,8 @@ export default function ServicesSection() {
           'solutions.inventory.features.pricing',
           'solutions.inventory.features.labeling'
         ],
-        icon: "📦"
+        icon: "📦",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       },
       {
         titleKey: 'solutions.manufacturing.title',
@@ -142,7 +153,8 @@ export default function ServicesSection() {
           'solutions.manufacturing.features.planning',
           'solutions.manufacturing.features.quality'
         ],
-        icon: "🏭"
+        icon: "🏭",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'solutions.assets.title',
@@ -153,7 +165,8 @@ export default function ServicesSection() {
           'solutions.assets.features.qr',
           'solutions.assets.features.alerts'
         ],
-        icon: "🔧"
+        icon: "🔧",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       }
     ],
     value: [
@@ -166,7 +179,8 @@ export default function ServicesSection() {
           'value.ai.features.workflows',
           'value.ai.features.analytics'
         ],
-        icon: "🧠"
+        icon: "🧠",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'value.speed.title',
@@ -177,7 +191,8 @@ export default function ServicesSection() {
           'value.speed.features.benefits',
           'value.speed.features.methodology'
         ],
-        icon: "⚡"
+        icon: "⚡",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       },
       {
         titleKey: 'value.cultural.title',
@@ -188,7 +203,8 @@ export default function ServicesSection() {
           'value.cultural.features.compliance',
           'value.cultural.features.alignment'
         ],
-        icon: "🌍"
+        icon: "🌍",
+        gradient: { from: '#4942E4', to: '#00D1B2' }
       },
       {
         titleKey: 'value.adoption.title',
@@ -199,7 +215,8 @@ export default function ServicesSection() {
           'value.adoption.features.interface',
           'value.adoption.features.support'
         ],
-        icon: "👍"
+        icon: "👍",
+        gradient: { from: '#00D1B2', to: '#4942E4' }
       }
     ]
   }
@@ -279,7 +296,7 @@ export default function ServicesSection() {
             ))}
           </motion.div>
 
-          {/* Content Grid */}
+          {/* Content Grid - Using Glass Cards */}
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerVariants}
@@ -288,25 +305,30 @@ export default function ServicesSection() {
             {content[activeTab as keyof typeof content].map((item, index) => (
               <motion.div
                 key={item.titleKey}
-                className="bg-white dark:bg-black rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
-                whileHover={{ y: -5 }}
               >
-                <div className="text-4xl mb-6">{item.icon}</div>
-                <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
-                  {t(item.titleKey)}
-                </h3>
-                <p className={`text-gray-600 dark:text-gray-300 mb-6 leading-relaxed ${isRTL ? 'text-right' : 'text-left'}`}>
-                  {t(item.descriptionKey)}
-                </p>
-                <ul className="space-y-2">
-                  {item.featuresKeys.map((featureKey, idx) => (
-                    <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
-                      <div className="w-2 h-2 bg-brand-primary rounded-full"></div>
-                      <span className="text-gray-700 dark:text-gray-300 text-sm">{t(featureKey)}</span>
-                    </li>
-                  ))}
-                </ul>
+                <GlassCard
+                  className="h-full"
+                  gradient={item.gradient}
+                  logo={item.icon}
+                >
+                  <div className="flex flex-col h-full">
+                    <h3 className={`text-2xl font-bold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {t(item.titleKey)}
+                    </h3>
+                    <p className={`text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {t(item.descriptionKey)}
+                    </p>
+                    <ul className="space-y-2">
+                      {item.featuresKeys.map((featureKey, idx) => (
+                        <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
+                          <div className="w-2 h-2 bg-brand-primary rounded-full"></div>
+                          <span className="text-gray-700 dark:text-gray-300 text-sm">{t(featureKey)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </GlassCard>
               </motion.div>
             ))}
           </motion.div>
