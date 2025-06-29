@@ -1,14 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useLanguage } from '@/contexts/LanguageContext'
+import { Locale } from '@/lib/i18n'
 
 interface TranslationBundle {
   [key: string]: any
 }
 
-export function useTranslations(namespace: string) {
-  const { locale } = useLanguage()
+export function useTranslations(namespace: string, currentLocale: Locale) {
+  const locale = currentLocale
   const [translations, setTranslations] = useState<TranslationBundle>({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

@@ -25,7 +25,7 @@ export function LanguageProvider({
   const pathname = usePathname()
   const [locale, setLocale] = useState<Locale>(initialLocale)
   
-  const { t, loading: translationsLoading } = useTranslations('global')
+  const { t, loading: translationsLoading } = useTranslations('global', locale)
 
   useEffect(() => {
     // Store locale preference
