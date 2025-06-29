@@ -12,6 +12,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [isLogoHovered, setIsLogoHovered] = useState(false)
   
   const { locale, t, isRTL, switchLanguage } = useLanguage()
   const navRef = useRef<HTMLElement>(null)
@@ -209,50 +210,119 @@ export default function Header() {
           aria-label={t('nav.mainNavigation')}
         >
           <div className={`flex items-center justify-between h-16 px-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            {/* Logo */}
+            {/* Enhanced Logo with Hover Animation */}
             <motion.div 
-              className="flex items-center"
+              className="flex items-center relative"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
+              onHoverStart={() => setIsLogoHovered(true)}
+              onHoverEnd={() => setIsLogoHovered(false)}
             >
               <a 
                 href={`/${locale}`}
-                className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}
+                className="flex items-center relative"
                 aria-label={t('nav.homeLink')}
               >
+                {/* Logo Container with Enhanced Animation */}
                 <motion.div 
-                  className="relative"
+                  className="relative logo-container"
                   variants={logoVariants}
                   whileHover={{ 
-                    rotate: 360,
-                    transition: { duration: 0.6 }
+                    rotate: [0, -10, 10, -5, 5, 0],
+                    scale: 1.2,
+                    transition: { 
+                      duration: 0.8,
+                      ease: "easeInOut"
+                    }
                   }}
                   aria-hidden="true"
                 >
-                  <Image
-                    src="/LOGO-removebg-preview.png"
-                    alt="MovinWare Logo"
-                    width={56}
-                    height={56}
-                    className="object-contain"
+                  {/* Animated Glow Ring */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full"
                     style={{
-                      filter: 'brightness(0) saturate(100%) invert(29%) sepia(89%) saturate(1729%) hue-rotate(244deg) brightness(95%) contrast(91%)'
+                      background: `conic-gradient(from 0deg, #4942E4, #00D1B2, #4942E4)`,
+                      filter: 'blur(8px)',
+                      opacity: 0
                     }}
-                    priority
+                    animate={{
+                      opacity: isLogoHovered ? 0.6 : 0,
+                      scale: isLogoHovered ? 1.3 : 1,
+                      rotate: isLogoHovered ? 360 : 0
+                    }}
+                    transition={{ 
+                      duration: 0.6,
+                      rotate: { duration: 2, repeat: isLogoHovered ? Infinity : 0, ease: "linear" }
+                    }}
                   />
+                  
+                  {/* Pulse Ring */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2"
+                    style={{ borderColor: '#4942E4' }}
+                    animate={{
+                      scale: isLogoHovered ? [1, 1.4, 1] : 1,
+                      opacity: isLogoHovered ? [0.8, 0, 0.8] : 0
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: isLogoHovered ? Infinity : 0,
+                      ease: "easeInOut"
+                    }}
+                  />
+
+                  {/* Main Logo */}
+                  <motion.div
+                    className="relative z-10"
+                    animate={{
+                      filter: isLogoHovered 
+                        ? 'brightness(1.2) saturate(1.3) drop-shadow(0 0 20px rgba(73, 66, 228, 0.8))'
+                        : 'brightness(0) saturate(100%) invert(29%) sepia(89%) saturate(1729%) hue-rotate(244deg) brightness(95%) contrast(91%)'
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src="/LOGO-removebg-preview.png"
+                      alt="MovinWare Logo"
+                      width={72}
+                      height={72}
+                      className="object-contain"
+                      priority
+                    />
+                  </motion.div>
                 </motion.div>
-                <motion.span 
-                  className="text-white font-logo font-bold text-2xl"
-                  style={{
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-                    color: '#4942E4'
-                  }}
-                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  MovinWare
-                </motion.span>
+
+                {/* Company Name with Hover Animation */}
+                <AnimatePresence>
+                  {isLogoHovered && (
+                    <motion.span 
+                      className="text-white font-logo font-bold text-2xl ml-4"
+                      style={{
+                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+                      }}
+                      initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                      animate={{ 
+                        opacity: 1, 
+                        x: 0, 
+                        scale: 1,
+                        transition: { 
+                          duration: 0.4,
+                          ease: "easeOut"
+                        }
+                      }}
+                      exit={{ 
+                        opacity: 0, 
+                        x: -20, 
+                        scale: 0.8,
+                        transition: { 
+                          duration: 0.3 
+                        }
+                      }}
+                    >
+                      MovinWare
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </a>
             </motion.div>
 
@@ -560,6 +630,53 @@ export default function Header() {
 
       {/* Spacer to prevent content overlap */}
       <div className="h-20"></div>
+
+      {/* Custom Styles for Enhanced Logo Animation */}
+      <style jsx>{`
+        .logo-container {
+          position: relative;
+          width: 72px;
+          height: 72px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .logo-container::before {
+          content: '';
+          position: absolute;
+          inset: -4px;
+          border-radius: 50%;
+          background: conic-gradient(from 0deg, #4942E4, #00D1B2, #4942E4);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
+
+        .logo-container:hover::before {
+          opacity: 0.3;
+          animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        /* Enhanced glow effect */
+        .logo-container:hover {
+          filter: drop-shadow(0 0 20px rgba(73, 66, 228, 0.6));
+        }
+
+        /* Smooth transitions for all logo elements */
+        .logo-container * {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      `}</style>
     </>
   )
 }
