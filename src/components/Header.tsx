@@ -209,7 +209,7 @@ export default function Header() {
           aria-label={t('nav.mainNavigation')}
         >
           <div className={`flex items-center justify-between h-16 px-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            {/* Simple Logo */}
+            {/* Logo */}
             <motion.div 
               className="flex items-center"
               whileHover={{ scale: 1.05 }}
@@ -225,17 +225,16 @@ export default function Header() {
                   variants={logoVariants}
                   aria-hidden="true"
                 >
-                  <Image
-                    src="/LOGO-removebg-preview.png"
-                    alt="MovinWare Logo"
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                    style={{
-                      filter: 'brightness(0) saturate(100%) invert(29%) sepia(89%) saturate(1729%) hue-rotate(244deg) brightness(95%) contrast(91%)'
-                    }}
-                    priority
-                  />
+                  {/* Brand Color Logo - Exact #4942E4 */}
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-brand-primary">
+                    <motion.path 
+                      d="M20 5L35 35H5L20 5Z" 
+                      fill="#4942E4"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 1, delay: 0.5 }}
+                    />
+                  </svg>
                 </motion.div>
                 <motion.span 
                   className="text-white font-logo font-bold text-xl"
