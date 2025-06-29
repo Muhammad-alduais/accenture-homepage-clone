@@ -88,41 +88,62 @@ export default function Header() {
 
   const navItems = [
     { 
-      key: 'nav.solutions', 
+      key: 'nav.platform', 
       href: '#services', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'solutions.accounting.title', href: '#services' },
-        { key: 'solutions.hr.title', href: '#services' },
-        { key: 'solutions.sales.title', href: '#services' },
-        { key: 'solutions.inventory.title', href: '#services' },
-        { key: 'solutions.manufacturing.title', href: '#services' },
-        { key: 'solutions.assets.title', href: '#services' }
+        { key: 'platform.coreModules', href: '#services' },
+        { key: 'platform.aiFeatures', href: '#services' },
+        { key: 'platform.integration', href: '#services' },
+        { key: 'platform.mobileCloud', href: '#services' }
       ]
     },
-    { key: 'nav.services', href: '#services', hasDropdown: false },
     { 
       key: 'nav.industries', 
       href: '#industries', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'industries.education.title', href: '#industries' },
-        { key: 'industries.logistics.title', href: '#industries' },
-        { key: 'industries.retail.title', href: '#industries' },
-        { key: 'industries.manufacturing.title', href: '#industries' }
+        { key: 'industries.education', href: '#industries' },
+        { key: 'industries.retail', href: '#industries' },
+        { key: 'industries.manufacturing', href: '#industries' },
+        { key: 'industries.logistics', href: '#industries' },
+        { key: 'industries.viewAll', href: '#industries' }
       ]
     },
     { 
-      key: 'nav.about', 
+      key: 'nav.whyMovinware', 
       href: '#about', 
       hasDropdown: true,
       dropdownItems: [
-        { key: 'about.vision.title', href: '#about' },
-        { key: 'about.mission.title', href: '#about' },
-        { key: 'implementation.title', href: '#about' }
+        { key: 'whyMovinware.story', href: '#about' },
+        { key: 'whyMovinware.methodology', href: '#about' },
+        { key: 'whyMovinware.success', href: '#about' },
+        { key: 'whyMovinware.expertise', href: '#about' }
       ]
     },
-    { key: 'nav.contact', href: '#contact', hasDropdown: false }
+    { 
+      key: 'nav.pricing', 
+      href: '#contact', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'pricing.startup', href: '#contact' },
+        { key: 'pricing.sme', href: '#contact' },
+        { key: 'pricing.enterprise', href: '#contact' },
+        { key: 'pricing.custom', href: '#contact' }
+      ]
+    },
+    { 
+      key: 'nav.resources', 
+      href: '#contact', 
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'resources.documentation', href: '#contact' },
+        { key: 'resources.tutorials', href: '#contact' },
+        { key: 'resources.caseStudies', href: '#about' },
+        { key: 'resources.blog', href: '#contact' },
+        { key: 'resources.support', href: '#contact' }
+      ]
+    }
   ]
 
   const handleNavClick = (href: string) => {
@@ -136,6 +157,15 @@ export default function Header() {
 
   const handleDropdownToggle = (itemKey: string) => {
     setActiveDropdown(activeDropdown === itemKey ? null : itemKey)
+  }
+
+  const handleGetDemo = () => {
+    const element = document.querySelector('#contact')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+    setIsMenuOpen(false)
+    setActiveDropdown(null)
   }
 
   return (
@@ -291,6 +321,19 @@ export default function Header() {
                   )}
                 </motion.div>
               ))}
+              
+              {/* Get Demo Button */}
+              <motion.button
+                onClick={handleGetDemo}
+                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 ml-4 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+              >
+                {t('nav.getDemo')}
+              </motion.button>
             </nav>
 
             {/* Right side - Controls + Mobile Menu */}
@@ -491,6 +534,19 @@ export default function Header() {
                       )}
                     </div>
                   ))}
+                  
+                  {/* Mobile Get Demo Button */}
+                  <motion.button
+                    onClick={handleGetDemo}
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 mt-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: navItems.length * 0.1 + 0.2 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {t('nav.getDemo')}
+                  </motion.button>
                 </motion.div>
               </div>
             </motion.div>

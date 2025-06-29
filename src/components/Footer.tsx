@@ -5,23 +5,39 @@ import { useLanguage } from '@/contexts/LanguageContext'
 export default function Footer() {
   const { t, isRTL } = useLanguage()
 
-  const footerLinks = {
-    leftColumn: [
-      { labelKey: 'footer.links.solutions', href: '#' },
-      { labelKey: 'footer.links.services', href: '#' },
-      { labelKey: 'footer.links.industries', href: '#' },
-      { labelKey: 'footer.links.about', href: '#' },
-      { labelKey: 'footer.links.contact', href: '#' },
-      { labelKey: 'footer.links.careers', href: '#' }
+  const footerSections = {
+    platform: [
+      { labelKey: 'platform.coreModules', href: '#services' },
+      { labelKey: 'platform.aiFeatures', href: '#services' },
+      { labelKey: 'platform.integration', href: '#services' },
+      { labelKey: 'platform.mobileCloud', href: '#services' }
     ],
-    rightColumn: [
+    company: [
+      { labelKey: 'whyMovinware.story', href: '#about' },
+      { labelKey: 'footer.links.careers', href: '#contact' },
+      { labelKey: 'whyMovinware.success', href: '#about' },
+      { labelKey: 'footer.links.contact', href: '#contact' }
+    ],
+    support: [
+      { labelKey: 'resources.documentation', href: '#contact' },
+      { labelKey: 'resources.tutorials', href: '#contact' },
+      { labelKey: 'resources.support', href: '#contact' },
+      { labelKey: 'footer.links.partner', href: '#contact' }
+    ],
+    legal: [
       { labelKey: 'footer.links.privacy', href: '#' },
       { labelKey: 'footer.links.terms', href: '#' },
       { labelKey: 'footer.links.cookies', href: '#' },
-      { labelKey: 'footer.links.support', href: '#' },
-      { labelKey: 'footer.links.documentation', href: '#' },
-      { labelKey: 'footer.links.partner', href: '#' }
+      { labelKey: 'footer.links.support', href: '#contact' }
     ]
+  }
+
+  const handleNavClick = (href: string) => {
+    if (href === '#') return
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (
@@ -29,38 +45,86 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-16">
         {/* Main Footer Content */}
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 ${isRTL ? 'text-right' : 'text-left'}`}>
-          {/* Left Side */}
+          {/* Left Side - Tagline and Links */}
           <div>
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8 whitespace-pre-line">
               {t('footer.tagline')}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Platform Links */}
               <div>
-                <ul className="space-y-4">
-                  {footerLinks.leftColumn.map((link) => (
+                <h3 className={`text-lg font-semibold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  {t('nav.platform')}
+                </h3>
+                <ul className="space-y-3">
+                  {footerSections.platform.map((link) => (
                     <li key={link.labelKey}>
-                      <a 
-                        href={link.href}
+                      <button 
+                        onClick={() => handleNavClick(link.href)}
                         className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
                       >
                         {t(link.labelKey)}
-                      </a>
+                      </button>
                     </li>
                   ))}
                 </ul>
               </div>
 
+              {/* Company Links */}
               <div>
-                <ul className="space-y-4">
-                  {footerLinks.rightColumn.map((link) => (
+                <h3 className={`text-lg font-semibold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  Company
+                </h3>
+                <ul className="space-y-3">
+                  {footerSections.company.map((link) => (
                     <li key={link.labelKey}>
-                      <a 
-                        href={link.href}
+                      <button 
+                        onClick={() => handleNavClick(link.href)}
                         className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
                       >
                         {t(link.labelKey)}
-                      </a>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              {/* Support Links */}
+              <div>
+                <h3 className={`text-lg font-semibold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  {t('nav.resources')}
+                </h3>
+                <ul className="space-y-3">
+                  {footerSections.support.map((link) => (
+                    <li key={link.labelKey}>
+                      <button 
+                        onClick={() => handleNavClick(link.href)}
+                        className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
+                      >
+                        {t(link.labelKey)}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Legal Links */}
+              <div>
+                <h3 className={`text-lg font-semibold text-gray-900 dark:text-white mb-4 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  Legal
+                </h3>
+                <ul className="space-y-3">
+                  {footerSections.legal.map((link) => (
+                    <li key={link.labelKey}>
+                      <button 
+                        onClick={() => handleNavClick(link.href)}
+                        className={`text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors ${isRTL ? 'text-right' : 'text-left'}`}
+                      >
+                        {t(link.labelKey)}
+                      </button>
                     </li>
                   ))}
                 </ul>
