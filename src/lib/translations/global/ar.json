@@ -514,7 +514,12 @@
       "results": "النتائج",
       "implementation": "التنفيذ",
       "efficiency": "الكفاءة",
-      "adoption": "معدل التبني"
+      "adoption": "معدل التبني",
+      "keyFeatures": "الميزات الرئيسية",
+      "clientTypes": "أنواع العملاء",
+      "deliverables": "المخرجات",
+      "activities": "الأنشطة",
+      "legal": "قانوني"
     },
     "case1": {
       "client": "مجموعة التجارة الذكية",
