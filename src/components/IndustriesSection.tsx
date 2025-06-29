@@ -204,7 +204,9 @@ export default function IndustriesSection() {
                   </p>
                   
                   <div className="mb-4">
-                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Key Features:</h4>
+                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {t('testimonials.labels.keyFeatures')}:
+                    </h4>
                     <div className="grid grid-cols-2 gap-2">
                       {industry.featuresKeys.map((featureKey, idx) => (
                         <div key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
@@ -216,7 +218,9 @@ export default function IndustriesSection() {
                   </div>
                   
                   <div>
-                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>Client Types:</h4>
+                    <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      {t('testimonials.labels.clientTypes')}:
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {industry.clientTypesKeys.map((typeKey, idx) => (
                         <span key={idx} className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs">
