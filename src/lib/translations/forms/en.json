@@ -1,0 +1,176 @@
+{
+  "forms": {
+    "pricing": {
+      "title": "Get Your Custom Quote",
+      "subtitle": "Tell us about your business needs and we'll provide a tailored pricing solution",
+      "fields": {
+        "companyName": {
+          "label": "Company Name",
+          "placeholder": "Enter your company name",
+          "helper": "Legal name of your organization"
+        },
+        "industry": {
+          "label": "Industry",
+          "placeholder": "Select your industry",
+          "helper": "Choose the industry that best describes your business"
+        },
+        "companySize": {
+          "label": "Company Size",
+          "placeholder": "Select company size",
+          "helper": "Number of employees in your organization"
+        },
+        "modules": {
+          "label": "Required Modules",
+          "placeholder": "Select modules you need",
+          "helper": "Choose all modules that your business requires"
+        },
+        "budget": {
+          "label": "Budget Range",
+          "placeholder": "Select your budget range",
+          "helper": "Your estimated budget for the ERP solution"
+        },
+        "timeline": {
+          "label": "Implementation Timeline",
+          "placeholder": "Select preferred timeline",
+          "helper": "When would you like to start implementation?"
+        },
+        "currency": {
+          "label": "Preferred Currency",
+          "placeholder": "Select currency",
+          "helper": "Currency for pricing and billing"
+        },
+        "region": {
+          "label": "Business Region",
+          "placeholder": "Select your region",
+          "helper": "Primary region where your business operates"
+        },
+        "contactName": {
+          "label": "Contact Person",
+          "placeholder": "Enter full name",
+          "helper": "Primary contact for this inquiry"
+        },
+        "email": {
+          "label": "Email Address",
+          "placeholder": "Enter email address",
+          "helper": "We'll send the quote to this email"
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "Enter phone number",
+          "helper": "Include country code for international numbers"
+        },
+        "requirements": {
+          "label": "Special Requirements",
+          "placeholder": "Describe any specific needs or requirements",
+          "helper": "Any additional features, integrations, or customizations needed"
+        }
+      },
+      "options": {
+        "industries": [
+          { "value": "education", "label": "Education", "description": "Schools, universities, training centers" },
+          { "value": "retail", "label": "Retail & E-commerce", "description": "Online and offline retail businesses" },
+          { "value": "manufacturing", "label": "Manufacturing", "description": "Production and assembly operations" },
+          { "value": "logistics", "label": "Logistics & Transportation", "description": "Shipping, freight, and distribution" },
+          { "value": "healthcare", "label": "Healthcare", "description": "Hospitals, clinics, medical practices" },
+          { "value": "finance", "label": "Financial Services", "description": "Banks, insurance, investment firms" },
+          { "value": "technology", "label": "Technology", "description": "Software, IT services, tech startups" },
+          { "value": "consulting", "label": "Professional Services", "description": "Consulting, legal, accounting firms" },
+          { "value": "hospitality", "label": "Hospitality", "description": "Hotels, restaurants, tourism" },
+          { "value": "other", "label": "Other", "description": "Industry not listed above" }
+        ],
+        "companySizes": [
+          { "value": "startup", "label": "Startup (1-10 employees)", "description": "Early-stage companies" },
+          { "value": "small", "label": "Small Business (11-50 employees)", "description": "Small to medium enterprises" },
+          { "value": "medium", "label": "Medium Business (51-200 employees)", "description": "Growing organizations" },
+          { "value": "large", "label": "Large Enterprise (201-1000 employees)", "description": "Established corporations" },
+          { "value": "enterprise", "label": "Enterprise (1000+ employees)", "description": "Large multinational organizations" }
+        ],
+        "modules": [
+          { "value": "accounting", "label": "Accounting & Finance", "description": "Financial management and reporting" },
+          { "value": "hr", "label": "Human Resources", "description": "Employee management and payroll" },
+          { "value": "sales", "label": "Sales & CRM", "description": "Customer relationship management" },
+          { "value": "inventory", "label": "Inventory Management", "description": "Stock and warehouse management" },
+          { "value": "manufacturing", "label": "Manufacturing", "description": "Production planning and control" },
+          { "value": "assets", "label": "Asset Management", "description": "Fixed asset tracking and maintenance" },
+          { "value": "projects", "label": "Project Management", "description": "Project planning and tracking" },
+          { "value": "ecommerce", "label": "E-commerce Integration", "description": "Online store connectivity" },
+          { "value": "bi", "label": "Business Intelligence", "description": "Analytics and reporting tools" },
+          { "value": "mobile", "label": "Mobile Access", "description": "Mobile apps and responsive design" }
+        ],
+        "budgets": [
+          { "value": "under-10k", "label": "Under $10,000", "description": "Basic implementation" },
+          { "value": "10k-25k", "label": "$10,000 - $25,000", "description": "Standard implementation" },
+          { "value": "25k-50k", "label": "$25,000 - $50,000", "description": "Advanced implementation" },
+          { "value": "50k-100k", "label": "$50,000 - $100,000", "description": "Enterprise implementation" },
+          { "value": "over-100k", "label": "Over $100,000", "description": "Custom enterprise solution" },
+          { "value": "discuss", "label": "Prefer to Discuss", "description": "Budget to be determined" }
+        ],
+        "timelines": [
+          { "value": "immediate", "label": "Immediate (Within 1 month)", "description": "Urgent implementation needed" },
+          { "value": "quarter", "label": "This Quarter (1-3 months)", "description": "Implementation within 3 months" },
+          { "value": "half-year", "label": "Within 6 months", "description": "Standard timeline" },
+          { "value": "year", "label": "Within 1 year", "description": "Long-term planning" },
+          { "value": "exploring", "label": "Just Exploring", "description": "Research phase" }
+        ],
+        "currencies": [
+          { "value": "USD", "label": "US Dollar (USD)", "description": "United States Dollar" },
+          { "value": "EUR", "label": "Euro (EUR)", "description": "European Union Euro" },
+          { "value": "GBP", "label": "British Pound (GBP)", "description": "British Pound Sterling" },
+          { "value": "AED", "label": "UAE Dirham (AED)", "description": "United Arab Emirates Dirham" },
+          { "value": "SAR", "label": "Saudi Riyal (SAR)", "description": "Saudi Arabian Riyal" },
+          { "value": "QAR", "label": "Qatari Riyal (QAR)", "description": "Qatari Riyal" },
+          { "value": "KWD", "label": "Kuwaiti Dinar (KWD)", "description": "Kuwaiti Dinar" },
+          { "value": "BHD", "label": "Bahraini Dinar (BHD)", "description": "Bahraini Dinar" }
+        ],
+        "regions": [
+          { "value": "uae", "label": "United Arab Emirates", "description": "UAE market" },
+          { "value": "saudi", "label": "Saudi Arabia", "description": "Saudi Arabian market" },
+          { "value": "qatar", "label": "Qatar", "description": "Qatari market" },
+          { "value": "kuwait", "label": "Kuwait", "description": "Kuwaiti market" },
+          { "value": "bahrain", "label": "Bahrain", "description": "Bahraini market" },
+          { "value": "oman", "label": "Oman", "description": "Omani market" },
+          { "value": "mena", "label": "Other MENA", "description": "Other Middle East & North Africa" },
+          { "value": "international", "label": "International", "description": "Outside MENA region" }
+        ]
+      },
+      "validation": {
+        "required": "This field is required",
+        "email": "Please enter a valid email address",
+        "phone": "Please enter a valid phone number",
+        "minLength": "Minimum {min} characters required",
+        "maxLength": "Maximum {max} characters allowed"
+      },
+      "buttons": {
+        "submit": "Get Custom Quote",
+        "submitting": "Processing...",
+        "reset": "Reset Form"
+      },
+      "messages": {
+        "success": "Thank you! We'll send your custom quote within 24 hours.",
+        "error": "Something went wrong. Please try again or contact us directly."
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Get in touch with our team",
+      "fields": {
+        "name": {
+          "label": "Full Name",
+          "placeholder": "Enter your full name"
+        },
+        "email": {
+          "label": "Email Address",
+          "placeholder": "Enter your email"
+        },
+        "subject": {
+          "label": "Subject",
+          "placeholder": "What is this regarding?"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Tell us how we can help you"
+        }
+      }
+    }
+  }
+}

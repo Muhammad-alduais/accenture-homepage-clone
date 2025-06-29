@@ -1,0 +1,176 @@
+{
+  "forms": {
+    "pricing": {
+      "title": "احصل على عرض أسعار مخصص",
+      "subtitle": "أخبرنا عن احتياجات عملك وسنقدم لك حلول تسعير مخصصة",
+      "fields": {
+        "companyName": {
+          "label": "اسم الشركة",
+          "placeholder": "أدخل اسم شركتك",
+          "helper": "الاسم القانوني لمؤسستك"
+        },
+        "industry": {
+          "label": "القطاع",
+          "placeholder": "اختر قطاعك",
+          "helper": "اختر القطاع الذي يصف عملك بشكل أفضل"
+        },
+        "companySize": {
+          "label": "حجم الشركة",
+          "placeholder": "اختر حجم الشركة",
+          "helper": "عدد الموظفين في مؤسستك"
+        },
+        "modules": {
+          "label": "الوحدات المطلوبة",
+          "placeholder": "اختر الوحدات التي تحتاجها",
+          "helper": "اختر جميع الوحدات التي يتطلبها عملك"
+        },
+        "budget": {
+          "label": "نطاق الميزانية",
+          "placeholder": "اختر نطاق ميزانيتك",
+          "helper": "ميزانيتك المقدرة لحل تخطيط موارد المؤسسات"
+        },
+        "timeline": {
+          "label": "الجدول الزمني للتنفيذ",
+          "placeholder": "اختر الجدول الزمني المفضل",
+          "helper": "متى تود بدء التنفيذ؟"
+        },
+        "currency": {
+          "label": "العملة المفضلة",
+          "placeholder": "اختر العملة",
+          "helper": "العملة للتسعير والفوترة"
+        },
+        "region": {
+          "label": "منطقة العمل",
+          "placeholder": "اختر منطقتك",
+          "helper": "المنطقة الأساسية التي يعمل فيها عملك"
+        },
+        "contactName": {
+          "label": "الشخص المسؤول",
+          "placeholder": "أدخل الاسم الكامل",
+          "helper": "جهة الاتصال الأساسية لهذا الاستفسار"
+        },
+        "email": {
+          "label": "عنوان البريد الإلكتروني",
+          "placeholder": "أدخل عنوان البريد الإلكتروني",
+          "helper": "سنرسل عرض الأسعار إلى هذا البريد الإلكتروني"
+        },
+        "phone": {
+          "label": "رقم الهاتف",
+          "placeholder": "أدخل رقم الهاتف",
+          "helper": "أدرج رمز البلد للأرقام الدولية"
+        },
+        "requirements": {
+          "label": "المتطلبات الخاصة",
+          "placeholder": "صف أي احتياجات أو متطلبات محددة",
+          "helper": "أي ميزات إضافية أو تكاملات أو تخصيصات مطلوبة"
+        }
+      },
+      "options": {
+        "industries": [
+          { "value": "education", "label": "التعليم", "description": "المدارس والجامعات ومراكز التدريب" },
+          { "value": "retail", "label": "التجارة الإلكترونية", "description": "الأعمال التجارية عبر الإنترنت وخارجها" },
+          { "value": "manufacturing", "label": "التصنيع", "description": "عمليات الإنتاج والتجميع" },
+          { "value": "logistics", "label": "اللوجستيات والنقل", "description": "الشحن والنقل والتوزيع" },
+          { "value": "healthcare", "label": "الرعاية الصحية", "description": "المستشفيات والعيادات والممارسات الطبية" },
+          { "value": "finance", "label": "الخدمات المالية", "description": "البنوك والتأمين وشركات الاستثمار" },
+          { "value": "technology", "label": "التكنولوجيا", "description": "البرمجيات وخدمات تقنية المعلومات والشركات الناشئة" },
+          { "value": "consulting", "label": "الخدمات المهنية", "description": "الاستشارات والشركات القانونية والمحاسبية" },
+          { "value": "hospitality", "label": "الضيافة", "description": "الفنادق والمطاعم والسياحة" },
+          { "value": "other", "label": "أخرى", "description": "قطاع غير مدرج أعلاه" }
+        ],
+        "companySizes": [
+          { "value": "startup", "label": "شركة ناشئة (1-10 موظفين)", "description": "الشركات في المراحل المبكرة" },
+          { "value": "small", "label": "شركة صغيرة (11-50 موظف)", "description": "المؤسسات الصغيرة والمتوسطة" },
+          { "value": "medium", "label": "شركة متوسطة (51-200 موظف)", "description": "المنظمات النامية" },
+          { "value": "large", "label": "مؤسسة كبيرة (201-1000 موظف)", "description": "الشركات الراسخة" },
+          { "value": "enterprise", "label": "مؤسسة (1000+ موظف)", "description": "المنظمات الكبيرة متعددة الجنسيات" }
+        ],
+        "modules": [
+          { "value": "accounting", "label": "المحاسبة والمالية", "description": "الإدارة المالية والتقارير" },
+          { "value": "hr", "label": "الموارد البشرية", "description": "إدارة الموظفين والرواتب" },
+          { "value": "sales", "label": "المبيعات وإدارة العملاء", "description": "إدارة علاقات العملاء" },
+          { "value": "inventory", "label": "إدارة المخزون", "description": "إدارة المخزون والمستودعات" },
+          { "value": "manufacturing", "label": "التصنيع", "description": "تخطيط ومراقبة الإنتاج" },
+          { "value": "assets", "label": "إدارة الأصول", "description": "تتبع وصيانة الأصول الثابتة" },
+          { "value": "projects", "label": "إدارة المشاريع", "description": "تخطيط وتتبع المشاريع" },
+          { "value": "ecommerce", "label": "تكامل التجارة الإلكترونية", "description": "ربط المتاجر الإلكترونية" },
+          { "value": "bi", "label": "ذكاء الأعمال", "description": "أدوات التحليل والتقارير" },
+          { "value": "mobile", "label": "الوصول عبر الهاتف المحمول", "description": "تطبيقات الهاتف المحمول والتصميم المتجاوب" }
+        ],
+        "budgets": [
+          { "value": "under-10k", "label": "أقل من 10,000 دولار", "description": "تنفيذ أساسي" },
+          { "value": "10k-25k", "label": "10,000 - 25,000 دولار", "description": "تنفيذ قياسي" },
+          { "value": "25k-50k", "label": "25,000 - 50,000 دولار", "description": "تنفيذ متقدم" },
+          { "value": "50k-100k", "label": "50,000 - 100,000 دولار", "description": "تنفيذ للمؤسسات" },
+          { "value": "over-100k", "label": "أكثر من 100,000 دولار", "description": "حل مؤسسي مخصص" },
+          { "value": "discuss", "label": "أفضل المناقشة", "description": "الميزانية سيتم تحديدها" }
+        ],
+        "timelines": [
+          { "value": "immediate", "label": "فوري (خلال شهر واحد)", "description": "تنفيذ عاجل مطلوب" },
+          { "value": "quarter", "label": "هذا الربع (1-3 أشهر)", "description": "تنفيذ خلال 3 أشهر" },
+          { "value": "half-year", "label": "خلال 6 أشهر", "description": "جدول زمني قياسي" },
+          { "value": "year", "label": "خلال سنة واحدة", "description": "تخطيط طويل المدى" },
+          { "value": "exploring", "label": "مجرد استكشاف", "description": "مرحلة البحث" }
+        ],
+        "currencies": [
+          { "value": "USD", "label": "الدولار الأمريكي (USD)", "description": "دولار الولايات المتحدة" },
+          { "value": "EUR", "label": "اليورو (EUR)", "description": "يورو الاتحاد الأوروبي" },
+          { "value": "GBP", "label": "الجنيه البريطاني (GBP)", "description": "الجنيه الإسترليني البريطاني" },
+          { "value": "AED", "label": "درهم الإمارات (AED)", "description": "درهم دولة الإمارات العربية المتحدة" },
+          { "value": "SAR", "label": "الريال السعودي (SAR)", "description": "الريال السعودي" },
+          { "value": "QAR", "label": "الريال القطري (QAR)", "description": "الريال القطري" },
+          { "value": "KWD", "label": "الدينار الكويتي (KWD)", "description": "الدينار الكويتي" },
+          { "value": "BHD", "label": "الدينار البحريني (BHD)", "description": "الدينار البحريني" }
+        ],
+        "regions": [
+          { "value": "uae", "label": "دولة الإمارات العربية المتحدة", "description": "السوق الإماراتي" },
+          { "value": "saudi", "label": "المملكة العربية السعودية", "description": "السوق السعودي" },
+          { "value": "qatar", "label": "قطر", "description": "السوق القطري" },
+          { "value": "kuwait", "label": "الكويت", "description": "السوق الكويتي" },
+          { "value": "bahrain", "label": "البحرين", "description": "السوق البحريني" },
+          { "value": "oman", "label": "عمان", "description": "السوق العماني" },
+          { "value": "mena", "label": "منطقة الشرق الأوسط وشمال أفريقيا الأخرى", "description": "منطقة الشرق الأوسط وشمال أفريقيا الأخرى" },
+          { "value": "international", "label": "دولي", "description": "خارج منطقة الشرق الأوسط وشمال أفريقيا" }
+        ]
+      },
+      "validation": {
+        "required": "هذا الحقل مطلوب",
+        "email": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+        "phone": "يرجى إدخال رقم هاتف صحيح",
+        "minLength": "الحد الأدنى {min} أحرف مطلوب",
+        "maxLength": "الحد الأقصى {max} أحرف مسموح"
+      },
+      "buttons": {
+        "submit": "احصل على عرض أسعار مخصص",
+        "submitting": "جاري المعالجة...",
+        "reset": "إعادة تعيين النموذج"
+      },
+      "messages": {
+        "success": "شكراً لك! سنرسل عرض الأسعار المخصص خلال 24 ساعة.",
+        "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة."
+      }
+    },
+    "contact": {
+      "title": "اتصل بنا",
+      "subtitle": "تواصل مع فريقنا",
+      "fields": {
+        "name": {
+          "label": "الاسم الكامل",
+          "placeholder": "أدخل اسمك الكامل"
+        },
+        "email": {
+          "label": "عنوان البريد الإلكتروني",
+          "placeholder": "أدخل بريدك الإلكتروني"
+        },
+        "subject": {
+          "label": "الموضوع",
+          "placeholder": "ما هو موضوع رسالتك؟"
+        },
+        "message": {
+          "label": "الرسالة",
+          "placeholder": "أخبرنا كيف يمكننا مساعدتك"
+        }
+      }
+    }
+  }
+}
