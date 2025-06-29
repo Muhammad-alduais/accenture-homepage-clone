@@ -40,22 +40,22 @@ export default function Hero() {
     }
   }
 
-  // Get animated texts based on language
+  // Get animated texts based on language with different color combinations
   const getAnimatedTexts = () => {
     if (isRTL) {
-      // Arabic: Three action words vertically like English
+      // Arabic: Three action words vertically
       return [
-        { text: 'نُبتكر', colorStart: '#4942E4', colorEnd: '#00D1B2' },
-        { text: 'نُطوّر', colorStart: '#00D1B2', colorEnd: '#4942E4' },
-        { text: 'نُبسّط', colorStart: '#4942E4', colorEnd: '#00D1B2' }
+        { text: 'نُبتكر', colorStart: '#4942E4', colorEnd: '#00D1B2' }, // Primary to Accent
+        { text: 'نُطوّر', colorStart: '#FF6B6B', colorEnd: '#4ECDC4' }, // Red to Teal
+        { text: 'نُبسّط', colorStart: '#45B7D1', colorEnd: '#F9CA24' }  // Blue to Yellow
       ]
     } else {
       // English: "We" + three action words vertically
       return [
-        { text: t('hero.title'), colorStart: '#4942E4', colorEnd: '#00D1B2' }, // "We"
-        { text: t('hero.subtitle'), colorStart: '#00D1B2', colorEnd: '#4942E4' }, // "Innovate"
-        { text: t('hero.tertiary'), colorStart: '#4942E4', colorEnd: '#00D1B2' }, // "Develop"
-        { text: t('hero.quaternary'), colorStart: '#00D1B2', colorEnd: '#4942E4' } // "Simplify"
+        { text: t('hero.title'), colorStart: '#4942E4', colorEnd: '#00D1B2' }, // "We" - Primary to Accent
+        { text: t('hero.subtitle'), colorStart: '#FF6B6B', colorEnd: '#4ECDC4' }, // "Innovate" - Red to Teal
+        { text: t('hero.tertiary'), colorStart: '#45B7D1', colorEnd: '#F9CA24' }, // "Develop" - Blue to Yellow
+        { text: t('hero.quaternary'), colorStart: '#A855F7', colorEnd: '#EC4899' } // "Simplify" - Purple to Pink
       ]
     }
   }
@@ -153,95 +153,95 @@ export default function Hero() {
         }
 
         ${isRTL ? `
-        /* Arabic - Three action words vertically */
+        /* Arabic - Three action words vertically with different colors */
         .text-1:before {
-          animation: fade-bg-ar-1 12s infinite;
+          animation: fade-bg-ar-1 15s infinite;
         }
         .text-1 .foreground {
-          animation: fade-fg-ar-1 12s infinite;
+          animation: fade-fg-ar-1 15s infinite;
         }
 
         .text-2:before {
-          animation: fade-bg-ar-2 12s infinite;
+          animation: fade-bg-ar-2 15s infinite;
         }
         .text-2 .foreground {
-          animation: fade-fg-ar-2 12s infinite;
+          animation: fade-fg-ar-2 15s infinite;
         }
 
         .text-3:before {
-          animation: fade-bg-ar-3 12s infinite;
+          animation: fade-bg-ar-3 15s infinite;
         }
         .text-3 .foreground {
-          animation: fade-fg-ar-3 12s infinite;
+          animation: fade-fg-ar-3 15s infinite;
         }
 
-        /* "نُبتكر" - First word */
+        /* "نُبتكر" - First word (Primary to Accent) */
         @keyframes fade-fg-ar-1 {
-          0%, 25%, 100% { opacity: 1; }
-          40%, 85% { opacity: 0; }
+          0%, 30%, 100% { opacity: 1; }
+          40%, 90% { opacity: 0; }
         }
 
         @keyframes fade-bg-ar-1 {
-          0%, 25%, 100% { opacity: 0; }
-          35%, 90% { opacity: 1; }
+          0%, 30%, 100% { opacity: 0; }
+          35%, 95% { opacity: 1; }
         }
 
-        /* "نُطوّر" - Second word */
+        /* "نُطوّر" - Second word (Red to Teal) */
         @keyframes fade-fg-ar-2 {
-          0%, 30% { opacity: 0; }
-          40%, 60% { opacity: 1; }
-          70%, 100% { opacity: 0; }
+          0%, 25% { opacity: 0; }
+          35%, 65% { opacity: 1; }
+          75%, 100% { opacity: 0; }
         }
 
         @keyframes fade-bg-ar-2 {
-          0%, 35% { opacity: 1; }
-          40%, 60% { opacity: 0; }
-          65%, 100% { opacity: 1; }
+          0%, 30% { opacity: 1; }
+          35%, 65% { opacity: 0; }
+          70%, 100% { opacity: 1; }
         }
 
-        /* "نُبسّط" - Third word */
+        /* "نُبسّط" - Third word (Blue to Yellow) */
         @keyframes fade-fg-ar-3 {
-          0%, 65% { opacity: 0; }
-          75%, 95% { opacity: 1; }
+          0%, 60% { opacity: 0; }
+          70%, 95% { opacity: 1; }
           100% { opacity: 0; }
         }
 
         @keyframes fade-bg-ar-3 {
-          0%, 70% { opacity: 1; }
-          75%, 95% { opacity: 0; }
+          0%, 65% { opacity: 1; }
+          70%, 95% { opacity: 0; }
           100% { opacity: 1; }
         }
         ` : `
-        /* English - "We" + three action words vertically */
+        /* English - "We" + three action words vertically with different colors */
         .text-1:before {
-          animation: fade-bg-en-1 12s infinite;
+          animation: fade-bg-en-1 16s infinite;
         }
         .text-1 .foreground {
-          animation: fade-fg-en-1 12s infinite;
+          animation: fade-fg-en-1 16s infinite;
         }
 
         .text-2:before {
-          animation: fade-bg-en-2 12s infinite;
+          animation: fade-bg-en-2 16s infinite;
         }
         .text-2 .foreground {
-          animation: fade-fg-en-2 12s infinite;
+          animation: fade-fg-en-2 16s infinite;
         }
 
         .text-3:before {
-          animation: fade-bg-en-3 12s infinite;
+          animation: fade-bg-en-3 16s infinite;
         }
         .text-3 .foreground {
-          animation: fade-fg-en-3 12s infinite;
+          animation: fade-fg-en-3 16s infinite;
         }
 
         .text-4:before {
-          animation: fade-bg-en-4 12s infinite;
+          animation: fade-bg-en-4 16s infinite;
         }
         .text-4 .foreground {
-          animation: fade-fg-en-4 12s infinite;
+          animation: fade-fg-en-4 16s infinite;
         }
 
-        /* "We" - Always visible */
+        /* "We" - Always visible (Primary to Accent) */
         @keyframes fade-fg-en-1 {
           0%, 100% { opacity: 1; }
         }
@@ -250,40 +250,40 @@ export default function Hero() {
           0%, 100% { opacity: 0; }
         }
 
-        /* "Innovate" */
+        /* "Innovate" - Red to Teal */
         @keyframes fade-fg-en-2 {
           0%, 20%, 100% { opacity: 1; }
-          35%, 85% { opacity: 0; }
+          30%, 90% { opacity: 0; }
         }
 
         @keyframes fade-bg-en-2 {
           0%, 20%, 100% { opacity: 0; }
-          30%, 90% { opacity: 1; }
+          25%, 95% { opacity: 1; }
         }
 
-        /* "Develop" */
+        /* "Develop" - Blue to Yellow */
         @keyframes fade-fg-en-3 {
-          0%, 30% { opacity: 0; }
-          40%, 60% { opacity: 1; }
-          70%, 100% { opacity: 0; }
+          0%, 25% { opacity: 0; }
+          35%, 65% { opacity: 1; }
+          75%, 100% { opacity: 0; }
         }
 
         @keyframes fade-bg-en-3 {
-          0%, 35% { opacity: 1; }
-          40%, 60% { opacity: 0; }
-          65%, 100% { opacity: 1; }
+          0%, 30% { opacity: 1; }
+          35%, 65% { opacity: 0; }
+          70%, 100% { opacity: 1; }
         }
 
-        /* "Simplify" */
+        /* "Simplify" - Purple to Pink */
         @keyframes fade-fg-en-4 {
-          0%, 65% { opacity: 0; }
-          75%, 95% { opacity: 1; }
+          0%, 60% { opacity: 0; }
+          70%, 95% { opacity: 1; }
           100% { opacity: 0; }
         }
 
         @keyframes fade-bg-en-4 {
-          0%, 70% { opacity: 1; }
-          75%, 95% { opacity: 0; }
+          0%, 65% { opacity: 1; }
+          70%, 95% { opacity: 0; }
           100% { opacity: 1; }
         }
         `}
