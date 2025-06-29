@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function IndustriesSection() {
@@ -142,7 +143,7 @@ export default function IndustriesSection() {
   }
 
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-900">
+    <section className="py-24 bg-gray-50 dark:bg-gray-900" role="region" aria-labelledby="industries-heading">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -150,7 +151,7 @@ export default function IndustriesSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
+          <header className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
               <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
                 {t('industries.badge')}
@@ -158,6 +159,7 @@ export default function IndustriesSection() {
             </motion.div>
             
             <motion.h2 
+              id="industries-heading"
               className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
             >
@@ -170,22 +172,26 @@ export default function IndustriesSection() {
             >
               {t('industries.description')}
             </motion.p>
-          </div>
+          </header>
 
           {/* Industries Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
             {industries.map((industry, index) => (
-              <motion.div
+              <motion.article
                 key={industry.titleKey}
                 className="bg-white dark:bg-black rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={industry.image}
                     alt={t(industry.titleKey)}
+                    width={600}
+                    height={300}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    priority={index < 2}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
@@ -202,7 +208,7 @@ export default function IndustriesSection() {
                     <div className="grid grid-cols-2 gap-2">
                       {industry.featuresKeys.map((featureKey, idx) => (
                         <div key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full" aria-hidden="true"></div>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{t(featureKey)}</span>
                         </div>
                       ))}
@@ -220,12 +226,12 @@ export default function IndustriesSection() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
 
           {/* Target Clients */}
-          <div className="text-center mb-12">
+          <header className="text-center mb-12">
             <motion.h3 
               className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
               variants={itemVariants}
@@ -238,32 +244,32 @@ export default function IndustriesSection() {
             >
               {t('industries.clientSize.description')}
             </motion.p>
-          </div>
+          </header>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {targetClients.map((client, index) => (
-              <motion.div
+              <motion.article
                 key={client.titleKey}
                 className="bg-white dark:bg-black rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
               >
-                <div className="text-4xl mb-4">{client.icon}</div>
+                <div className="text-4xl mb-4" aria-hidden="true">{client.icon}</div>
                 <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   {t(client.titleKey)}
                 </h4>
                 <p className={`text-gray-600 dark:text-gray-300 mb-6 ${isRTL ? 'text-center' : 'text-center'}`}>
                   {t(client.descriptionKey)}
                 </p>
-                <div className="space-y-2">
+                <ul className="space-y-2">
                   {client.benefitsKeys.map((benefitKey, idx) => (
-                    <div key={idx} className={`flex items-center justify-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                      <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                    <li key={idx} className={`flex items-center justify-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+                      <div className="w-1.5 h-1.5 bg-purple-500 rounded-full" aria-hidden="true"></div>
                       <span className="text-sm text-gray-700 dark:text-gray-300">{t(benefitKey)}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
-              </motion.div>
+                </ul>
+              </motion.article>
             ))}
           </div>
         </motion.div>
