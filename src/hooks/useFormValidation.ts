@@ -100,7 +100,7 @@ export function useFormValidation<T extends FormState>(
     }
 
     return undefined
-  }, [config])
+  }, [config, patterns])
 
   // Validate all fields
   const validateForm = useCallback((): boolean => {

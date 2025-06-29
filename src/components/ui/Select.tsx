@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Search, X, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -68,6 +68,24 @@ export default function Select({
     ? options.filter(option => Array.isArray(value) && value.includes(option.value))
     : options.find(option => option.value === value)
 
+  // Handle option selection - memoized to prevent unnecessary re-renders
+  const handleOptionSelect = useCallback((option: SelectOption) => {
+    if (option.disabled) return
+
+    if (multiple) {
+      const currentValue = Array.isArray(value) ? value : []
+      const newValue = currentValue.includes(option.value)
+        ? currentValue.filter(v => v !== option.value)
+        : [...currentValue, option.value]
+      onChange(newValue)
+    } else {
+      onChange(option.value)
+      setIsOpen(false)
+      setSearchTerm('')
+    }
+    setFocusedIndex(-1)
+  }, [multiple, value, onChange])
+
   // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -118,7 +136,7 @@ export default function Select({
       document.addEventListener('keydown', handleKeyDown)
       return () => document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isOpen, focusedIndex, filteredOptions])
+  }, [isOpen, focusedIndex, filteredOptions, handleOptionSelect])
 
   // Focus search input when opened
   useEffect(() => {
@@ -126,23 +144,6 @@ export default function Select({
       searchInputRef.current.focus()
     }
   }, [isOpen, searchable])
-
-  const handleOptionSelect = (option: SelectOption) => {
-    if (option.disabled) return
-
-    if (multiple) {
-      const currentValue = Array.isArray(value) ? value : []
-      const newValue = currentValue.includes(option.value)
-        ? currentValue.filter(v => v !== option.value)
-        : [...currentValue, option.value]
-      onChange(newValue)
-    } else {
-      onChange(option.value)
-      setIsOpen(false)
-      setSearchTerm('')
-    }
-    setFocusedIndex(-1)
-  }
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation()

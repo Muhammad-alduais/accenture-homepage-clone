@@ -160,7 +160,7 @@ export default function Input({
     if (value !== internalValue) {
       setInternalValue(value?.toString() || '')
     }
-  }, [value])
+  }, [value, internalValue])
 
   const inputType = type === 'password' && showPassword ? 'text' : type
   const hasError = error || validationError
