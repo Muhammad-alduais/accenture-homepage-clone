@@ -238,54 +238,54 @@ export default function Header() {
               </a>
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`} role="navigation">
-              <ul className={`flex items-center ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`} role="menubar">
-                {navItems.map((item, index) => (
-                  <li key={item.key} className="relative" role="none">
-                    <motion.div 
-                      className="relative group"
-                      variants={navItemVariants}
-                      initial="initial"
-                      animate="animate"
-                      transition={{ delay: 0.6 + index * 0.1 }}
-                    >
-                      <motion.button
-                        className={`flex items-center space-x-1 px-4 py-2 rounded-full transition-all duration-300 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${
-                          isCurrentSection(item.sectionId) 
-                            ? 'text-white bg-white/20' 
-                            : 'text-white/90 hover:text-white hover:bg-white/10'
-                        }`}
-                        style={{
-                          textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
-                        }}
-                        whileHover={{ 
-                          scale: 1.05,
-                        }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleNavigation(item.sectionId)}
-                        onKeyDown={(e) => handleKeyNavigation(e as any, index)}
-                        role="menuitem"
-                        aria-current={isCurrentSection(item.sectionId) ? "page" : undefined}
-                        tabIndex={focusedItem === index ? 0 : -1}
-                      >
-                        <span className="relative z-10 font-medium">
-                          {t(item.key)}
-                        </span>
-                      </motion.button>
-                    </motion.div>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            {/* Right side controls */}
+            {/* Right side - Navigation + Controls */}
             <motion.div 
-              className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
+              className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}
               initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
+              {/* Desktop Navigation Items */}
+              <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`} role="navigation">
+                <ul className={`flex items-center ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`} role="menubar">
+                  {navItems.map((item, index) => (
+                    <li key={item.key} className="relative" role="none">
+                      <motion.div 
+                        className="relative group"
+                        variants={navItemVariants}
+                        initial="initial"
+                        animate="animate"
+                        transition={{ delay: 0.6 + index * 0.1 }}
+                      >
+                        <motion.button
+                          className={`flex items-center space-x-1 px-3 py-2 rounded-full transition-all duration-300 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent ${
+                            isCurrentSection(item.sectionId) 
+                              ? 'text-white bg-white/20' 
+                              : 'text-white/90 hover:text-white hover:bg-white/10'
+                          }`}
+                          style={{
+                            textShadow: '0 1px 3px rgba(0, 0, 0, 0.3)'
+                          }}
+                          whileHover={{ 
+                            scale: 1.05,
+                          }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => handleNavigation(item.sectionId)}
+                          onKeyDown={(e) => handleKeyNavigation(e as any, index)}
+                          role="menuitem"
+                          aria-current={isCurrentSection(item.sectionId) ? "page" : undefined}
+                          tabIndex={focusedItem === index ? 0 : -1}
+                        >
+                          <span className="relative z-10 font-medium text-sm">
+                            {t(item.key)}
+                          </span>
+                        </motion.button>
+                      </motion.div>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
               {/* Language Selector */}
               <div className="relative">
                 <motion.button 
@@ -345,42 +345,42 @@ export default function Header() {
               
               {/* Theme Toggle */}
               <ThemeToggle />
-            </motion.div>
 
-            {/* Mobile menu button */}
-            <motion.button
-              className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={isMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="w-6 h-6 text-white" style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }} />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="w-6 h-6 text-white" style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+              {/* Mobile menu button */}
+              <motion.button
+                className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={isMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
+              >
+                <AnimatePresence mode="wait">
+                  {isMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className="w-6 h-6 text-white" style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }} />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className="w-6 h-6 text-white" style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' }} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </motion.div>
           </div>
         </motion.nav>
 
