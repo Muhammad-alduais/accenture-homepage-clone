@@ -156,7 +156,7 @@ export default function ImplementationSection() {
         >
           <div className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
+              <span className="bg-brand-primary text-white text-sm font-medium px-4 py-2 rounded-full">
                 {t('implementation.badge')}
               </span>
             </motion.div>
@@ -167,7 +167,7 @@ export default function ImplementationSection() {
             >
               {t('implementation.title')}
               <br />
-              <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
                 {t('implementation.titleHighlight')}
               </span>
             </motion.h2>
@@ -183,7 +183,7 @@ export default function ImplementationSection() {
           {/* Implementation Timeline */}
           <div className="relative mb-20">
             {/* Timeline Line */}
-            <div className={`absolute top-0 bottom-0 w-0.5 bg-purple-200 dark:bg-purple-800 ${isRTL ? 'right-8 md:right-1/2' : 'left-8 md:left-1/2'} transform md:-translate-x-0.5`}></div>
+            <div className={`absolute top-0 bottom-0 w-0.5 bg-blue-200 dark:bg-blue-800 ${isRTL ? 'right-8 md:right-1/2' : 'left-8 md:left-1/2'} transform md:-translate-x-0.5`}></div>
             
             <div className="space-y-12">
               {phases.map((phase, index) => (
@@ -195,7 +195,7 @@ export default function ImplementationSection() {
                   variants={itemVariants}
                 >
                   {/* Phase Number */}
-                  <div className={`absolute w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg transform z-10 ${
+                  <div className={`absolute w-16 h-16 bg-brand-primary text-white rounded-full flex items-center justify-center font-bold text-lg transform z-10 ${
                     isRTL ? 'right-8 md:right-1/2 md:translate-x-1/2' : 'left-8 md:left-1/2 md:-translate-x-1/2'
                   }`}>
                     {phase.phase}
@@ -212,7 +212,7 @@ export default function ImplementationSection() {
                         <h3 className={`text-2xl font-bold text-gray-900 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}>
                           {t(phase.titleKey)}
                         </h3>
-                        <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-blue-100 dark:bg-blue-900/30 text-brand-primary dark:text-brand-accent px-3 py-1 rounded-full text-sm font-medium">
                           {t(phase.durationKey)}
                         </span>
                       </div>
@@ -229,7 +229,7 @@ export default function ImplementationSection() {
                           <ul className="space-y-1">
                             {phase.activitiesKeys.map((activityKey, idx) => (
                               <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                                <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                                <div className="w-1.5 h-1.5 bg-brand-primary rounded-full"></div>
                                 <span className="text-sm text-gray-700 dark:text-gray-300">{t(activityKey)}</span>
                               </li>
                             ))}
@@ -243,7 +243,7 @@ export default function ImplementationSection() {
                           <ul className="space-y-1">
                             {phase.deliverablesKeys.map((deliverableKey, idx) => (
                               <li key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                                <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                                <div className="w-1.5 h-1.5 bg-brand-accent rounded-full"></div>
                                 <span className="text-sm text-gray-700 dark:text-gray-300">{t(deliverableKey)}</span>
                               </li>
                             ))}
@@ -259,14 +259,14 @@ export default function ImplementationSection() {
 
           {/* Proof Points */}
           <motion.div 
-            className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl p-12 text-white"
+            className="bg-gradient-to-r from-brand-primary to-brand-accent rounded-2xl p-12 text-white"
             variants={itemVariants}
           >
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-bold mb-4">
                 {t('implementation.provenResults')}
               </h3>
-              <p className="text-xl text-purple-100 max-w-2xl mx-auto">
+              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
                 {t('implementation.provenDescription')}
               </p>
             </div>
@@ -285,7 +285,7 @@ export default function ImplementationSection() {
                   <div className="text-xl font-semibold mb-2">
                     {t(point.descriptionKey)}
                   </div>
-                  <div className="text-purple-200">
+                  <div className="text-blue-200">
                     {t(point.detailKey)}
                   </div>
                 </motion.div>

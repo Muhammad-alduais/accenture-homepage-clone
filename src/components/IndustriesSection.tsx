@@ -153,7 +153,7 @@ export default function IndustriesSection() {
         >
           <header className={`text-center mb-16 ${isRTL ? 'text-center' : 'text-center'}`}>
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="bg-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full">
+              <span className="bg-brand-primary text-white text-sm font-medium px-4 py-2 rounded-full">
                 {t('industries.badge')}
               </span>
             </motion.div>
@@ -210,7 +210,7 @@ export default function IndustriesSection() {
                     <div className="grid grid-cols-2 gap-2">
                       {industry.featuresKeys.map((featureKey, idx) => (
                         <div key={idx} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full" aria-hidden="true"></div>
+                          <div className="w-1.5 h-1.5 bg-brand-primary rounded-full" aria-hidden="true"></div>
                           <span className="text-sm text-gray-700 dark:text-gray-300">{t(featureKey)}</span>
                         </div>
                       ))}
@@ -223,7 +223,7 @@ export default function IndustriesSection() {
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {industry.clientTypesKeys.map((typeKey, idx) => (
-                        <span key={idx} className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-xs">
+                        <span key={idx} className="bg-blue-100 dark:bg-blue-900/30 text-brand-primary dark:text-brand-accent px-3 py-1 rounded-full text-xs">
                           {t(typeKey)}
                         </span>
                       ))}
@@ -268,7 +268,7 @@ export default function IndustriesSection() {
                 <ul className="space-y-2">
                   {client.benefitsKeys.map((benefitKey, idx) => (
                     <li key={idx} className={`flex items-center justify-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-                      <div className="w-1.5 h-1.5 bg-purple-500 rounded-full" aria-hidden="true"></div>
+                      <div className="w-1.5 h-1.5 bg-brand-primary rounded-full" aria-hidden="true"></div>
                       <span className="text-sm text-gray-700 dark:text-gray-300">{t(benefitKey)}</span>
                     </li>
                   ))}
