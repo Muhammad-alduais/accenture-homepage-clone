@@ -40,14 +40,11 @@ export default function Hero() {
     }
   }
 
-  // Arabic animated text content
-  const animatedTexts = isRTL ? [
-    { text: 'نُبتكر.', colorStart: '#007cf0', colorEnd: '#00dfd8' },
-    { text: 'نُطوّر.', colorStart: '#7928ca', colorEnd: '#ff0080' },
-    { text: 'نُبسّط.', colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
-  ] : [
+  // Synchronized animated text content for both languages
+  const animatedTexts = [
     { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' },
-    { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' }
+    { text: t('hero.subtitle'), colorStart: '#7928ca', colorEnd: '#ff0080' },
+    { text: t('hero.tertiary'), colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
   ]
 
   return (
@@ -69,7 +66,7 @@ export default function Hero() {
             isRTL ? 'text-5xl md:text-7xl lg:text-8xl' : 'text-5xl md:text-7xl lg:text-8xl'
           }`}
           variants={itemVariants}
-          aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : `${t('hero.title')}. ${t('hero.subtitle')}.`}
+          aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. We Develop. We Simplify."}
         >
           {animatedTexts.map((item, index) => (
             <span 
@@ -81,7 +78,7 @@ export default function Hero() {
                 '--end-color': item.colorEnd
               } as React.CSSProperties}
             >
-              <span className={`foreground ${index === 1 && !isRTL ? 'mx-4' : index === 1 && isRTL ? 'mx-2' : ''}`}>
+              <span className={`foreground ${index === 1 ? 'mx-2' : ''}`}>
                 {item.text}
               </span>
             </span>
