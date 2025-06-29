@@ -23,7 +23,7 @@ export interface FormConfig {
 }
 
 export interface FormErrors {
-  [fieldName: string]: string
+  [fieldName: string]: string | undefined
 }
 
 export interface FormState {
@@ -129,12 +129,12 @@ export function useFormValidation<T extends FormState>(
       [name]: transformedValue
     }))
 
-    // Clear error when user starts typing
+    // Clear error when user starts typing - properly remove the key
     if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: undefined
-      }))
+      setErrors(prev => {
+        const { [name]: removed, ...rest } = prev
+        return rest
+      })
     }
   }, [config, errors])
 
@@ -153,7 +153,7 @@ export function useFormValidation<T extends FormState>(
         [name]: error
       }))
     }
-  }, [validateField, values, _setTouched, setErrors])
+  }, [validateField, values, _setTouched])
 
   // Reset form
   const reset = useCallback(() => {
