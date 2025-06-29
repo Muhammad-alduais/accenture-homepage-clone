@@ -55,6 +55,30 @@ export default function Hero() {
       {/* Interactive Animated Background */}
       <AnimatedBackground />
 
+      {/* Video Background with Animation */}
+      <motion.div 
+        className="absolute inset-0 opacity-30 dark:opacity-20 z-10"
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.3 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+      >
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="https://ext.same-assets.com/2900598000/2585685094.mp4" type="video/mp4" />
+        </video>
+        <motion.div 
+          className="absolute inset-0 bg-white/40 dark:bg-black/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+        />
+      </motion.div>
+
       {/* Content */}
       <motion.div 
         ref={ref}
