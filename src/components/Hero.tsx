@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import BlackHole from './BlackHole'
+import AnimatedBackground from './AnimatedBackground'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -42,32 +42,8 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
-      {/* Black Hole Animation Background */}
-      <BlackHole />
-
-      {/* Video Background with Animation */}
-      <motion.div 
-        className="absolute inset-0 opacity-30 dark:opacity-20"
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 0.3 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-      >
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" type="video/mp4" />
-        </video>
-        <motion.div 
-          className="absolute inset-0 bg-white/40 dark:bg-black/50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-        />
-      </motion.div>
+      {/* Interactive Animated Background */}
+      <AnimatedBackground />
 
       {/* Content */}
       <motion.div 
