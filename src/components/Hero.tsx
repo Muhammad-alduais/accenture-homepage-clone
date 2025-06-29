@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/contexts/LanguageContext'
-import AccentureBackground from './AccentureBackground'
+import GridBackground from './GridBackground'
 
 export default function Hero() {
   const [ref, inView] = useInView({
@@ -43,9 +43,11 @@ export default function Hero() {
   // Get animated texts based on language
   const getAnimatedTexts = () => {
     if (isRTL) {
-      // Arabic: Single horizontal text with gradient animation
+      // Arabic: Three action words vertically like English
       return [
-        { text: t('hero.title'), colorStart: '#007cf0', colorEnd: '#00dfd8' }
+        { text: 'نُبتكر', colorStart: '#007cf0', colorEnd: '#00dfd8' },
+        { text: 'نُطوّر', colorStart: '#7928ca', colorEnd: '#ff0080' },
+        { text: 'نُبسّط', colorStart: '#ff4d4d', colorEnd: '#f9cb28' }
       ]
     } else {
       // English: "We" + three action words vertically
@@ -62,31 +64,27 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
-      {/* Accenture-style Animated Background */}
-      <AccentureBackground />
+      {/* Grid Background */}
+      <GridBackground />
 
       {/* Content */}
       <motion.div 
         ref={ref}
-        className="relative z-10 px-4 max-w-6xl mx-auto text-center"
+        className="relative z-20 px-4 max-w-6xl mx-auto text-center"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
         {/* Custom Animated Gradient Hero Title */}
         <motion.h1 
-          className={`hero-title ${
-            isRTL 
-              ? 'flex justify-center items-center text-center' 
-              : 'flex flex-col items-center justify-center text-center'
-          } font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl`}
+          className={`hero-title flex flex-col items-center justify-center text-center font-bold leading-tight mb-6 text-5xl md:text-7xl lg:text-8xl`}
           variants={itemVariants}
           aria-label={isRTL ? "نُبتكر. نُطوّر. نُبسّط." : "We Innovate. Develop. Simplify."}
         >
           {animatedTexts.map((item, index) => (
             <span 
               key={index}
-              className={`animated-text text-${index + 1} ${isRTL ? 'inline-block' : 'block'} ${isRTL && index > 0 ? 'mr-4' : ''}`}
+              className={`animated-text text-${index + 1} block`}
               style={{
                 '--content': `'${item.text}'`,
                 '--start-color': item.colorStart,
@@ -109,7 +107,7 @@ export default function Hero() {
 
         {/* Key Benefits */}
         <motion.div 
-          className="relative z-20 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="relative z-30 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           variants={itemVariants}
         >
           <div className="text-center">
@@ -138,11 +136,10 @@ export default function Hero() {
 
         .animated-text {
           position: relative;
-          display: ${isRTL ? 'inline-block' : 'block'};
+          display: block;
           -webkit-user-select: none;
           user-select: none;
-          margin-bottom: ${isRTL ? '0' : '0.1em'};
-          ${isRTL ? 'margin-right: 0.3em;' : ''}
+          margin-bottom: 0.1em;
         }
 
         .animated-text:before {
@@ -175,22 +172,63 @@ export default function Hero() {
         }
 
         ${isRTL ? `
-        /* Arabic - Single horizontal text with gradient animation */
+        /* Arabic - Three action words vertically */
         .text-1:before {
-          animation: fade-bg-ar 6s infinite;
+          animation: fade-bg-ar-1 12s infinite;
         }
         .text-1 .foreground {
-          animation: fade-fg-ar 6s infinite;
+          animation: fade-fg-ar-1 12s infinite;
         }
 
-        @keyframes fade-fg-ar {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
+        .text-2:before {
+          animation: fade-bg-ar-2 12s infinite;
+        }
+        .text-2 .foreground {
+          animation: fade-fg-ar-2 12s infinite;
         }
 
-        @keyframes fade-bg-ar {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 0.3; }
+        .text-3:before {
+          animation: fade-bg-ar-3 12s infinite;
+        }
+        .text-3 .foreground {
+          animation: fade-fg-ar-3 12s infinite;
+        }
+
+        /* "نُبتكر" - First word */
+        @keyframes fade-fg-ar-1 {
+          0%, 25%, 100% { opacity: 1; }
+          40%, 85% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-ar-1 {
+          0%, 25%, 100% { opacity: 0; }
+          35%, 90% { opacity: 1; }
+        }
+
+        /* "نُطوّر" - Second word */
+        @keyframes fade-fg-ar-2 {
+          0%, 30% { opacity: 0; }
+          40%, 60% { opacity: 1; }
+          70%, 100% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-ar-2 {
+          0%, 35% { opacity: 1; }
+          40%, 60% { opacity: 0; }
+          65%, 100% { opacity: 1; }
+        }
+
+        /* "نُبسّط" - Third word */
+        @keyframes fade-fg-ar-3 {
+          0%, 65% { opacity: 0; }
+          75%, 95% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+
+        @keyframes fade-bg-ar-3 {
+          0%, 70% { opacity: 1; }
+          75%, 95% { opacity: 0; }
+          100% { opacity: 1; }
         }
         ` : `
         /* English - "We" + three action words vertically */
